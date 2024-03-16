@@ -1,27 +1,68 @@
-# Co
+# AllInOne repo : Career Officer 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
 
-## Development server
+## Development server commands
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ng build dal --watch --preserve-symlinks
 
-## Code scaffolding
+ng g application x
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ng g library x
 
-## Build
+ng new my-workspace --createApplication=false
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ng generate application my-app1
+ng generate application my-app2
 
-## Running unit tests
+ng serve my-app1
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+ng new my-workspace --createApplication=false
+ng new my-workspace --create-application=false
+ng new my-workspace --create-application=false
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ng new my-workspace --create-application=false
+cd my-workspace
+ng generate application my-app1
+ng generate application my-app2
 
-## Further help
+ng build dal --watch --preserve-symlinks
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+
+
+
+ng generate library my-shared-library
+ng serve my-app1
+ng build my-app1
+
+
+
+ng build my-app1
+ng build my-app2
+
+
+ng generate library my-shared-library
+
+ng build my-shared-library
+
+"my-shared-library": {
+  "root": "projects/my-shared-library",
+  "sourceRoot": "projects/my-shared-library/src",
+  "projectType": "library",
+  "prefix": "lib",
+  "architect": {
+    "build": {
+      "builder": "@angular-devkit/build-ng-packagr:build",
+      "options": {
+        "tsConfig": "projects/my-shared-library/tsconfig.lib.json",
+        "project": "projects/my-shared-library/ng-package.json"
+      }
+    }
+  }
+}
+
+
+
