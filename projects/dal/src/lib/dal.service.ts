@@ -10,9 +10,13 @@ export class DALService {
   constructor(private firestore: AngularFirestore) { }
 
   getData() {
-    // get admin collection length 
-    this.firestore.collection('admins').get().subscribe(snap => console.log('Done: Admins are ' + snap.size));
+    // get admin collections available in career officer project
+    return {
+      collections:['users','admin','career','path','course','class','content','quiz',],
+ 
   }
-
-
+  }
 }
+
+
+
