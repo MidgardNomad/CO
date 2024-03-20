@@ -14,6 +14,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    HeaderComponent,
+    FooterComponent,
+    NotFoundComponent
   ]
 })
 export class SharedModule { }
