@@ -9,7 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +18,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     SignupComponent,
     ForgetPasswordComponent,
     VerifyOtpComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    TranslateModule
-  ]
+  imports: [CommonModule, AuthRoutingModule, TranslateModule, FormsModule],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -9,15 +9,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MainModule } from './modules/main/main.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage:'en',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -28,11 +26,10 @@ import { MainModule } from './modules/main/main.module';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas:[]
+  schemas: [],
 })
-export class AppModule { }
+export class AppModule {}
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http,);
+  return new TranslateHttpLoader(http);
 }
-
