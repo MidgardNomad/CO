@@ -1,0 +1,26 @@
+.auth {
+  display: flex;
+  height: 100%;
+  &-form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+  }
+  &-img {
+    margin: 10px;
+    width: 50%;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    @media (max-width: 991px) {
+      display: none;
+    }
+  }
+}
