@@ -2,9 +2,9 @@
   <div class="signup-form">
     <h1>
       Create Your Account Now <br />
-      <span style="color: #0096cb">Build Your career</span>
+      <span style="color: #0096cb">Build Your Career</span>
     </h1>
-    <form>
+    <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input
@@ -12,6 +12,9 @@
           class="form-control"
           id="firstName"
           placeholder="First Name"
+          ngModel
+          name="userFirstName"
+          required
         />
       </div>
       <div class="form-group">
@@ -21,6 +24,9 @@
           class="form-control"
           id="lastName"
           placeholder="Last Name"
+          ngModel
+          name="userSecondName"
+          required
         />
       </div>
       <div class="form-group">
@@ -30,6 +36,10 @@
           class="form-control"
           id="email"
           placeholder="Email"
+          ngModel
+          email
+          required
+          name="userEmail"
         />
       </div>
       <div class="form-group">
@@ -39,10 +49,22 @@
           class="form-control"
           id="password"
           placeholder="Password"
+          ngModel
+          required
+          name="userPassword"
+          minlength="6"
         />
       </div>
       <div class="form-check mb-2 mr-sm-2">
-        <input class="form-check-input" type="checkbox" id="inlineFormCheck" />
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineFormCheck"
+          ngModel
+          name="userAgreement"
+          value="true"
+          required
+        />
         <label class="form-check-label" for="inlineFormCheck">
           <span
             style="
@@ -68,7 +90,11 @@
           </a>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary my-1 app-custom-button">
+      <button
+        type="submit"
+        class="btn btn-primary my-1 app-custom-button"
+        [disabled]="signUpForm.invalid"
+      >
         Sign Up
       </button>
     </form>
