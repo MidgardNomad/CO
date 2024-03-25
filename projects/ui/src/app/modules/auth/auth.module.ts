@@ -10,6 +10,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,12 @@ import { FormsModule } from '@angular/forms';
     VerifyOtpComponent,
     ResetPasswordComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, TranslateModule, FormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    TranslateModule,
+    FormsModule,
+    SharedModule,
+  ],
 })
 export class AuthModule {}
