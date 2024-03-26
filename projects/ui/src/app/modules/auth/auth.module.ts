@@ -10,6 +10,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { FormsModule } from '@angular/forms';
+import { NgOtpInputModule } from 'ng-otp-input';
 import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { SharedModule } from '../../shared/shared/shared.module';
     TranslateModule,
     FormsModule,
     SharedModule,
+    NgOtpInputModule,
   ],
 })
 export class AuthModule {}
