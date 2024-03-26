@@ -1,0 +1,29 @@
+.verify {
+  &-header {
+    span {
+      color: #52b2ee;
+      font-family: 20px;
+    }
+  }
+  &-form {
+    margin-top: 50px;
+    &-resend {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0px;
+      width: 440px;
+      .timer {
+        color: red;
+        margin-right: 10px;
+      }
+      a {
+        color: #0096cb;
+      }
+    }
+    p {
+      color: #727b82;
+      font-size: 16px;
+      width: 400px;
+    }
+  }
+}
