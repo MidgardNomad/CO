@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VerifyOtpComponent implements OnInit {
   otpCode: number;
-  countDown = 15;
+  countDown = 60;
   isResendCodeActive = 0;
   constructor(
     private _location: Location,
