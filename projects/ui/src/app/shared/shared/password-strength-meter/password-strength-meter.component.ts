@@ -68,23 +68,6 @@ export class PasswordStrengthComponent implements OnChanges {
 
       const color = this.getColor(pwdStrength);
       this.setBarColors(color.index, color.color);
-
-      switch (pwdStrength) {
-        case 10:
-          this.message = 'Poor';
-          break;
-        case 20:
-          this.message = 'Not Good';
-          break;
-        case 30:
-          this.message = 'Average';
-          break;
-        case 40:
-          this.message = 'Good';
-          break;
-      }
-    } else {
-      this.message = '';
     }
   }
 
