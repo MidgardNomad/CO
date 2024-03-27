@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class VerifyOtpComponent implements OnInit {
   otpCode: number;
-  countDown = 60;
+  timer: number;
   isResendCodeActive = 0;
   constructor(
     private _location: Location,
@@ -19,13 +19,15 @@ export class VerifyOtpComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const timer = setInterval(() => {
-      if (this.countDown === 0) {
-        clearInterval(timer);
+    this.timer =
+      new Date(new Date().getTime() + 120000).getTime() - new Date().getTime();
+    const time = setInterval(() => {
+      if (this.timer <= 0) {
+        clearInterval(time);
         this.isResendCodeActive = 100;
         return;
       }
-      this.countDown -= 1;
+      this.timer -= 1000;
     }, 1000);
   }
 

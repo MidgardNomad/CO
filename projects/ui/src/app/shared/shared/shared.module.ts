@@ -4,6 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { PasswordStrengthComponent } from './password-strength-meter/password-strength-meter.component';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FooterComponent,
     NotFoundComponent,
     LoadingSpinnerComponent,
+    PasswordStrengthComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -18,6 +20,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     FooterComponent,
     NotFoundComponent,
     LoadingSpinnerComponent,
+    PasswordStrengthComponent,
   ],
 })
 export class SharedModule {}

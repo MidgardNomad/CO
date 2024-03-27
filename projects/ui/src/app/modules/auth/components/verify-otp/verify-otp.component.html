@@ -4,39 +4,40 @@
       <i class="fa-solid fa-arrow-left"></i> &nbsp; Back
     </span>
   </div>
+
   <div class="verify-form">
-    <h2>Email has been Sent!</h2>
-    <p>
-      To continue, complete this verification step. We've sent a One Time
-      Password (OTP) to the email mohamedcasd@gmail.com. Please enter it below.
-    </p>
-    <form (ngSubmit)="onSubmit()">
+    <div class="verify-form-instructons">
+      <h2>Email Has been Sent!</h2>
+      <p>Check your Email's Inbox for your OTP code.</p>
+    </div>
+    <div class="verify-form-otp">
       <ng-otp-input
-        (onInputChange)="onOtpChange($event)"
         [config]="{
-          length: 4,
+          length: 6,
           allowNumbersOnly: true,
           inputStyles: {
-            width: '100px'
+            outline: '1px solid #0096CBB2',
+            border: '1px solid #0096CBB2'
           }
         }"
       ></ng-otp-input>
-      <div class="verify-form-resend">
+      <div class="verify-form-otp-resendCode">
         <div>
-          <a
-            (click)="onResendCode()"
-            style="cursor: pointer"
-            [ngStyle]="{ opacity: isResendCodeActive }"
+          <a href="" *ngIf="isResendCodeActive" style="text-decoration: none"
             >Resend Code</a
           >
         </div>
-        <div class="timer">
-          00:{{ countDown >= 10 ? countDown : "0" + countDown }}
+        <div>
+          <p style="color: red">{{ timer | date : "mm:ss" }}</p>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary my-1 app-custom-button">
-        Verify
-      </button>
-    </form>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary my-1 app-custom-button"
+      (click)="onSubmit()"
+    >
+      Verify
+    </button>
   </div>
 </div>
