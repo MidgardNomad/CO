@@ -53,5 +53,7 @@ export class ResetPasswordComponent implements OnInit {
   onGoBackToLogin() {
     this.router.navigate(['../login'], { relativeTo: this.route });
   }
-  onSubmit() {}
+  onSubmit() {
+    this.router.navigate(['../..'], { relativeTo: this.route });
+  }
 }
