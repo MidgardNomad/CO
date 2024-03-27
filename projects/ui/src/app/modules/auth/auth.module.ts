@@ -9,7 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { SharedModule } from '../../shared/shared/shared.module';
 
@@ -29,6 +29,7 @@ import { SharedModule } from '../../shared/shared/shared.module';
     FormsModule,
     SharedModule,
     NgOtpInputModule,
+    ReactiveFormsModule,
   ],
 })
 export class AuthModule {}
