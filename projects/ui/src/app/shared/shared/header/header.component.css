@@ -1,0 +1,19 @@
+.navbar {
+  width: 100%;
+  background-color: #FFFFFF !important;
+  padding: 10px 0px;
+}
+.navbar .collapse {
+  justify-content: space-around;
+}
+.navbar .collapse .headerRight i, .navbar .collapse .headerRight button, .navbar .collapse .headerRight img {
+  margin: 0px 10px;
+}
+.navbar .collapse .headerRight .goProButton {
+  background-color: #F2AE37;
+  color: #FFFFFF;
+  padding: 6px 10px;
+}
+.navbar .collapse .headerRight .goProButton img {
+  margin-right: 0px;
+}/*# sourceMappingURL=header.component.css.map */

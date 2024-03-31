@@ -1,0 +1,76 @@
+.body {
+  background-color: #fbfdff;
+  padding: 70px 0px;
+}
+
+/* image */
+.image {
+  height: 533px;
+  background-size: 100% 101%;
+  background-repeat: no-repeat;
+  background-image: url(../../../../../assets/images/privacy/background.png);
+}
+
+.image .text-bg {
+  color: #FFFFFF;
+  position: relative;
+  text-align: center;
+  top: 35%;
+}
+
+.image .text-bg h1 {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 36px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+
+.image .text-bg span {
+  font-weight: 300;
+  line-height: 60px;
+  letter-spacing: 0.6px;
+}
+
+/* The container */
+.marg {
+  margin: 30px;
+}
+
+.content {
+  padding: 100px 150px;
+  background-color: #fff;
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding: 50px 0px;
+    text-align: center;
+  }
+}
+/* The Header */
+.content h1 {
+  color: #2EA2EB;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 44px;
+  letter-spacing: 1.4px;
+}
+
+/*The Paragraph */
+.content p {
+  color: #9BA2A6;
+  font-size: 24px;
+  text-transform: capitalize;
+  font-weight: 400;
+  line-height: 32px;
+  margin-top: 30px;
+  letter-spacing: -1px;
+}
+
+.content .part_1,
+.content .part_2,
+.content .part_3,
+.content .part_4 {
+  margin: 60px 0;
+}/*# sourceMappingURL=privacy-page.component.css.map */
