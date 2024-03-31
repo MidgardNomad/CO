@@ -1,4 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
 // Import Font Awesome styles
-@import "~@fortawesome/fontawesome-free/css/all.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+.app-custom-button {
+  background-color: #0096cb;
+  width: 440px;
+  border-radius: 12px;
+  padding: 16px 0;
+  @media (max-width: 600px) {
+    width: 85%;
+  }
+}

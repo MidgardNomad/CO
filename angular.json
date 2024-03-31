@@ -27,9 +27,7 @@
               "projects/admin/src/favicon.ico",
               "projects/admin/src/assets"
             ],
-            "styles": [
-              "projects/admin/src/styles.scss"
-            ],
+            "styles": ["projects/admin/src/styles.scss"],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
@@ -97,9 +95,7 @@
               "projects/admin/src/favicon.ico",
               "projects/admin/src/assets"
             ],
-            "styles": [
-              "projects/admin/src/styles.scss"
-            ],
+            "styles": ["projects/admin/src/styles.scss"],
             "scripts": []
           }
         }
@@ -125,13 +121,8 @@
             "polyfills": "projects/ui/src/polyfills.ts",
             "tsConfig": "projects/ui/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/ui/src/favicon.ico",
-              "projects/ui/src/assets"
-            ],
-            "styles": [
-              "projects/ui/src/styles.scss"
-            ],
+            "assets": ["projects/ui/src/favicon.ico", "projects/ui/src/assets"],
+            "styles": ["projects/ui/src/styles.scss"],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
@@ -195,13 +186,8 @@
             "tsConfig": "projects/ui/tsconfig.spec.json",
             "karmaConfig": "projects/ui/karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/ui/src/favicon.ico",
-              "projects/ui/src/assets"
-            ],
-            "styles": [
-              "projects/ui/src/styles.scss"
-            ],
+            "assets": ["projects/ui/src/favicon.ico", "projects/ui/src/assets"],
+            "styles": ["projects/ui/src/styles.scss"],
             "scripts": []
           }
         }
@@ -231,9 +217,7 @@
               "projects/portal/src/favicon.ico",
               "projects/portal/src/assets"
             ],
-            "styles": [
-              "projects/portal/src/styles.scss"
-            ],
+            "styles": ["projects/portal/src/styles.scss"],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
@@ -301,9 +285,7 @@
               "projects/portal/src/favicon.ico",
               "projects/portal/src/assets"
             ],
-            "styles": [
-              "projects/portal/src/styles.scss"
-            ],
+            "styles": ["projects/portal/src/styles.scss"],
             "scripts": []
           }
         }
