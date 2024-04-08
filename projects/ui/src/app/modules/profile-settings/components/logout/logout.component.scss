@@ -1,0 +1,26 @@
+.logout {
+  height: 75vh;
+  width: 100%;
+  h1 {
+    font-size: 48px;
+    color: #e43535;
+    margin-bottom: 10px;
+  }
+  p {
+    color: #9ba2a6;
+    font-weight: 600;
+  }
+  button {
+    width: 250px;
+    border-radius: 12px;
+  }
+  .btn-primary {
+    background-color: #52b2ee;
+    border: none;
+  }
+  .btn-danger {
+    background-color: white;
+    color: #e43535;
+    border: 1px solid #e43535;
+  }
+}
