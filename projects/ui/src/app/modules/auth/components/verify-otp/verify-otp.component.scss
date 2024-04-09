@@ -1,0 +1,59 @@
+.verify {
+  &-header {
+    width: 100%;
+    span {
+      color: #52b2ee;
+      font-family: 20px;
+    }
+    @media (max-width: 600px) {
+      margin-left: 50px;
+    }
+  }
+  &-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 15px;
+    &-otp {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      &-resendCode {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .form-control {
+      background-color: #e3e9ee48;
+      width: 440px;
+      height: 48px;
+      border-radius: 12px;
+      margin-top: 5px;
+      @media (max-width: 600px) {
+        width: 85%;
+      }
+
+      &:focus {
+        background-color: white;
+      }
+    }
+    &-instructons {
+      align-self: flex-start;
+      @media (max-width: 600px) {
+        margin-left: 50px;
+      }
+    }
+    p {
+      color: #727b82;
+      font-size: 16px;
+      @media (max-width: 600px) {
+        width: 85%;
+      }
+      align-self: center;
+    }
+  }
+
+  margin-bottom: 20px;
+}
