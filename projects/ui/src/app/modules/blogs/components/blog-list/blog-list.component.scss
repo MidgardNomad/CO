@@ -61,7 +61,7 @@
 .s2-444 {
     position: absolute;
     bottom: 9px;
-    left: 40%;
+    left: 39%;
     background-color: #FFFFFF;
     padding-right: 10px;
     padding-left: 10px;
@@ -100,7 +100,7 @@
 .s2-777 {
     position: absolute;
     bottom: 9px;
-    left: 40%;
+    left: 39%;
     background-color: #FFFFFF;
     padding-right: 10px;
     padding-left: 10px;
@@ -150,12 +150,20 @@
         margin-bottom: 0px !important;
     }
 
+    .s2-444 {
+        left: 43%;
+    }
+
     .s2-555 {
-        left: 33%;
+        left: 36%;
     }
 
     .s2-666 {
-        left: 33%;
+        left: 36%;
+    }
+
+    .s2-777 {
+        left: 43%;
     }
 }
 

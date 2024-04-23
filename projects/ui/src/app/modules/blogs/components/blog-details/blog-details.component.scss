@@ -7,7 +7,7 @@
 //////////////////////////////////   Section 1   //////////////////////////////////////
 
 .s1 {
-    background-image: url("../../../../../assets/images/blog details/4.png");
+    background-image: url("../../../../../assets/images/4.png");
     border-radius: 10px;
     background-position: center center;
     background-size: cover;
@@ -116,36 +116,6 @@
     padding-left: 0px;
 }
 
-@media screen and (max-width:768px) {
-    .s2-5 {
-        margin-top: 20px;
-        padding: 0px !important;
-        text-align: center;
-    }
-
-    .s2-6 {
-        margin-bottom: 30px;
-    }
-
-    .s2-7 {
-        text-align: center;
-        padding: 10px !important;
-        margin: 0px !important;
-        line-height: 0px !important;
-    }
-
-    .s2-8,
-    .s2-9 {
-        line-height: 0px;
-        padding-bottom: 0px !important;
-    }
-
-    .s2-7 li a {
-        line-height: 0px;
-        font-size: 23px;
-    }
-}
-
 .s2-8 {
     margin-bottom: 33px;
 }
@@ -176,6 +146,36 @@
     text-decoration: none;
 }
 
+@media screen and (max-width:768px) {
+    .s2-5 {
+        margin-top: 20px;
+        padding: 0px !important;
+        text-align: center;
+    }
+
+    .s2-6 {
+        margin-bottom: 30px;
+    }
+
+    .s2-7 {
+        text-align: center;
+        padding: 10px !important;
+        margin: 0px !important;
+        line-height: 0px !important;
+    }
+
+    .s2-8,
+    .s2-9 {
+        line-height: 0px;
+        padding-bottom: 0px !important;
+    }
+
+    .s2-7 li a {
+        line-height: 0px;
+        font-size: 23px;
+    }
+}
+
 //////////////////////////////////   Section 3   //////////////////////////////////////
 
 .s3-1 {
@@ -201,7 +201,7 @@
 .s3-444 {
     position: absolute;
     bottom: 9px;
-    left: 40%;
+    left: 39%;
     background-color: #FFFFFF;
     padding-right: 10px;
     padding-left: 10px;
@@ -240,7 +240,7 @@
 .s3-777 {
     position: absolute;
     bottom: 9px;
-    left: 40%;
+    left: 39%;
     background-color: #FFFFFF;
     padding-right: 10px;
     padding-left: 10px;
@@ -291,11 +291,19 @@
         margin-bottom: 0px !important;
     }
 
+    .s3-444 {
+        left: 43%;
+    }
+
     .s3-555 {
-        left: 33%;
+        left: 36%;
     }
 
     .s3-666 {
-        left: 33%;
+        left: 36%;
+    }
+
+    .s3-777 {
+        left: 43%;
     }
 }
