@@ -4,76 +4,78 @@ import { MainComponent } from './main.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: MainComponent,
-    children: [
+    path:'',
+    component:MainComponent,
+    children:[
       {
         path: '',
         loadChildren: () =>
           import('../landing-page/landing-page.module').then(
-            (m) => m.LandingPageModule
-          ),
+            (m) => m.LandingPageModule,
+          )
       },
       {
         path: 'auth',
         loadChildren: () =>
-          import('../auth/auth.module').then((m) => m.AuthModule),
+          import('../auth/auth.module').then(
+            (m) => m.AuthModule,
+          )
       },
       {
         path: 'profile',
         loadChildren: () =>
-          import('../profile/profile.module').then((m) => m.ProfileModule),
+          import('../profile/profile.module').then(
+            (m) => m.ProfileModule,
+          )
       },
       {
         path: 'courses',
         loadChildren: () =>
-          import('../courses/courses.module').then((m) => m.CoursesModule),
+          import('../courses/courses.module').then(
+            (m) => m.CoursesModule,
+          )
       },
-
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../dashboard/dashboard.module').then(
+            (m) => m.DashboardModule,
+          )
+      },
       {
         path: 'about',
         loadChildren: () =>
-          import('../about/about.module').then((m) => m.AboutModule),
+          import('../about/about.module').then(
+            (m) => m.AboutModule,
+          )
       },
       {
         path: 'contactUS',
         loadChildren: () =>
           import('../contactus/contactus.module').then(
-            (m) => m.ContactusModule
-          ),
+            (m) => m.ContactusModule,
+          )
       },
       {
         path: 'blogs',
         loadChildren: () =>
-          import('../blogs/blogs.module').then((m) => m.BlogsModule),
+          import('../blogs/blogs.module').then(
+            (m) => m.BlogsModule,
+          )
       },
       {
         path: 'privacy',
         loadChildren: () =>
           import('../privacy-policy/privacy-policy.module').then(
-            (m) => m.PrivacyPolicyModule
-          ),
-      },
-      {
-        path: 'dboard',
-        loadChildren: () =>
-          import('../dashboard/dashboard.module').then(
-            (m) => m.DashboardModule
-          ),
-      },
-      {
-        path: 'profile-settings',
-        loadChildren: () =>
-          import('../profile-settings/profile-settings.module').then(
-            (m) => m.ProfileSettingsModule
-          ),
-      },
-    ],
-  },
+            (m) => m.PrivacyPolicyModule,
+          )
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class MainRoutingModule {}
+export class MainRoutingModule { }
