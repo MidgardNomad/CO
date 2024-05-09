@@ -1,0 +1,85 @@
+.settings {
+  min-height: 90vh;
+  margin: 0px 50px 25px 50px;
+  @media (max-width: 991px) {
+    margin: 0;
+  }
+  .navbar {
+    padding-top: 10px;
+    .navbar-nav {
+      width: 100%;
+      @media (max-width: 991px) {
+        overflow: auto;
+        white-space: nowrap;
+      }
+      .nav-item {
+        padding: 10px;
+        text-decoration: none;
+        a {
+          padding: 10px;
+          i {
+            font-size: 17px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            color: #52b2ee;
+            align-self: start;
+          }
+          span {
+            padding: 10px;
+          }
+          &:hover {
+            i {
+              background-color: #52b2ee;
+              color: white;
+            }
+          }
+        }
+        &:last-child {
+          a,
+          a:hover {
+            i {
+              color: #ec7272;
+              background-color: white;
+            }
+            span {
+              color: #ec7272;
+            }
+          }
+        }
+      }
+    }
+  }
+  .content {
+    margin: 50px 0px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    height: 100%;
+    width: 70%;
+    @media (max-width: 991px) {
+      margin: 10px;
+      width: 90%;
+    }
+  }
+}
+
+.active {
+  background-color: white !important;
+  border-radius: 6px !important;
+  box-shadow: rgba(82, 178, 238, 0.2) 0px 8px 24px;
+  i {
+    color: white !important;
+    background-color: #52b2ee !important;
+  }
+}
+
+.delete-account-active {
+  .active {
+    box-shadow: rgba(248, 62, 37, 0.2) 0px 8px 24px;
+    i {
+      color: white !important;
+      background-color: #e43535 !important;
+    }
+  }
+}
