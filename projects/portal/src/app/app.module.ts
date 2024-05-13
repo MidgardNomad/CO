@@ -7,15 +7,9 @@ import { AppComponent } from './app.component';
 import { DALModule } from 'DAL';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    DALModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, DALModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
