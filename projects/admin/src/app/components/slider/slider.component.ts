@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DemoFlexyModule } from '../../demo-flexy-module';
 
 @Component({
   selector: 'app-slider',

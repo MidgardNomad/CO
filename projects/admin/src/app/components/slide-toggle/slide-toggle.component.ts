@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DemoFlexyModule } from '../../demo-flexy-module';
 
 @Component({
   selector: 'app-slide-toggle',

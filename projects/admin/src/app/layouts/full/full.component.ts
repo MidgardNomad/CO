@@ -15,7 +15,7 @@ interface sidebarMenu {
   styleUrls: ['./full.component.scss']
 })
 export class FullComponent {
-  isSideNavOpen:boolean=true;
+  isSideNavOpen: boolean = true;
 
   search: boolean = false;
 
@@ -25,7 +25,7 @@ export class FullComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
   routerActive: string = "activelink";
 
@@ -44,7 +44,27 @@ export class FullComponent {
       link: "/students",
       icon: "grid",
       menu: "Students",
-    }
+    },
+    // {
+    //   link: "/alerts",
+    //   icon: "info",
+    //   menu: "Alerts",
+    // },
+    // {
+    //   link: "/grid-list",
+    //   icon: "file-text",
+    //   menu: "Grid List",
+    // },
+    // {
+    //   link: "/menu",
+    //   icon: "menu",
+    //   menu: "Menus",
+    // },
+    // {
+    //   link: "/table",
+    //   icon: "grid",
+    //   menu: "Tables",
+    // },
   ]
 
 }

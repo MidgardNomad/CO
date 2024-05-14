@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlertsComponent } from './alerts/alerts.component';
-import { FeatherModule } from 'angular-feather';
-import { allIcons } from 'angular-feather/icons';
+// import { FeatherModule } from 'angular-feather';
+// import { allIcons } from 'angular-feather/icons';
 import { FormsComponent } from './forms/forms.component';
-import { DemoFlexyModule } from '../demo-flexy-module';
+// import { DemoFlexyModule } from '../demo-flexy-module';
 import { GridListComponent } from './grid-list/grid-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -24,8 +24,8 @@ import { TooltipsComponent } from './tooltips/tooltips.component'
 @NgModule({
   imports: [
     CommonModule,
-    FeatherModule.pick(allIcons),
-    DemoFlexyModule,
+    // FeatherModule.pick(allIcons),
+    // DemoFlexyModule,
     ButtonsComponent,
     SlideToggleComponent,
     SliderComponent,

@@ -6,7 +6,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DemoFlexyModule } from '../../demo-flexy-module';
 
 @Component({
   selector: 'app-expansion',

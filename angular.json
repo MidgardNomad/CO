@@ -28,9 +28,8 @@
               "projects/admin/src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
-              "projects/admin/src/assets/styles/style.scss",
-              "projects/admin/src/styles.scss"
+              "projects/admin/src/styles.scss",
+              "projects/admin/src/assets/styles/style.scss"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"

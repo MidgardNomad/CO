@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSliderModule } from '@angular/material/slider';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DemoFlexyModule } from '../../demo-flexy-module';
 
 @Component({
   selector: 'app-snipper',

@@ -5,7 +5,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgFor } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { DemoFlexyModule } from 'src/app/demo-flexy-module';
+import { DemoFlexyModule } from '../../demo-flexy-module';
 
 export interface DemoColor {
   name: string;

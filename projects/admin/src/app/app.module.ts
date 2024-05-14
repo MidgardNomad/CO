@@ -12,6 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
+import { ComponentsModule } from './components/components.module';
+import { DemoFlexyModule } from './demo-flexy-module'
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { MatRippleModule } from '@angular/material/core';
     MatMenuModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatRippleModule
+    MatRippleModule,
+    DemoFlexyModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
