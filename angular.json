@@ -27,7 +27,10 @@
               "projects/admin/src/favicon.ico",
               "projects/admin/src/assets"
             ],
-            "styles": ["projects/admin/src/styles.scss"],
+            "styles": [
+              "projects/admin/src/styles.scss",
+              "projects/admin/src/assets/styles/style.scss"
+            ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
@@ -217,7 +220,10 @@
               "projects/portal/src/favicon.ico",
               "projects/portal/src/assets"
             ],
-            "styles": ["projects/portal/src/styles.scss"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/portal/src/styles.scss"
+            ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
