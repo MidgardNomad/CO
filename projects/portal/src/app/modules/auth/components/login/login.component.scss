@@ -1,10 +1,11 @@
-.signup {
+.login {
   width: 100%;
   &-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-top: 25px;
+
     .form-control {
       background-color: #e3e9ee48;
       width: 440px;
@@ -32,6 +33,14 @@
     }
     p {
       margin-top: 10px;
+    }
+  }
+
+  &-trailing {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 600px) {
+      flex-direction: column;
     }
   }
   a,

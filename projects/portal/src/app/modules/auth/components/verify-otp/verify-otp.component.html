@@ -1,0 +1,43 @@
+<div class="verify">
+  <div class="verify-header">
+    <span style="cursor: pointer" (click)="onGoBack()">
+      <i class="fa-solid fa-arrow-left"></i> &nbsp; Back
+    </span>
+  </div>
+
+  <div class="verify-form">
+    <div class="verify-form-instructons">
+      <h2>Email Has been Sent!</h2>
+      <p>Check your Email's Inbox for your OTP code.</p>
+    </div>
+    <div class="verify-form-otp">
+      <ng-otp-input
+        [config]="{
+          length: 6,
+          allowNumbersOnly: true,
+          inputStyles: {
+            outline: '1px solid #0096CBB2',
+            border: '1px solid #0096CBB2'
+          }
+        }"
+      ></ng-otp-input>
+      <div class="verify-form-otp-resendCode">
+        <div>
+          <a href="" *ngIf="isResendCodeActive" style="text-decoration: none"
+            >Resend Code</a
+          >
+        </div>
+        <div>
+          <p style="color: red">{{ timer | date : "mm:ss" }}</p>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary my-1 app-custom-button"
+      (click)="onSubmit()"
+    >
+      Verify
+    </button>
+  </div>
+</div>
