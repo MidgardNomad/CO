@@ -1,0 +1,90 @@
+@mixin text($w, $s, $h, $c) {
+  font-weight: $w;
+  font-size: $s;
+  line-height: $h;
+  color: $c;
+}
+@mixin text-list($w, $s, $h, $l, $c) {
+  font-weight: $w;
+  font-size: $s;
+  line-height: $h;
+  letter-spacing: $l;
+  color: $c;
+}
+
+// The Head //
+.head {
+  @include text(700, 40px, 64px, #130b01);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+// Main-FAQ //
+.faq {
+  margin: 100px 0;
+}
+
+// Table-List //
+.task1 {
+  margin-bottom: 30px;
+  .list-group-item {
+    .title-list {
+      @include text-list(600, 32px, 36px, -1px, #130b01);
+      margin-top: 15px;
+    }
+    span {
+      @include text-list(600, 20px, 28px, -0.8px, #52b2ee);
+      display: block;
+      padding: 25px 0px 10px;
+    }
+  }
+  .one-1,
+  .two-2,
+  .three-3,
+  .four-4 {
+    @include text-list(400, 20px, 28px, -0.8px, #9ba2a6);
+    padding: 20px 16px;
+  }
+  .five-5 {
+    padding: 20px;
+  }
+}
+
+// Questions //
+.task2 {
+  .one {
+    border: 1.2px solid #52b2ee;
+    border-radius: 6px;
+    padding: 29px;
+    h4 {
+      @include text-list(600, 20px, 28px, -0.8px, #52b2ee);
+      margin-bottom: 15px;
+      text-transform: capitalize;
+    }
+    .box {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+    }
+    p,
+    span {
+      @include text(400, 16.84px, 28.88px, #9ba2a6);
+      margin-bottom: 0;
+    }
+  }
+  .comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1.2px solid #dedede;
+    border-radius: 6px;
+    padding: 20px;
+    border-color: #dedede;
+    margin: 25px 0;
+    p {
+      @include text-list(500, 16px, 24px, -0.6px, #35434c);
+      text-transform: capitalize;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { PasswordStrengthComponent } from './password-strength-meter/password-strength-meter.component';
 
@@ -10,7 +9,6 @@ import { PasswordStrengthComponent } from './password-strength-meter/password-st
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
   ],
@@ -18,7 +16,6 @@ import { PasswordStrengthComponent } from './password-strength-meter/password-st
   exports: [
     HeaderComponent,
     FooterComponent,
-    NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
   ],
