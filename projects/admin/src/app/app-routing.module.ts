@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: "home", loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'courses', loadChildren: () => import('./modules/courses/courses.module').then(m => m.CoursesModule) },
       { path: 'students', loadChildren: () => import('./modules/students/students.module').then(m => m.StudentsModule) },
+      { path: 'career', loadChildren: () => import('./modules/career/career.module').then(m => m.CareerModule) },
       // { path: "alerts", component: AlertsComponent },
       // { path: "table", component: ProductComponent },
       // { path: "menu", component: MenuComponent },
