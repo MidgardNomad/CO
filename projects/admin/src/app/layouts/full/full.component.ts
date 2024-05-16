@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 interface sidebarMenu {
   link: string;
@@ -25,7 +26,7 @@ export class FullComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver,private router:Router) { }
 
   routerActive: string = "activelink";
 
@@ -66,5 +67,10 @@ export class FullComponent {
     //   menu: "Tables",
     // },
   ]
+
+  logout(){
+    localStorage.removeItem('T');
+    this.router.navigateByUrl('/auth')
+  }
 
 }

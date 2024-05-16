@@ -5,11 +5,14 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ProductComponent } from './modules/dashboard/dashboard-components/product/product.component';
 import { GridListComponent } from './components/grid-list/grid-list.component';
+import { isLoggedInGuard } from './core/gaurds/is-logged-in.guard';
+import { isLoggedOutGuard } from './core/gaurds/is-logged-out.guard';
 
 const routes: Routes = [
   {
     path: "",
     component: FullComponent,
+    canActivate:[isLoggedInGuard],
     children: [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
@@ -33,7 +36,12 @@ const routes: Routes = [
       // {path:"button", component:ButtonsComponent},
     ]
   },
-  { path: "", redirectTo: "/home", pathMatch: "full" },
+  // { path: "", redirectTo: "/home", pathMatch: "full" },
+  {
+    path:'auth',
+    canActivate:[isLoggedOutGuard],
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },
   { path: "**", redirectTo: "/home", pathMatch: "full" },
 
 ];
