@@ -1,1 +1,120 @@
-<p>signup works!</p>
+<div class="signup">
+  <div class="signup-form">
+    <h1>
+      Create Your Account Now <br />
+      <span style="color: #0096cb">Build Your Career</span>
+    </h1>
+    <div
+      class="alert alert-danger"
+      style="width: 100%"
+      *ngIf="somethingWentWrong"
+    >
+      <p>{{ errMessage }}</p>
+    </div>
+    <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          placeholder="First Name"
+          ngModel
+          name="userFirstName"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          placeholder="Last Name"
+          ngModel
+          name="userLastName"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          ngModel
+          email
+          required
+          name="userEmail"
+          [ngClass]="{ 'is-invalid': somethingWentWrong }"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          ngModel
+          required
+          name="userPassword"
+          minlength="8"
+        />
+      </div>
+      <div class="form-check mb-2 mr-sm-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="inlineFormCheck"
+          ngModel
+          name="userAgreement"
+          value="true"
+          required
+        />
+        <label class="form-check-label" for="inlineFormCheck">
+          <span
+            style="
+              color: #9ba2a6;
+              font-size: 15px;
+              font-weight: 500;
+              line-height: 24px;
+            "
+          >
+            I Agree to
+          </span>
+          <a href="#">
+            <span
+              style="
+                color: #0096cb;
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 32px;
+                letter-spacing: -1px;
+              "
+              >Terms & Conditions</span
+            >
+          </a>
+        </label>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary my-1 app-custom-button"
+        [disabled]="signUpForm.invalid"
+      >
+        Sign Up
+      </button>
+    </form>
+    <p>
+      Already have an Account?
+      <span>
+        <a
+          [routerLink]="['../login']"
+          style="color: #0096cbb2; font-size: 20px; font-weight: 700"
+          >Sign In</a
+        ></span
+      >
+    </p>
+  </div>
+</div>
