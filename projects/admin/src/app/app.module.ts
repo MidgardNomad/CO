@@ -13,13 +13,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
 import { ComponentsModule } from './components/components.module';
-import { DemoFlexyModule } from './demo-flexy-module'
+import { DemoFlexyModule } from './demo-flexy-module';
+import { AddNewCareerComponent } from './modal/add-new-career/add-new-career.component'
+import { ModalModule } from './modal/modal.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FullComponent
+    FullComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { DemoFlexyModule } from './demo-flexy-module'
     MatSidenavModule,
     MatRippleModule,
     DemoFlexyModule,
-    ComponentsModule
+    ComponentsModule,
+    ModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

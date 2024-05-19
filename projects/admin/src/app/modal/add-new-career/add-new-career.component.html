@@ -1,0 +1,18 @@
+<section class="p-5">
+    <div class="w-75 mx-auto fw-bold">
+        <form [formGroup]="addForm" >
+            <label for="NO" class="text-info">NO. :</label>
+            <input formControlName="NO" type="text" class="form-control mb-2" id="NO" placeholder="NO.">
+            <label for="Career_name" class="text-info">Career name :</label>
+            <input formControlName="Career_name" type="text" class="form-control mb-2" id="Career_name" placeholder="Career name">
+            <label for="Hours" class="text-info">Hours :</label>
+            <input formControlName="Hours" type="number" class="form-control mb-2" id="Hours" placeholder="Hours">
+            <label for="Lessons_number" class="text-info">Lessons_number :</label>
+            <input formControlName="Lessons_number" type="number" class="form-control mb-2" id="Lessons_number" placeholder="Number of lessons">
+            <!-- <label for="Details" class="text-info">Details :</label>
+            <input formControlName="Details" type="number" class="form-control mb-2" id="Details" placeholder="Details"> -->
+
+            <button class="btn btn-info w-25 mt-3" type="submit">save</button>
+        </form>
+    </div>
+</section>

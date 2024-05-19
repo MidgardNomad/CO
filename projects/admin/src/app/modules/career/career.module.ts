@@ -3,9 +3,17 @@ import { CommonModule } from '@angular/common';
 
 import { CareerRoutingModule } from './career-routing.module';
 import { CareerComponent } from './career.component';
-import { CareerListComponent } from './component/career-list/career-list.component';
 import { CareerDetailsComponent } from './component/career-details/career-details.component';
 
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CareerListComponent } from './component/career-list/career-list.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -15,7 +23,19 @@ import { CareerDetailsComponent } from './component/career-details/career-detail
   ],
   imports: [
     CommonModule,
-    CareerRoutingModule
+    CareerRoutingModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatExpansionModule
   ]
 })
-export class CareerModule { }
+
+export class CareerModule {
+
+}
+
+
