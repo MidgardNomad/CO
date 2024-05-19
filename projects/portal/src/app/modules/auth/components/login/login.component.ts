@@ -11,7 +11,9 @@ export class LoginComponent implements OnInit {
   somethingWentWrong = false;
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.authService.logout().subscribe();
+  }
 
   onLogin(userCradentials: NgForm) {
     const { userEmail, userPassword, rememberUser } = userCradentials.value;
@@ -19,11 +21,7 @@ export class LoginComponent implements OnInit {
       this.authService.setStayLoggedIn = rememberUser;
     }
     this.authService.login(userEmail, userPassword).subscribe({
-      next: (_) => {
-        this.authService.currentUser.subscribe((user) =>
-          console.log(user?.uid)
-        );
-      },
+      next: (_) => {},
       error: (_) => {
         this.somethingWentWrong = true;
       },

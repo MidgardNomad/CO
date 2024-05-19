@@ -1,24 +1,20 @@
-import { courseLevel } from "./courseLevel";
+import { courseLevel } from './courseLevel';
 
 export interface User {
-    id: string,
-    email: string,
-    mobile: string,
-    countryCode: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-    role: string,
-    active: boolean,
-    lastLogin: Date,
-    createdAt: Date,
-    updatedAt: Date,
-    deletedAt: Date,
-    deleted: boolean,
-    avatar: string,
-    bio: string,
-    dob: Date,
-    courseList: courseLevel[],
-
-
+  id: string;
+  uid: string;
+  email: string;
+  mobile: string;
+  displayName: string;
+  isVerified: boolean;
+  isPro: boolean;
+  active: boolean;
+  lastLogin: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  deletedAt: Date | null;
+  deleted: boolean;
+  photoURL: string;
+  bio?: string;
+  courseList: courseLevel[];
 }

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
+import { LoggedoutGuard } from 'projects/dal/src/lib/guards/isLoggedout.guard';
+import { LoggedinGuard } from 'projects/dal/src/lib/guards/isLoggedin.guard';
 
 const routes: Routes = [
   {
@@ -16,11 +18,13 @@ const routes: Routes = [
       },
       {
         path: 'auth',
+        canActivateChild: [LoggedinGuard],
         loadChildren: () =>
           import('../auth/auth.module').then((m) => m.AuthModule),
       },
       {
-        path: 'profile',
+        path: 'profile/:uid',
+        canActivate: [LoggedoutGuard],
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfileModule),
       },
