@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.currentUser.subscribe((user) => console.log(user));
+    this.authService.user.subscribe((user) => console.log(user));
   }
 
   // getProfile() {

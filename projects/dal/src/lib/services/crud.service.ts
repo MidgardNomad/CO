@@ -3,29 +3,28 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { OrderByDirection } from 'firebase/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudService {
   // set the collection name on calling the service
   // collectionName: string = '';
 
-  constructor(private db: AngularFirestore) { 
+  constructor(private db: AngularFirestore) {
     // this.collectionName = '';
     // if (this.collectionName == '') {
-    //   console.log('Please set the collection name in the service before calling any method.');
+    //   console.log(
+    //     'Please set the collection name in the service before calling any method.'
+    //   );
     // }
   }
 
   // get all data
-  async getData(collectionName:string) {
-    this.db.collection(collectionName).snapshotChanges().subscribe((data: any) => {
-      console.log(data);
-      return data;
-     });
+  getData(collection: string) {
+    return this.db.collection(collection).snapshotChanges();
   }
 
   // add data
-  addData(collectionName:string,data: any) {
+  addData(collectionName: string, data: any) {
     return this.db.collection(collectionName).add(data);
   }
 
@@ -40,7 +39,7 @@ export class CrudService {
   }
 
   // get single data
-  getSingleData(collectionName:string,id: any) {
+  getSingleData(collectionName: string, id: string) {
     return this.db.collection(collectionName).doc(id).get();
   }
 
@@ -59,13 +58,8 @@ export class CrudService {
     return this.db.collection(collectionName, ref => ref.where(field, '==', value).orderBy(orderField, order)).snapshotChanges();
   }
 
-
   // get single data
   getSingleDataByFieldWithOrderAndLimit(collectionName:string,field: string, value: any, orderField: string, order: OrderByDirection, limit: number) {
     return this.db.collection(collectionName, ref => ref.where(field, '==', value).orderBy(orderField, order).limit(limit)).snapshotChanges();
   }
-
-  
-
 }
-

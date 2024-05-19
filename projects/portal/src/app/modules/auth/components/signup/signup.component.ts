@@ -21,14 +21,17 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(userCradentials: NgForm) {
-    const { userEmail, userPassword } = userCradentials.value;
-    this.authService.signUp(userEmail, userPassword).subscribe({
-      next: (_) => console.log('res'),
-      error: (err) => {
-        this.somethingWentWrong = true;
-        this.errMessage = err.message;
-      },
-    });
+    const { userEmail, userPassword, userFirstName, userLastName } =
+      userCradentials.value;
+    this.authService
+      .signUp(userEmail, userPassword, userFirstName, userLastName)
+      .subscribe({
+        next: (_) => console.log('sign up success'),
+        error: (err) => {
+          this.somethingWentWrong = true;
+          this.errMessage = err.message;
+        },
+      });
     // this.authService.currentUser.subscribe({
     //   next: (user) => console.log(user),
     // });
