@@ -9,6 +9,8 @@ import { AuthService } from 'DAL';
 })
 export class LoginComponent implements OnInit {
   somethingWentWrong = false;
+  errMessage: string;
+  isLoading = false;
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -16,14 +18,25 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(userCradentials: NgForm) {
-    const { userEmail, userPassword, rememberUser } = userCradentials.value;
-    if (rememberUser) {
-      this.authService.setStayLoggedIn = rememberUser;
-    }
-    this.authService.login(userEmail, userPassword).subscribe({
-      next: (_) => {},
-      error: (_) => {
+    const {
+      userEmail,
+      userPassword,
+      rememberUser,
+    }: {
+      userEmail: string;
+      userPassword: string;
+      rememberUser: boolean | '';
+    } = userCradentials.value;
+    this.isLoading = true;
+
+    this.authService.login(userEmail, userPassword, rememberUser).subscribe({
+      next: (_) => {
+        this.isLoading = false;
+      },
+      error: (err) => {
         this.somethingWentWrong = true;
+        this.isLoading = false;
+        this.errMessage = err.message;
       },
     });
   }
