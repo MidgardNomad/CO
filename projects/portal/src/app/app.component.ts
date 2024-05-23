@@ -12,7 +12,7 @@ import { DALService, CrudService, AuthService } from 'DAL';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title = 'portal';
 
   constructor(
@@ -33,7 +33,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.authService.user.subscribe((user) => console.log(user));
+    this.authService.user.subscribe((user) => {
+      console.log(user);
+    });
   }
 
   // getProfile() {
@@ -44,11 +46,4 @@ export class AppComponent implements OnInit, OnDestroy {
   //     console.log(data);
   //   });
   // }
-
-  @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    if (!this.authService.getStayLoggedIn) {
-      this.authService.logout();
-    }
-  }
 }

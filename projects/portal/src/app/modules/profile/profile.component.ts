@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, CrudService } from 'DAL';
 import { User } from 'projects/dal/src/lib/models/user/user';
 
-import { UserService } from 'projects/dal/src/lib/services/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +9,8 @@ import { UserService } from 'projects/dal/src/lib/services/user.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  user: User;
-  constructor(private userService: UserService) {}
+  user: Observable<User>;
+  constructor() {}
 
-  ngOnInit(): void {
-    this.user = this.userService.getActiveUser;
-    console.log(this.user);
-  }
+  ngOnInit(): void {}
 }

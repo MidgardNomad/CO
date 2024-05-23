@@ -1,7 +1,14 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { map } from 'rxjs';
 
 export const LoggedoutGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
   const router = inject(Router);
-  return localStorage.getItem('flag') ? true : router.createUrlTree(['/auth']);
+  return authService.user.pipe(
+    map((user) => {
+      return user == null ? router.createUrlTree(['/auth']) : true;
+    })
+  );
 };
