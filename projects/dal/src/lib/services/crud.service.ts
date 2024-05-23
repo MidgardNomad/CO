@@ -23,18 +23,28 @@ export class CrudService {
     return this.db.collection(collection).snapshotChanges();
   }
 
+  //set a single Document with a custom ID
+  setSingleDoc(collectionName: string, docID: string, data: any) {
+    return this.db.doc(`/${collectionName}/${docID}`).set(data);
+  }
+
+  //Get a document by ID
+  getSignleDoc(collectionName: string, docID: string) {
+    return this.db.doc(`/${collectionName}/${docID}`).get();
+  }
+
   // add data
   addData(collectionName: string, data: any) {
     return this.db.collection(collectionName).add(data);
   }
 
   // update data
-  updateData(collectionName:string,id: any, data: any) {
+  updateData(collectionName: string, id: any, data: any) {
     return this.db.collection(collectionName).doc(id).update(data);
   }
 
   // delete data
-  deleteData(collectionName:string,id: any) {
+  deleteData(collectionName: string, id: any) {
     return this.db.collection(collectionName).doc(id).delete();
   }
 
@@ -44,22 +54,54 @@ export class CrudService {
   }
 
   // get single data
-  getSingleDataByField(collectionName:string,field: string, value: any) {
-    return this.db.collection(collectionName, ref => ref.where(field, '==', value)).snapshotChanges();
+  getSingleDataByField(collectionName: string, field: string, value: any) {
+    return this.db
+      .collection(collectionName, (ref) => ref.where(field, '==', value))
+      .snapshotChanges();
   }
 
   // get single data
-  getSingleDataByFieldWithLimit(collectionName:string,field: string, value: any, limit: number) {
-    return this.db.collection(collectionName, ref => ref.where(field, '==', value).limit(limit)).snapshotChanges();
+  getSingleDataByFieldWithLimit(
+    collectionName: string,
+    field: string,
+    value: any,
+    limit: number
+  ) {
+    return this.db
+      .collection(collectionName, (ref) =>
+        ref.where(field, '==', value).limit(limit)
+      )
+      .snapshotChanges();
   }
 
   // get single data
-  getSingleDataByFieldWithOrder(collectionName:string,field: string, value: any, orderField: string, order: OrderByDirection) {
-    return this.db.collection(collectionName, ref => ref.where(field, '==', value).orderBy(orderField, order)).snapshotChanges();
+  getSingleDataByFieldWithOrder(
+    collectionName: string,
+    field: string,
+    value: any,
+    orderField: string,
+    order: OrderByDirection
+  ) {
+    return this.db
+      .collection(collectionName, (ref) =>
+        ref.where(field, '==', value).orderBy(orderField, order)
+      )
+      .snapshotChanges();
   }
 
   // get single data
-  getSingleDataByFieldWithOrderAndLimit(collectionName:string,field: string, value: any, orderField: string, order: OrderByDirection, limit: number) {
-    return this.db.collection(collectionName, ref => ref.where(field, '==', value).orderBy(orderField, order).limit(limit)).snapshotChanges();
+  getSingleDataByFieldWithOrderAndLimit(
+    collectionName: string,
+    field: string,
+    value: any,
+    orderField: string,
+    order: OrderByDirection,
+    limit: number
+  ) {
+    return this.db
+      .collection(collectionName, (ref) =>
+        ref.where(field, '==', value).orderBy(orderField, order).limit(limit)
+      )
+      .snapshotChanges();
   }
 }

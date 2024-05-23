@@ -2,10 +2,8 @@ import { courseLevel } from './courseLevel';
 
 export interface User {
   id: string;
-  uid: string;
-  email: string;
-  mobile: string;
   displayName: string;
+  photoURL: string;
   isVerified: boolean;
   isPro: boolean;
   active: boolean;
@@ -14,7 +12,7 @@ export interface User {
   updatedAt: Date;
   deletedAt: Date | null;
   deleted: boolean;
-  photoURL: string;
   bio?: string;
   courseList: courseLevel[];
+  connectedAccounts: string[];
 }

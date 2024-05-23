@@ -6,20 +6,6 @@
     justify-content: center;
     align-items: center;
 
-    .form-control {
-      background-color: #e3e9ee48;
-      width: 440px;
-      height: 48px;
-      border-radius: 12px;
-      margin-top: 5px;
-      @media (max-width: 600px) {
-        width: 85%;
-      }
-
-      &:focus {
-        background-color: white;
-      }
-    }
     h1 {
       margin-bottom: 20px;
     }
@@ -51,6 +37,17 @@
   }
 }
 
-.isloading {
+.loading {
   opacity: 0.8;
+}
+
+.disable-link {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.place-spinner {
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
 }

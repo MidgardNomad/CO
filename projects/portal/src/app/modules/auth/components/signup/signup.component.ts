@@ -1,39 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'DAL';
-import { Observable, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   somethingWentWrong: boolean;
   errMessage: string;
+  isLoading = false;
+  signUpSub = new Subscription();
   constructor(private authService: AuthService) {
     this.somethingWentWrong = false;
   }
 
-  ngOnInit(): void {
-    // this.authService.logout().subscribe();
-  }
+  ngOnInit(): void {}
 
   onSignUp(userCradentials: NgForm) {
+    this.isLoading = true;
     const { userEmail, userPassword, userFirstName, userLastName } =
       userCradentials.value;
-    this.authService
+    this.signUpSub = this.authService
       .signUp(userEmail, userPassword, userFirstName, userLastName)
       .subscribe({
-        next: (_) => console.log('sign up success'),
+        next: (_) => {
+          this.isLoading = false;
+        },
         error: (err) => {
           this.somethingWentWrong = true;
           this.errMessage = err.message;
+          this.isLoading = false;
         },
       });
-    // this.authService.currentUser.subscribe({
-    //   next: (user) => console.log(user),
-    // });
+  }
+  ngOnDestroy(): void {
+    this.signUpSub.unsubscribe();
   }
 }

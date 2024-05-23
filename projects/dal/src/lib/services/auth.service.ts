@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router, UrlTree } from '@angular/router';
+import { EmailAuthProvider } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import {
   BehaviorSubject,
   Observable,
@@ -13,15 +14,13 @@ import {
 } from 'rxjs';
 import { User } from '../models/user/user';
 import { CrudService } from './crud.service';
-import { UserService } from './user.service';
-import { DocumentReference } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   //Class Properties
-  currentUser = new BehaviorSubject<User>(null);
+  currentUserChange = new BehaviorSubject<boolean>(null);
   user = this.auth.user;
 
   constructor(
@@ -35,7 +34,7 @@ export class AuthService {
   //Class Setters
 
   //Class Utilities
-  handleErrors(err: firebase.default.FirebaseError) {
+  private handleErrors(err: firebase.default.FirebaseError) {
     let errMessage = 'Something Went Wrong! Please, Try Again.';
     if (!err || !err.code) {
       return throwError(() => new Error(errMessage));
@@ -55,16 +54,36 @@ export class AuthService {
     return throwError(() => new Error(errMessage));
   }
 
+  private reauthenticate(
+    password: string
+  ): Promise<firebase.default.auth.UserCredential> {
+    let user: firebase.default.User;
+    this.user.subscribe((currentUser) => {
+      user = currentUser;
+    });
+    return new Promise((resolve, reject) => {
+      user
+        .reauthenticateWithCredential(
+          EmailAuthProvider.credential(user.email, password)
+        )
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
+  }
+
   //Class Methods
   login(
     email: string,
     password: string,
-    stayLoggedIn: boolean | ''
+    stayLoggedIn: boolean | '',
+    redirect = true
   ): Observable<firebase.default.auth.UserCredential> {
     this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
     return from(
       this.auth.signInWithEmailAndPassword(email, password).then((res) => {
-        this.router.navigate(['/profile', res.user.uid]);
+        this.crudService.getSingleData('users', res.user.uid).subscribe(() => {
+          if (redirect) this.router.navigate(['profile', res.user.uid]);
+        });
         return res;
       })
     ).pipe(catchError(this.handleErrors));
@@ -76,19 +95,23 @@ export class AuthService {
     firstName: string,
     lastName: string
   ): Observable<firebase.default.auth.UserCredential> {
+    const userFirstName = firstName
+      .trim()
+      .replace(firstName[0], firstName[0].toUpperCase());
+    const userLastName = lastName
+      .trim()
+      .replace(lastName[0], lastName[0].toUpperCase());
     return from(
       this.auth.createUserWithEmailAndPassword(email, password).then((res) => {
         res.user
           .updateProfile({
-            displayName: `${firstName} ${lastName}`,
-            photoURL: '../../../../../assets/images/SignupArt.svg',
+            displayName: `${userFirstName} ${userLastName}`,
+            photoURL: '../../../../../assets/images/placeholder-avatar.svg',
           })
           .then(() => {
             this.crudService
-              .addData('users', {
-                uid: res.user.uid,
-                email: res.user.email,
-                mobile: res.user.phoneNumber,
+              .setSingleDoc('users', res.user.uid, {
+                id: res.user.uid,
                 displayName: res.user.displayName,
                 photoURL: res.user.photoURL,
                 isVerified: false,
@@ -100,10 +123,10 @@ export class AuthService {
                 deletedAt: null,
                 deleted: false,
                 courseList: [],
-              })
-              .then((res) => {
-                this.router.navigate(['/profile', res.id]);
-              });
+                connectedAccounts: [],
+              } as User)
+              .then();
+            this.router.navigate(['/profile', res.user.uid]);
           });
         return res;
       })
@@ -113,7 +136,57 @@ export class AuthService {
     );
   }
 
+  changePassword(oldPassword: string, newPassword: string) {
+    return this.user.pipe(
+      map((user) => {
+        user
+          .reauthenticateWithCredential(
+            EmailAuthProvider.credential(user.email, oldPassword)
+          )
+          .then(
+            () => {
+              user.updatePassword(newPassword).then(
+                (res) => res,
+                (err) => err
+              );
+            },
+            (err) => err.code
+          );
+      })
+    );
+  }
+
   logout(): Observable<void> {
-    return from(this.auth.signOut());
+    return from(
+      this.auth.signOut().then(() => {
+        this.router.navigate(['/auth']);
+      })
+    );
+  }
+
+  deleteAccount(password: string): Observable<void> {
+    return this.user
+      .pipe(
+        map((user) => {
+          user
+            .reauthenticateWithCredential(
+              EmailAuthProvider.credential(user.email, password)
+            )
+            .then(() => {
+              this.crudService.deleteData('users', user.uid).then();
+              user.delete().then(
+                (res) => {
+                  this.logout().subscribe();
+                  return res;
+                },
+                (err) => err.code
+              );
+            });
+        })
+      )
+      .pipe(
+        catchError(this.handleErrors),
+        tap((res) => res)
+      );
   }
 }

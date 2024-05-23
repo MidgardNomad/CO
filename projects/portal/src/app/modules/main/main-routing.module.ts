@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { LoggedoutGuard } from 'projects/dal/src/lib/guards/isLoggedout.guard';
 import { LoggedinGuard } from 'projects/dal/src/lib/guards/isLoggedin.guard';
+import { UserProfileResolver } from 'projects/dal/src/lib/reslovers/profile.resolver';
+import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -18,21 +20,23 @@ const routes: Routes = [
       },
       {
         path: 'auth',
-        canActivateChild: [LoggedinGuard],
+        // canActivateChild: [LoggedinGuard],
         loadChildren: () =>
           import('../auth/auth.module').then((m) => m.AuthModule),
       },
       {
         path: 'profile/:uid',
         canActivate: [LoggedoutGuard],
+        resolve: { userData: UserProfileResolver },
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfileModule),
       },
       {
         path: 'profile-settings',
+        canActivate: [LoggedoutGuard],
         loadChildren: () =>
-          import('../profile-setting/profile-setting.module').then(
-            (m) => m.ProfileSettingModule
+          import('../profile-settings/profile-settings.module').then(
+            (m) => m.ProfileSettingsModule
           ),
       },
       {
@@ -63,6 +67,16 @@ const routes: Routes = [
           import('../privacy-policy/privacy-policy.module').then(
             (m) => m.PrivacyPolicyModule
           ),
+      },
+      {
+        path: 'not-found',
+
+        component: NotFoundComponent,
+        data: { message: 'Page Not Found!' },
+      },
+      {
+        path: '**',
+        redirectTo: 'not-found',
       },
     ],
   },

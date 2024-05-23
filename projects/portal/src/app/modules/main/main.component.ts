@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'DAL';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +6,7 @@ import { AuthService } from 'DAL';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    // this.authService.logout().subscribe();
-  }
+  ngOnInit(): void {}
 }

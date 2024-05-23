@@ -25,20 +25,7 @@
         justify-content: space-between;
       }
     }
-    .form-control {
-      background-color: #e3e9ee48;
-      width: 440px;
-      height: 48px;
-      border-radius: 12px;
-      margin-top: 5px;
-      @media (max-width: 600px) {
-        width: 85%;
-      }
 
-      &:focus {
-        background-color: white;
-      }
-    }
     &-instructons {
       align-self: flex-start;
       @media (max-width: 600px) {

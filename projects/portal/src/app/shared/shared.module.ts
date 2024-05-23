@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { PasswordStrengthComponent } from './password-strength-meter/password-strength-meter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
   exports: [
     HeaderComponent,
     FooterComponent,
