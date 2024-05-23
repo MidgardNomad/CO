@@ -1,1 +1,146 @@
-<p>student-list works!</p>
+<form #myForm="ngForm" (ngSubmit)="addUser()">
+  <!-- User Name -->
+  <div class="row">
+    <div class="col-sm-10">
+      <mat-form-field appearance="fill">
+        <mat-label>User Name</mat-label>
+        <input [(ngModel)]="userName" required name="userName" matInput placeholder="Enter usaer name">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="row">
+    <div class="col-sm-10">
+      <mat-form-field>
+        <mat-label>E-mail</mat-label>
+        <input [(ngModel)]="email" required name="email" matInput placeholder="@gmail.com" [formControl]="emails"
+          required>
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error *ngIf="emails.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class=" example-container">
+    <div class="row">
+      <div class="col-sm-10">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter Password" name="password" [(ngModel)]="password"
+            [type]="hide ? 'password' : 'text'" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile -->
+  <div class=" example-container">
+    <div class="row">
+      <div class="col-sm-10">
+        <mat-form-field>
+          <mat-label>Mobile-Phone</mat-label>
+          <input matInput placeholder="No more than 10 numbers" name="mobile" maxlength="10" [(ngModel)]="mobile"
+            required>
+          <button mat-icon-button matSuffix>
+            <mat-icon>phone</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contry -->
+  <div class="row">
+    <div class="col-sm-10">
+      <mat-form-field appearance="fill">
+        <mat-label>Contry</mat-label>
+        <input name="country" [(ngModel)]="contry" matInput placeholder="Enter Country" required>
+        <mat-icon matSuffix>flag</mat-icon>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Button Add User  -->
+  <div class="col-sm-10 d-grid gap-2 mb-4">
+    <button type="submit" class="btn btn-info" [disabled]="myForm.invalid">Add User</button>
+  </div>
+</form>
+
+
+
+<!-- The Table -->
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Emaile</th>
+      <th scope="col">Password</th>
+      <th scope="col">Mobile</th>
+      <th scope="col" class="country">Country</th>
+      <th scope="col" class="country">Delet</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <!-- 1 -->
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>{{Email}}</td>
+      <td>{{Password}}</td>
+      <td>+20{{Mobile}}</td>
+      <td>{{Contry}}</td>
+      <td><button  style="color: red; border: none; background-color: transparent;"><mat-icon
+            matSuffix>delete</mat-icon></button></td>
+    </tr>
+
+    <!-- 2  -->
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>{{Email}}</td>
+      <td> {{Password}} </td>
+      <td>+20{{Mobile}}</td>
+      <td>{{Contry}}</td>
+      <td><button  style="color: red; border: none; background-color: transparent;"><mat-icon
+            matSuffix>delete</mat-icon></button></td>
+    </tr>
+
+    <!-- 3 -->
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>{{Email}}</td>
+      <td>{{Password}}</td>
+      <td>+20{{Mobile}}</td>
+      <td>{{Contry}}</td>
+      <td><button style="color: red; border: none; background-color: transparent;"><mat-icon
+            matSuffix>delete</mat-icon></button></td>
+    </tr>
+
+
+    <!-- 4 -->
+    <tr *ngFor="let u of users;index as i">
+      <th scope="row"> {{i+4}} </th>
+      <td>{{u.userName}}</td>
+      <td>{{u.email}}</td>
+      <td>{{u.password}}</td>
+      <td>+20{{u.mobile}}</td>
+      <td>{{u.contry}}</td>
+      <td><button (click)="delet(i)" style="color: red; border: none; background-color: transparent;"><mat-icon
+            matSuffix>delete</mat-icon></button></td>
+    </tr>
+  </tbody>
+
+  <div>
+    <button class="btn btn-success next" (click)="getComm()"> Student Details </button>
+  </div>
+</table>

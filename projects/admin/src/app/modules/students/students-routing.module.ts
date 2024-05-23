@@ -4,13 +4,13 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import { StudentDetailsComponent } from './components/student-details/student-details.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:'list',pathMatch:'full' },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
   { path: 'list', component: StudentListComponent },
-  { path: ':id', component: StudentDetailsComponent },
+  { path: 'details', component: StudentDetailsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class StudentsRoutingModule { }
+export class StudentsRoutingModule {}
