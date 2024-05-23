@@ -5,10 +5,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EditCareerComponent } from './edit-career/edit-career.component';
+import { DeleteCareerComponent } from './delete-career/delete-career.component';
 
 
 @NgModule({
-  declarations: [AddNewCareerComponent],
+  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,

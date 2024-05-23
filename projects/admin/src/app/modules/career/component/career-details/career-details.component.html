@@ -1,726 +1,796 @@
-<!--------- UI --------->
+<section class="section1">
 
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
+    <div class="d-flex justify-content-center align-items-center border border-2 border-info rounded-3">
+        <i class="fa-regular fa-file-code fs-1 text-warning me-3"></i>
+        <h1 class="fs-1 text-white border-2 rounded-2 text-center mt-2">Career detials</h1>
+    </div>
 
-        <mat-expansion-panel-header>
-            <mat-panel-title class="text-info fs-3 fw-bolder">
-                UI <i class="fa-solid fa-angles-right text-info ms-3"></i>
-            </mat-panel-title>
-            <mat-panel-description>
-                This is the subjects of content
-            </mat-panel-description>
-        </mat-expansion-panel-header>
+    <br><br>
 
-<!-- HTML -->
+    <!--------- UI --------->
 
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
             <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    1. HTML
+                <mat-panel-title class="text-info fs-3 fw-bolder">
+                    UI <i class="fa-solid fa-angles-right text-info ms-3"></i>
                 </mat-panel-title>
+                <mat-panel-description class="text-warning">
+                    This is the subjects of content
+                </mat-panel-description>
             </mat-expansion-panel-header>
+            <br>
+
+            <!-- HTML -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        1. HTML
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- CSS -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        2. CSS
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Bootstrap -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        3. Bootstrap
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Javascript -->
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        4. Javascript
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+            </mat-expansion-panel>
+
+            <!--------------------- button ----------------------->
+
+            <div class="d-flex justify-content-between">
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogEdit()">
+                    Edit</button>
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogDelete()">
+                    Delete</button>
+            </div>
 
         </mat-expansion-panel>
 
-<!-- CSS -->
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
 
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <!--------- UI/UX --------->
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
             <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    2. CSS
+                <mat-panel-title class="text-info fs-3 fw-bolder">
+                    UI/UX <i class="fa-solid fa-angles-right text-info ms-3"></i>
                 </mat-panel-title>
+                <mat-panel-description class="text-warning">
+                    This is the subjects of content
+                </mat-panel-description>
             </mat-expansion-panel-header>
+            <br>
+
+            <!-- HTML -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        1. HTML
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- CSS -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        2. CSS
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Bootstrap -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        3. Bootstrap
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Javascript -->
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        4. Javascript
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+            </mat-expansion-panel>
+
+            <!--------------------- button ----------------------->
+
+            <div class="d-flex justify-content-between">
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogEdit()">
+                    Edit</button>
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogDelete()">
+                    Delete</button>
+            </div>
 
         </mat-expansion-panel>
 
-<!-- Bootstrap -->
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
 
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <!--------- Frontend --------->
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
             <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    3. Bootstrap
+                <mat-panel-title class="text-info fs-3 fw-bolder">
+                    Frontend <i class="fa-solid fa-angles-right text-info ms-3"></i>
                 </mat-panel-title>
+                <mat-panel-description class="text-warning">
+                    This is the subjects of content
+                </mat-panel-description>
             </mat-expansion-panel-header>
+            <br>
+
+            <!-- HTML -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        1. HTML
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- CSS -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        2. CSS
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Bootstrap -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        3. Bootstrap
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Javascript -->
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        4. Javascript
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+            </mat-expansion-panel>
+
+            <!--------------------- button ----------------------->
+
+            <div class="d-flex justify-content-between">
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogEdit()">
+                    Edit</button>
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogDelete()">
+                    Delete</button>
+            </div>
 
         </mat-expansion-panel>
 
-<!-- Javascript -->
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
 
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <!--------- Backend --------->
+
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
             <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    4. Javascript
+                <mat-panel-title class="text-info fs-3 fw-bolder">
+                    Backend <i class="fa-solid fa-angles-right text-info ms-3"></i>
                 </mat-panel-title>
+                <mat-panel-description class="text-warning">
+                    This is the subjects of content
+                </mat-panel-description>
             </mat-expansion-panel-header>
+            <br>
+
+            <!-- .Net -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        1. .NET
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- PHP -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        2.
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!--  -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        3.
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!--  -->
+
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        4.
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+            </mat-expansion-panel>
+
+            <!--------------------- button ----------------------->
+
+            <div class="d-flex justify-content-between">
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogEdit()">
+                    Edit</button>
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogDelete()">
+                    Delete</button>
+            </div>
 
         </mat-expansion-panel>
 
-        <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialog()">
-            add</button>
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
 
-    </mat-expansion-panel>
+    <!--------- Fullstack --------->
 
-</mat-accordion>
-<br><br>
-<!--------- UI/UX --------->
+    <mat-accordion>
+        <mat-expansion-panel hideToggle>
 
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-
-        <mat-expansion-panel-header>
-            <mat-panel-title class="text-info fs-3 fw-bolder">
-                UI/UX <i class="fa-solid fa-angles-right text-info ms-3"></i>
-            </mat-panel-title>
-            <mat-panel-description>
-                This is the subjects of content
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-
-<!-- HTML -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    1. HTML
+                <mat-panel-title class="text-info fs-3 fw-bolder">
+                    Fullstack <i class="fa-solid fa-angles-right text-info ms-3"></i>
                 </mat-panel-title>
+                <mat-panel-description class="text-warning">
+                    This is the subjects of content
+                </mat-panel-description>
             </mat-expansion-panel-header>
+            <br>
+
+            <!-- Frontend -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        1. Frontend
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
+
+            <!-- Backend -->
 
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
+                    <mat-panel-title class="fs-3 text-success fw-bolder">
+                        2. Backend
                     </mat-panel-title>
                 </mat-expansion-panel-header>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 1
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 2
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="fs-4 text-warning fw-bolder">
+                            Lesson 3
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                </mat-expansion-panel>
+
             </mat-expansion-panel>
 
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
+            <!--------------------- button ----------------------->
+
+            <div class="d-flex justify-content-between">
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogEdit()">
+                    Edit</button>
+                <button class="w-25 text-info fs-5 py-2 mb-2 mt-5" mat-raised-button (click)="openDialogDelete()">
+                    Delete</button>
+            </div>
 
         </mat-expansion-panel>
 
-<!-- CSS -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    2. CSS
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- Bootstrap -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    3. Bootstrap
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- Javascript -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    4. Javascript
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-    </mat-expansion-panel>
-
-</mat-accordion>
-<br><br>
-
-<!--------- Frontend --------->
-
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-
-        <mat-expansion-panel-header>
-            <mat-panel-title class="text-info fs-3 fw-bolder">
-                Frontend <i class="fa-solid fa-angles-right text-info ms-3"></i>
-            </mat-panel-title>
-            <mat-panel-description>
-                This is the subjects of content
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-
-<!-- HTML -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    1. HTML
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- CSS -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    2. CSS
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- Bootstrap -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    3. Bootstrap
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- Javascript -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    4. Javascript
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-    </mat-expansion-panel>
-
-</mat-accordion>
-<br><br>
-
-<!--------- Backend --------->
-
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-
-        <mat-expansion-panel-header>
-            <mat-panel-title class="text-info fs-3 fw-bolder">
-                Backend <i class="fa-solid fa-angles-right text-info ms-3"></i>
-            </mat-panel-title>
-            <mat-panel-description>
-                This is the subjects of content
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-
-<!-- .Net -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    1. .NET
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- PHP -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    2. 
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!--  -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    3. 
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!--  -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    4. 
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-    </mat-expansion-panel>
-
-</mat-accordion>
-<br><br>
-
-<!--------- Fullstack --------->
-
-<mat-accordion>
-    <mat-expansion-panel hideToggle>
-
-        <mat-expansion-panel-header>
-            <mat-panel-title class="text-info fs-3 fw-bolder">
-                Fullstack <i class="fa-solid fa-angles-right text-info ms-3"></i>
-            </mat-panel-title>
-            <mat-panel-description>
-                This is the subjects of content
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-
-<!-- Frontend -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    1. Frontend
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-<!-- Backend -->
-
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title class="fs-3 text-success fw-bolder">
-                    2. Backend
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 1
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 2
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                    <mat-panel-title class="fs-4 text-warning fw-bolder">
-                        Lesson 3
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-            </mat-expansion-panel>
-
-        </mat-expansion-panel>
-
-    </mat-expansion-panel>
-
-</mat-accordion>
-<br><br>
+    </mat-accordion>
+    <br>
+    <hr>
+    <br>
+
+</section>

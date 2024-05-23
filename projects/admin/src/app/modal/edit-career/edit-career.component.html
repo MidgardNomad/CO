@@ -1,7 +1,7 @@
 <section class="p-5 section1">
     <div class="w-75 mx-auto fw-bold div1">
-        <h1 class="fs-1 text-info text-center mb-0">Add new career</h1>
-        <form [formGroup]="addForm">
+        <h1 class="fs-1 text-info text-center mb-0">Edit career</h1>
+        <form [formGroup]="editForm">
             <!-- <i class="fa-regular fa-circle-xmark fs-3 text-info"></i> -->
             <br><br>
             <label for="NO" class="text-info">NO. :</label>
@@ -14,7 +14,6 @@
             <label for="Lessons_number" class="text-info">Lessons_number :</label>
             <input formControlName="Lessons_number" type="number" class="form-control mb-2" id="Lessons_number"
                 placeholder="Number of lessons">
-
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-info w-25 mt-3" type="submit">Save</button>
