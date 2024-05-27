@@ -15,13 +15,18 @@ $Font20: 20px;
 
 ////////////////////////////////////  Code  ////////////////////////////////////
 
-h1 {
+.h11 {
   font-family: "Poetsen One", sans-serif;
   color: $darkBlue;
 }
 
-.mat-mdc-form-field+.mat-mdc-form-field {
-  margin-left: 8px;
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: $Font14;
+  width: 100%;
 }
 
 .section1 {
@@ -30,28 +35,47 @@ h1 {
   padding: 50px;
 }
 
-hr {
-  color: $darkBlue;
+.table1 {
+  border: 2px solid $borderColor;
+  border-radius: 20px;
 }
 
-// .according_ux {
-//   display: none;
-// }
+.card_img {
+  width: 100%;
+  height: 150px;
+  border-radius: 3px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
 
-// .according_frontend {
-//   display: none;
-// }
+.card_img {
+  width: 220px;
+}
 
-// .according_backend {
-//   display: none;
-// }
+button {
+  position: relative;
+  left: 45%;
+}
 
-// .according_fullstack {
-//   display: none;
-// }
+.icon {
+  position: relative;
+  left: 85%;
+}
 
-.div1
-{
+h2 {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+h5 {
+  font-size: $Font14;
+}
+
+h6 {
+  font-size: $Font12;
+}
+
+.div1 {
   padding: 5px;
   box-shadow: 10px 10px 5px $shadowColor;
 }

@@ -13,13 +13,15 @@ import { CareerListComponent } from './component/career-list/career-list.compone
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CareerList2Component } from './component/career-list-2/career-list-2.component';
 
 @NgModule({
   declarations: [
     CareerComponent,
     CareerListComponent,
-    CareerDetailsComponent
+    CareerDetailsComponent,
+    CareerList2Component
   ],
   imports: [
     CommonModule,

@@ -4,8 +4,8 @@
         <form [formGroup]="addForm">
             <!-- <i class="fa-regular fa-circle-xmark fs-3 text-info"></i> -->
             <br><br>
-            <label for="NO" class="text-info">NO. :</label>
-            <input formControlName="NO" type="text" class="form-control mb-2" id="NO" placeholder="NO.">
+            <label for="No" class="text-info">No. :</label>
+            <input formControlName="No" type="text" class="form-control mb-2" id="No" placeholder="No.">
             <label for="Career_name" class="text-info">Career name :</label>
             <input formControlName="Career_name" type="text" class="form-control mb-2" id="Career_name"
                 placeholder="Career name">
@@ -15,9 +15,8 @@
             <input formControlName="Lessons_number" type="number" class="form-control mb-2" id="Lessons_number"
                 placeholder="Number of lessons">
 
-
             <div class="d-flex justify-content-between">
-                <button class="btn btn-info w-25 mt-3" type="submit">Save</button>
+                <button class="btn btn-info w-25 mt-3" type="submit" (click)="saveData()">Save</button>
                 <button class="btn btn-info w-25 mt-3" type="submit">Cancel</button>
             </div>
 
