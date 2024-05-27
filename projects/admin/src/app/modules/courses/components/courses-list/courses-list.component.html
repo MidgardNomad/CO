@@ -1,1 +1,18 @@
-<p>courses-list works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <button
+        (click)="onCreateNewCourse()"
+        class="btn add-course-button"
+        style="background-color: #03c9d7; margin: 12px"
+      >
+        Add Course
+      </button>
+    </div>
+  </div>
+  <div class="row" style="gap: 25px">
+    <div class="col-5" *ngFor="let course of courses$ | async">
+      <app-course-card [course]="course"></app-course-card>
+    </div>
+  </div>
+</div>

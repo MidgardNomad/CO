@@ -1,0 +1,33 @@
+<section class="d-flex flex-column justify-content-between course-card">
+  <section class="course-card-info">
+    <div class="course-data" style="text-align: center">
+      <h2 class="title">{{ course.title }}</h2>
+      <p class="description">
+        {{ course.description }}
+      </p>
+    </div>
+  </section>
+  <section
+    class="d-flex justify-content-center course-card-actions"
+    style="column-gap: 25px"
+  >
+    <div class="button button-view" (click)="onViewCourse()">
+      <div class="icon">
+        <i class="fa-regular fa-eye"></i>
+      </div>
+      <span>View</span>
+    </div>
+    <div class="button button-edit" (click)="onEditCourse()">
+      <div class="icon">
+        <i class="fa-regular fa-pen-to-square"></i>
+      </div>
+      <span>Edit</span>
+    </div>
+    <div class="button button-delete" (click)="onDeleteCourse()">
+      <div class="icon">
+        <i class="fa-regular fa-trash-can"></i>
+      </div>
+      <span>Delete</span>
+    </div>
+  </section>
+</section>
