@@ -1,15 +1,17 @@
-.country {
-  padding-top: 10px;
+table {
+  margin: 50px 0;
+
+  td,
+  th {
+    padding: 10px;
+  }
 }
 
-table {
-  margin-top: 30px;
-  position: relative;
+.BUTT {
+  display: flex;
+  justify-content: space-between;
 }
 
 .next {
-  position: absolute;
-  right: 0;
-  border: none;
-  margin-top: 15px;
+  border: 0;
 }

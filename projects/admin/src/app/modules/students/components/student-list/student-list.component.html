@@ -1,146 +1,63 @@
-<form #myForm="ngForm" (ngSubmit)="addUser()">
-  <!-- User Name -->
-  <div class="row">
-    <div class="col-sm-10">
-      <mat-form-field appearance="fill">
-        <mat-label>User Name</mat-label>
-        <input [(ngModel)]="userName" required name="userName" matInput placeholder="Enter usaer name">
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <!-- Email -->
-  <div class="row">
-    <div class="col-sm-10">
-      <mat-form-field>
-        <mat-label>E-mail</mat-label>
-        <input [(ngModel)]="email" required name="email" matInput placeholder="@gmail.com" [formControl]="emails"
-          required>
-        <mat-icon matSuffix>email</mat-icon>
-        <mat-error *ngIf="emails.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <!-- Password -->
-  <div class=" example-container">
-    <div class="row">
-      <div class="col-sm-10">
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter Password" name="password" [(ngModel)]="password"
-            [type]="hide ? 'password' : 'text'" required>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile -->
-  <div class=" example-container">
-    <div class="row">
-      <div class="col-sm-10">
-        <mat-form-field>
-          <mat-label>Mobile-Phone</mat-label>
-          <input matInput placeholder="No more than 10 numbers" name="mobile" maxlength="10" [(ngModel)]="mobile"
-            required>
-          <button mat-icon-button matSuffix>
-            <mat-icon>phone</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-
-  <!-- Contry -->
-  <div class="row">
-    <div class="col-sm-10">
-      <mat-form-field appearance="fill">
-        <mat-label>Contry</mat-label>
-        <input name="country" [(ngModel)]="contry" matInput placeholder="Enter Country" required>
-        <mat-icon matSuffix>flag</mat-icon>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <!-- Button Add User  -->
-  <div class="col-sm-10 d-grid gap-2 mb-4">
-    <button type="submit" class="btn btn-info" [disabled]="myForm.invalid">Add User</button>
-  </div>
-</form>
-
-
-
-<!-- The Table -->
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">User Name</th>
-      <th scope="col">Emaile</th>
-      <th scope="col">Password</th>
-      <th scope="col">Mobile</th>
-      <th scope="col" class="country">Country</th>
-      <th scope="col" class="country">Delet</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <!-- 1 -->
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>{{Email}}</td>
-      <td>{{Password}}</td>
-      <td>+20{{Mobile}}</td>
-      <td>{{Contry}}</td>
-      <td><button  style="color: red; border: none; background-color: transparent;"><mat-icon
-            matSuffix>delete</mat-icon></button></td>
-    </tr>
-
-    <!-- 2  -->
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>{{Email}}</td>
-      <td> {{Password}} </td>
-      <td>+20{{Mobile}}</td>
-      <td>{{Contry}}</td>
-      <td><button  style="color: red; border: none; background-color: transparent;"><mat-icon
-            matSuffix>delete</mat-icon></button></td>
-    </tr>
-
-    <!-- 3 -->
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>{{Email}}</td>
-      <td>{{Password}}</td>
-      <td>+20{{Mobile}}</td>
-      <td>{{Contry}}</td>
-      <td><button style="color: red; border: none; background-color: transparent;"><mat-icon
-            matSuffix>delete</mat-icon></button></td>
-    </tr>
-
-
-    <!-- 4 -->
-    <tr *ngFor="let u of users;index as i">
+  <!-- 5 -->
+  <!-- <tr *ngFor="let u of userServ;index as i">
       <th scope="row"> {{i+4}} </th>
-      <td>{{u.userName}}</td>
+      <td>{{u.name}}</td>
       <td>{{u.email}}</td>
       <td>{{u.password}}</td>
       <td>+20{{u.mobile}}</td>
-      <td>{{u.contry}}</td>
-      <td><button (click)="delet(i)" style="color: red; border: none; background-color: transparent;"><mat-icon
-            matSuffix>delete</mat-icon></button></td>
-    </tr>
-  </tbody>
+      <td>{{u.contry}}</td> -->
+      <!-- <td><button (click)="delet(i)" style="color: red; border: none; background-color: transparent;"><mat-icon
+            matSuffix>delete</mat-icon></button></td> -->
+    <!-- </tr> -->
 
-  <div>
-    <button class="btn btn-success next" (click)="getComm()"> Student Details </button>
-  </div>
-</table>
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<div class="container mt-4">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Mobile</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Yuossef</td>
+        <td>Mark.gmail.com</td>
+        <td>osama12345</td>
+        <td>1012345678</td>
+        <td>Egypt</td>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{ user.userName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.country }}</td>
+      </tr>
+    </tbody>
+  </table>
+<!-- button Add User -->
+  <button  class="btn btn-info mb-3" (click)="openDialog()">Add User</button>
+</div>
+
+
+                        <!-- Button Add User  -->
+<!-- <div class="BUTT">
+  <button  type="button" class="btn btn-info text-light"
+  (click)="openDialog()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+  fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+  </svg></button> -->
+
+                        <!-- Button Padge Student Details  -->
+   <button class="btn btn-success next" (click)="getComm()"> Student Details<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-circle-fill ms-2" viewBox="0 0 16 16">
+  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+</svg></button>
+
+<!-- </div>  -->
+
+
+

@@ -1,6 +1,6 @@
+import { AuthService } from './../../../../../../../dal/src/lib/services/auth.service';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from 'DAL';
 import { catchError, tap, throwError } from 'rxjs';
 
 @Component({

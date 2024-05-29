@@ -14,16 +14,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatRippleModule } from '@angular/material/core';
 import { ComponentsModule } from './components/components.module';
 import { DemoFlexyModule } from './demo-flexy-module';
-import { AddNewCareerComponent } from './modal/add-new-career/add-new-career.component'
 import { ModalModule } from './modal/modal.module';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FullComponent,
-    
-  ],
+  declarations: [AppComponent, FullComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,9 +36,13 @@ import { ModalModule } from './modal/modal.module';
     MatRippleModule,
     DemoFlexyModule,
     ComponentsModule,
-    ModalModule
+    ModalModule,
+    MatButtonModule,
+    FormsModule,
+    MatDialogModule,
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

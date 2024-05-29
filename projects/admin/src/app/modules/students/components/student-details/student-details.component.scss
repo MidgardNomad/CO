@@ -1,0 +1,86 @@
+// progress
+.main {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 30px 0;
+
+  p {
+    text-align: center;
+    margin: 3px 0;
+  }
+
+}
+
+h2 {
+  font-size: 20px;
+}
+
+// --------------------------Courses List----------------------
+.list {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+
+  h2 {
+    display: flex;
+    justify-content: space-between;
+    color: #2d3846;
+    font-weight: 600;
+
+    span {
+      color: #e46a76;
+    }
+  }
+
+}
+
+.lesson1 {
+  margin: 30px 0;
+  position: relative;
+
+  h2 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  i {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.bot {
+  border: solid 1px #03c9d7;
+}
+
+
+// Details
+.details {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 30px;
+
+  .del {
+    font-size: 15;
+    display: inline-block;
+    color: #2d3846;
+    font-weight: 600;
+  }
+
+  h2 {
+    color: #2d3846;
+    font-weight: 600;
+  }
+}
+
+
+//  Button studend List
+button {
+  border: none;
+}
