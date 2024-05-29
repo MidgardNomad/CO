@@ -21,12 +21,8 @@ import { AddNewCareerComponent } from './modal/add-new-career/add-new-career.com
 import { ModalModule } from './modal/modal.module';
 import { DALModule } from 'DAL';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, FullComponent],
   declarations: [AppComponent, FullComponent],
   imports: [
     BrowserModule,
@@ -54,7 +50,5 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
 export class AppModule {}
