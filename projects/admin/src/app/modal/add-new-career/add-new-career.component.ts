@@ -29,4 +29,8 @@ export class AddNewCareerComponent implements OnInit{
   onNoClick(): void {
     this.dialogRef.close();
   }
+
+  saveData(){
+    console.log(this.addForm.value)
+  }
 }
