@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DialogOverviewExampleDialogComponent } from '../AddUse/dialog-overview-example-dialog/dialog-overview-example-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-student-list',
@@ -79,25 +79,25 @@ export class StudentListComponent {
   }
 
   // -------------------------------------Form--------------------------------------------------
-  userName: string;
-  email: string;
-  contry: string;
-  mobile: number;
-  password: number;
+  dele = true;
+
+  deleted() {
+    this.dele = false;
+  }
 
   // -------------------------------------------------------------------------------------
-  users: User[] = [];
+  users = [];
 
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialogComponent, {
+    const dialogRef = this.dialog.open(AddUserComponent, {
       width: '550px',
       height: '580px',
       disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe((result: User) => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.users.push(result);
       }

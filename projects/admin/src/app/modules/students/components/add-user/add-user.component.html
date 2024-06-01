@@ -1,0 +1,111 @@
+<div class="p-3">
+<h1 mat-dialog-title class="title">Enter User Data</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Display Name -->
+    <div class="mb-3">
+      <label for="username" class="form-label text-dark">Display Name</label>
+      <input type="text" id="username" class="form-control" formControlName="displayName" placeholder="name">
+    </div>
+
+<!--Input is Verified -->
+  <fieldset formGroupName="isVerified" class="row mb-3">
+    <legend class="col-form-label col-sm-3 pt-0">is Verified</legend>  <!-- Head is-Verified -->
+    <div class="col-sm-9">
+      <!-- true -->
+        <input formControlName="isVerTrue" class="form-check-input me-2" type="radio" name="isVerified" id="true1" value="true">
+        <label class="form-check-label me-3 checkes" for="true1"> true </label>
+      <!-- false -->
+        <input formControlName="isVerFals" class="form-check-input me-2" type="radio" name="isVerified" id="false1" value="false">
+        <label class="form-check-label checkes" for="false1"> false </label>
+      </div>
+    </fieldset>
+
+    <!--Input is Pro -->
+  <fieldset formGroupName="isPro" class="row mb-3">
+    <legend class="col-form-label col-sm-3 pt-0"> is Pro </legend>  <!-- Head is-pro -->
+    <div class="col-sm-9">
+      <!-- true -->
+        <input formControlName="isProTrue" class="form-check-input me-2 " type="radio" name="ispro" id="true2" value="true">
+        <label class="form-check-label me-3 checkes" for="true2"> true </label>
+      <!-- false -->
+        <input formControlName="isProFals" class="form-check-input me-2" type="radio" name="ispro" id="false2" value="false">
+        <label class="form-check-label checkes" for="false2"> false </label>
+      </div>
+    </fieldset>
+
+    <!-- Input Active -->
+  <fieldset formGroupName="isActive" class="row mb-3">
+    <legend class="col-form-label col-sm-3 pt-0">Active</legend>  <!-- Head Active -->
+    <div class="col-sm-9">
+      <!-- true -->
+        <input formControlName="isActTrue" class="form-check-input me-2" type="radio" name="isactiv" id="true3" value="true">
+        <label class="form-check-label me-3 checkes" for="true3"> true </label>
+      <!-- false -->
+        <input formControlName="isActFals" class="form-check-input me-2" type="radio" name="isactiv" id="false3" value="false">
+        <label class="form-check-label checkes" for="false3"> false </label>
+      </div>
+    </fieldset>
+
+    <!-- Image URL -->
+  <div class="row image" style="color: #000;">
+<label for="image" class="col-sm-3"> Photo URL </label>
+<input class="col-sm-9" type="file" name="Photo-Url" id="image">
+</div>
+
+<!-- Bio -->
+<div class="my-3">
+  <label for="Bio" class="form-label" style="color: #000;"> Bio </label>
+  <textarea class="form-control" id="Bio" rows="3"></textarea>
+</div>
+
+<!-- Connected Accounts -->
+<div class="Link d-flex">
+  <!-- linkedin  -->
+  <div class="linkedin text-dark" style="margin-right: 50px;">
+    <a href="https://www.linkedin.com/uas/login-submit" target="_blank">
+      <mat-icon class="mb-2"> <i class="fa-brands fa-linkedin"></i> </mat-icon></a>
+    <a href="https://www.linkedin.com/uas/login-submit" target="_blank" class="me-2 mb-2"
+      matTooltip="link your website" matTooltipPosition="above">LinkedIn</a>
+    <input formControlName="linkedIn" type="url" class="form-control form-control-sm" form-control form-control-sm placeholder="URL">
+  </div>
+
+  <!-- Github  -->
+   <div class="github text-dark">
+<a href="https://github.com/" target="_blank"> <mat-icon class="mb-2"><i class="fa-brands fa-github text-dark"></i> </mat-icon></a>
+<a href="https://github.com/" target="_blank" class="me-2 mb-2"
+ matTooltip="link your website" matTooltipPosition="above">Github</a>
+    <input formControlName="github" type="url" class="form-control form-control-sm" placeholder="URL">
+</div>
+</div>
+<!-- ------------------------------------------------------------------------------------ -->
+      <!-- Button Submit / close -->
+    <div class="mt-5">
+      <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
+      <button type="submit" mat-flat-button color="primary" class="ms-3"
+       matTooltip="Add Student" matTooltipPosition="above">Add</button>
+    </div>
+  </form>
+</div>
+</div>
+
+
+<!-- --------------------------------------------------------------------------------------------- -->
+<!-- Comment For Delete -->
+
+  <!-- <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" class="form-control" formControlName="email">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" class="form-control" formControlName="password">
+  </div>
+  <div class="mb-3">
+    <label for="mobile" class="form-label">Mobile</label>
+    <input type="text" id="mobile" class="form-control" formControlName="mobile">
+  </div>
+  <div class="mb-3">
+    <label for="country" class="form-label">Country</label>
+    <input type="text" id="country" class="form-control" formControlName="country">
+  </div> -->

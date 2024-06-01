@@ -10,54 +10,87 @@
             matSuffix>delete</mat-icon></button></td> -->
     <!-- </tr> -->
 
+    <!-- <button title="Add User" class="btn btn-info mb-3" (click)="openDialog()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
+      <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+    </svg></button> -->
+
 <!-- ------------------------------------------------------------------------------------------------------ -->
 <div class="container mt-4">
+
+  <!-- button Add User -->
+  <button title="Add Student" class="btn btn-info text-light border-0" (click)="openDialog()"
+    matTooltip="Add Student" matTooltipPosition="right">
+    <mat-icon class="mb-2 overflow-visible"> <i class="fa-solid fa-circle-plus"></i> </mat-icon></button>
+
+<!-- table -->
   <table class="table table-striped">
     <thead>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Mobile</th>
-        <th>Country</th>
+      <tr class="text-center">
+        <th>Id</th>
+        <th>Display Name</th>
+        <th>is Verified</th>
+        <th>is Pro</th>
+        <th>Active</th>
+        <th>URL</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <!-- Test -->
+        <td>1</td>
         <td>Yuossef</td>
+        <td>False</td>
+        <td>true</td>
+        <td>true</td>
         <td>Mark.gmail.com</td>
-        <td>osama12345</td>
-        <td>1012345678</td>
-        <td>Egypt</td>
+           <!-- Button Delete User  -->
+        <td class="text-center"><button style="color: red; border: none; background-color: transparent;"
+           matTooltip="delet Student" matTooltipPosition="below">
+          <mat-icon matSuffix>delete</mat-icon></button>
+        </td>
+
+        <!-- Button Edit User  -->
+        <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
+           matTooltip="edit Student" matTooltipPosition="below">
+           <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
+
+          <!-- Button Padge Student Details  -->
+        <td class="text-center"><button class="btn btn-success next bg-transparent p-0" (click)="getComm()"
+           matTooltip="Student Details" matTooltipPosition="below"><mat-icon class="overflow-visible"
+           style="color: #00c292;"><i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+        </td>
       </tr>
-      <tr *ngFor="let user of users">
-        <td>{{ user.userName }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.password }}</td>
-        <td>{{ user.mobile }}</td>
-        <td>{{ user.country }}</td>
+
+      <tr *ngFor="let user of users;index as i">
+        <td>{{ i+1 }}</td>
+        <td>{{ user.displayName }}</td>
+        <td>{{ user.isVerified }}</td>
+        <td>{{ user.isPro }}</td>
+        <td>{{ user.isActive }}</td>
+        <td>{{ user.linkedIn }}</td>
+        <td>{{ user.github }}</td>
+        <!-- Button Delete User  -->
+        <td *ngIf="dele" class="text-center"><button style="color: red; border: none; background-color: transparent;">
+          <mat-icon matSuffix>delete</mat-icon></button>
+        </td>
+
+        <!-- Button Edit User  -->
+        <td class="text-center"> <button class="border-0 text-info"> <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i> </mat-icon></button></td>
+
+          <!-- Button Padge Student Details  -->
+        <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
+              <mat-icon class="overflow-visible" style="color: #00c292;">
+              <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+        </td>
       </tr>
     </tbody>
   </table>
-<!-- button Add User -->
-  <button  class="btn btn-info mb-3" (click)="openDialog()">Add User</button>
 </div>
 
 
-                        <!-- Button Add User  -->
-<!-- <div class="BUTT">
-  <button  type="button" class="btn btn-info text-light"
-  (click)="openDialog()"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-  fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-  </svg></button> -->
-
-                        <!-- Button Padge Student Details  -->
-   <button class="btn btn-success next" (click)="getComm()"> Student Details<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-right-circle-fill ms-2" viewBox="0 0 16 16">
-  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
-</svg></button>
-
-<!-- </div>  -->
 
 
 
