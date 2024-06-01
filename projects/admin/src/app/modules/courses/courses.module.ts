@@ -15,8 +15,11 @@ import { FormsModule } from '@angular/forms';
 import { DeleteCourseDialogComponent } from './components/course-card/delete-course-dialog/delete-course-dialog.component';
 import { CreateNewChapterDialogComponent } from './components/courses-details/create-new-chapter-dialog/create-new-chapter-dialog.component';
 import { DeleteChapterDialogComponent } from './components/courses-details/delete-chapter-dialog/delete-chapter-dialog.component';
-import { EditChapterDialogComponent } from './components/courses-details/edit-chapter-dialog/edit-chapter-dialog.component';
 import { ChapterExpansionPanelComponent } from './components/courses-details/chapter-expansion-panel/chapter-expansion-panel.component';
+import { AddLectureDialogComponent } from './components/add-lecture-dialog/add-lecture-dialog.component';
+import { LecturesComponent } from './components/lectures/lectures.component';
+import { ConfirmLectureDeletionDialogComponent } from './components/confirm-lecture-deletion-dialog/confirm-lecture-deletion-dialog.component';
+import { SlideComponent } from './components/lectures/slide/slide.component';
 @NgModule({
   declarations: [
     CoursesComponent,
@@ -27,8 +30,11 @@ import { ChapterExpansionPanelComponent } from './components/courses-details/cha
     DeleteCourseDialogComponent,
     CreateNewChapterDialogComponent,
     DeleteChapterDialogComponent,
-    EditChapterDialogComponent,
     ChapterExpansionPanelComponent,
+    AddLectureDialogComponent,
+    LecturesComponent,
+    ConfirmLectureDeletionDialogComponent,
+    SlideComponent,
   ],
   imports: [
     CommonModule,

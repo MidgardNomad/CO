@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Course, CoursesService } from 'DAL';
 import { MatDialog } from '@angular/material/dialog';
 import { NewCourseDialogComponent } from './new-course-dialog/new-course-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses-list',
@@ -13,14 +14,15 @@ export class CoursesListComponent implements OnInit {
   courses$: Observable<Course[]>;
   constructor(
     private coursesService: CoursesService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
     this.courses$ = this.coursesService.getAllCourses();
   }
 
   onCreateNewCourse() {
-    let matDialogRef = this.matDialog.open(NewCourseDialogComponent, {
+    this.matDialog.open(NewCourseDialogComponent, {
       data: {
         dialogTitle: 'Add a New Course',
         button: 'Add',

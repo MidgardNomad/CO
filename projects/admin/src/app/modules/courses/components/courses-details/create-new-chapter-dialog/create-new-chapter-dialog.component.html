@@ -1,1 +1,41 @@
-<p>create-new-chapter-dialog works!</p>
+<h2 mat-dialog-title>{{ data.dialogTitle }}</h2>
+<mat-dialog-content>
+  <form #chapterForm="ngForm" (ngSubmit)="onSubmitAction(chapterForm)">
+    <mat-form-field>
+      <mat-label>Chapter Title</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Title"
+        ngModel
+        name="chapterTitle"
+        [required]="data.chapterID === undefined"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Chapter Description</mat-label>
+      <textarea
+        #chapterDescription
+        matInput
+        placeholder="Description"
+        maxlength="120"
+        ngModel
+        name="chapterDescription"
+        [required]="data.chapterID === undefined"
+      ></textarea>
+      <mat-hint align="end">{{ chapterDescription.value.length }}/120</mat-hint>
+    </mat-form-field>
+    <mat-dialog-actions align="center">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="
+          chapterForm.invalid || chapterDescription.value.length === 120
+        "
+      >
+        {{ data.button }}
+      </button>
+      <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

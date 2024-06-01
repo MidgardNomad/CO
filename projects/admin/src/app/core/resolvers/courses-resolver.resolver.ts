@@ -4,14 +4,13 @@ import {
   ResolveFn,
   RouterStateSnapshot,
 } from '@angular/router';
-import { Chapter, CoursesService } from 'DAL';
-import { Observable, of, tap } from 'rxjs';
+import { Course, CoursesService } from 'DAL';
+import { Observable } from 'rxjs';
 
-export const ChaptersResolver: ResolveFn<Observable<Chapter[]>> = (
+export const CoursesResolver: ResolveFn<Observable<Course[]>> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
   const coursesService = inject(CoursesService);
-
-  return coursesService.getChapters(route.paramMap.get('id'));
+  return coursesService.getAllCourses();
 };

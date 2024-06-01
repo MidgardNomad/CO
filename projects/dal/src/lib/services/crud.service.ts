@@ -33,6 +33,15 @@ export class CrudService {
     return this.db.doc(`/${collectionName}/${docID}`).get();
   }
 
+  //Create a subcollection
+  addDataToSubCollection(collectionPath: string, data: any) {
+    return this.db.collection(collectionPath).add(data);
+  }
+
+  //get data from a sub collection
+  getSubCollectionData(collectionPath: string) {
+    return this.db.collection(collectionPath).get();
+  }
   // add data
   addData(collectionName: string, data: any) {
     return this.db.collection(collectionName).add(data);
@@ -51,6 +60,13 @@ export class CrudService {
   // get single data
   getSingleData(collectionName: string, id: string) {
     return this.db.collection(collectionName).doc(id).get();
+  }
+
+  //Get Data Ordered
+  getDataByOrder(collectionpath: string, field: string) {
+    return this.db
+      .collection(collectionpath, (ref) => ref.orderBy(field))
+      .snapshotChanges();
   }
 
   // get single data

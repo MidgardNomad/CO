@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>
+  {{
+    data.lectureID
+      ? "Enter The new Name"
+      : "Add a New Lecture to " + data.chapterTitle
+  }}
+</h2>
+<mat-dialog-content>
+  <form #lectureForm="ngForm" (ngSubmit)="onSubmitAction(lectureForm)">
+    <mat-form-field>
+      <mat-label>Lecture Title</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Title"
+        ngModel
+        name="lectureTitle"
+      />
+    </mat-form-field>
+
+    <mat-dialog-actions align="center">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="lectureForm.invalid"
+      >
+        {{ data.lectureID ? "Save" : "Add" }}
+      </button>
+      <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

@@ -1,1 +1,6 @@
-<p>courses-details works!</p>
+<button class="btn btn-primary" (click)="onAddChapter()">Add Chapter</button>
+<div *ngFor="let chapter of chapters | async" style="margin: 15px">
+  <app-chapter-expansion-panel
+    [chapter]="chapter"
+  ></app-chapter-expansion-panel>
+</div>

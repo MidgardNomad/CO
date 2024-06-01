@@ -1,1 +1,52 @@
-<p>chapter-expansion-panel works!</p>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title style="font-size: 25px !important; font-weight: 600">
+      {{ chapter.title }}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="d-flex justify-content-between">
+    <p style="color: #9ca2a6">{{ chapter.description }}</p>
+    <div class="button button-add" (click)="onAddLecture()">
+      <div class="icon">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <span>Add</span>
+    </div>
+  </div>
+  <div
+    *ngFor="let lecture of lectures | async"
+    class="d-flex justify-content-between lecture-tile"
+  >
+    <a [routerLink]="['chapter', chapter.id, 'lecture', lecture.id]">
+      {{ lecture.title }}</a
+    >
+    <div>
+      <div class="button button-edit" (click)="onEditLecture(lecture.id)">
+        <div class="icon">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+        <span>Edit</span>
+      </div>
+      <div class="button button-delete" (click)="onDeleteLecture(lecture.id)">
+        <div class="icon">
+          <i class="fa-regular fa-trash-can"></i>
+        </div>
+        <span>Delete</span>
+      </div>
+    </div>
+  </div>
+</mat-expansion-panel>
+<section class="d-flex justify-content-end" style="margin: 10px">
+  <div class="button button-edit" (click)="onEditChapter()">
+    <div class="icon">
+      <i class="fa-regular fa-pen-to-square"></i>
+    </div>
+    <span>Edit</span>
+  </div>
+  <div class="button button-delete" (click)="onDeleteChapter()">
+    <div class="icon">
+      <i class="fa-regular fa-trash-can"></i>
+    </div>
+    <span>Delete</span>
+  </div>
+</section>
