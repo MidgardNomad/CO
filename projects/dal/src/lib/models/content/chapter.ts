@@ -4,5 +4,5 @@ export interface Chapter {
   description: string;
   seqNo: number;
   moduleQuiz: string; // module quiz id
-  ssList: string[]; // ss id list
+  lectureList: string[]; // ss id list
 }
