@@ -9,21 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-career.component.scss']
 })
 export class EditCareerComponent implements OnInit {
-  
-  
-  editForm:FormGroup = new FormGroup({
-    No:new FormControl(null),
-    Career_name:new FormControl(null),
-    Hours:new FormControl(null),
-    Lessons_number:new FormControl(null),
-    Details:new FormControl(null)
+
+  editForm: FormGroup = new FormGroup({
+    title: new FormControl(null),
+    description: new FormControl(null),
+    courseList: new FormControl(null)
   })
 
   constructor(
     public dialogRef: MatDialogRef<EditCareerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

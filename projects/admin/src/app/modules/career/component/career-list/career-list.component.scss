@@ -4,11 +4,11 @@
 
 //////////////////////////////////  Variables  //////////////////////////////////
 
-$mainColor:#52B2EE;
+$mainColor: #52B2EE;
 $blue: #1e90ff;
 $darkBlue: #313860;
-$shadowColor:lightblue;
-$borderColor:rgb(116, 211, 226);
+$shadowColor: lightblue;
+$borderColor: rgb(116, 211, 226);
 $Font12: 12px;
 $Font14: 14px;
 $Font20: 20px;
@@ -30,8 +30,6 @@ table {
 }
 
 .section1 {
-  border: 2px solid $borderColor;
-  border-radius: 20px;
   padding: 50px;
 }
 
@@ -53,8 +51,8 @@ table {
 }
 
 button {
-  position: relative;
-  left: 45%;
+  padding: 27px;
+  margin-bottom: 22px;
 }
 
 .icon {
@@ -67,3 +65,11 @@ button {
   box-shadow: 10px 10px 5px $shadowColor;
 }
 
+.icon_1 {
+  cursor: pointer;
+}
+
+.thFontSize {
+  font-size: 18px;
+  font-weight: bolder;
+}

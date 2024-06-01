@@ -9,17 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./delete-career.component.scss']
 })
 
-export class DeleteCareerComponent implements OnInit{
-  deleteForm:FormGroup = new FormGroup({
-  No:new FormControl(null),
-  Career_name:new FormControl(null),
+export class DeleteCareerComponent implements OnInit {
+  deleteForm: FormGroup = new FormGroup({
+    No: new FormControl(null),
+    Career_name: new FormControl(null),
   })
 
   constructor(
     public dialogRefDelete: MatDialogRef<DeleteCareerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }

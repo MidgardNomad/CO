@@ -4,11 +4,11 @@
 
 //////////////////////////////////  Variables  //////////////////////////////////
 
-$mainColor:#52B2EE;
+$mainColor: #52B2EE;
 $blue: #1e90ff;
 $darkBlue: #313860;
-$shadowColor:lightblue;
-$borderColor:rgb(116, 211, 226);
+$shadowColor: lightblue;
+$borderColor: rgb(116, 211, 226);
 $Font12: 12px;
 $Font14: 14px;
 $Font20: 20px;
@@ -20,38 +20,36 @@ h1 {
   color: $darkBlue;
 }
 
-.mat-mdc-form-field+.mat-mdc-form-field {
-  margin-left: 8px;
-}
-
 .section1 {
-  border: 2px solid $borderColor;
-  border-radius: 20px;
   padding: 50px;
 }
 
-hr {
-  color: $darkBlue;
-}
-
-// .according_ux {
-//   display: none;
-// }
-
-// .according_frontend {
-//   display: none;
-// }
-
-// .according_backend {
-//   display: none;
-// }
-
-// .according_fullstack {
-//   display: none;
-// }
-
-.div1
-{
+.div1 {
   padding: 5px;
   box-shadow: 10px 10px 5px $shadowColor;
+}
+
+.card_img {
+  width: 220px;
+  height: 200px;
+  border-radius: 3px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 30px;
+  color: var($darkBlue);
+  font-weight: bolder;
+}
+
+.icon {
+  position: relative;
+  left: 80%;
+}
+
+.title
+{
+  font-size: 40px;
+  font-weight: bolder;
 }

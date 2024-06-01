@@ -1,25 +1,50 @@
 <section class="p-5 section1">
+
     <div class="w-75 mx-auto fw-bold div1">
         <h1 class="fs-1 text-info text-center mb-0">Add new career</h1>
         <form [formGroup]="addForm">
             <!-- <i class="fa-regular fa-circle-xmark fs-3 text-info"></i> -->
             <br><br>
-            <label for="No" class="text-info">No. :</label>
-            <input formControlName="No" type="text" class="form-control mb-2" id="No" placeholder="No.">
-            <label for="Career_name" class="text-info">Career name :</label>
-            <input formControlName="Career_name" type="text" class="form-control mb-2" id="Career_name"
-                placeholder="Career name">
-            <label for="Hours" class="text-info">Hours :</label>
-            <input formControlName="Hours" type="number" class="form-control mb-2" id="Hours" placeholder="Hours">
-            <label for="Lessons_number" class="text-info">Lessons_number :</label>
-            <input formControlName="Lessons_number" type="number" class="form-control mb-2" id="Lessons_number"
-                placeholder="Number of lessons">
+            <label for="title" class="text-info">Career name :</label>
+            <input formControlName="title" type="text" class="form-control mb-2" id="title">
 
-            <div class="d-flex justify-content-between">
+            <label for="description" class="text-info d-block">Description :</label>
+            <textarea class="d-block form-control mb-2" name="description" id="description"></textarea>
+
+            <label for="courseList" class="text-info mb-2">Course List :</label>
+            <div class="w-100 form-control d-flex justify-content-center align-items-center">
+
+                <div class="text-center me-3">
+                    <i class="fa-brands fa-html5 text-danger fs-1 rounded-circle smallIcon pt-1"></i>
+                    <h6 class="text-info mt-2 mb-1 div_h6">HTML</h6>
+                    <input type="checkbox" class="">
+                </div>
+
+                <div class="text-center me-3">
+                    <i class="fa-brands fa-css3-alt fs-1 rounded-circle smallIcon pt-1" style="color: #112d5e;"></i>
+                    <h6 class="text-info mt-2 mb-1 div_h6">CSS</h6>
+                    <input type="checkbox" class="">
+                </div>
+
+                <div class="text-center me-3">
+                    <i class="fa-brands fa-bootstrap fs-1 rounded-circle smallIcon pt-1" style="color: #0a7454;"></i>
+                    <h6 class="text-info mt-2 mb-1 div_h6">Bootstrap</h6>
+                    <input type="checkbox" class="">
+                </div>
+
+                <div class="text-center me-3">
+                    <i class="fa-brands fa-js fs-1 rounded-circle smallIcon pt-1" style="color: #8f0891;"></i>
+                    <h6 class="text-info mt-2 mb-1 div_h6">Javascript</h6>
+                    <input type="checkbox" class="">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
                 <button class="btn btn-info w-25 mt-3" type="submit" (click)="saveData()">Save</button>
                 <button class="btn btn-info w-25 mt-3" type="submit">Cancel</button>
             </div>
 
         </form>
     </div>
+    
 </section>

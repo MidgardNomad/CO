@@ -8,20 +8,18 @@ import { Router } from '@angular/router';
   templateUrl: './add-new-career.component.html',
   styleUrls: ['./add-new-career.component.scss']
 })
-export class AddNewCareerComponent implements OnInit{
-    addForm:FormGroup = new FormGroup({
-    No:new FormControl(null),
-    Career_name:new FormControl(null),
-    Hours:new FormControl(null),
-    Lessons_number:new FormControl(null),
-    Details:new FormControl(null)
+export class AddNewCareerComponent implements OnInit {
+    addForm: FormGroup = new FormGroup({
+    title: new FormControl(null),
+    description: new FormControl(null),
+    courseList: new FormControl(null)
   })
 
   constructor(
     public dialogRef: MatDialogRef<AddNewCareerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -30,7 +28,7 @@ export class AddNewCareerComponent implements OnInit{
     this.dialogRef.close();
   }
 
-  saveData(){
+  saveData() {
     console.log(this.addForm.value)
   }
 }
