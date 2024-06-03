@@ -12,13 +12,14 @@ const routes: Routes = [
   {
     path: "",
     component: FullComponent,
-    canActivate:[isLoggedInGuard],
+    canActivate: [isLoggedInGuard],
     children: [
       { path: "", redirectTo: "home", pathMatch: "full" },
       { path: "home", loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
       { path: 'courses', loadChildren: () => import('./modules/courses/courses.module').then(m => m.CoursesModule) },
       { path: 'students', loadChildren: () => import('./modules/students/students.module').then(m => m.StudentsModule) },
       { path: 'career', loadChildren: () => import('./modules/career/career.module').then(m => m.CareerModule) },
+      { path: 'mentors', loadChildren: () => import('./modules/mentors/mentors.module').then(m => m.MentorsModule) },
       // { path: "alerts", component: AlertsComponent },
       // { path: "table", component: ProductComponent },
       // { path: "menu", component: MenuComponent },
@@ -39,8 +40,8 @@ const routes: Routes = [
   },
   // { path: "", redirectTo: "/home", pathMatch: "full" },
   {
-    path:'auth',
-    canActivate:[isLoggedOutGuard],
+    path: 'auth',
+    canActivate: [isLoggedOutGuard],
     loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   { path: "**", redirectTo: "/home", pathMatch: "full" },
