@@ -13,16 +13,21 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
-import { AddUserComponent } from './components/add-user/add-user.component';
+import { AddUserComponent } from './components/student-list/add-user/add-user.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { CommonModule } from '@angular/common';
+import { EeditUserComponent } from './components/student-list/Edit-user/edit-user.component';
+import { DeletComponent } from './components/student-list/delet/delet.component';
+
 @NgModule({
   declarations: [
     StudentsComponent,
     StudentListComponent,
     StudentDetailsComponent,
     AddUserComponent,
+    EeditUserComponent,
+    DeletComponent,
   ],
   imports: [
     CommonModule,

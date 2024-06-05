@@ -24,16 +24,16 @@ export class AddUserComponent {
       displayName: ['', Validators.required],
 
       isVerified: this.fb.group({
-        isVerTrue: [, [Validators.required]],
-        isVerFals: [, [Validators.required]],
+        isVerTrue: ['', [Validators.required]],
+        isVerFals: ['', [Validators.required]],
       }),
       isPro: this.fb.group({
-        isProTrue: [, [Validators.required]],
-        isProFals: [, [Validators.required]],
+        isProTrue: ['', [Validators.required]],
+        isProFals: ['', [Validators.required]],
       }),
       isActive: this.fb.group({
-        isActTrue: [, [Validators.required]],
-        isActFals: [, [Validators.required]],
+        isActTrue: ['', [Validators.required]],
+        isActFals: ['', [Validators.required]],
       }),
       linkedIn: ['', Validators.required],
       github: ['', Validators.required],

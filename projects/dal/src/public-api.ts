@@ -11,6 +11,7 @@ export * from './lib/dal.module';
 export { CrudService } from './lib/services/crud.service';
 export { AuthService } from './lib/services/auth.service';
 export { CoursesService } from './lib/services/courses.service';
+export { UsersService } from './lib/services/users.service';
 
 // export models
 export { Admin } from './lib/models/admin/admin';

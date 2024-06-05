@@ -1,10 +1,15 @@
+import { UsersService } from './../../../../../../../dal/src/lib/services/users.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AddUserComponent } from '../add-user/add-user.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { Observable } from 'rxjs';
+import { User } from 'DAL';
+import { MatTableDataSource } from '@angular/material/table';
+import { DeletComponent } from './delet/delet.component';
 
 @Component({
   selector: 'app-student-list',
@@ -12,7 +17,9 @@ import { AddUserComponent } from '../add-user/add-user.component';
   styleUrls: ['./student-list.component.scss'],
 })
 export class StudentListComponent {
-  // hide = true;
+  // ---------------------------------------------------------------------------------------------------
+  // Add && Delete (stady)
+  // ---------------------------------------------------------------------------------------------------
   // dele = [];
   // userName: string = '';
   // email: string = '';
@@ -53,42 +60,39 @@ export class StudentListComponent {
   //   // console.log(this.users);
   // }
 
-  // Handel Input (User Name / Email)
-  // emails = new FormControl('', [Validators.required, Validators.email]);
-  // getErrorMessage() {
-  //   return this.emails.hasError('email') ? 'Not a valid email' : '';
-  // }
-
-  // inter face     <===/* Note */
-  Email = 'Mark@gmail.com';
-  Password = 12345;
-  Mobile = 1012345678;
-  Contry = 'Egypt';
-
-  //delet        <=====================
-
+  //delet
   // delet(index) {
   //   this.users.splice(index, 1);
   //   this.dele.push(index);
   //   console.log(this.dele);
+  // --------------------------------------------Filter-------------------------------------------------------
+  displayedColumns: string[] = [
+    'id',
+    'DisplayName',
+    'isVerified',
+    'isPro',
+    'Active',
+    'URL',
+  ];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  //Student Details
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  // ---------------------------------------------------------------------------------------------------
+  // ---------------------------------------button Student Details ------------------------------------------------------------
+
+  //Router Student Details
   private routin = inject(Router);
   getComm() {
     this.routin.navigate(['students/details']);
   }
 
-  // -------------------------------------Form--------------------------------------------------
-  dele = true;
-
-  deleted() {
-    this.dele = false;
-  }
-
-  // -------------------------------------------------------------------------------------
+  // ------------------------------------ Logic bind Data then Form To Tabel-------------------------------------------------
   users = [];
-
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, usersService: UsersService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddUserComponent, {
@@ -103,12 +107,57 @@ export class StudentListComponent {
       }
     });
   }
+
+  // Get Service
+  usersDB: Observable<User[]>;
+  serv = inject(UsersService);
+
+  ngOnInit() {
+    this.usersDB = this.serv.getAllUsers();
+  }
+
+  // ---------------------------------------------------------------------------------------------------
+  // -------------------------------------------------- Alert For Delete--------------------------------
+  public dialogs = inject(MatDialog);
+
+  openDialogs(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string
+  ): void {
+    this.dialogs.open(DeletComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      disableClose: true,
+    });
+  }
 }
 
-interface User {
-  userName: string;
-  email: string;
-  password: number;
-  mobile: number;
-  country: string;
+// interface For Filter
+export interface UserData {
+  id: number;
+  DisplayName: string;
+  isVerified: boolean;
+  isPro: boolean;
+  Active: boolean;
+  URL: string;
 }
+
+const ELEMENT_DATA: UserData[] = [
+  {
+    id: 1,
+    DisplayName: 'osama',
+    isVerified: true,
+    isPro: true,
+    Active: true,
+    URL: 'http://localhost:4200/students/list',
+  },
+  {
+    id: 2,
+    DisplayName: 'omar',
+    isVerified: false,
+    isPro: false,
+    Active: true,
+    URL: 'http://localhost:4200/students/list',
+  },
+];

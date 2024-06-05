@@ -15,14 +15,29 @@
     </svg></button> -->
 
 <!-- ------------------------------------------------------------------------------------------------------ -->
-<div class="container mt-4">
+<!-- ------------------------------------------------------------------------------------------------------ -->
+<div class="container">
+<div class="row">
+  <div class="col-sm-11">
+    <!-- Serch Name Table (Filter) -->
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="serch" #input>
+    </mat-form-field>
+    </div>
 
-  <!-- button Add User -->
-  <button title="Add Student" class="btn btn-info text-light border-0" (click)="openDialog()"
-    matTooltip="Add Student" matTooltipPosition="right">
-    <mat-icon class="mb-2 overflow-visible"> <i class="fa-solid fa-circle-plus"></i> </mat-icon></button>
+    <!-- button Add User -->
+    <div class="col p-0">
+      <button title="Add Student" class="btn btn-info text-light border-0" (click)="openDialog()"
+        matTooltip="Add Student" matTooltipPosition="right">
+        <mat-icon class="mb-2 overflow-visible"> <i class="fa-solid fa-circle-plus"></i>
+        </mat-icon></button>
+  </div>
+</div>
+</div>
 
-<!-- table -->
+  <!-- table -->
+<div class="container">
   <table class="table table-striped">
     <thead>
       <tr class="text-center">
@@ -41,7 +56,7 @@
       <tr>
         <!-- Test -->
         <td>1</td>
-        <td>Yuossef</td>
+        <td>osama</td>
         <td>False</td>
         <td>true</td>
         <td>true</td>
@@ -54,7 +69,7 @@
 
         <!-- Button Edit User  -->
         <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
-           matTooltip="edit Student" matTooltipPosition="below">
+           matTooltip="edit Student" matTooltipPosition="below" (click)="openDialog()">
            <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
 
           <!-- Button Padge Student Details  -->
@@ -63,29 +78,60 @@
            style="color: #00c292;"><i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
         </td>
       </tr>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-      <tr *ngFor="let user of users;index as i">
+<tr *ngFor="let d of usersDB | async;index as i">
+   <td>{{ i+1 }}</td>
+  <td> {{d.displayName}} </td>
+  <td> {{d.isPro}} </td>
+  <td> {{d.active}} </td>
+  <!-- Button Delete User  -->
+  <td class="text-center"><button (click)="openDialogs('0ms', '0ms')" style="color: red; border: none; background-color: transparent;">
+    <mat-icon matSuffix>delete</mat-icon></button>
+  </td>
+
+  <!-- Button Edit User  -->
+  <td class="text-center"> <button class="border-0 bg-transparent" style="color: #0a66c2;"
+          matTooltip="edit Student" matTooltipPosition="below">
+          <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
+
+    <!-- Button Padge Student Details  -->
+  <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
+        <mat-icon class="overflow-visible" style="color: #00c292;">
+        <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+  </td>
+</tr>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- <tr class="text-center" *ngFor="let user of users;index as i">
         <td>{{ i+1 }}</td>
         <td>{{ user.displayName }}</td>
         <td>{{ user.isVerified }}</td>
         <td>{{ user.isPro }}</td>
         <td>{{ user.isActive }}</td>
         <td>{{ user.linkedIn }}</td>
-        <td>{{ user.github }}</td>
+        <td>{{ user.github }}</td> -->
+
         <!-- Button Delete User  -->
-        <td *ngIf="dele" class="text-center"><button style="color: red; border: none; background-color: transparent;">
+        <!-- <td class="text-center"><button style="color: red; border: none; background-color: transparent;">
           <mat-icon matSuffix>delete</mat-icon></button>
-        </td>
+        </td> -->
 
         <!-- Button Edit User  -->
-        <td class="text-center"> <button class="border-0 text-info"> <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i> </mat-icon></button></td>
+        <!-- <td class="text-center"> <button class="border-0 text-info"> <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i> </mat-icon></button></td> -->
 
           <!-- Button Padge Student Details  -->
-        <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
+        <!-- <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
               <mat-icon class="overflow-visible" style="color: #00c292;">
               <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
         </td>
-      </tr>
+      </tr> -->
+
+      <!-- in case if not data in table -->
+         <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
     </tbody>
   </table>
 </div>

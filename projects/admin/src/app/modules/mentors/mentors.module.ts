@@ -5,17 +5,22 @@ import { MentorsRoutingModule } from './mentors-routing.module';
 import { MentorsComponent } from './mentors.component';
 import { MentorsListComponent } from './components/mentors-list/mentors-list.component';
 import { MentorDetailsComponent } from './components/mentor-details/mentor-details.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
     MentorsComponent,
     MentorsListComponent,
-    MentorDetailsComponent
+    MentorDetailsComponent,
   ],
   imports: [
     CommonModule,
-    MentorsRoutingModule
-  ]
+    MentorsRoutingModule,
+    MatIconModule,
+    MatDialogModule,
+    MatTooltipModule,
+  ],
 })
-export class MentorsModule { }
+export class MentorsModule {}

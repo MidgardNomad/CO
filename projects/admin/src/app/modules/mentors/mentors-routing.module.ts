@@ -5,10 +5,10 @@ import { MentorDetailsComponent } from './components/mentor-details/mentor-detai
 import { MentorsListComponent } from './components/mentors-list/mentors-list.component';
 
 const routes: Routes = [
-  { 
-    path: '', 
-    redirectTo: 'list', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: 'list',
+    pathMatch: 'full',
   },
   {
     path: 'list',
@@ -22,6 +22,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MentorsRoutingModule { }
+export class MentorsRoutingModule {}

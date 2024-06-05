@@ -1,6 +1,6 @@
 <div class="p-3">
-<h1 mat-dialog-title class="title">Enter User Data</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title class="title">Edit Student Data</h1>
+<div mat-dialog-content class="my-3">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <!-- Display Name -->
     <div class="mb-3">
@@ -8,7 +8,7 @@
       <input type="text" id="username" class="form-control" formControlName="displayName" placeholder="name">
     </div>
 
-<!--Input is Verified -->
+    <!--Input is Verified -->
   <fieldset formGroupName="isVerified" class="row mb-3">
     <legend class="col-form-label col-sm-3 pt-0">is Verified</legend>  <!-- Head is-Verified -->
     <div class="col-sm-9">
@@ -78,34 +78,13 @@
     <input formControlName="github" type="url" class="form-control form-control-sm" placeholder="URL">
 </div>
 </div>
-<!-- ------------------------------------------------------------------------------------ -->
-      <!-- Button Submit / close -->
-    <div class="mt-5">
-      <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
-      <button type="submit" mat-flat-button color="primary" class="ms-3"
-       matTooltip="Add Student" matTooltipPosition="above">Add</button>
-    </div>
-  </form>
-</div>
+</form>
 </div>
 
-
-<!-- --------------------------------------------------------------------------------------------- -->
-<!-- Comment For Delete -->
-
-  <!-- <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input type="email" id="email" class="form-control" formControlName="email">
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" id="password" class="form-control" formControlName="password">
-  </div>
-  <div class="mb-3">
-    <label for="mobile" class="form-label">Mobile</label>
-    <input type="text" id="mobile" class="form-control" formControlName="mobile">
-  </div>
-  <div class="mb-3">
-    <label for="country" class="form-label">Country</label>
-    <input type="text" id="country" class="form-control" formControlName="country">
-  </div> -->
+<!-- Button Submit / close -->
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
+  <button type="submit" mat-flat-button color="primary" class="ms-3"
+  matTooltip="Add Student" matTooltipPosition="above">Edit</button>
+</div>
+</div>
