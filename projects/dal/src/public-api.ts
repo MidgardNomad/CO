@@ -19,6 +19,6 @@ export { Chapter } from './lib/models/content/chapter';
 export { Course } from './lib/models/content/course';
 export { Cp } from './lib/models/content/cp';
 export { Lecture } from './lib/models/content/lecture';
-export { Ss } from './lib/models/content/ss';
+export { Ss, SsType } from './lib/models/content/ss';
 export { User } from './lib/models/user/user';
 export { courseLevel } from './lib/models/user/courseLevel';

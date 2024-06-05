@@ -1,22 +1,18 @@
 export interface Ss {
-    id: string;
-    type: SsType;
-    text: string;
-    title: string;
-    image: string;
-    question: string;
-    answer: number;
-    options: string[];
-
+  id?: string;
+  seqNo: number;
+  type: SsType;
+  text?: string;
+  image?: string;
+  question?: string;
+  answer?: number;
+  options?: string[];
 }
-
 
 // create type enum
 export enum SsType {
-    Text= 'text',
-    TextImage= 'text-image',
-    QMC= 'qmc',
-    QFill= 'q-fill',
-
+  Text = 'text',
+  TextImage = 'text-image',
+  MCQ = 'mcq',
+  QFill = 'q-fill',
 }
-

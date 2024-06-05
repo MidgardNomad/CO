@@ -51,6 +51,11 @@ export class FullComponent {
       icon: "grid",
       menu: "Career",
     },
+    {
+      link: "/mentors",
+      icon: "grid",
+      menu: "Mentors",
+    },
     // {
     //   link: "/alerts",
     //   icon: "info",

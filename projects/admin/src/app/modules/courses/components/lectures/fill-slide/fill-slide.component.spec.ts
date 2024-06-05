@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SlideComponent } from './slide.component';
+import { FillSlideComponent } from './fill-slide.component';
 
-describe('SlideComponent', () => {
-  let component: SlideComponent;
-  let fixture: ComponentFixture<SlideComponent>;
+describe('FillSlideComponent', () => {
+  let component: FillSlideComponent;
+  let fixture: ComponentFixture<FillSlideComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SlideComponent]
+      declarations: [FillSlideComponent]
     });
-    fixture = TestBed.createComponent(SlideComponent);
+    fixture = TestBed.createComponent(FillSlideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
