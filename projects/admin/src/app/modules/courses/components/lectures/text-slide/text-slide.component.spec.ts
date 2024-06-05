@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorsComponent } from './mentors.component';
+import { TextSlideComponent } from './text-slide.component';
 
-describe('MentorsComponent', () => {
-  let component: MentorsComponent;
-  let fixture: ComponentFixture<MentorsComponent>;
+describe('TextSlideComponent', () => {
+  let component: TextSlideComponent;
+  let fixture: ComponentFixture<TextSlideComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MentorsComponent],
+      declarations: [TextSlideComponent]
     });
-    fixture = TestBed.createComponent(MentorsComponent);
+    fixture = TestBed.createComponent(TextSlideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

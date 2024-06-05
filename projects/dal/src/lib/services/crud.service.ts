@@ -5,6 +5,7 @@ import { OrderByDirection } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CrudService {
   // set the collection name on calling the service
   // collectionName: string = '';
@@ -42,6 +43,7 @@ export class CrudService {
   getSubCollectionData(collectionPath: string) {
     return this.db.collection(collectionPath).get();
   }
+
   // add data
   addData(collectionName: string, data: any) {
     return this.db.collection(collectionName).add(data);

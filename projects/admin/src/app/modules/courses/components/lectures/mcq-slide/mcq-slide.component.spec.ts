@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorsComponent } from './mentors.component';
+import { McqSlideComponent } from './mcq-slide.component';
 
-describe('MentorsComponent', () => {
-  let component: MentorsComponent;
-  let fixture: ComponentFixture<MentorsComponent>;
+describe('McqSlideComponent', () => {
+  let component: McqSlideComponent;
+  let fixture: ComponentFixture<McqSlideComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MentorsComponent],
+      declarations: [McqSlideComponent]
     });
-    fixture = TestBed.createComponent(MentorsComponent);
+    fixture = TestBed.createComponent(McqSlideComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

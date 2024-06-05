@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 
 export class DeleteCareerComponent implements OnInit {
-  deleteForm: FormGroup = new FormGroup({
-    No: new FormControl(null),
-    Career_name: new FormControl(null),
+    deleteForm: FormGroup = new FormGroup({
+    // No: new FormControl(null),
+    // Career_name: new FormControl(null),
   })
 
   constructor(

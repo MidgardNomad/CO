@@ -1,43 +1,47 @@
 <section class="section1 m-0 p-2">
+
+    <!--------------------- Title ----------------------->
+
   <div class="d-flex justify-content-center align-items-center border border-2 border-info rounded-3 div1">
     <i class="fa-solid fa-laptop-code fs-1 text-warning me-3"></i>
     <h1 class="h11 text-center">Career list</h1>
   </div>
-
   <br><br>
+
+    <!------------------- Search box ------------------->
 
   <div class="d-flex justify-content-center align-items-center">
     <mat-form-field>
       <mat-label><i class="fa-solid fa-magnifying-glass fs-5"></i>
         Search</mat-label>
-
       <input matInput (keyup)="applyFilter($event)" placeholder="Career name" #input>
     </mat-form-field>
 
-  <!--------------------- button ----------------------->
+    <!-------------------- Add button -------------------->
 
     <button class="text-info fs-5 ms-4" mat-raised-button (click)="openDialog()">
-      <i class="fa-solid fa-circle-plus fs-2"></i></button>
+      <i class="fa-solid fa-circle-plus fs-2"></i>
+    </button>
 
-  <!---------------------------------------------------->
-  
+    <!---------------------------------------------------->
+
   </div>
 
-  <!---------------------- Table ----------------------->
+    <!---------------------- Table ----------------------->
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table1">
 
-    <!-- id Column -->
-    <ng-container matColumnDef="NO" class="text-center">
+    <!-- NO. Column -->
+    <!-- <ng-container matColumnDef="NO" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> NO. </th>
       <td mat-cell *matCellDef="let element" class="text-center"> {{element.NO}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- id Column -->
-    <ng-container matColumnDef="id" class="text-center">
+    <!-- <ng-container matColumnDef="id" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> ID </th>
       <td mat-cell *matCellDef="let element" class="text-center"> {{element.id}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- title Column -->
     <ng-container matColumnDef="title">
@@ -52,16 +56,16 @@
     </ng-container>
 
     <!-- courseList Column -->
-    <ng-container matColumnDef="courseList">
+    <!-- <ng-container matColumnDef="courseList">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> Course list </th>
       <td mat-cell *matCellDef="let element" class="text-center"> {{element.courseList}} </td>
-    </ng-container>
+    </ng-container> -->
 
     <!-- Details Column -->
     <ng-container matColumnDef="Details">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> Details </th>
       <td mat-cell *matCellDef="let element" class="text-center">
-        <a href="" routerLink="/career/{{element.NO}}">
+        <a [routerLink]="['../details', element.id]">
           <i class="fa-solid fa-angles-right text-info ms-2"></i>
         </a>
       </td>
@@ -71,7 +75,8 @@
     <ng-container matColumnDef="Update">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> Update </th>
       <td mat-cell *matCellDef="let element" class="text-center">
-        <i class="fa-regular fa-pen-to-square text-warning fs-4 icon_1" (click)="openDialogEdit()"></i>
+        <i class="fa-regular fa-pen-to-square text-warning fs-4 icon_1"
+          (click)="openDialogEdit(element.id, element.title, element.description)"></i>
       </td>
     </ng-container>
 
@@ -79,7 +84,7 @@
     <ng-container matColumnDef="Delete">
       <th mat-header-cell *matHeaderCellDef class="text-center text-bg-info text-white thFontSize"> Delete </th>
       <td mat-cell *matCellDef="let element" class="text-center">
-        <i class="fa-regular fa-trash-can text-danger fs-4 icon_1" (click)="openDialogDelete()"></i>
+        <i class="fa-regular fa-trash-can text-danger fs-4 icon_1" (click)="openDialogDelete(element.id)"></i>
       </td>
     </ng-container>
 

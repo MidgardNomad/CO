@@ -1,0 +1,21 @@
+.slide-card {
+  height: 500px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  &-nav {
+    height: 100%;
+    width: 10%;
+    &-button {
+      border: none;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      background-color: transparent;
+      &:hover {
+        background-color: rgba(201, 198, 198, 0.158);
+      }
+      i {
+        font-size: 45px;
+      }
+    }
+  }
+}
