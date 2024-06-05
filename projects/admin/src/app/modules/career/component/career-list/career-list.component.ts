@@ -1,21 +1,25 @@
 import { ImageConfig } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddNewCareerComponent } from 'projects/admin/src/app/modal/add-new-career/add-new-career.component';
 import { EditCareerComponent } from 'projects/admin/src/app/modal/edit-career/edit-career.component';
 import { DeleteCareerComponent } from 'projects/admin/src/app/modal/delete-career/delete-career.component';
+import { Observable, Subscription } from 'rxjs';
+import { CareerPathService, Cp } from 'DAL';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 ///////////////////////////////// Interface of data //////////////////////////////////
 
-export interface CareerList {
-  NO: number;
-  id: string;
-  title: string;
-  description: string;
-  courseList: string[];
-}
+// export interface CareerList {
+//   NO: number;
+//   id: string;
+//   title: string;
+//   description: string;
+//   courseList: string[];
+// }
 
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,25 +29,35 @@ export interface CareerList {
   styleUrls: ['./career-list.component.scss']
 })
 
-export class CareerListComponent {
+export class CareerListComponent implements OnInit, OnDestroy {
 
-  animal: string;
-  name: string;
+  dataSource;
+  cpSub: Subscription;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private cpService: CareerPathService) {
+
+   }
+
+  ngOnInit(): void {
+    this.cpSub = this.cpService.getAllCareerPaths().subscribe(cpList => {
+      this.dataSource = new MatTableDataSource(cpList);
+    });
+  }
 
   ////////////////////////////////// Array of data ///////////////////////////////////
 
-  ELEMENT_DATA: CareerList[] = [
-    { NO: 1, id: "", title: 'UI', description: "", courseList: [] },
-    { NO: 2, id: "", title: 'UI/UX', description: "", courseList: [] },
-    { NO: 3, id: "", title: 'Frontend', description: "", courseList: [] },
-    { NO: 4, id: "", title: 'Backend', description: "", courseList: [] },
-    { NO: 5, id: "", title: 'Fullstack', description: "", courseList: [] },
-  ];
+  // = [
+  //   { NO: 1, id: "", title: 'UI', description: "", courseList: [] },
+  //   { NO: 2, id: "", title: 'UI/UX', description: "", courseList: [] },
+  //   { NO: 3, id: "", title: 'Frontend', description: "", courseList: [] },
+  //   { NO: 4, id: "", title: 'Backend', description: "", courseList: [] },
+  //   { NO: 5, id: "", title: 'Fullstack', description: "", courseList: [] },
+  // ];
 
-  displayedColumns: string[] = ['NO', 'id', 'title', 'description', 'courseList', 'Details', 'Update', 'Delete'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  ////////////////////////////////////////////////////////////////////////////////////
+
+
+  displayedColumns: string[] = ['title', 'description', 'Details', 'Update', 'Delete'];
 
   ///////////////////////////////////// Search ///////////////////////////////////////
 
@@ -55,39 +69,33 @@ export class CareerListComponent {
   /////////////////////////////////// Add dailog /////////////////////////////////////
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddNewCareerComponent, {
-      data: { name: this.name, animal: this.animal },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
+    const dialogRef = this.dialog.open(AddNewCareerComponent);
   }
 
   ////////////////////////////////// Edit dailog ////////////////////////////////////
 
-  openDialogEdit(): void {
+  openDialogEdit(cpID: string, cpTitle: string, cpDescription: string): void {
     let dialogRef = this.dialog.open(EditCareerComponent, {
-      data: { name: this.name, animal: this.animal },
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      data: { cpID, cpTitle, cpDescription },
     });
   }
 
   ///////////////////////////////// Delete dailog ///////////////////////////////////
 
-  openDialogDelete(): void {
-    let dialogRefDelete = this.dialog.open(DeleteCareerComponent, {
-      data: { name: this.name, animal: this.animal },
-    });
+  openDialogDelete(cpID: string): void {
+    let dialogRefDelete = this.dialog.open(DeleteCareerComponent);
 
     dialogRefDelete.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      if (result) {
+        this.cpService.deleteCareerPath(cpID);
+      }
     });
   }
+
+  ////////////////////////////////////////////////////////////////////////////////////
+
+  ngOnDestroy(): void {
+    this.cpSub.unsubscribe()
+  }
+
 }

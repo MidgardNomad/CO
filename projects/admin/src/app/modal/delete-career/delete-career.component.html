@@ -3,13 +3,18 @@
     <div class="w-75 mx-auto fw-bold div1">
         <h1 class="fs-1 text-warning text-center">Warrining</h1>
         <br>
-        <h1 class="fs-3 text-black text-center mb-0">Do you want to delete career ?</h1>
+        <h1 class="fs-3 text-danger text-center mb-0">Do you want to delete career ?</h1>
         <form [formGroup]="deleteForm">
             <!-- <i class="fa-regular fa-circle-xmark fs-3 text-info"></i> -->
             <br><br>
             <div class="d-flex justify-content-between">
-                <button class="btn btn-info w-25 mt-3" type="submit">Delete</button>
-                <button class="btn btn-info w-25 mt-3" type="submit">Cancel</button>
+                <button class="btn btn-info text-white w-25 mt-3" type="submit" 
+                mat-dialog-close
+                [mat-dialog-close]="true"
+                >Delete</button>
+                <button class="btn btn-info text-white w-25 mt-3" type="submit"
+                mat-dialog-close
+                [mat-dialog-close]="false">Cancel</button>
             </div>
         </form>
     </div>
