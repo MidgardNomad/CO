@@ -3,7 +3,8 @@ import { CrudService } from './crud.service';
 import { Course } from '../models/content/course';
 import { Chapter } from '../models/content/chapter';
 import { Lecture } from '../models/content/lecture';
-import { Observable, map, pipe, tap } from 'rxjs';
+import { Ss } from '../models/content/ss';
+import { Observable, map, pipe, retry, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,6 @@ export class CoursesService {
         .addData(this._coursesCollection, {
           title: courseTitle,
           description: courseDescription,
-          chapterList: [],
         } as Course)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
@@ -175,12 +175,88 @@ export class CoursesService {
         .catch((error) => reject(error));
     });
   }
-  deleteLecture(courseID: string, chapterID: string, lectureID: string) {
+  async deleteLecture(courseID: string, chapterID: string, lectureID: string) {
     return new Promise((resolve, reject) => {
       this.crudSerive
         .deleteData(
           `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}`,
           lectureID
+        )
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  //Slides Methods:
+  getAllSlides(
+    courseID: string,
+    chapterID: string,
+    lectureID: string
+  ): Observable<Ss[]> {
+    return this.crudSerive
+      .getDataByOrder(
+        `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}/${lectureID}/${this._slidesCollection}`,
+        'seqNo'
+      )
+      .pipe(
+        map((docSnaps) => {
+          return docSnaps.map((docSnap) => {
+            return <Ss>{
+              id: docSnap.payload.doc.id,
+              ...(docSnap.payload.doc.data() as object),
+            };
+          });
+        })
+      );
+  }
+
+  async addSlide(
+    courseID: string,
+    chapterID: string,
+    lectureID: string,
+    data: Ss
+  ) {
+    return new Promise((resolve, reject) => {
+      this.crudSerive
+        .addDataToSubCollection(
+          `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}/${lectureID}/${this._slidesCollection}`,
+          data
+        )
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async editSlide(
+    courseID: string,
+    chapterID: string,
+    lectureID: string,
+    slideID: string,
+    data: any
+  ) {
+    return new Promise((resolve, reject) => {
+      this.crudSerive
+        .updateData(
+          `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}/${lectureID}/${this._slidesCollection}`,
+          slideID,
+          data
+        )
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async deleteSlide(
+    courseID: string,
+    chapterID: string,
+    lectureID: string,
+    slideID: string
+  ) {
+    return new Promise((resolve, reject) => {
+      this.crudSerive
+        .deleteData(
+          `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}/${lectureID}/${this._slidesCollection}`,
+          slideID
         )
         .then((res) => resolve(res))
         .catch((error) => reject(error));

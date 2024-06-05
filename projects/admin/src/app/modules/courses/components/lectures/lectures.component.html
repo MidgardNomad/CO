@@ -10,4 +10,49 @@
       </button>
     </div>
   </div>
+  <div class="row">
+    <div class="container d-flex justify-content-between slide-card">
+      <div
+        class="d-flex justify-content-center align-items-center slide-card-nav"
+      >
+        <button
+          class="slide-card-nav-button"
+          (click)="onToPreviousSlide()"
+          [disabled]="toPreviousSlideDisabled"
+        >
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+      </div>
+      <div
+        class="d-flex flex-column justify-content-around align-items-center"
+        [ngSwitch]="activeSlide.type"
+      >
+        <app-text-slide
+          *ngSwitchCase="'text'"
+          [slide]="activeSlide"
+        ></app-text-slide>
+        <app-text-image-slide
+          *ngSwitchCase="'text-image'"
+          [slide]="activeSlide"
+        ></app-text-image-slide>
+        <app-mcq-slide
+          *ngSwitchCase="'mcq'"
+          [slide]="activeSlide"
+        ></app-mcq-slide>
+        <app-fill-slide *ngSwitchCase="'q-fill'" [slide]="activeSlide">
+        </app-fill-slide>
+      </div>
+      <div
+        class="d-flex justify-content-center align-items-center slide-card-nav"
+      >
+        <button
+          class="slide-card-nav-button"
+          (click)="onToNextSlide()"
+          [disabled]="toNextSlideDisabled"
+        >
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

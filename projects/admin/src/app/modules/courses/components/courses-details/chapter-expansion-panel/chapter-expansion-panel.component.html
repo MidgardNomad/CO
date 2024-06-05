@@ -17,7 +17,10 @@
     *ngFor="let lecture of lectures | async"
     class="d-flex justify-content-between lecture-tile"
   >
-    <a [routerLink]="['chapter', chapter.id, 'lecture', lecture.id]">
+    <a
+      [routerLink]="['chapter', chapter.id, 'lecture', lecture.id]"
+      [queryParams]="{ s: 1 }"
+    >
       {{ lecture.title }}</a
     >
     <div>
