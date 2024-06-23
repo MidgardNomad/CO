@@ -9,11 +9,11 @@ import { CareerPathService } from 'DAL';
   templateUrl: './add-new-career.component.html',
   styleUrls: ['./add-new-career.component.scss']
 })
+
 export class AddNewCareerComponent implements OnInit {
-    addForm: FormGroup = new FormGroup({
+  addForm: FormGroup = new FormGroup({
     title: new FormControl(null),
     description: new FormControl(null),
-    // courseList: new FormControl(null)
   })
 
   constructor(
@@ -23,7 +23,7 @@ export class AddNewCareerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+
   }
 
   onNoClick(): void {
@@ -32,10 +32,10 @@ export class AddNewCareerComponent implements OnInit {
 
   async saveData() {
     try {
-     await this.careerPathService.addNewCareerPath(this.addForm.value.title, this.addForm.value.description);
-     this.dialogRef.close();
+      await this.careerPathService.addNewCareerPath(this.addForm.value.title, this.addForm.value.description);
+      this.dialogRef.close();
     } catch (error) {
-      
+
     }
   }
 }

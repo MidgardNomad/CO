@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DALModule } from 'DAL';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalErrorHandler } from './shared/GlobalErrorHandler/errorHandler.service';
+import { MainModule } from './modules/main/main.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { GlobalErrorHandler } from './shared/GlobalErrorHandler/errorHandler.ser
     BrowserAnimationsModule,
     AppRoutingModule,
     DALModule,
+    MainModule,
   ],
   providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent],

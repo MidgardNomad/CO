@@ -5,7 +5,6 @@ import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 
-
 @NgModule({
   declarations: [
     LandingPageComponent,
