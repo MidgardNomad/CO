@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <mat-form-field>
     <label>Slide Type</label>
-    <mat-select #slideType>
+    <mat-select #slideType value="text">
       <mat-option value="text">Text</mat-option>
       <mat-option value="text-image">Text & Image</mat-option>
       <mat-option value="mcq">MCQ</mat-option>
@@ -12,7 +12,7 @@
   <form #textForm="ngForm" (ngSubmit)="onSubmit(textForm, slideType.value)">
     <mat-form-field>
       <mat-label>Text</mat-label>
-      <input
+      <textarea
         #textField
         matInput
         type="text"
@@ -20,7 +20,7 @@
         maxlength="240"
         ngModel
         name="text"
-      />
+      ></textarea>
       <mat-hint align="end"> {{ textField.value.length }} / 240 </mat-hint>
     </mat-form-field>
     <mat-form-field *ngIf="slideType.value === 'q-fill'">

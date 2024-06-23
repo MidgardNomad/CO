@@ -246,6 +246,23 @@ export class CoursesService {
     });
   }
 
+  updateSlideSeqNo(
+    courseID: string,
+    chapterID: string,
+    lectureID: string,
+    slideID: string,
+    startingSeqNo: number,
+    seqNo: number
+  ) {
+    return this.crudSerive.updateDataForField(
+      `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterID}/${this._lecturesCollection}/${lectureID}/${this._slidesCollection}`,
+      slideID,
+      'seqNo',
+      startingSeqNo,
+      { seqNo: seqNo }
+    );
+  }
+
   async deleteSlide(
     courseID: string,
     chapterID: string,

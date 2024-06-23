@@ -1,22 +1,11 @@
-<div style="position: relative">
-  <div
-    style="position: absolute; top: calc(50% - 40px); left: calc(50% - 40px)"
-    *ngIf="loading"
-  >
+<div style="position: relative" #form>
+  <div class="display-loading-spinner" #loadingSpinner>
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <section [ngClass]="{ spinner: loading }">
-    <div
-      class="alert alert-danger"
-      style="width: 100%"
-      *ngIf="somethingWentWrong"
-    >
-      <p>Something Went Wrong</p>
-    </div>
-    <h2 mat-dialog-title>Delete Your Account</h2>
-    <mat-dialog-content
-      >Enter Your Password To Delete Your Account</mat-dialog-content
-    >
+
+  <section>
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    <mat-dialog-content>{{ data.header }}</mat-dialog-content>
     <mat-dialog-content>
       <form #newPassword="ngForm">
         <div class="form-group">
@@ -38,11 +27,11 @@
     <mat-dialog-actions>
       <div class="d-flex align-items-center" style="gap: 25px">
         <button
-          [disabled]="loading"
-          class="btn btn-danger"
+          [disabled]="loading || newPassword.invalid"
+          class="btn {{ data.class }}"
           (click)="onDeleteAccount(newPassword.value.userPassword)"
         >
-          Delete Account
+          {{ data.button }}
         </button>
 
         <button

@@ -59,8 +59,8 @@ export class AddSlideDialogComponent implements OnInit {
         try {
           await this.add({
             type: SsType.Text,
-            seqNo: this.data.seqNo + 1,
             text: text,
+            seqNo: this.data.seqNo,
           } as Ss);
           this.matDialogRef.close();
           break;
@@ -74,7 +74,7 @@ export class AddSlideDialogComponent implements OnInit {
             type: SsType.TextImage,
             text: text,
             seqNo: this.data.seqNo,
-            image: 'sample',
+            image: '../../../../../../assets/images/HTMLCSSJS.png',
           } as Ss);
           this.matDialogRef.close();
           break;
@@ -84,11 +84,14 @@ export class AddSlideDialogComponent implements OnInit {
         }
       case 'mcq':
         try {
+          let options = [firstOption, secondOption];
+          if (thirdOption) options.push(thirdOption);
+          if (fourthOption) options.push(fourthOption);
           await this.add({
             type: SsType.MCQ,
             question: text,
             answer: mcqAnswer,
-            options: [firstOption, secondOption, thirdOption, fourthOption],
+            options: options,
             seqNo: this.data.seqNo,
           } as Ss);
           this.matDialogRef.close();

@@ -7,10 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditCareerComponent } from './edit-career/edit-career.component';
 import { DeleteCareerComponent } from './delete-career/delete-career.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 
 @NgModule({
-  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent],
+  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,

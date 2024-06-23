@@ -9,12 +9,12 @@ import { CareerPathService } from 'DAL';
   templateUrl: './edit-career.component.html',
   styleUrls: ['./edit-career.component.scss']
 })
+
 export class EditCareerComponent implements OnInit {
 
   editForm: FormGroup = new FormGroup({
     title: new FormControl(this.data.cpTitle),
     description: new FormControl(this.data.cpDescription),
-    // courseList: new FormControl(null)
   })
 
   constructor(
@@ -39,6 +39,5 @@ export class EditCareerComponent implements OnInit {
       console.log(error)
     }
   }
-
 
 }

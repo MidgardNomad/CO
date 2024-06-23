@@ -1,4 +1,4 @@
-<section class="container edit-profile">
+<section class="container edit-profile" style="position: relative">
   <div class="row title">
     <div class="col">
       <h2>Edit Profile</h2>
@@ -7,10 +7,7 @@
   <section class="row user-card">
     <div class="col d-flex" style="gap: 15px">
       <div class="user-img">
-        <img
-          src="../../../../../assets/images/testavatar.jpg"
-          alt="User Profile Picture"
-        />
+        <img [src]="userPhotoURL" alt="User Profile Picture" />
         <div class="d-flex justify-content-center align-items-end edit-button">
           <i class="fa-solid fa-pen-to-square"></i>
         </div>
@@ -25,7 +22,7 @@
     </div>
   </section>
   <section class="row user-info">
-    <form>
+    <form #editProfileForm="ngForm" (ngSubmit)="onEditProfile(editProfileForm)">
       <div class="d-flex flex-column">
         <div class="d-flex flex-column flex-lg-row" style="column-gap: 25px">
           <div class="form-group">
@@ -37,7 +34,6 @@
               placeholder="First Name"
               ngModel
               name="userFirstName"
-              required
             />
           </div>
           <div class="form-group">
@@ -49,7 +45,6 @@
               placeholder="Last Name"
               ngModel
               name="userSecondName"
-              required
             />
           </div>
         </div>
@@ -62,13 +57,18 @@
             placeholder="Email"
             ngModel
             email
-            required
             name="userEmail"
           />
         </div>
         <div class="form-group">
           <label for="bio">Bio</label>
-          <textarea class="form-control" id="bio" rows="3"></textarea>
+          <textarea
+            class="form-control"
+            id="bio"
+            rows="3"
+            ngModel
+            name="userBIO"
+          ></textarea>
         </div>
         <div>
           <button class="btn-primary my-1 app-custom-button" type="submit">

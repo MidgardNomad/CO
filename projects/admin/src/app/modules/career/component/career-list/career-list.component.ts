@@ -11,18 +11,6 @@ import { CareerPathService, Cp } from 'DAL';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-///////////////////////////////// Interface of data //////////////////////////////////
-
-// export interface CareerList {
-//   NO: number;
-//   id: string;
-//   title: string;
-//   description: string;
-//   courseList: string[];
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////
-
 @Component({
   selector: 'app-career-list',
   templateUrl: './career-list.component.html',
@@ -35,27 +23,13 @@ export class CareerListComponent implements OnInit, OnDestroy {
   cpSub: Subscription;
 
   constructor(public dialog: MatDialog, private cpService: CareerPathService) {
-
-   }
+  }
 
   ngOnInit(): void {
     this.cpSub = this.cpService.getAllCareerPaths().subscribe(cpList => {
-      this.dataSource = new MatTableDataSource(cpList);
+    this.dataSource = new MatTableDataSource(cpList);
     });
   }
-
-  ////////////////////////////////// Array of data ///////////////////////////////////
-
-  // = [
-  //   { NO: 1, id: "", title: 'UI', description: "", courseList: [] },
-  //   { NO: 2, id: "", title: 'UI/UX', description: "", courseList: [] },
-  //   { NO: 3, id: "", title: 'Frontend', description: "", courseList: [] },
-  //   { NO: 4, id: "", title: 'Backend', description: "", courseList: [] },
-  //   { NO: 5, id: "", title: 'Fullstack', description: "", courseList: [] },
-  // ];
-
-  ////////////////////////////////////////////////////////////////////////////////////
-
 
   displayedColumns: string[] = ['title', 'description', 'Details', 'Update', 'Delete'];
 

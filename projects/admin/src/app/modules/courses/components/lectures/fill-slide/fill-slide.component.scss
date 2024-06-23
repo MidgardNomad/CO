@@ -1,3 +1,14 @@
-p {
-  font-size: 25px;
+.question {
+  background-color: white;
+  padding: 15px;
+  width: 80%;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  word-wrap: break-word;
+  font-size: 20px;
+  font-weight: 600;
+}
+.answer {
+  width: 80%;
+  margin-top: 15px;
 }

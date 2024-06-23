@@ -3,16 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { EmailAuthProvider } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import {
-  BehaviorSubject,
-  Observable,
-  catchError,
-  from,
-  map,
-  tap,
-  throwError,
-} from 'rxjs';
-import { User } from '../models/user/user';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { CrudService } from './crud.service';
 
 @Injectable({
@@ -22,6 +13,7 @@ export class AuthService {
   //Class Properties
   currentUserChange = new BehaviorSubject<boolean>(null);
   user = this.auth.user;
+  activeUser = this.auth.currentUser;
 
   constructor(
     private auth: AngularFireAuth,
@@ -54,139 +46,104 @@ export class AuthService {
     return throwError(() => new Error(errMessage));
   }
 
-  private reauthenticate(
+  //Class Methods
+  async signIn(
+    email: string,
+    password: string,
+    stayLoggedIn: boolean | ''
+  ): Promise<firebase.default.auth.UserCredential> {
+    this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
+    return new Promise((resolve, reject) => {
+      this.auth
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async signUp(
+    email: string,
     password: string
   ): Promise<firebase.default.auth.UserCredential> {
-    let user: firebase.default.User;
-    this.user.subscribe((currentUser) => {
-      user = currentUser;
+    return new Promise((resolve, reject) => {
+      this.auth
+        .createUserWithEmailAndPassword(email, password)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
     });
+  }
+
+  // async verifyEmail(email: string) {
+  //   let user = await this.auth.currentUser;
+  //   return new Promise((resolve, reject) => {
+  //     user.sendEmailVerification
+  //   })
+  // }
+
+  async reauthenticate(
+    password: string
+  ): Promise<firebase.default.auth.UserCredential> {
+    let user = await this.auth.currentUser;
     return new Promise((resolve, reject) => {
       user
         .reauthenticateWithCredential(
           EmailAuthProvider.credential(user.email, password)
         )
+        .then((userCre) => resolve(userCre))
+        .catch((err) => reject(err));
+    });
+  }
+
+  async updateDisplayName(firstName: string, lastName: string): Promise<void> {
+    let user = await this.auth.currentUser;
+    if (firstName === '') firstName = user.displayName.split(' ')[0];
+    if (lastName === '') lastName = user.displayName.split(' ')[1];
+    return new Promise((resolve, reject) => {
+      user
+        .updateProfile({
+          displayName: `${firstName} ${lastName}`,
+        })
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async updateEmail(email: string): Promise<void> {
+    const user = await this.auth.currentUser;
+    return new Promise((resolve, reject) => {
+      user
+        .updateEmail(email)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async changePassword(newPassword: string): Promise<void> {
+    let user = await this.auth.currentUser;
+    return new Promise((resolve, reject) => {
+      user
+        .updatePassword(newPassword)
         .then((res) => resolve(res))
         .catch((err) => reject(err));
     });
   }
 
-  //Class Methods
-  login(
-    email: string,
-    password: string,
-    stayLoggedIn: boolean | '',
-    redirect = true
-  ): Observable<firebase.default.auth.UserCredential> {
-    this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
-    return from(
-      this.auth.signInWithEmailAndPassword(email, password).then((res) => {
-        this.crudService.getSingleData('users', res.user.uid).subscribe(() => {
-          if (redirect) this.router.navigate(['profile', res.user.uid]);
-        });
-        return res;
-      })
-    ).pipe(catchError(this.handleErrors));
+  async logout(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.auth
+        .signOut()
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
   }
 
-  signUp(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string
-  ): Observable<firebase.default.auth.UserCredential> {
-    const userFirstName = firstName
-      .trim()
-      .replace(firstName[0], firstName[0].toUpperCase());
-    const userLastName = lastName
-      .trim()
-      .replace(lastName[0], lastName[0].toUpperCase());
-    return from(
-      this.auth.createUserWithEmailAndPassword(email, password).then((res) => {
-        res.user
-          .updateProfile({
-            displayName: `${userFirstName} ${userLastName}`,
-            photoURL: '../../../../../assets/images/placeholder-avatar.svg',
-          })
-          .then(() => {
-            this.crudService
-              .setSingleDoc('users', res.user.uid, {
-                id: res.user.uid,
-                displayName: res.user.displayName,
-                photoURL: res.user.photoURL,
-                isVerified: false,
-                isPro: false,
-                active: false,
-                lastLogin: new Date(),
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                deletedAt: null,
-                deleted: false,
-                courseList: [],
-                connectedAccounts: [],
-              } as User)
-              .then();
-            this.router.navigate(['/profile', res.user.uid]);
-          });
-        return res;
-      })
-    ).pipe(
-      catchError(this.handleErrors),
-      tap((res) => res)
-    );
-  }
-
-  changePassword(oldPassword: string, newPassword: string) {
-    return this.user.pipe(
-      map((user) => {
-        user
-          .reauthenticateWithCredential(
-            EmailAuthProvider.credential(user.email, oldPassword)
-          )
-          .then(
-            () => {
-              user.updatePassword(newPassword).then(
-                (res) => res,
-                (err) => err
-              );
-            },
-            (err) => err.code
-          );
-      })
-    );
-  }
-
-  logout(): Observable<void> {
-    return from(
-      this.auth.signOut().then(() => {
-        this.router.navigate(['/auth']);
-      })
-    );
-  }
-
-  deleteAccount(password: string): Observable<void> {
-    return this.user
-      .pipe(
-        map((user) => {
-          user
-            .reauthenticateWithCredential(
-              EmailAuthProvider.credential(user.email, password)
-            )
-            .then(() => {
-              this.crudService.deleteData('users', user.uid).then();
-              user.delete().then(
-                (res) => {
-                  this.logout().subscribe();
-                  return res;
-                },
-                (err) => err.code
-              );
-            });
-        })
-      )
-      .pipe(
-        catchError(this.handleErrors),
-        tap((res) => res)
-      );
+  async deleteAccount(): Promise<void> {
+    let user = await this.auth.currentUser;
+    return new Promise((resolve, reject) => {
+      user
+        .delete()
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    });
   }
 }

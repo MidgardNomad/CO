@@ -1,2 +1,11 @@
-<p>{{ slide.question }}</p>
-<p>{{ slide.answer }}</p>
+<div class="question">{{ slide.question }}</div>
+<div class="answer">
+  <form class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      value="{{ slide.answer }}"
+      readonly
+    />
+  </form>
+</div>

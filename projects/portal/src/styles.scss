@@ -21,6 +21,13 @@ body {
   }
 }
 
+.display-loading-spinner {
+  position: absolute;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  display: none;
+}
+
 .form-control {
   background-color: #e3e9ee48;
   width: 440px;
@@ -33,5 +40,38 @@ body {
 
   &:focus {
     background-color: white;
+  }
+}
+
+.custom-snackbar {
+  .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    border-radius: 12px !important;
+  }
+  .mdc-snackbar__label {
+    font-size: 16px !important;
+  }
+}
+
+.success-snackbar {
+  .mat-mdc-snack-bar-container {
+    border: 2px solid #155724 !important;
+  }
+  .mdc-snackbar__surface {
+    background-color: #d4edda !important;
+  }
+  .mdc-snackbar__label {
+    color: #155724 !important;
+  }
+}
+
+.fail-snackbar {
+  .mat-mdc-snack-bar-container {
+    border: 2px solid #721c24;
+  }
+  .mdc-snackbar__surface {
+    background-color: #f8d7da !important;
+  }
+  .mdc-snackbar__label {
+    color: #721c24 !important;
   }
 }

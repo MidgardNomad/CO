@@ -1,23 +1,38 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  Renderer2 as Renderer,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'DAL';
-import { Subscription } from 'rxjs';
+import { errorHandler } from '../../../../shared/functions/errorHandler';
+import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
-  somethingWentWrong = false;
+export class LoginComponent implements OnInit {
+  @ViewChild('form') form: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
+  @ViewChild('alert') alert: ElementRef;
   errMessage: string;
   isLoading = false;
-  loginSub = new Subscription();
-  constructor(private authService: AuthService) {}
+  loadingAnimation = loadingAnimation();
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private renderer: Renderer
+  ) {}
 
   ngOnInit(): void {}
 
-  onLogin(userCradentials: NgForm) {
+  async onLogin(userCradentials: NgForm) {
     const {
       userEmail,
       userPassword,
@@ -28,21 +43,20 @@ export class LoginComponent implements OnInit, OnDestroy {
       rememberUser: boolean | '';
     } = userCradentials.value;
     this.isLoading = true;
-
-    this.loginSub = this.authService
-      .login(userEmail, userPassword, rememberUser)
-      .subscribe({
-        next: (_) => {
-          this.isLoading = false;
-        },
-        error: (err) => {
-          this.somethingWentWrong = true;
-          this.isLoading = false;
-          this.errMessage = err.message;
-        },
-      });
-  }
-  ngOnDestroy(): void {
-    this.loginSub.unsubscribe();
+    this.loadingAnimation('block', 0.8, this.loadingSpinner, this.form);
+    try {
+      let user = await this.authService.signIn(
+        userEmail,
+        userPassword,
+        rememberUser
+      );
+      this.router.navigate(['profile', user.user.uid]);
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+    } catch (error) {
+      this.isLoading = false;
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.errMessage = errorHandler(error);
+      this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
+    }
   }
 }

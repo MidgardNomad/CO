@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatIconModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule
   ]
 })
 

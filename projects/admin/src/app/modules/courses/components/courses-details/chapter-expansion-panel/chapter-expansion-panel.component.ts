@@ -2,12 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Chapter, CoursesService, Lecture } from 'DAL';
-import { DeleteChapterDialogComponent } from '../delete-chapter-dialog/delete-chapter-dialog.component';
-import { CreateNewChapterDialogComponent } from '../create-new-chapter-dialog/create-new-chapter-dialog.component';
-import { AddLectureDialogComponent } from '../../add-lecture-dialog/add-lecture-dialog.component';
-import { Observable, tap } from 'rxjs';
-import { ConfirmLectureDeletionDialogComponent } from '../../confirm-lecture-deletion-dialog/confirm-lecture-deletion-dialog.component';
-import { P } from '@angular/cdk/keycodes';
+import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.component';
+import { Observable, Subscription, tap } from 'rxjs';
+import { LectureDialogComponent } from '../../lectures/lecture-dialog/lecture-dialog.component';
+import { DeleteDialogComponent } from 'projects/admin/src/app/modal/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-chapter-expansion-panel',
@@ -15,9 +13,13 @@ import { P } from '@angular/cdk/keycodes';
   styleUrls: ['./chapter-expansion-panel.component.scss'],
 })
 export class ChapterExpansionPanelComponent implements OnInit {
+  //=============================================================
+  //Properties
   lectures: Observable<Lecture[]>;
   numberOfLectures: number;
   @Input('chapter') chapter: Chapter;
+  deleteDialgoSub: Subscription;
+  //=============================================================
 
   constructor(
     private coursesService: CoursesService,
@@ -32,7 +34,7 @@ export class ChapterExpansionPanelComponent implements OnInit {
   }
 
   onEditChapter() {
-    this.matDialog.open(CreateNewChapterDialogComponent, {
+    this.matDialog.open(ChapterDialogComponent, {
       disableClose: true,
       data: {
         courseID: this.route.snapshot.paramMap.get('id'),
@@ -46,26 +48,28 @@ export class ChapterExpansionPanelComponent implements OnInit {
   }
 
   onDeleteChapter() {
-    let matDialogRef = this.matDialog.open(DeleteChapterDialogComponent, {
-      data: { title: this.chapter.title },
-      disableClose: true,
-    });
-    matDialogRef.afterClosed().subscribe(async (result) => {
-      if (result) {
-        try {
-          await this.coursesService.deleteChapter(
-            this.route.snapshot.paramMap.get('id'),
-            this.chapter.id
-          );
-        } catch (error) {
-          console.log(error);
+    this.deleteDialgoSub = this.matDialog
+      .open(DeleteDialogComponent, {
+        data: { messageTail: 'Chapter' },
+        disableClose: true,
+      })
+      .afterClosed()
+      .subscribe(async (action) => {
+        if (action) {
+          try {
+            await this.coursesService.deleteChapter(
+              this.route.snapshot.paramMap.get('id'),
+              this.chapter.id
+            );
+          } catch (error) {
+            console.log(error);
+          }
         }
-      }
-    });
+      });
   }
 
   onAddLecture() {
-    this.matDialog.open(AddLectureDialogComponent, {
+    this.matDialog.open(LectureDialogComponent, {
       disableClose: true,
       data: {
         courseID: this.route.snapshot.paramMap.get('id'),
@@ -77,7 +81,7 @@ export class ChapterExpansionPanelComponent implements OnInit {
   }
 
   onEditLecture(lectureID: string) {
-    this.matDialog.open(AddLectureDialogComponent, {
+    this.matDialog.open(LectureDialogComponent, {
       disableClose: true,
       data: {
         lectureID,
@@ -87,12 +91,10 @@ export class ChapterExpansionPanelComponent implements OnInit {
     });
   }
   onDeleteLecture(lectureID: string) {
-    let matDialogRef = this.matDialog.open(
-      ConfirmLectureDeletionDialogComponent,
-      {
-        disableClose: true,
-      }
-    );
+    let matDialogRef = this.matDialog.open(DeleteDialogComponent, {
+      data: { messageTail: 'Lecture' },
+      disableClose: true,
+    });
     matDialogRef.afterClosed().subscribe(async (result) => {
       if (result) {
         try {

@@ -15,11 +15,16 @@ export { UsersService } from './lib/services/users.service';
 export { CareerPathService } from './lib/services/career-path.service';
 
 // export models
+//Admin
 export { Admin } from './lib/models/admin/admin';
+//Content
 export { Chapter } from './lib/models/content/chapter';
 export { Course } from './lib/models/content/course';
 export { Cp } from './lib/models/content/cp';
 export { Lecture } from './lib/models/content/lecture';
 export { Ss, SsType } from './lib/models/content/ss';
+//User
 export { User } from './lib/models/user/user';
 export { courseLevel } from './lib/models/user/courseLevel';
+//Mentor
+export { Mentor } from './lib/models/mentor/mentor';

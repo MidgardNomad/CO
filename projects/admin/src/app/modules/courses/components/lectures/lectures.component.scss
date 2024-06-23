@@ -1,5 +1,5 @@
 .slide-card {
-  height: 500px;
+  min-height: 500px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   &-nav {
     height: 100%;
@@ -17,5 +17,78 @@
         font-size: 45px;
       }
     }
+  }
+  .content-area {
+    width: 90%;
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+    .button {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      margin: 0 5px;
+      overflow: hidden;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-out;
+      &:hover {
+        width: 100px;
+        .icon {
+          background-color: white;
+        }
+      }
+      .icon {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        border-radius: 50px;
+        box-sizing: border-box;
+        line-height: 40px;
+        transition: all 0.3s ease-out;
+        i {
+          font-size: 18px;
+          line-height: 40px;
+          transition: all 0.3s ease-out;
+        }
+      }
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 40px;
+        margin-left: 5px;
+        color: white;
+        transition: all 0.3s ease-out;
+      }
+    }
+    .button-edit {
+      background-color: #52ee52;
+      &:hover {
+        i {
+          color: #52ee52;
+        }
+      }
+    }
+    .button-delete {
+      background-color: #ee5752;
+      &:hover {
+        i {
+          color: #ee5752;
+        }
+      }
+    }
+  }
+  .single-slide-content {
+    border-radius: 12px;
+    width: 100%;
+    min-height: 80%;
+    background-color: #e7e8e9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

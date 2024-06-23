@@ -1,16 +1,16 @@
-<div class="signup" [ngClass]="{ loading: isLoading }">
+<div class="signup" #form>
+  <div class="display-loading-spinner" #loadingSpinner>
+    <app-loading-spinner></app-loading-spinner>
+  </div>
   <div class="signup-form">
+    <div class="alert alert-danger" style="width: 100%; display: none" #alert>
+      {{ errMessage }}
+    </div>
     <h1>
       Create Your Account Now <br />
       <span style="color: #0096cb">Build Your Career</span>
     </h1>
-    <div
-      class="alert alert-danger"
-      style="width: 100%"
-      *ngIf="somethingWentWrong"
-    >
-      <p>{{ errMessage }}</p>
-    </div>
+
     <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
       <div class="form-group">
         <label for="firstName">First Name</label>
@@ -50,7 +50,7 @@
           email
           required
           name="userEmail"
-          [ngClass]="{ 'is-invalid': somethingWentWrong }"
+          [ngClass]="{ 'is-invalid': invalidEmail }"
         />
       </div>
       <div class="form-group">
@@ -106,7 +106,7 @@
       <button
         type="submit"
         class="btn btn-primary my-1 app-custom-button"
-        [disabled]="signUpForm.invalid"
+        [disabled]="signUpForm.invalid || isLoading"
       >
         Sign Up
       </button>
@@ -123,8 +123,4 @@
       >
     </p>
   </div>
-</div>
-
-<div class="place-spinner" *ngIf="isLoading">
-  <app-loading-spinner></app-loading-spinner>
 </div>

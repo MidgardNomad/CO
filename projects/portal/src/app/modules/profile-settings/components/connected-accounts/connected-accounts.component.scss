@@ -1,5 +1,12 @@
 .connected-accounts {
   width: 100%;
+  @media (max-width: 991px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
   .title {
     h2 {
       color: #52b2ee;
@@ -10,12 +17,15 @@
     padding: 10px;
     background-color: #eaf6fd;
     border-radius: 10px;
-    width: 100%;
+    width: 600px;
+    @media (max-width: 620px) {
+      width: 300px;
+    }
     p {
       color: #9ba2a6;
       align-self: self-end;
       margin-left: 10px;
-      @media (max-width: 500px) {
+      @media (max-width: 620px) {
         display: none;
       }
     }
@@ -24,6 +34,9 @@
       background-color: #52b2ee;
       border: none;
       width: 150px;
+      @media (max-width: 620px) {
+        margin-left: 20vw;
+      }
     }
   }
 }

@@ -54,13 +54,7 @@
       margin-top: 10px;
     }
     .form-control {
-      background-color: #e3e9ee48;
-      width: 440px;
-      height: 48px;
-      border-radius: 12px;
-      margin: 10px 0px;
-
-      @media (max-width: 600px) {
+      @media (max-width: 991px) {
         width: 100%;
       }
 
