@@ -18,11 +18,13 @@
     }
   }
   &-streak {
+    background-color: red;
     &-card {
       width: 100%;
       background-color: #e7e8e9;
       border-radius: 12px;
       margin: 15px;
+      padding-block-start: 20px;
     }
   }
 }

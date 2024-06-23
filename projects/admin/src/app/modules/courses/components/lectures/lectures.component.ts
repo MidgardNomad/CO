@@ -157,6 +157,7 @@ export class LecturesComponent implements OnInit, OnDestroy {
                 this.lectureID,
                 this.activeSlide.id
               );
+              //TODO: Find a better way to handle re-ordering the lectures.
               for (let [i, slide] of this.slides.entries()) {
                 if (slide.seqNo > activeSlideSeqNo) {
                   await this.coursesService.editSlide(
