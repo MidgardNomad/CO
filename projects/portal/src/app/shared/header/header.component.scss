@@ -1,24 +1,55 @@
-.navbar{
+.navbar {
     width: 100%;
-    background-color: #FFFFFF!important;
+    background-color: #FFFFFF !important;
     padding: 10px 0px;
-    .collapse{
-        justify-content: space-around;
-        .headerLinks{
 
-        }
-        .headerRight{
-            i,button,img{
+    .collapse {
+        justify-content: space-around;
+
+        .headerLinks {}
+
+        .headerRight {
+
+            i,
+            button,
+            img {
                 margin: 0px 10px;
             }
-            .goProButton{
+
+            .goProButton {
                 background-color: #F2AE37;
                 color: #FFFFFF;
                 padding: 6px 10px;
-                img{
+
+                img {
                     margin-right: 0px;
                 }
             }
         }
+    }
+
+    .btn-log {
+        width: 100px;
+        font-size: 20px;
+        font-weight: bolder;
+        color: #1ebcff;
+    }
+
+    .btn-signup {
+        width: 100px;
+        font-size: 20px;
+        font-weight: bolder;
+        color: white;
+        background-color: #1ebcff;
+    }
+
+    .user-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .user-name {
+        color: #2EA2EB;
     }
 }

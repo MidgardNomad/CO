@@ -1,3 +1,4 @@
 {
-    "livePreview.defaultPreviewPath": "/projects/ui/src/app/modules/about/components/about-page/about-page.component.html"
+    "livePreview.defaultPreviewPath": "/projects/ui/src/app/modules/about/components/about-page/about-page.component.html",
+    "editor.tabSize": 2
 }

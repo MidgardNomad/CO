@@ -7,7 +7,7 @@ import { ContactUsComponent } from './contact-us.component';
 
 @NgModule({
   declarations: [
-    ContactUsComponent
+    ContactUsComponent,
   ],
   imports: [
     CommonModule,
