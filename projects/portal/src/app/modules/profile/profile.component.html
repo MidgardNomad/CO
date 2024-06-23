@@ -1,25 +1,21 @@
-<div
-  #spinner
-  style="
-    position: absolute;
-    top: calc(50% - 40px);
-    left: calc(50% - 40px);
-    display: none;
-  "
->
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<div #mainProfileBody style="opacity: 1" *ngIf="hasUserLoaded">
-  <p>{{ userDoc?.bio }}</p>
-  <p></p>
-  <p>
-    {{
-      userDoc?.displayName.replace(
-        userDoc?.displayName[0],
-        userDoc?.displayName[0].toUpperCase()
-      )
-    }}
-  </p>
-  <img [src]="userDoc?.photoURL" alt="" />
-  <a routerLink="/profile-settings">Settings</a>
-</div>
+<section class="profile">
+  <section
+    class="d-flex justify-content-center align-items-center profile-header"
+  >
+    <div
+      class="d-flex flex-column flex-sm-row justify-content-center align-items-center"
+      style="height: 200px"
+    >
+      <img [src]="userDoc.photoURL" alt="" class="user-avatar" />
+      <h3>{{ userDoc.displayName }}</h3>
+    </div>
+  </section>
+  <section class="container-md d-flex justify-content-center profile-streak">
+    <div class="profile-streak-card">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+  <section class="profile-courses"></section>
+</section>
