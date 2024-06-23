@@ -27,6 +27,8 @@ import { loadingAnimation } from '../../shared/functions/loadingAnimation';
 })
 export class ProfileComponent implements OnInit {
   userDoc = <User>{};
+  week: string[] = [];
+  streakDay: string[] = [];
   hasUserLoaded = false;
   @ViewChild('mainProfileBody') mainProfileBody: ElementRef;
   @ViewChild('spinner') spinner: ElementRef;
@@ -39,11 +41,22 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let curr = new Date();
+    for (let i = 0; i < 7; i++) {
+      let first = curr.getDate() - curr.getDay() + i;
+      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+      this.week.push(day);
+    }
+    this.streakDay.push(this.week[0]);
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
       if (this.userDoc.id == null) {
         this.hasUserLoaded = false;
       } else this.hasUserLoaded = true;
     });
+  }
+
+  test() {
+    console.log(this.week);
   }
 }
