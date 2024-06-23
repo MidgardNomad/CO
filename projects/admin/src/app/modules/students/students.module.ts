@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
 
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
@@ -19,6 +20,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { EeditUserComponent } from './components/student-list/Edit-user/edit-user.component';
 import { DeletComponent } from './components/student-list/delet/delet.component';
+import { StudentLiberComponent } from './components/student-list/student-liber/student-liber.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { DeletComponent } from './components/student-list/delet/delet.component'
     AddUserComponent,
     EeditUserComponent,
     DeletComponent,
+    StudentLiberComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { DeletComponent } from './components/student-list/delet/delet.component'
     ReactiveFormsModule,
     MatDialogModule,
     MatTooltipModule,
+    MatTableModule,
   ],
 })
 export class StudentsModule {}

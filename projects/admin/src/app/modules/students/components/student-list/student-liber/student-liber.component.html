@@ -1,0 +1,95 @@
+<!-- <p> student-liber works! </p> -->
+
+  <!-- table -->
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr class="text-center">
+        <th>Id</th>
+        <th>Display Name</th>
+        <th>is Verified</th>
+        <th>is Pro</th>
+        <th>Active</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- Test -->
+        <td>1</td>
+        <td>osama</td>
+        <td>False</td>
+        <td>true</td>
+        <td>true</td>
+           <!-- Button Delete User  -->
+        <td class="text-center"><button style="color: red; border: none; background-color: transparent;"
+           matTooltip="delet Student" matTooltipPosition="below" (click)=" DeletDialogs('0ms', '0ms')">
+          <mat-icon matSuffix>delete</mat-icon></button>
+        </td>
+
+        <!-- Button Edit User  -->
+        <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
+           matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
+           <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
+
+          <!-- Button Padge Student Details  -->
+        <td class="text-center"><button class="btn btn-success next bg-transparent p-0" (click)="getComm()"
+           matTooltip="Student Details" matTooltipPosition="below"><mat-icon class="overflow-visible"
+           style="color: #00c292;"><i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+        </td>
+      </tr>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<tr *ngFor="let d of usersDB ;index as i">
+   <td>{{ i+1 }}</td>
+  <td> {{d.displayName}} </td>
+  <td> {{d.isPro}} </td>
+  <td> {{d.active}} </td>
+  <!-- Button Delete User  -->
+  <td class="text-center"><button (click)=" DeletDialogs('0ms', '0ms')" style="color: red; border: none; background-color: transparent;">
+    <mat-icon matSuffix>delete</mat-icon></button>
+  </td>
+
+  <!-- Button Edit User  -->
+  <td class="text-center"> <button class="border-0 bg-transparent" style="color: #0a66c2;"
+          matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
+          <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
+
+    <!-- Button Padge Student Details  -->
+  <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
+        <mat-icon class="overflow-visible" style="color: #00c292;">
+        <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+  </td>
+</tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- <tr class="text-center" *ngFor="let user of users;index as i">
+        <td>{{ i+1 }}</td>
+        <td>{{ user.displayName }}</td>
+        <td>{{ user.isVerified }}</td>
+        <td>{{ user.isPro }}</td>
+        <td>{{ user.isActive }}</td>
+        <td>{{ user.linkedIn }}</td>
+        <td>{{ user.github }}</td> -->
+
+        <!-- Button Delete User  -->
+        <!-- <td class="text-center"><button style="color: red; border: none; background-color: transparent;">
+          <mat-icon matSuffix>delete</mat-icon></button>
+        </td> -->
+
+        <!-- Button Edit User  -->
+        <!-- <td class="text-center"> <button class="border-0 text-info"> <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i> </mat-icon></button></td> -->
+
+          <!-- Button Padge Student Details  -->
+        <!-- <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
+              <mat-icon class="overflow-visible" style="color: #00c292;">
+              <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
+        </td>
+      </tr> -->
+

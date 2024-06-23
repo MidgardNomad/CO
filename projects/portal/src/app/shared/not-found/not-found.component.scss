@@ -1,0 +1,78 @@
+// The Imags //
+.image {
+  background-image: url(../../../../../portal/src/assets/images/about/not-found/background-404.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 300px;
+    height: 90vh;
+  }
+}
+
+/* The Error */
+@mixin box($w, $s, $h, $l) {
+  font: {
+    size: $s;
+    weight: $w;
+  }
+
+  line-height: $h;
+  letter-spacing: $l;
+}
+
+.row {
+  --bs-gutter-x: 0rem;
+
+  .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+      h1 {
+        @include box(700, 48px, 81px, -1px);
+        color: #727b82;
+      }
+
+      h2 {
+        @extend h1;
+        font-size: 39px;
+        text-transform: capitalize;
+        margin-bottom: -5px;
+      }
+
+      p {
+        @include box(300, 16px, 24px, -0.6px);
+        color: #727b82;
+        text-transform: capitalize;
+        margin-bottom: 5px;
+      }
+
+      button {
+        @include box(500, 15px, 24px, -0.6px);
+        color: #fff;
+        background-color: #0096cb;
+        border: transparent;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (min-width: 991px) {
+  .content {
+    margin: 0 20%;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    text-align: center;
+    margin: 0;
+  }
+}
