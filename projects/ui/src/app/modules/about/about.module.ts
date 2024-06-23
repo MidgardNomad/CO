@@ -6,6 +6,7 @@ import { AboutComponent } from './about.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { RepottComponent } from './components/repott/repott.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AboutPageComponent,
     FaqComponent,
     NotFoundComponent,
+    RepottComponent,
   ],
   imports: [CommonModule, AboutRoutingModule],
 })

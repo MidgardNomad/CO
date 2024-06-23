@@ -21,7 +21,7 @@
   <div class="col-sm-11">
     <!-- Serch Name Table (Filter) -->
     <mat-form-field>
-      <mat-label>Filter</mat-label>
+      <mat-label>Serch Student</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="serch" #input>
     </mat-form-field>
     </div>
@@ -36,104 +36,49 @@
 </div>
 </div>
 
-  <!-- table -->
-  <!-- table -->
-<div class="container">
-  <table class="table table-striped">
-    <thead>
-      <tr class="text-center">
-        <th>Id</th>
-        <th>Display Name</th>
-        <th>is Verified</th>
-        <th>is Pro</th>
-        <th>Active</th>
-        <th>Delete</th>
-        <th>Edit</th>
-        <th>Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <!-- Test -->
-        <td>1</td>
-        <td>osama</td>
-        <td>False</td>
-        <td>true</td>
-        <td>true</td>
-           <!-- Button Delete User  -->
-        <td class="text-center"><button style="color: red; border: none; background-color: transparent;"
-           matTooltip="delet Student" matTooltipPosition="below" (click)=" DeletDialogs('0ms', '0ms')">
-          <mat-icon matSuffix>delete</mat-icon></button>
-        </td>
+<!-- Table -->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Display Name-->
+  <ng-container matColumnDef="DisplayName">
+  <th mat-header-cell *matHeaderCellDef> Display Name</th>
+   <td mat-cell *matCellDef="let user"> {{user.displayName}} </td>
+  </ng-container>
+  <!-- is Verified-->
+  <ng-container matColumnDef="isVerified">
+  <th mat-header-cell *matHeaderCellDef> is Verified</th>
+   <td mat-cell *matCellDef="let user"> {{user.isVerified}} </td>
+  </ng-container>
+  <!-- is Pro-->
+  <ng-container matColumnDef="isPro">
+  <th mat-header-cell *matHeaderCellDef> is Pro </th>
+   <td mat-cell *matCellDef="let user"> {{user.isPro}} </td>
+  </ng-container>
+  <!-- Active-->
+  <ng-container matColumnDef="Active">
+  <th mat-header-cell *matHeaderCellDef> Active </th>
+   <td mat-cell *matCellDef="let user"> {{user.active}}</td>
+  </ng-container>
+  <!-- Delete-->
+  <ng-container matColumnDef="Disable">
+    <th mat-header-cell *matHeaderCellDef> Disable </th>
+    <td mat-cell *matCellDef="let user"> <button style="color: red; border: none; background-color: transparent;"
+        matTooltip="Disable Student" matTooltipPosition="below" (click)=" DeletDialogs('0ms', '0ms')">
+        <mat-icon matSuffix style=" overflow: visible"><i class="fa-solid fa-ban"></i></mat-icon></button> </td>
+  </ng-container>
 
-        <!-- Button Edit User  -->
-        <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
-           matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
-           <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
 
-          <!-- Button Padge Student Details  -->
-        <td class="text-center"><button class="btn btn-success next bg-transparent p-0" (click)="getComm()"
-           matTooltip="Student Details" matTooltipPosition="below"><mat-icon class="overflow-visible"
-           style="color: #00c292;"><i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
-        </td>
-      </tr>
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<tr *ngFor="let d of usersDB ;index as i">
-   <td>{{ i+1 }}</td>
-  <td> {{d.displayName}} </td>
-  <td> {{d.isPro}} </td>
-  <td> {{d.active}} </td>
-  <!-- Button Delete User  -->
-  <td class="text-center"><button (click)=" DeletDialogs('0ms', '0ms')" style="color: red; border: none; background-color: transparent;">
-    <mat-icon matSuffix>delete</mat-icon></button>
-  </td>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-  <!-- Button Edit User  -->
-  <td class="text-center"> <button class="border-0 bg-transparent" style="color: #0a66c2;"
-          matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
-          <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
+  <!-- in case if not data in table -->
+     <tr class="mat-row" *matNoDataRow>
+  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
 
-    <!-- Button Padge Student Details  -->
-  <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
-        <mat-icon class="overflow-visible" style="color: #00c292;">
-        <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
-  </td>
-</tr>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-      <!-- <tr class="text-center" *ngFor="let user of users;index as i">
-        <td>{{ i+1 }}</td>
-        <td>{{ user.displayName }}</td>
-        <td>{{ user.isVerified }}</td>
-        <td>{{ user.isPro }}</td>
-        <td>{{ user.isActive }}</td>
-        <td>{{ user.linkedIn }}</td>
-        <td>{{ user.github }}</td> -->
-
-        <!-- Button Delete User  -->
-        <!-- <td class="text-center"><button style="color: red; border: none; background-color: transparent;">
-          <mat-icon matSuffix>delete</mat-icon></button>
-        </td> -->
-
-        <!-- Button Edit User  -->
-        <!-- <td class="text-center"> <button class="border-0 text-info"> <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i> </mat-icon></button></td> -->
-
-          <!-- Button Padge Student Details  -->
-        <!-- <td class="text-center"> <button class="btn btn-success next bg-transparent" (click)="getComm()">
-              <mat-icon class="overflow-visible" style="color: #00c292;">
-              <i class="fa-solid fa-circle-arrow-right"></i> </mat-icon></button>
-        </td>
-      </tr> -->
-
-      <!-- in case if not data in table -->
-         <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
 
 
 

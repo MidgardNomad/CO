@@ -1,0 +1,40 @@
+<div class="parent">
+  <div class="container">
+    <!-- The Header -->
+    <h1>Discover New Courses</h1>
+
+    <!-- The Cards -->
+    <div class="row cardes-list">
+      <!-- Card__1 -->
+      <div class="card-one" *ngFor="let cours of courseDB">
+        <div class="image">
+          <img
+            src="../../../../../assets/images/courses-list/icon-green.svg"
+            alt="icon"
+          />
+          <i class="fa-solid fa-circle-arrow-right"></i>
+        </div>
+        <h3>{{cours.title}}</h3>
+        <!-- <span>in progress</span> -->
+        <p> {{cours.description}} </p>
+        <div class="footer">
+          <div class="witch">
+            <img
+              src="../../../../../assets/images/courses-list/screen.svg"
+              alt=""
+            />
+            <span class="text">25 classes</span>
+          </div>
+          <div class="people">
+            <img
+              src="../../../../../assets/images/courses-list/people.svg"
+              alt=""
+            />
+            <span class="text">2.556 students</span>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+</div>

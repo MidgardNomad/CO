@@ -66,14 +66,14 @@ export class StudentListComponent {
   //   this.users.splice(index, 1);
   //   this.dele.push(index);
   //   console.log(this.dele);
-  // --------------------------------------------Filter------------------------------------------------------
-  displayedColumns: string[] = [
-    'id',
+  // --------------------------------------------tamblate The Table && Filter------------------------------------------------------
+  displayedColumns = [
+    // 'id',
     'DisplayName',
     'isVerified',
     'isPro',
     'Active',
-    'URL',
+    'Disable',
   ];
   dataSource;
 
@@ -133,6 +133,7 @@ export class StudentListComponent {
   }
 
   // ---------------------------------------------------------------------------------------------------
+
   // -------------------------------------------------- Alert For Delete--------------------------------
   public dialogs = inject(MatDialog);
 
