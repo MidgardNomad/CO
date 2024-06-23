@@ -66,3 +66,41 @@ ng build my-shared-library
 
 
 
+# File Uploader
+1. import service 
+```js
+import { S3ImgUploaderService } from 'dal';
+```
+
+
+2. Inject it on constructor
+```js
+private _S3ImgUploaderService:S3ImgUploaderService
+```
+
+
+3. upload file
+```js
+async upload(file) {
+  if (file) {
+    await new Promise((resolve) =>
+      this._S3ImgUploaderService.uploadFile(file).on('httpUploadProgress', function (e) {
+
+        this.loadingHeight = 100 - Math.round(100.0 * (e.loaded / e.total));
+
+      }).send((err: any, data: any): any => {
+        if (err) {
+          console.log('There was an error update Saved your file: ', err);
+          return false;
+        }
+        if (data) {
+          console.log('Successfully uploaded file.', data.Location);
+          this.photoURL = data.Location
+          this.uploaded = true;
+          return true;
+        }
+      }),
+    );
+  }
+}
+```
