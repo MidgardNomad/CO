@@ -36,8 +36,8 @@
     <ngx-file-drop
       dropZoneLabel="Drop files here"
       *ngIf="slideType.value === 'text-image'"
-      (onFileDrop)="dropped($event)"
     >
+      <!-- (onFileDrop)="dropped($event)" -->
       <ng-template
         ngx-file-drop-content-tmp
         let-openFileSelector="openFileSelector"

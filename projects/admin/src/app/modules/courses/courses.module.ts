@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChapterDialogComponent } from './components/courses-details/chapter-dialog/chapter-dialog.component';
 import { ChapterExpansionPanelComponent } from './components/courses-details/chapter-expansion-panel/chapter-expansion-panel.component';
 import { LecturesComponent } from './components/lectures/lectures.component';
@@ -23,6 +23,7 @@ import { TextImageSlideComponent } from './components/lectures/text-image-slide/
 import { McqSlideComponent } from './components/lectures/mcq-slide/mcq-slide.component';
 import { FillSlideComponent } from './components/lectures/fill-slide/fill-slide.component';
 import { LectureDialogComponent } from './components/lectures/lecture-dialog/lecture-dialog.component';
+import { EditSlideDialogComponent } from './components/lectures/edit-slide-dialog/edit-slide-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,10 +41,12 @@ import { LectureDialogComponent } from './components/lectures/lecture-dialog/lec
     TextImageSlideComponent,
     McqSlideComponent,
     FillSlideComponent,
+    EditSlideDialogComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     CoursesRoutingModule,
     MatFormFieldModule,
     MatInputModule,
