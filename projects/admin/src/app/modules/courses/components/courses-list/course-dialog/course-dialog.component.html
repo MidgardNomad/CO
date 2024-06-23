@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{ data.dialogTitle }}</h2>
+<mat-dialog-content>
+  <form #courseForm="ngForm" (ngSubmit)="onSubmitAction(courseForm)">
+    <mat-form-field>
+      <mat-label>Course Title</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Title"
+        ngModel
+        name="courseTitle"
+        [required]="data['courseID'] === undefined"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Course Description</mat-label>
+      <textarea
+        #courseDescription
+        matInput
+        placeholder="Description"
+        maxlength="240"
+        ngModel
+        name="courseDescription"
+        [required]="data['courseID'] === undefined"
+      ></textarea>
+      <mat-hint align="end">{{ courseDescription.value.length }}/240</mat-hint>
+    </mat-form-field>
+    <mat-dialog-actions align="center">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="courseForm.invalid"
+      >
+        {{ data.button }}
+      </button>
+      <button class="btn btn-danger" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

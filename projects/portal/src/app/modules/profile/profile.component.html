@@ -9,17 +9,17 @@
 >
   <app-loading-spinner></app-loading-spinner>
 </div>
-
-<div #profile style="opacity: 1">
-  <p>profile works!</p>
+<div #mainProfileBody style="opacity: 1" *ngIf="hasUserLoaded">
+  <p>{{ userDoc?.bio }}</p>
+  <p></p>
   <p>
     {{
-      userDoc.displayName.replace(
-        userDoc.displayName[0],
-        userDoc.displayName[0].toUpperCase()
+      userDoc?.displayName.replace(
+        userDoc?.displayName[0],
+        userDoc?.displayName[0].toUpperCase()
       )
     }}
   </p>
-  <img [src]="userDoc.photoURL" alt="" />
+  <img [src]="userDoc?.photoURL" alt="" />
   <a routerLink="/profile-settings">Settings</a>
 </div>

@@ -1,8 +1,14 @@
-<p>{{ slide.question }}</p>
-<ol class="d-flex justify-content-between" style="gap: 25px">
-  <li>{{ slide.options[0] }}</li>
-  <li>{{ slide.options[1] }}</li>
-  <li>{{ slide.options[2] }}</li>
-  <li>{{ slide.options[3] }}</li>
-</ol>
-<p>{{ slide.answer }}</p>
+<div class="d-flex question">
+  {{ slide.question }}
+</div>
+<div
+  *ngFor="let option of slide.options"
+  class="d-flex flex-column align-items-center justify-content-between option-container"
+>
+  <div
+    class="option"
+    [ngClass]="{ answer: slide.options.indexOf(option) === slide.answer }"
+  >
+    {{ option }}
+  </div>
+</div>

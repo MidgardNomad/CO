@@ -5,6 +5,7 @@ import {
   Renderer2 as Renderer,
   ElementRef,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import {
   ActivatedRoute,
@@ -17,6 +18,7 @@ import {
   Router,
 } from '@angular/router';
 import { User } from 'projects/dal/src/lib/models/user/user';
+import { loadingAnimation } from '../../shared/functions/loadingAnimation';
 
 @Component({
   selector: 'app-profile',
@@ -24,9 +26,11 @@ import { User } from 'projects/dal/src/lib/models/user/user';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-  userDoc: User;
-  @ViewChild('profile') profile: ElementRef;
+  userDoc = <User>{};
+  hasUserLoaded = false;
+  @ViewChild('mainProfileBody') mainProfileBody: ElementRef;
   @ViewChild('spinner') spinner: ElementRef;
+  loadingAnimation = loadingAnimation();
   constructor(
     private route: ActivatedRoute,
     private ngZone: NgZone,
@@ -37,43 +41,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
-    });
-    this.router.events.subscribe((event) => {
-      this.navigationInterceptor(event);
-    });
-  }
-
-  // Utilities
-  private navigationInterceptor(event: RouterEvent): void {
-    if (event instanceof NavigationStart) {
-      this.ngZone.runOutsideAngular(() => {
-        this.renderer.setStyle(this.profile.nativeElement, 'opacity', '0.8');
-      });
-      this.ngZone.runOutsideAngular(() => {
-        this.renderer.setStyle(
-          this.spinner.nativeElement,
-          'display',
-          'initial'
-        );
-      });
-    }
-    if (event instanceof NavigationEnd) {
-      this.hideSpinner();
-    }
-    if (event instanceof NavigationCancel) {
-      this.hideSpinner();
-    }
-    if (event instanceof NavigationError) {
-      this.hideSpinner();
-    }
-  }
-
-  private hideSpinner(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.renderer.setStyle(this.profile.nativeElement, 'opacity', '1');
-    });
-    this.ngZone.runOutsideAngular(() => {
-      this.renderer.setStyle(this.spinner.nativeElement, 'display', 'none');
+      if (this.userDoc.id == null) {
+        this.hasUserLoaded = false;
+      } else this.hasUserLoaded = true;
     });
   }
 }

@@ -2,9 +2,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ReauthenticateDialogComponent } from '../reauthenticate-dialog/reauthenticate-dialog.component';
-import { AuthService } from 'DAL';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription, catchError, delay, map, tap, throwError } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-account',
@@ -12,19 +11,8 @@ import { Subscription, catchError, delay, map, tap, throwError } from 'rxjs';
   styleUrls: ['./delete-account.component.scss'],
 })
 export class DeleteAccountComponent implements OnDestroy {
-  deleteSub = new Subscription();
-  r: boolean;
-  constructor(
-    private matDialog: MatDialog,
-    private authService: AuthService,
-    private matSnackBar: MatSnackBar
-  ) {}
-
-  showSnackBar() {
-    this.matSnackBar.open('Hi', null, {
-      duration: 3000,
-    });
-  }
+  dialogSub = new Subscription();
+  constructor(private matDialog: MatDialog, private router: Router) {}
 
   openReauthenticateDialog() {
     let reauthenticateDialogRef = this.matDialog.open(
@@ -33,23 +21,25 @@ export class DeleteAccountComponent implements OnDestroy {
         height: '300px',
         width: '500px',
         disableClose: true,
+        data: {
+          title: 'Delete Your Account',
+          header: 'Enter Your Password to Confrim Deleting Your Account',
+          button: 'Delete Account',
+          email: '',
+          class: 'delete-account',
+        },
       }
     );
-    reauthenticateDialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      if (result) this.showSnackBar();
-      // if (result) {
-      //   this.deleteSub = this.authService.deleteAccount(result).subscribe({
-      //     next: (_) => {},
-      //     error: (err) => {
-      //       console.log(err.message);
-      //     },
-      //   });
-      // }
-    });
+    this.dialogSub = reauthenticateDialogRef
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.router.navigate(['/auth']);
+        }
+      });
   }
 
   ngOnDestroy(): void {
-    this.deleteSub.unsubscribe();
+    this.dialogSub.unsubscribe();
   }
 }

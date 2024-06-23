@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { LoggedoutGuard } from 'projects/dal/src/lib/guards/isLoggedout.guard';
-import { LoggedinGuard } from 'projects/dal/src/lib/guards/isLoggedin.guard';
-import { UserProfileResolver } from 'projects/dal/src/lib/reslovers/profile.resolver';
+import { LoggedoutGuard } from '../../guards/isLoggedout.guard';
+import { LoggedinGuard } from '../../guards/isLoggedin.guard';
+import { UserProfileResolver } from '../../reslovers/profile.resolver';
 import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 
 const routes: Routes = [
@@ -20,14 +20,13 @@ const routes: Routes = [
       },
       {
         path: 'auth',
-        // canActivateChild: [LoggedinGuard],
+        canActivateChild: [LoggedinGuard],
         loadChildren: () =>
           import('../auth/auth.module').then((m) => m.AuthModule),
       },
       {
-        path: 'profile/:uid',
+        path: 'profile',
         canActivate: [LoggedoutGuard],
-        resolve: { userData: UserProfileResolver },
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfileModule),
       },

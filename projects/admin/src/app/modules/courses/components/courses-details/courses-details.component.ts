@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Chapter, Course, CoursesService } from 'DAL';
-import { CreateNewChapterDialogComponent } from './create-new-chapter-dialog/create-new-chapter-dialog.component';
+import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.component';
 import { Observable, tap } from 'rxjs';
 
 @Component({
@@ -29,7 +29,7 @@ export class CoursesDetailsComponent implements OnInit {
   }
 
   onAddChapter() {
-    this.matDialog.open(CreateNewChapterDialogComponent, {
+    this.matDialog.open(ChapterDialogComponent, {
       data: {
         courseID: this.courseID,
         dialogTitle: `Add a New Chapter`,

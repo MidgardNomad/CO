@@ -1,11 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2 as Renderer,
+  ViewChild,
+} from '@angular/core';
 import {
   FormGroup,
   FormControl,
   Validators,
   AbstractControl,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'DAL';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { showSnackbar } from 'projects/portal/src/app/shared/functions/showsnackbar';
+import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
+import { loadingAnimation } from 'projects/portal/src/app/shared/functions/loadingAnimation';
 
 @Component({
   selector: 'app-change-password',
@@ -14,7 +24,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ChangePasswordComponent implements OnInit {
   strongPassword = false;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  @ViewChild('failedPWAlert') failedAlert: ElementRef;
+  @ViewChild('successfulPWAlert') successAlert: ElementRef;
+  @ViewChild('resetPWForm') resetPWForm: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
+  showSnackBar = showSnackbar();
+  loadingAnimation = loadingAnimation();
+  constructor(
+    private authService: AuthService,
+    private renderer: Renderer,
+    private matSnackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
@@ -51,7 +71,18 @@ export class ChangePasswordComponent implements OnInit {
     this.strongPassword = event;
   }
 
-  onSubmit() {
-    this.router.navigate(['../..'], { relativeTo: this.route });
+  async onSubmit() {
+    this.loadingAnimation('block', 0.8, this.loadingSpinner, this.resetPWForm);
+    const { currentPassword, newPassword } = this.changePasswordForm.value;
+    try {
+      await this.authService.reauthenticate(currentPassword);
+      await this.authService.changePassword(newPassword);
+      this.showSnackBar('Password Changed Successfuly', 'success-snackbar');
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.resetPWForm);
+    } catch (error) {
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.resetPWForm);
+      this.showSnackBar(errorHandler(error), 'fail-snackbar');
+      console.log(error.code);
+    }
   }
 }

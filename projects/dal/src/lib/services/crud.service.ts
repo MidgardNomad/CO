@@ -5,7 +5,6 @@ import { OrderByDirection } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root',
 })
-
 export class CrudService {
   // set the collection name on calling the service
   // collectionName: string = '';
@@ -52,6 +51,21 @@ export class CrudService {
   // update data
   updateData(collectionName: string, id: any, data: any) {
     return this.db.collection(collectionName).doc(id).update(data);
+  }
+
+  // Update data above a Certain threshold
+  // PS: This method is built for a very specific operation (update seqNo of slides)
+  updateDataForField(
+    collection: string,
+    id: string,
+    field: string,
+    value: number,
+    data: any
+  ) {
+    return this.db
+      .collection(collection, (ref) => ref.where(field, '>', value))
+      .doc(id)
+      .update(data);
   }
 
   // delete data

@@ -1,0 +1,71 @@
+.row {
+  min-height: 400px;
+}
+.course-card {
+  min-height: 400px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
+  border-radius: 12px;
+  &-info {
+    height: 90%;
+    .title {
+      color: #52b2ee;
+      font-weight: 600;
+    }
+    .description {
+      color: #9ca2a6;
+    }
+  }
+  &-actions {
+    .button {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      margin: 0 5px;
+      overflow: hidden;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-out;
+      &:hover {
+        width: 100px;
+        .icon {
+          background-color: white;
+        }
+      }
+      .icon {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        border-radius: 50px;
+        box-sizing: border-box;
+        line-height: 40px;
+        transition: all 0.3s ease-out;
+        i {
+          font-size: 18px;
+          line-height: 40px;
+          transition: all 0.3s ease-out;
+        }
+      }
+      span {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 40px;
+        margin-left: 5px;
+        color: white;
+        transition: all 0.3s ease-out;
+      }
+    }
+    .button-view {
+      background-color: #52b2ee;
+    }
+    .button-edit {
+      background-color: #52ee52;
+    }
+    .button-delete {
+      background-color: #ee5752;
+    }
+  }
+}

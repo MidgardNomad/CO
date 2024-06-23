@@ -1,13 +1,12 @@
-<div class="login" [ngClass]="{ loading: isLoading }">
+<div class="login" #form>
+  <div class="display-loading-spinner" #loadingSpinner style="display: none">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="alert alert-danger" #alert style="display: none">
+    {{ errMessage }}
+  </div>
   <h1 style="margin-bottom: 20px">Welcome Back 👋️</h1>
   <div class="login-form">
-    <div
-      class="alert alert-danger align-self-center"
-      style="width: 100%"
-      *ngIf="somethingWentWrong"
-    >
-      <p>{{ errMessage }}</p>
-    </div>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
       <div class="form-group">
         <label for="email">Email address</label>
@@ -63,7 +62,7 @@
       <button
         type="submit"
         class="btn btn-primary my-1 app-custom-button"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
       >
         Login
       </button>
@@ -80,8 +79,4 @@
       >
     </p>
   </div>
-</div>
-
-<div class="place-spinner" *ngIf="isLoading">
-  <app-loading-spinner></app-loading-spinner>
 </div>

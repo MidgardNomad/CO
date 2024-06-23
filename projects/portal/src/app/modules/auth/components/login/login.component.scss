@@ -1,5 +1,6 @@
 .login {
   width: 100%;
+  position: relative;
   &-form {
     display: flex;
     flex-direction: column;
@@ -44,10 +45,4 @@
 .disable-link {
   cursor: not-allowed;
   pointer-events: none;
-}
-
-.place-spinner {
-  position: absolute;
-  top: calc(50% - 40px);
-  left: calc(50% - 40px);
 }

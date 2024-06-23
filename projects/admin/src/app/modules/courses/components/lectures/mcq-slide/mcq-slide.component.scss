@@ -1,3 +1,31 @@
-p {
-  font-size: 25px;
+.question,
+.option {
+  width: 90%;
+  background-color: white;
+  border-radius: 12px;
+  word-wrap: break-word;
+  text-align: center;
+  margin: 15px 0px;
+}
+.question {
+  padding: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.option-container {
+  width: 100%;
+}
+.option {
+  padding: 10px;
+  font-size: 16px;
+  color: #37434a;
+  font-weight: 500;
+  text-align: start;
+  margin-left: 5px;
+}
+.answer {
+  border: 1px solid #2ea2eb;
+  box-shadow: #2ea2eb 0px 2px 8px 0px;
+  color: #2ea2eb;
 }
