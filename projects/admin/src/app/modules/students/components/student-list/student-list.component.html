@@ -15,7 +15,7 @@
     </svg></button> -->
 
 <!-- ------------------------------------------------------------------------------------------------------ -->
-<!-- ------------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------Add/Filter--------------------------------------------------------- -->
 <div class="container">
 <div class="row">
   <div class="col-sm-11">
@@ -37,6 +37,7 @@
 </div>
 
   <!-- table -->
+  <!-- table -->
 <div class="container">
   <table class="table table-striped">
     <thead>
@@ -46,7 +47,6 @@
         <th>is Verified</th>
         <th>is Pro</th>
         <th>Active</th>
-        <th>URL</th>
         <th>Delete</th>
         <th>Edit</th>
         <th>Details</th>
@@ -60,16 +60,15 @@
         <td>False</td>
         <td>true</td>
         <td>true</td>
-        <td>Mark.gmail.com</td>
            <!-- Button Delete User  -->
         <td class="text-center"><button style="color: red; border: none; background-color: transparent;"
-           matTooltip="delet Student" matTooltipPosition="below">
+           matTooltip="delet Student" matTooltipPosition="below" (click)=" DeletDialogs('0ms', '0ms')">
           <mat-icon matSuffix>delete</mat-icon></button>
         </td>
 
         <!-- Button Edit User  -->
         <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
-           matTooltip="edit Student" matTooltipPosition="below" (click)="openDialog()">
+           matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
            <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
 
           <!-- Button Padge Student Details  -->
@@ -80,19 +79,19 @@
       </tr>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
-<tr *ngFor="let d of usersDB | async;index as i">
+<tr *ngFor="let d of usersDB ;index as i">
    <td>{{ i+1 }}</td>
   <td> {{d.displayName}} </td>
   <td> {{d.isPro}} </td>
   <td> {{d.active}} </td>
   <!-- Button Delete User  -->
-  <td class="text-center"><button (click)="openDialogs('0ms', '0ms')" style="color: red; border: none; background-color: transparent;">
+  <td class="text-center"><button (click)=" DeletDialogs('0ms', '0ms')" style="color: red; border: none; background-color: transparent;">
     <mat-icon matSuffix>delete</mat-icon></button>
   </td>
 
   <!-- Button Edit User  -->
   <td class="text-center"> <button class="border-0 bg-transparent" style="color: #0a66c2;"
-          matTooltip="edit Student" matTooltipPosition="below">
+          matTooltip="edit Student" matTooltipPosition="below" (click)="EditDialog()">
           <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
 
     <!-- Button Padge Student Details  -->

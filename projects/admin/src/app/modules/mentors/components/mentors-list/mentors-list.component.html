@@ -1,4 +1,16 @@
 
+<!-- ------------------------------------Add/Filter--------------------------------------------------------- -->
+<div class="container">
+    <!-- button Add User -->
+    <div class="col p-0">
+      <button title="Add Student" class="btn btn-info text-light border-0" (click)="openDialog()"
+        matTooltip="Add Student" matTooltipPosition="right">
+        <mat-icon class="mb-2 overflow-visible"> <i class="fa-solid fa-circle-plus"></i>
+        </mat-icon></button>
+  </div>
+</div>
+
+
   <table class="table table-striped text-center">
               <!-- The Header -->
     <thead>
@@ -21,13 +33,13 @@
         <td> 4 <button class="border-0" style="font-size: 12px;" disabled> students</button> </td>
                 <!-- Button Delete User  -->
         <td class="text-center"><button style="color: red; border: none; background-color: transparent;"
-           matTooltip="delet Student" matTooltipPosition="below">
+           matTooltip="delet Student" matTooltipPosition="below" (click)=" DeletDialogs('0ms', '0ms')">
           <mat-icon matSuffix>delete</mat-icon></button>
         </td>
 
         <!-- Button Edit User  -->
         <td class="text-center"> <button class="border-0" style="color: #0a66c2;"
-           matTooltip="edit Student" matTooltipPosition="below" >
+           matTooltip="edit Student" matTooltipPosition="below" (click)=" EditDialog()" >
            <mat-icon style="font-size: 20px;"><i class="fa-solid fa-pen"></i></mat-icon></button></td>
 
           <!-- Button Padge Student Details  -->

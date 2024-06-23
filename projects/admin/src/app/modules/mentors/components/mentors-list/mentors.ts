@@ -1,5 +1,5 @@
 export interface Mentors {
-  Username: string;
+  mentorName: string;
   yearsOfExperience: number;
   numberSessionsStudents: number;
   numberStudentsSupervised: number;

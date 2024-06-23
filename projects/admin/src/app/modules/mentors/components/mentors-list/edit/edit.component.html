@@ -1,0 +1,38 @@
+<div class="p-3">
+<h1 mat-dialog-title class="title">Edit Mentor Data</h1>
+<div mat-dialog-content class="my-3">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Mentor Name -->
+    <div class="mb-3">
+      <label for="username" class="form-label text-dark">Mentor Name</label>
+      <input type="text" id="username" class="form-control" formControlName="displayName" >
+      </div>
+    <!-- Years Experience -->
+    <div class="mb-3">
+      <label for="username" class="form-label text-dark">Years Experience</label>
+      <input type="text" id="username" class="form-control" formControlName="displayName">
+    </div>
+    <!-- Number sessions students -->
+    <div class="mb-3">
+      <label for="username" class="form-label text-dark">Number sessions students</label>
+      <input type="text" id="username" class="form-control" formControlName="displayName">
+    </div>
+    <!-- Number students supervised -->
+    <div class="mb-3">
+      <label for="username" class="form-label text-dark">Number students supervised</label>
+      <input type="text" id="username" class="form-control" formControlName="displayName" >
+    </div>
+
+  </form>
+</div>
+
+
+<!-- Button Submit / close -->
+<div mat-dialog-actions>
+  <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
+  <button type="submit" mat-flat-button color="primary" class="ms-3"
+  matTooltip="Add Student" matTooltipPosition="above">Edit</button>
+</div>
+</div>
+

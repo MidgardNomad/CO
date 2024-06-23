@@ -7,11 +7,17 @@
   h1 {
     color: red;
     font-size: 20px;
+
   }
 
   .massge {
-    margin-top: 10px;
+    margin-top: 20px;
     color: black;
     padding: 0;
+    margin-bottom: 30px;
+  }
+
+  .action {
+    justify-content: space-around;
   }
 }

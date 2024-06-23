@@ -1,3 +1,4 @@
+import { EeditUserComponent } from './Edit-user/edit-user.component';
 import { UsersService } from './../../../../../../../dal/src/lib/services/users.service';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -65,7 +66,7 @@ export class StudentListComponent {
   //   this.users.splice(index, 1);
   //   this.dele.push(index);
   //   console.log(this.dele);
-  // --------------------------------------------Filter-------------------------------------------------------
+  // --------------------------------------------Filter------------------------------------------------------
   displayedColumns: string[] = [
     'id',
     'DisplayName',
@@ -74,7 +75,7 @@ export class StudentListComponent {
     'Active',
     'URL',
   ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -92,7 +93,7 @@ export class StudentListComponent {
 
   // ------------------------------------ Logic bind Data then Form To Tabel-------------------------------------------------
   users = [];
-  constructor(public dialog: MatDialog, usersService: UsersService) {}
+  constructor(public dialog: MatDialog, private usersService: UsersService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddUserComponent, {
@@ -107,25 +108,40 @@ export class StudentListComponent {
       }
     });
   }
+  // ------------------------------------ Edit Data then Form To Tabel-------------------------------------------------
+  EditDialog(): void {
+    const dialogRefs = this.dialog.open(EeditUserComponent, {
+      disableClose: true,
+    });
 
+    dialogRefs.afterClosed().subscribe((result) => {
+      if (result) {
+        this.users.push(result);
+      }
+    });
+  }
+  // ------------------------------------  Get Service Data base From Fire base-------------------------------------------------
   // Get Service
-  usersDB: Observable<User[]>;
-  serv = inject(UsersService);
+  usersDB: User[];
+  // serv = inject(UsersService);
 
   ngOnInit() {
-    this.usersDB = this.serv.getAllUsers();
+    this.usersService.getAllUsers().subscribe((users) => {
+      this.usersDB = users;
+      this.dataSource = new MatTableDataSource(users);
+    });
   }
 
   // ---------------------------------------------------------------------------------------------------
   // -------------------------------------------------- Alert For Delete--------------------------------
   public dialogs = inject(MatDialog);
 
-  openDialogs(
+  DeletDialogs(
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
     this.dialogs.open(DeletComponent, {
-      width: '350px',
+      width: '400px',
       enterAnimationDuration,
       exitAnimationDuration,
       disableClose: true,
