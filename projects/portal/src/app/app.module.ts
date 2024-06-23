@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { DALModule } from 'DAL';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MainModule } from './modules/main/main.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     AppRoutingModule,
     DALModule,
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent],

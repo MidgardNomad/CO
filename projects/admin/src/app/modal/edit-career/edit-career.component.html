@@ -1,24 +1,23 @@
 <section class="p-5 section1">
-    
     <div class="w-75 mx-auto fw-bold div1">
+
         <h1 class="fs-1 text-info text-center mb-0">Edit career</h1>
+
         <form [formGroup]="editForm">
-            <!-- <i class="fa-regular fa-circle-xmark fs-3 text-info"></i> -->
             <br><br>
             <label for="title" class="text-info">Career name :</label>
             <input formControlName="title" type="text" class="form-control mb-2" id="title">
-            <label for="description" class="text-info d-block">Description :</label>
-            <textarea class="d-block form-control mb-2" name="description" id="description"  formControlName="description"></textarea>
             
-            <!-- <label for="courseList" class="text-info mb-2">Course List :</label>
-            <div class="w-100 form-control"></div> -->
+            <label for="description" class="text-info d-block">Description :</label>
+            <textarea class="d-block form-control mb-2" name="description" id="description"
+                formControlName="description"></textarea>
 
             <div class="d-flex justify-content-between">
                 <button class="btn btn-info w-25 mt-3" type="submit" (click)="updateData()">Save</button>
                 <button class="btn btn-info w-25 mt-3" type="submit" mat-dialog-close>Cancel</button>
             </div>
-
+            
         </form>
-    </div>
 
+    </div>
 </section>
