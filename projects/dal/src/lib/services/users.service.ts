@@ -1,4 +1,4 @@
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { CrudService } from './crud.service';
 import { User } from '../models/user/user';
 import { Injectable } from '@angular/core';
@@ -18,6 +18,17 @@ export class UsersService {
             ...(docSnap.payload.doc.data() as object),
           } as User;
         });
+      })
+    );
+  }
+
+  getSingleUser(userID: string) {
+    return this.crudService.getSignleDoc('users', userID).pipe(
+      tap((userDocSnap) => {
+        return <User>{
+          id: userDocSnap.id,
+          ...(userDocSnap.data() as object),
+        };
       })
     );
   }
