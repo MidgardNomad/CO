@@ -1,0 +1,86 @@
+.profile-streak {
+  margin-top: 25px;
+  &-card {
+    gap: 15px;
+    width: 100%;
+    background-color: #e7e8e9;
+    border-radius: 12px;
+    margin: 15px;
+    padding: 20px;
+    .streak-days {
+      width: 50%;
+      @media (max-width: 992px) {
+        width: 100%;
+      }
+      h4 {
+        color: #52b2ee;
+      }
+      .calendar {
+        .days {
+          gap: 15px;
+          @media (max-width: 576px) {
+            gap: 10px;
+          }
+          @media (max-width: 420px) {
+            gap: 5px;
+          }
+          color: #9ba2a6;
+          font-weight: 400;
+          .calender-days {
+            .week-dates {
+              position: relative;
+              padding: 20px;
+              border-radius: 50%;
+              border: 2px solid #52b2ee;
+            }
+            .active {
+              background-color: #52b2ee;
+              i {
+                position: absolute;
+                top: 30%;
+                left: 30%;
+                color: white;
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .divider {
+      height: inherit;
+      width: 2px;
+      .line {
+        height: 100%;
+        width: 2px;
+        background-color: #d6d6dd;
+      }
+      @media (max-width: 992px) {
+        width: inherit;
+        height: 3px;
+        .line {
+          height: 2px;
+          width: 100%;
+        }
+      }
+    }
+    .streak-info {
+      width: 50%;
+      gap: 30%;
+      @media (max-width: 992px) {
+        width: 100%;
+        gap: 20%;
+      }
+      .title {
+        font-size: 16px;
+        color: #86c9f3;
+        font-weight: 300;
+      }
+      .data {
+        font-size: 48px;
+        font-weight: 600;
+        color: #52b2ee;
+      }
+    }
+  }
+}

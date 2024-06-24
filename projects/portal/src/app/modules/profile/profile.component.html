@@ -20,15 +20,10 @@
       </div>
     </div>
   </section>
-  <section class="container-md d-flex justify-content-center profile-streak">
-    <div class="profile-streak-card">
-      <div class="streak-days">
-        <h4>Streak</h4>
-        <div></div>
-      </div>
-      <div></div>
-      <div></div>
-    </div>
-  </section>
+  <app-streak
+    [streakDays]="userDoc.streakDays"
+    [currentStreak]="userDoc.currentStreak"
+    [maxStreak]="userDoc.maxStreak"
+  ></app-streak>
   <section class="profile-courses"></section>
 </section>

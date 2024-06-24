@@ -41,19 +41,4 @@
       }
     }
   }
-  &-streak {
-    margin-top: 25px;
-    &-card {
-      width: 100%;
-      background-color: #e7e8e9;
-      border-radius: 12px;
-      margin: 15px;
-      padding: 20px;
-      .streak-days {
-        h4 {
-          color: #52b2ee;
-        }
-      }
-    }
-  }
 }
