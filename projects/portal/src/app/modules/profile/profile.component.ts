@@ -19,6 +19,8 @@ import {
 } from '@angular/router';
 import { User } from 'projects/dal/src/lib/models/user/user';
 import { loadingAnimation } from '../../shared/functions/loadingAnimation';
+import { AuthService } from 'DAL';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit {
   week: string[] = [];
   streakDay: string[] = [];
   hasUserLoaded = false;
+  showSettingsButton = false;
   @ViewChild('mainProfileBody') mainProfileBody: ElementRef;
   @ViewChild('spinner') spinner: ElementRef;
   loadingAnimation = loadingAnimation();
@@ -37,10 +40,12 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private ngZone: NgZone,
     private renderer: Renderer,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    //View Streak Days!
     let curr = new Date();
     for (let i = 0; i < 7; i++) {
       let first = curr.getDate() - curr.getDay() + i;
@@ -48,6 +53,15 @@ export class ProfileComponent implements OnInit {
       this.week.push(day);
     }
     this.streakDay.push(this.week[0]);
+
+    //Check if the user is viewing their own profile or visiting another student's profile!
+    this.authService.user.subscribe((activeUser) => {
+      if (activeUser.uid === this.route.snapshot.paramMap.get('uid')) {
+        this.showSettingsButton = true;
+      }
+    });
+
+    //Get user data from resolver!
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
       if (this.userDoc.id == null) {
@@ -56,7 +70,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  test() {
-    console.log(this.week);
+  navigateToSettings() {
+    this.router.navigate(['/profile-settings']);
   }
 }

@@ -3,28 +3,57 @@
 
   &-header {
     width: 100%;
-    height: 40vh;
+    min-height: 40vh;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
     background-repeat: no-repeat;
     background-image: url("../../../assets/images/CO_profile_cover1.svg");
     background-size: cover;
+    @media (max-width: 768px) {
+      border-bottom-left-radius: 25%;
+      border-bottom-right-radius: 25%;
+    }
+    @media (max-width: 576px) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
     .user-avatar {
       max-width: 200px;
       max-height: 200px;
       margin: 30px;
     }
-    h3 {
-      color: white;
-      font-size: 25px;
+    .user-info {
+      width: 300px;
+      h3 {
+        color: white;
+        font-size: 25px;
+        span {
+          margin-right: 5px;
+          cursor: pointer;
+          i {
+            font-size: 14px;
+          }
+        }
+      }
+      p {
+        font-size: 14px;
+        color: rgb(173, 182, 231);
+      }
     }
   }
   &-streak {
-    background-color: red;
+    margin-top: 25px;
     &-card {
       width: 100%;
       background-color: #e7e8e9;
       border-radius: 12px;
       margin: 15px;
-      padding-block-start: 20px;
+      padding: 20px;
+      .streak-days {
+        h4 {
+          color: #52b2ee;
+        }
+      }
     }
   }
 }
