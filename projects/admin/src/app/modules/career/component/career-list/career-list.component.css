@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+.h11 {
+  font-family: "Poetsen One", sans-serif;
+  color: #313860;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.section1 {
+  padding: 50px;
+}
+
+.table1 {
+  border: 2px solid rgb(116, 211, 226);
+  border-radius: 20px;
+}
+
+.card_img {
+  width: 100%;
+  height: 150px;
+  border-radius: 3px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+
+.card_img {
+  width: 220px;
+}
+
+button {
+  padding: 27px;
+  margin-bottom: 22px;
+}
+
+.icon {
+  position: relative;
+  left: 85%;
+}
+
+.div1 {
+  padding: 5px;
+  box-shadow: 10px 10px 5px lightblue;
+}
+
+.icon_1 {
+  cursor: pointer;
+}
+
+.thFontSize {
+  font-size: 18px;
+  font-weight: bolder;
+}/*# sourceMappingURL=career-list.component.css.map */

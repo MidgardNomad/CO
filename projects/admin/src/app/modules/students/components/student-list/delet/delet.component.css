@@ -1,0 +1,15 @@
+.delete {
+  text-align: center;
+  border: 1px solid #06adba;
+  margin: 5px;
+  border-radius: 10px;
+}
+.delete h1 {
+  color: red;
+  font-size: 20px;
+}
+.delete .massge {
+  margin-top: 10px;
+  color: black;
+  padding: 0;
+}/*# sourceMappingURL=delet.component.css.map */

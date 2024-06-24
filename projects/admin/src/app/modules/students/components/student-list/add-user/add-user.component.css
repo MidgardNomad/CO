@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+  font-size: 20px;
+}
+
+fieldset legend {
+  color: #000000;
+}
+fieldset .checkes {
+  color: #2d3846;
+}
+
+mat-icon {
+  color: rgb(10, 102, 194);
+  font-size: 20px;
+  vertical-align: middle;
+}/*# sourceMappingURL=add-user.component.css.map */

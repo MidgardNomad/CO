@@ -1,0 +1,31 @@
+.delete-account h2 {
+  color: red;
+  margin-bottom: 20px;
+}
+.delete-account p:nth-child(2) {
+  color: #35434c;
+  font-weight: 700;
+}
+.delete-account p:nth-child(3),
+.delete-account ul {
+  color: #9ba2a6;
+  font-weight: 700;
+}
+.delete-account button {
+  padding: 10px 25px;
+}
+@media (max-width: 991px) {
+  .delete-account button {
+    width: 300px;
+  }
+}
+.delete-account .btn-primary {
+  background-color: white;
+  border: 1px solid #52b2ee;
+  color: #52b2ee;
+}
+.delete-account .btn-danger {
+  background-color: #e43535;
+  border: 1px solid #e43535;
+  color: white;
+}/*# sourceMappingURL=delete-account.component.css.map */

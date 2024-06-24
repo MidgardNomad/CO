@@ -1,0 +1,29 @@
+.user-courses {
+  margin-top: 25px;
+  &-card {
+    width: 100%;
+    background-color: #e7e8e9;
+    border-radius: 12px;
+    margin: 15px;
+    padding: 20px;
+    &-header {
+      p {
+        font-size: 24px;
+        font-weight: 600;
+        color: #2ea2eb;
+      }
+      span {
+        color: #86c9f3;
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+    .browse-button {
+      border: none;
+      background-color: #52b2ee;
+      color: white;
+      padding: 16px 25px;
+      border-radius: 12px;
+    }
+  }
+}

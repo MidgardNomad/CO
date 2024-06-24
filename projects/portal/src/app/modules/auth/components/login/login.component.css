@@ -1,0 +1,48 @@
+.login {
+  width: 100%;
+  position: relative;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-form h1 {
+  margin-bottom: 20px;
+}
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.login-form form .form-check-input {
+  border: 1px solid black;
+}
+.login-form p {
+  margin-top: 10px;
+}
+.login-trailing {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 600px) {
+  .login-trailing {
+    flex-direction: column;
+  }
+}
+.login a,
+.login a:active,
+.login a:visited,
+.login a:hover {
+  text-decoration: none;
+}
+
+.loading {
+  opacity: 0.8;
+}
+
+.disable-link {
+  cursor: not-allowed;
+  pointer-events: none;
+}/*# sourceMappingURL=login.component.css.map */

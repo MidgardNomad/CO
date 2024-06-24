@@ -1,0 +1,270 @@
+@mixin box($w, $s, $h, $l, $c) {
+  font: {
+    weight: $w;
+    size: $s;
+  }
+
+  line-height: $h;
+  letter-spacing: $l;
+  color:$c
+}
+
+
+
+// background bage
+.bag {
+  background-color: #fbfdff
+}
+
+// Part one //
+.image {
+  background-image: url(../../../../../../assets/images/Contact-us/Photo_1.svg);
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 29px;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.content h1 {
+  color: rgba(53, 67, 76, 1);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 66px;
+  letter-spacing: -1px;
+  text-align: center;
+  padding: 0px 20px;
+}
+
+@media (max-width: 767px) {
+  .content h1 {
+    font-size: 32px;
+  }
+}
+
+.content span {
+  background-color: #52B2EE;
+  border-radius: 20px;
+  padding: 0 15px;
+  color: #eaf6fd;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+// ------------------------------------------------------instarction_2-------------------------------
+.instarction {
+  padding: 50px 0;
+
+  .crad1 {
+    background-color: #FFFFFF;
+    padding: 15px;
+    border-radius: 5px;
+
+    p {
+      @include box(300, 16px, 24px, -0.6px, #9CA2A6);
+      padding-left: 20px;
+
+      // display: inline-block;
+
+      span {
+        @include box(400, 16px, 19px, '', #35434C);
+        margin: 8px
+      }
+    }
+
+    ul {
+      @include box(300, 16px, 24px, -0.6px, #9CA2A6);
+      list-style: none;
+      padding-left: 20px;
+    }
+
+  }
+}
+
+h2 {
+  @include box(600, 24px, 32px, 1px, #52B2EE);
+  margin-bottom: 10px;
+}
+
+// ---------------------------------------------Contact US && Forms ------------------------------------------
+.backgroun-Whit {
+  background-color: white;
+}
+
+input {
+  background-color: #fbfdff;
+}
+
+.s3-btn1 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.10000000149011612px;
+  text-align: left;
+  background-color: #52B2EE;
+}
+
+.s3-div1-1-h3 {
+
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: -1px;
+  text-align: left;
+  color: #35434C;
+}
+
+.s3-div1-1-p {
+
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.6000000238418579px;
+  text-align: left;
+  color: #595566;
+}
+
+.s3-div1-2-h6 {
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.800000011920929px;
+  text-align: left;
+  color: #9BA2A6;
+}
+
+.s3-div1-2-p {
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.800000011920929px;
+  text-align: left;
+  color: #35434C;
+}
+
+.s3-div2-div1-lb {
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6000000238418579px;
+  text-align: left;
+  color: #35434C;
+}
+
+.s3-div2-div1-inp {
+  height: 37px;
+  top: 32px;
+  color: #F7FBFF;
+}
+
+.s3-div2-div4-ta {
+  width: Fixed (887.91px)px;
+  height: Hug (201.58px)px;
+  padding: 29.37px 44.06px 148.21px 23px;
+  gap: 13.35px;
+  border-radius: 6px 0px 0px 0px;
+  border: 1.34px 0px 0px 0px;
+  opacity: 0px;
+  color: #EAF6FD;
+}
+
+.s3-btn2 {
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6000000238418579px;
+  text-align: center;
+  color: white;
+  background-color: #0096CB;
+}
+
+// ---------------------------------------------The Cards ------------------------------------------
+
+//The Grow//
+.grow {
+  margin: 80px 0;
+}
+
+.grow .text span {
+  padding: 0 17px;
+  background-color: #86c9f3;
+  border-radius: 21px;
+  color: #fff;
+  font-size: 16.13px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.grow .text h1 {
+  color: #35434c;
+  font-size: 48.5px;
+  line-height: 36px;
+  letter-spacing: -1.01px;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin: 20px 0 30px;
+}
+
+@media (max-width: 767px) {
+  .grow .text h1 {
+    line-height: 1.1;
+  }
+}
+
+.grow .text p {
+  color: #727b82;
+  font-size: 16.13px;
+  line-height: 24.2px;
+  letter-spacing: -0.61px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+// detils Crad
+.card-body {
+  padding: 48px 31px;
+}
+
+.cardes .box1 {
+  margin-bottom: 20px;
+}
+
+.cardes h5 {
+  font-weight: 600;
+  font-size: 27px;
+  line-height: 37px;
+  letter-spacing: -1.07px;
+  color: #35434c;
+  margin-top: 30px;
+}
+
+.cardes p {
+  font-weight: 500;
+  font-size: 21.31px;
+  line-height: 32px;
+  letter-spacing: -0.8px;
+  color: #727b82;
+  text-transform: capitalize;
+}
+
+.cardes .comment span {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 38px;
+  color: #52b2ee;
+}

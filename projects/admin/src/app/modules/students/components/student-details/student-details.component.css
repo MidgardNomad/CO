@@ -1,0 +1,74 @@
+.main {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 30px 0;
+}
+.main p {
+  text-align: center;
+  margin: 3px 0;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+.list {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 30px;
+}
+.list h2 {
+  display: flex;
+  justify-content: space-between;
+  color: #2d3846;
+  font-weight: 600;
+}
+.list h2 span {
+  color: #e46a76;
+}
+
+.lesson1 {
+  margin: 30px 0;
+  position: relative;
+}
+.lesson1 h2 {
+  font-size: 16px;
+}
+.lesson1 p {
+  font-size: 14px;
+}
+.lesson1 i {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.bot {
+  border: solid 1px #03c9d7;
+}
+.bot:hover {
+  color: white;
+  border: none;
+}
+
+.details {
+  background-color: #eee;
+  border-radius: 20px;
+  padding: 30px;
+}
+.details .del {
+  font-size: 15;
+  display: inline-block;
+  color: #2d3846;
+  font-weight: 600;
+}
+.details h2 {
+  color: #2d3846;
+  font-weight: 600;
+}
+
+button {
+  border: none;
+}/*# sourceMappingURL=student-details.component.css.map */

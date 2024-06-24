@@ -13,6 +13,9 @@ export interface User {
   deletedAt: Date | null;
   deleted: boolean;
   bio?: string;
+  streakDays: Date[];
+  currentStreak: number;
+  maxStreak: number;
   courseList: courseLevel[];
   connectedAccounts: string[];
 }

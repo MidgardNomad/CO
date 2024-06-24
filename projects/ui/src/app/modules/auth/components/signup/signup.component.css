@@ -1,1 +1,44 @@
-/*# sourceMappingURL=signup.component.css.map */
+.signup {
+  width: 100%;
+}
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+}
+.signup-form .form-control {
+  background-color: rgba(227, 233, 238, 0.2823529412);
+  width: 440px;
+  height: 48px;
+  border-radius: 12px;
+  margin-top: 5px;
+}
+@media (max-width: 600px) {
+  .signup-form .form-control {
+    width: 85%;
+  }
+}
+.signup-form .form-control:focus {
+  background-color: white;
+}
+.signup-form h1 {
+  margin-bottom: 20px;
+}
+.signup-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.signup-form form .form-check-input {
+  border: 1px solid black;
+}
+.signup-form p {
+  margin-top: 10px;
+}
+.signup a,
+.signup a:active,
+.signup a:visited,
+.signup a:hover {
+  text-decoration: none;
+}/*# sourceMappingURL=signup.component.css.map */

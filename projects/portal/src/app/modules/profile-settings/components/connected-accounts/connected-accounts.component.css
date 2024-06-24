@@ -1,0 +1,47 @@
+.connected-accounts {
+  width: 100%;
+}
+@media (max-width: 991px) {
+  .connected-accounts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+.connected-accounts .title h2 {
+  color: #52b2ee;
+  margin-bottom: 20px;
+}
+.connected-accounts .connect-card {
+  padding: 10px;
+  background-color: #eaf6fd;
+  border-radius: 10px;
+  width: 600px;
+}
+@media (max-width: 620px) {
+  .connected-accounts .connect-card {
+    width: 300px;
+  }
+}
+.connected-accounts .connect-card p {
+  color: #9ba2a6;
+  align-self: self-end;
+  margin-left: 10px;
+}
+@media (max-width: 620px) {
+  .connected-accounts .connect-card p {
+    display: none;
+  }
+}
+.connected-accounts .connect-card .btn-primary {
+  margin-left: auto;
+  background-color: #52b2ee;
+  border: none;
+  width: 150px;
+}
+@media (max-width: 620px) {
+  .connected-accounts .connect-card .btn-primary {
+    margin-left: 20vw;
+  }
+}/*# sourceMappingURL=connected-accounts.component.css.map */

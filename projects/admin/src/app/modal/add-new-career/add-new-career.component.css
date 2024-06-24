@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+.section1 {
+  width: 100vh;
+  border: 2px solid rgb(116, 211, 226);
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.smallIcon {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(246, 241, 224);
+}
+
+.div_h6 {
+  font-family: "Poetsen One", sans-serif;
+}/*# sourceMappingURL=add-new-career.component.css.map */

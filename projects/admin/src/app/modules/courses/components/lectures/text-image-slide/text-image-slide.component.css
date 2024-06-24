@@ -1,0 +1,14 @@
+p {
+  font-size: 25px;
+}
+
+div {
+  height: 70%;
+  width: 80%;
+}
+div img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=text-image-slide.component.css.map */
