@@ -1,1 +1,180 @@
-<p>profile works!</p>
+<div class="profile">
+  <div class="d-flex flex-column align-items-center profile-header">
+    <div class="profile-header-cover">
+      <img src="../../../assets/images/profileCover.svg" alt="Profile Cover" />
+    </div>
+    <div
+      class="d-flex align-items-center profile-header-info"
+      style="gap: 30px"
+    >
+      <div class="profile-header-info-avatar">
+        <img src="../../../assets/images/avatar.jpg" alt="" />
+      </div>
+      <div class="profile-header-info-data">
+        <h2>Mahmoud Taha</h2>
+        <p>Email@Example.com</p>
+        <p>+20 102 456 3641</p>
+        <p>🇪🇬️ Level. 1</p>
+      </div>
+      <img
+        src="../../../assets/images/userprofilecircle1.svg"
+        alt=""
+        class="profile-header-info-decoration"
+      />
+      <img
+        src="../../../assets/images/userprofilecircle2.svg"
+        alt=""
+        class="profile-header-info-decoration"
+      />
+      <img
+        src="../../../assets/images/userprofilecircle3.svg"
+        alt=""
+        class="profile-header-info-decoration"
+      />
+    </div>
+  </div>
+  <div class="profile-body">
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-2">
+          <div
+            class="d-flex flex-column algin-items-center justify-content-center"
+          >
+            <h2 style="text-align: center">150</h2>
+
+            <h2 style="text-align: center">Followers</h2>
+          </div>
+        </div>
+        <div class="col-2">
+          <div
+            class="d-flex flex-column algin-items-center justify-content-center"
+          >
+            <h2 style="text-align: center">150</h2>
+
+            <h2 style="text-align: center">Following</h2>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col d-flex justify-content-between align-items-center profile-body-goPro"
+        >
+          <div
+            class="d-flex align-items-center"
+            style="height: 100%; padding-top: 10px"
+          >
+            <p><span>Go Pro ✨️</span> Get 14 days of Free PRO experience.</p>
+          </div>
+          <div>
+            <button class="btn goProButton">
+              <div class="d-flex align-items-center">
+                <span>Go Pro &#32; </span>
+                <img src="../../../assets/images/goProIcon.svg" alt="" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row profile-container" style="gap: 2px">
+        <div class="col-6">
+          <div class="container">
+            <div class="row">
+              <div class="col user-streak-content"><h4>Streak</h4></div>
+            </div>
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="calendar-icon">
+                <img src="../../../assets/images/calendar2.svg" alt="" />
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div
+                    class="col-2 d-flex flex-column align-items-center"
+                    *ngFor="let day of week"
+                  >
+                    <div class="calendar-days">
+                      <p>{{ day | date : "E" }}</p>
+                    </div>
+
+                    <div
+                      class="d-flex align-content-center justify-content-center calendar-days"
+                      [ngClass]="{
+                        'streak-day': streakDay.includes(day)
+                      }"
+                    >
+                      <div>
+                        <p>{{ day | date : "d" }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div
+          class="col d-flex flex-column align-items-center justify-content-around"
+        >
+          <div>
+            <p class="user-streak-header">Current Streak</p>
+          </div>
+          <div>
+            <p class="user-streak-content">10 Days</p>
+          </div>
+        </div>
+        <div class="divider">
+          <div class="line"></div>
+        </div>
+        <div
+          class="col d-flex flex-column align-items-center justify-content-around"
+        >
+          <p class="user-streak-header">Longest Streak</p>
+
+          <p class="user-streak-content">10 Days</p>
+        </div>
+      </div>
+      <div class="row custom-container">
+        <div
+          class="col d-flex flex-column justify-content-around profile-container"
+        >
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <p class="user-streak-content" style="font-size: 20px">
+                Courses Progress
+              </p>
+            </div>
+            <div><p style="color: #86c9f3">see all</p></div>
+          </div>
+          <div class="user-courses d-flex align-items-center">
+            <div class="user-courses-icon">
+              <img src="../../../assets/images/profilescreenIcon.svg" alt="" />
+            </div>
+            <div class="user-courses-info d-flex flex-column">
+              <div style="color: #2ea2eb; font-weight: 600; font-size: 18px">
+                Web Development
+              </div>
+              <div style="color: #9ba2a6; font-weight: 400; font-size: 14px">
+                In Progress
+              </div>
+            </div>
+            <div style="margin-left: auto">
+              <i
+                class="fa-solid fa-circle-arrow-right"
+                style="font-size: 40px; color: #a9d9f7; cursor: pointer"
+              ></i>
+            </div>
+          </div>
+          <div class="col profile-button">
+            <button class="btn">Browse Courses</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

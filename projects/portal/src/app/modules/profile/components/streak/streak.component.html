@@ -1,0 +1,38 @@
+<section class="container-md d-flex justify-content-center profile-streak">
+  <div class="profile-streak-card d-flex flex-column flex-lg-row">
+    <div class="streak-days d-flex flex-column">
+      <h4>Streak</h4>
+      <div class="d-flex calendar align-self-center">
+        <div class="d-flex days">
+          <div
+            class="d-flex flex-column justify-content-around align-items-center calender-days"
+            *ngFor="let day of week"
+          >
+            <div class="week-days">
+              <p>{{ day | date : "E" }}</p>
+            </div>
+            <div
+              class="week-dates"
+              [ngClass]="{ active: activeDays.includes(day) }"
+            >
+              <i class="fa-solid fa-check" *ngIf="activeDays.includes(day)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider">
+      <div class="line"></div>
+    </div>
+    <div class="d-flex justify-content-center align-self-center streak-info">
+      <div class="d-flex flex-column justify-content-around align-items-center">
+        <p class="title">Current Streak</p>
+        <p class="data">{{ currentStreak }}</p>
+      </div>
+      <div class="d-flex flex-column justify-content-around align-items-center">
+        <p class="title">Max Streak</p>
+        <p class="data">{{ maxStreak }}</p>
+      </div>
+    </div>
+  </div>
+</section>
