@@ -1,1 +1,11 @@
-<p>user-courses works!</p>
+<section class="container-md d-flex justify-content-center user-courses">
+  <div class="user-courses-card">
+    <div class="d-flex align-items-baseline user-courses-card-header">
+      <p>Courses Progress</p>
+      <span (click)="navigateToCourses()">See all</span>
+    </div>
+    <button class="browse-button" type="button" (click)="navigateToCourses()">
+      Browse Courses
+    </button>
+  </div>
+</section>
