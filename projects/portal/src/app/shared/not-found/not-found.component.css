@@ -1,0 +1,66 @@
+.image {
+  background-image: url(../../../../../portal/src/assets/images/about/not-found/background-404.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.image img {
+  width: 300px;
+  height: 90vh;
+}
+
+/* The Error */
+.row {
+  --bs-gutter-x: 0rem;
+}
+.row .col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row .col .content h1, .row .col .content h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 81px;
+  letter-spacing: -1px;
+  color: #727b82;
+}
+.row .col .content h2 {
+  font-size: 39px;
+  text-transform: capitalize;
+  margin-bottom: -5px;
+}
+.row .col .content p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  color: #727b82;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+.row .col .content button {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  color: #fff;
+  background-color: #0096cb;
+  border: transparent;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 991px) {
+  .content {
+    margin: 0 20%;
+  }
+}
+@media (max-width: 767px) {
+  .content {
+    text-align: center;
+    margin: 0;
+  }
+}/*# sourceMappingURL=not-found.component.css.map */

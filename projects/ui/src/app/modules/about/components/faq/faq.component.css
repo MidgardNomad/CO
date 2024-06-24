@@ -1,0 +1,94 @@
+.head {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 64px;
+  color: #130b01;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.faq {
+  margin: 100px 0;
+}
+
+.task1 {
+  margin-bottom: 30px;
+}
+.task1 .list-group-item .title-list {
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -1px;
+  color: #130b01;
+  margin-top: 15px;
+}
+.task1 .list-group-item span {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.8px;
+  color: #52b2ee;
+  display: block;
+  padding: 25px 0px 10px;
+}
+.task1 .one-1,
+.task1 .two-2,
+.task1 .three-3,
+.task1 .four-4 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.8px;
+  color: #9ba2a6;
+  padding: 20px 16px;
+}
+.task1 .five-5 {
+  padding: 20px;
+}
+
+.task2 .one {
+  border: 1.2px solid #52b2ee;
+  border-radius: 6px;
+  padding: 29px;
+}
+.task2 .one h4 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.8px;
+  color: #52b2ee;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+.task2 .one .box {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.task2 .one p,
+.task2 .one span {
+  font-weight: 400;
+  font-size: 16.84px;
+  line-height: 28.88px;
+  color: #9ba2a6;
+  margin-bottom: 0;
+}
+.task2 .comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1.2px solid #dedede;
+  border-radius: 6px;
+  padding: 20px;
+  border-color: #dedede;
+  margin: 25px 0;
+}
+.task2 .comment p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  color: #35434c;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}/*# sourceMappingURL=faq.component.css.map */

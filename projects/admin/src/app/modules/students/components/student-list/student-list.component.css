@@ -1,0 +1,13 @@
+table th {
+  padding: 10px;
+  background-color: #03c9d7;
+}
+
+.BUTT {
+  display: flex;
+  justify-content: space-between;
+}
+
+.next {
+  border: 0;
+}/*# sourceMappingURL=student-list.component.css.map */

@@ -1,0 +1,42 @@
+.navbar {
+  width: 100%;
+  background-color: #FFFFFF !important;
+  padding: 10px 0px;
+}
+.navbar .collapse {
+  justify-content: space-around;
+}
+.navbar .collapse .headerRight i,
+.navbar .collapse .headerRight button,
+.navbar .collapse .headerRight img {
+  margin: 0px 10px;
+}
+.navbar .collapse .headerRight .goProButton {
+  background-color: #F2AE37;
+  color: #FFFFFF;
+  padding: 6px 10px;
+}
+.navbar .collapse .headerRight .goProButton img {
+  margin-right: 0px;
+}
+.navbar .btn-log {
+  width: 100px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: #1ebcff;
+}
+.navbar .btn-signup {
+  width: 100px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+  background-color: #1ebcff;
+}
+.navbar .user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+.navbar .user-name {
+  color: #2EA2EB;
+}/*# sourceMappingURL=header.component.css.map */

@@ -1,0 +1,81 @@
+.edit-profile .title h2 {
+  color: #52b2ee;
+  margin-bottom: 20px;
+}
+.edit-profile .user-card {
+  margin: 25px;
+}
+.edit-profile .user-card .user-img {
+  position: relative;
+}
+.edit-profile .user-card .user-img img {
+  border-radius: 12px;
+  min-width: 110px;
+  width: 130px;
+  height: 130px;
+  min-height: 110px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.edit-profile .user-card .user-img .edit-button {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background-image: linear-gradient(transparent, black);
+}
+.edit-profile .user-card .user-img .edit-button i {
+  transition: all 0.2s;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.edit-profile .user-card .user-img .edit-button i:hover {
+  transform: scale(1.2);
+}
+.edit-profile .user-card p {
+  color: #727b82;
+}
+@media (max-width: 400px) {
+  .edit-profile .user-card p {
+    font-size: 12px;
+  }
+}
+.edit-profile .user-card .delete-img {
+  gap: 8px;
+  cursor: pointer;
+  color: red;
+}
+.edit-profile .user-info label {
+  margin-top: 10px;
+}
+.edit-profile .user-info .form-control {
+  background-color: rgba(227, 233, 238, 0.2823529412);
+  width: 440px;
+  height: 48px;
+  border-radius: 12px;
+  margin: 10px 0px;
+}
+@media (max-width: 600px) {
+  .edit-profile .user-info .form-control {
+    width: 100%;
+  }
+}
+.edit-profile .user-info .form-control:focus {
+  background-color: white;
+}
+.edit-profile .user-info #bio {
+  height: 100px;
+}
+.edit-profile .user-info .app-custom-button {
+  border: none;
+  color: white;
+}
+@media (max-width: 600px) {
+  .edit-profile .user-info .app-custom-button {
+    width: 100%;
+  }
+}/*# sourceMappingURL=edit-profile.component.css.map */

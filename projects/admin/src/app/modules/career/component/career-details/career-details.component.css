@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+h1 {
+  font-family: "Poetsen One", sans-serif;
+  color: #313860;
+}
+
+.section1 {
+  padding: 50px;
+}
+
+.div1 {
+  padding: 5px;
+  box-shadow: 10px 10px 5px lightblue;
+}
+
+.card_img {
+  width: 220px;
+  height: 200px;
+  border-radius: 3px;
+  margin-top: 16px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 30px;
+  color: var(#313860);
+  font-weight: bolder;
+}
+
+.icon {
+  position: relative;
+  left: 80%;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: bolder;
+}/*# sourceMappingURL=career-details.component.css.map */

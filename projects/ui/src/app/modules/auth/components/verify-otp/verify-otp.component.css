@@ -1,1 +1,65 @@
-/*# sourceMappingURL=verify-otp.component.css.map */
+.verify {
+  margin-bottom: 20px;
+}
+.verify-header {
+  width: 100%;
+}
+.verify-header span {
+  color: #52b2ee;
+  font-family: 20px;
+}
+@media (max-width: 600px) {
+  .verify-header {
+    margin-left: 50px;
+  }
+}
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  gap: 15px;
+}
+.verify-form-otp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.verify-form-otp-resendCode {
+  display: flex;
+  justify-content: space-between;
+}
+.verify-form .form-control {
+  background-color: rgba(227, 233, 238, 0.2823529412);
+  width: 440px;
+  height: 48px;
+  border-radius: 12px;
+  margin-top: 5px;
+}
+@media (max-width: 600px) {
+  .verify-form .form-control {
+    width: 85%;
+  }
+}
+.verify-form .form-control:focus {
+  background-color: white;
+}
+.verify-form-instructons {
+  align-self: flex-start;
+}
+@media (max-width: 600px) {
+  .verify-form-instructons {
+    margin-left: 50px;
+  }
+}
+.verify-form p {
+  color: #727b82;
+  font-size: 16px;
+  align-self: center;
+}
+@media (max-width: 600px) {
+  .verify-form p {
+    width: 85%;
+  }
+}/*# sourceMappingURL=verify-otp.component.css.map */
