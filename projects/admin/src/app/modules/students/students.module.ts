@@ -21,6 +21,7 @@ import { CommonModule } from '@angular/common';
 import { EeditUserComponent } from './components/student-list/Edit-user/edit-user.component';
 import { DeletComponent } from './components/student-list/delet/delet.component';
 import { StudentLiberComponent } from './components/student-list/student-liber/student-liber.component';
+import { TestLearnDataComponent } from './components/student-list/test-learn-data/test-learn-data.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StudentLiberComponent } from './components/student-list/student-liber/s
     EeditUserComponent,
     DeletComponent,
     StudentLiberComponent,
+    TestLearnDataComponent,
   ],
   imports: [
     CommonModule,

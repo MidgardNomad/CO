@@ -74,6 +74,7 @@ export class StudentListComponent {
     'isPro',
     'Active',
     'Disable',
+    'details',
   ];
   dataSource;
 
@@ -87,8 +88,8 @@ export class StudentListComponent {
 
   //Router Student Details
   private routin = inject(Router);
-  getComm() {
-    this.routin.navigate(['students/details']);
+  getUser(uid: string) {
+    this.routin.navigate(['students/details', uid]);
   }
 
   // ------------------------------------ Logic bind Data then Form To Tabel-------------------------------------------------
