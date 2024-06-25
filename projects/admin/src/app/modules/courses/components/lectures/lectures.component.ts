@@ -76,6 +76,7 @@ export class LecturesComponent implements OnInit, OnDestroy {
             });
           }
           this.activeSlide = this.slides[Number(p['s'])];
+          console.log(this.activeSlide);
           this.navButtonDisplay(
             this.slides.indexOf(this.activeSlide),
             this.numberOfSlides
@@ -88,7 +89,7 @@ export class LecturesComponent implements OnInit, OnDestroy {
   onCreateNewSlide() {
     this.matDialog.open(AddSlideDialogComponent, {
       disableClose: true,
-      width: '500px',
+      width: '650px',
       data: {
         courseID: this.courseID,
         chapterID: this.chapterID,
@@ -100,16 +101,36 @@ export class LecturesComponent implements OnInit, OnDestroy {
 
   //Edit Individual Slides
   onEditSlide() {
+    let data: {};
+    switch (this.activeSlide.type) {
+      case 'text':
+        data = { slideText: this.activeSlide.text };
+        break;
+      case 'text-image':
+        data = {
+          slideText: this.activeSlide.text,
+          slideImage: this.activeSlide.image,
+        };
+        break;
+      case 'mcq':
+        data = {
+          slideQuestion: this.activeSlide.question,
+          slideMCQAnswer: this.activeSlide.mcqAnswer,
+          slideOptions: this.activeSlide.options,
+        };
+        break;
+      case 'q-fill':
+        data = {
+          slideQuestion: this.activeSlide.question,
+          slideQAnswer: this.activeSlide.qAnswer,
+        };
+    }
     this.matDialog.open(EditSlideDialogComponent, {
-      // disableClose: true,
-      width: '500px',
+      width: '650px',
+      disableClose: true,
       data: {
-        slideID: this.activeSlide.id,
-        slideType: this.activeSlide.type,
-        slideText: this.activeSlide.text,
-        slideImage: this.activeSlide.image,
-        slideOptions: this.activeSlide.options,
-        slideAnswer: this.activeSlide.answer,
+        slide: this.activeSlide,
+        qAnswer: 'Hi',
       },
     });
   }
