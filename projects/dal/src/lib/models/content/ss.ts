@@ -5,7 +5,8 @@ export interface Ss {
   text?: string;
   image?: string;
   question?: string;
-  answer?: number;
+  mcqAnswer?: number;
+  qAnswer?: string;
   options?: string[];
 }
 
