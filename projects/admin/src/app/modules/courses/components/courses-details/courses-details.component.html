@@ -1,4 +1,7 @@
-<button class="btn btn-primary" (click)="onAddChapter()">Add Chapter</button>
+<div class="d-flex align-items-center" style="gap: 10px">
+  <i class="fa-solid fa-arrow-left go-back-icon" (click)="goBack()"></i>
+  <button class="btn btn-primary" (click)="onAddChapter()">Add Chapter</button>
+</div>
 <div *ngFor="let chapter of chapters | async" style="margin: 15px">
   <app-chapter-expansion-panel
     [chapter]="chapter"

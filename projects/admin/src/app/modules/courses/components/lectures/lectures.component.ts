@@ -6,9 +6,6 @@ import { CoursesService, Ss } from 'DAL';
 import { Subscription } from 'rxjs';
 import { DeleteDialogComponent } from 'projects/admin/src/app/modal/delete-dialog/delete-dialog.component';
 import { EditSlideDialogComponent } from './edit-slide-dialog/edit-slide-dialog.component';
-import { SlideData } from './types/slideData';
-
-// Type Definitions
 
 @Component({
   selector: 'app-lectures',
@@ -54,20 +51,8 @@ export class LecturesComponent implements OnInit, OnDestroy {
     }
   }
 
-  private openEditSlideDialogWithData(
-    slideId: string,
-    slideType: string,
-    data: SlideData
-  ) {
-    this.matDialog.open(EditSlideDialogComponent, {
-      disableClose: true,
-      width: '500px',
-      data: {
-        slideId,
-        slideType,
-        ...data,
-      },
-    });
+  goBack() {
+    this.router.navigate(['/courses', this.courseID]);
   }
   //==========================================================================
   //Get The Slides inside NgOninit (Move This functionality to a resolver OR use a loading a spinner)
@@ -115,11 +100,18 @@ export class LecturesComponent implements OnInit, OnDestroy {
 
   //Edit Individual Slides
   onEditSlide() {
-    this.openEditSlideDialogWithData(
-      this.activeSlide.id,
-      this.activeSlide.type,
-      { text: 'Hi' }
-    );
+    this.matDialog.open(EditSlideDialogComponent, {
+      // disableClose: true,
+      width: '500px',
+      data: {
+        slideID: this.activeSlide.id,
+        slideType: this.activeSlide.type,
+        slideText: this.activeSlide.text,
+        slideImage: this.activeSlide.image,
+        slideOptions: this.activeSlide.options,
+        slideAnswer: this.activeSlide.answer,
+      },
+    });
   }
 
   //Delete and Re-arrange slides
