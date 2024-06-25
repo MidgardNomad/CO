@@ -32,4 +32,6 @@ export class UsersService {
       })
     );
   }
+  // get data coursrs
+  getUserCourses() {}
 }

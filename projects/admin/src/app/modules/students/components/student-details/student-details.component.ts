@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User, UsersService } from 'DAL';
 
 export interface Data {
   title: string;
@@ -11,7 +12,7 @@ export interface Data {
   templateUrl: './student-details.component.html',
   styleUrls: ['./student-details.component.scss'],
 })
-export class StudentDetailsComponent {
+export class StudentDetailsComponent implements OnInit {
   email = 'osama@gmail.com';
   // Function Delete 1 //
 
@@ -44,7 +45,7 @@ export class StudentDetailsComponent {
     this.coursesList3.splice(index, 1);
   }
 
-  // ------------------------------------------------------------------------------------------------------------//
+  // ---------------------------------------------------------------------------------------------//
   // Routing For Button Student Details //
   private routin = inject(Router);
   getComm() {
@@ -52,5 +53,27 @@ export class StudentDetailsComponent {
   }
   getCourses() {
     this.routin.navigate(['courses/list']);
+  }
+
+  // ----------------------------------------get Data--------------------------------------------//
+  constructor(private usersService: UsersService) {}
+  details: User;
+  createdAt: Date;
+  lastLogin: Date;
+  bio: string;
+
+  //Timestamp to Date
+  private convertTimeStampToDate(timeStamp): Date {
+    return timeStamp.toDate();
+  }
+
+  ngOnInit(): void {
+    this.usersService.getAllUsers().subscribe((dataDetails) => {
+      this.details = dataDetails[0];
+      console.log(this.details.id);
+      this.createdAt = this.convertTimeStampToDate(this.details.createdAt);
+      this.lastLogin = this.convertTimeStampToDate(this.details.lastLogin);
+      this.bio = this.details.bio;
+    });
   }
 }
