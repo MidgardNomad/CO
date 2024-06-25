@@ -1,113 +1,109 @@
 <mat-dialog-content>
-  <mat-form-field>
-    <label>Slide Type</label>
-    <mat-select #slideType value="text">
-      <mat-option value="text">Text</mat-option>
-      <mat-option value="text-image">Text & Image</mat-option>
-      <mat-option value="mcq">MCQ</mat-option>
-      <mat-option value="q-fill">Fill the blanks</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <form #textForm="ngForm" (ngSubmit)="onSubmit(textForm, slideType.value)">
+  <form [formGroup]="slideForm" (ngSubmit)="editSlide()">
     <mat-form-field>
-      <mat-label>Text</mat-label>
-      <textarea
-        #textField
-        matInput
-        type="text"
-        required
-        maxlength="240"
-        ngModel
-        name="text"
-      ></textarea>
-      <mat-hint align="end"> {{ textField.value.length }} / 240 </mat-hint>
+      <mat-label for="type">Slide Type</mat-label>
+      <mat-select formControlName="slideType" id="type">
+        <mat-option value="text">Text</mat-option>
+        <mat-option value="text-image">Text & Image</mat-option>
+        <mat-option value="mcq">MCQ</mat-option>
+        <mat-option value="q-fill">Fill the Blank</mat-option>
+      </mat-select>
     </mat-form-field>
-    <mat-form-field *ngIf="slideType.value === 'q-fill'">
-      <mat-label>Answer</mat-label>
-      <input
-        matInput
-        type="text"
-        required
-        maxlength="240"
-        ngModel
-        name="fillAnswer"
-      />
-    </mat-form-field>
-    <ngx-file-drop
-      dropZoneLabel="Drop files here"
-      *ngIf="slideType.value === 'text-image'"
+    <mat-form-field
+      *ngIf="
+        slideForm?.get('slideType').value === 'text' ||
+        slideForm?.get('slideType').value === 'text-image'
+      "
     >
-      <!-- (onFileDrop)="dropped($event)" -->
-      <ng-template
-        ngx-file-drop-content-tmp
-        let-openFileSelector="openFileSelector"
+      <mat-label for="text">Text</mat-label>
+      <textarea
+        id="text"
+        matInput
+        formControlName="slideText"
+        maxlength="240"
+      ></textarea>
+      <mat-hint align="end"
+        >{{ slideForm?.get("slideText").value?.length || 0 }} / 240</mat-hint
       >
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="openFileSelector()"
-        >
-          Browse Files
-        </button>
-      </ng-template>
-    </ngx-file-drop>
-    <div *ngIf="slideType.value === 'mcq'">
+    </mat-form-field>
+    <mat-form-field
+      *ngIf="
+        slideForm?.get('slideType').value === 'mcq' ||
+        slideForm?.get('slideType').value === 'q-fill'
+      "
+    >
+      <mat-label for="text">Question</mat-label>
+      <textarea
+        id="text"
+        matInput
+        formControlName="slideQuestion"
+        maxlength="240"
+      ></textarea>
+      <mat-hint align="end"
+        >{{ slideForm?.get("slideText").value?.length || 0 }} / 240</mat-hint
+      >
+    </mat-form-field>
+    <div *ngIf="slideForm?.get('slideType').value === 'mcq'">
       <mat-form-field>
-        <label for="mcq-answer">Answer</label>
+        <mat-label for="mcqAnswer">Answer</mat-label>
         <input
+          id="mcqAnswer"
           matInput
           type="number"
-          id="mcq-answer"
-          required
-          ngModel
-          name="mcqAnswer"
           max="3"
           min="0"
+          formControlName="mcqAnswer"
         />
       </mat-form-field>
       <div class="d-flex" style="gap: 10px">
         <mat-form-field>
-          <label for="option1">Option 1</label>
+          <mat-label for="firstOption">Option One</mat-label>
           <input
-            matInput
             type="text"
-            id="option1"
-            required
-            ngModel
-            name="firstOption"
+            matInput
+            id="firstOption"
+            formControlName="firstOption"
           />
         </mat-form-field>
         <mat-form-field>
-          <label for="option2">Option 2</label>
+          <mat-label for="secondOption">Option Two</mat-label>
           <input
-            matInput
             type="text"
-            id="option2"
-            required
-            ngModel
-            name="secondOption"
+            matInput
+            id="secondOption"
+            formControlName="secondOption"
           />
         </mat-form-field>
       </div>
       <div class="d-flex" style="gap: 10px">
         <mat-form-field>
-          <label for="option3">Option 3</label>
-          <input matInput type="text" id="option3" ngModel name="thirdOption" />
+          <mat-label for="thridOption">Option Three</mat-label>
+          <input
+            type="text"
+            matInput
+            id="thridOption"
+            formControlName="thirdOption"
+          />
         </mat-form-field>
         <mat-form-field>
-          <label for="option4">Option 4</label>
+          <mat-label for="fourthOption">Option Four</mat-label>
           <input
-            matInput
             type="text"
-            id="option4"
-            ngModel
-            name="fourthOption"
+            matInput
+            id="fourthOption"
+            formControlName="fourthOption"
           />
         </mat-form-field>
       </div>
     </div>
+    <div *ngIf="slideForm?.get('slideType').value === 'q-fill'">
+      <mat-form-field>
+        <mat-label for="qAnswer">Answer</mat-label>
+        <input type="text" matInput formControlName="fillAnswer" id="qAnswer" />
+      </mat-form-field>
+    </div>
     <mat-dialog-actions align="center">
-      <button class="btn btn-primary" type="submit">Add Slide</button>
+      <button class="btn btn-primary" type="submit">Save</button>
       <button class="btn btn-danger" mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
   </form>

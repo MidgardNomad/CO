@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-2">
-      <button (click)="onCreateNewSlide()" class="btn add-course-button"
-        style="background-color: #03c9d7; margin: 12px; width: 150px">
+    <div class="col-2 d-flex align-items-center">
+      <i class="fa-solid fa-arrow-left go-back-icon" (click)="goBack()"></i>
+      <button
+        (click)="onCreateNewSlide()"
+        class="btn add-course-button"
+        style="background-color: #03c9d7; margin: 12px; width: 150px"
+      >
         Add Slide
       </button>
     </div>

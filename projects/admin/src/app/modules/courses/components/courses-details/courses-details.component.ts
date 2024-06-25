@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { Chapter, Course, CoursesService } from 'DAL';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Chapter, CoursesService } from 'DAL';
 import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.component';
 import { Observable, tap } from 'rxjs';
 
@@ -18,7 +18,8 @@ export class CoursesDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private matDialog: MatDialog,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +38,9 @@ export class CoursesDetailsComponent implements OnInit {
         numOfChapters: this.numOfChapters,
       },
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/courses/list']);
   }
 }
