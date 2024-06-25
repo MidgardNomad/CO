@@ -52,4 +52,32 @@
     .user-name {
         color: #2EA2EB;
     }
+
+    @media screen and (max-width:991px) {
+        .div1 {
+            margin-top: 10px;
+        }
+
+        .fa-bell {
+            display: none;
+        }
+
+        .search-icon1 {
+            display: block;
+            margin-left: 150px;
+        }
+
+        .search-icon2 {
+            display: none;
+        }
+
+        .btn-userData {
+            margin: 0px !important;
+            margin-top: 15px !important;
+        }
+
+        .user-img {
+            margin-left: 0px !important;
+        }
+    }
 }

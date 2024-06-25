@@ -5,11 +5,14 @@
                 <img src="../../../../assets/images/main-logo.svg" alt="Career Officer logo">
             </a>
         </div>
+
+        <i class="fa-solid fa-magnifying-glass search-icon1"></i>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="col-10">
+        <div class="col-10 div1">
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="headerLinks">
                     <ul class="navbar-nav">
@@ -33,25 +36,26 @@
                         <li class="nav-item">
                             <a class="nav-link" (click)="navigateToBlogs()" style="cursor: pointer;">Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact us</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="headerRight d-flex">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="headerRight d-flex align-items-center">
+                    <i class="fa-solid fa-magnifying-glass search-icon2"></i>
                     <i class="fa-regular fa-bell"></i>
-                    <!-- toogle -->
-                    <button class="btn goProButton">
-                        <div class="d-flex aligh-items-center">
-                            <span>Go Pro</span>
-                            <img src="../../../../assets/images/goProIcon.svg" alt="">
-                        </div>
-                    </button>
 
-                    <div class="d-flex align-items-center justify-content-center" *ngIf="!userDisplayName">
+                    <!-- User Data -->
+
+                    <div class="d-flex align-items-center justify-content-center ms-4" *ngIf="!userDisplayName">
                         <button class="btn btn-log" (click)="navigateToLogin()">Log in</button>
                         <button class="btn btn-signup" (click)="navigateToSignup()">Sign up</button>
                     </div>
 
-                    <button class="btn d-flex align-items-center justify-content-center p-0" style="border: none;"
+                    <button class="btn btn-userData d-flex align-items-center justify-content-center p-0" style="border: none;"
                         (click)="navigateToProfile()" *ngIf="userDisplayName">
                         <img class="user-img" src="{{photoURL}}" alt="">
                         <p class="p-0 m-0 user-name mb-3">{{userDisplayName}}</p>

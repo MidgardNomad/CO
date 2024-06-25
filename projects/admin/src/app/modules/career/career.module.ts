@@ -15,12 +15,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { CourseCardComponent } from '../courses/components/courses-details/course-card/course-card.component';
+import { CoursesModule } from '../courses/courses.module';
 
 @NgModule({
   declarations: [
     CareerComponent,
     CareerListComponent,
     CareerDetailsComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonModule,
     ReactiveFormsModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CoursesModule
   ]
 })
 

@@ -55,5 +55,8 @@ import { EditSlideDialogComponent } from './components/lectures/edit-slide-dialo
     MatSelectModule,
     NgxFileDropModule,
   ],
+  exports: [
+    CourseCardComponent
+  ]
 })
 export class CoursesModule {}

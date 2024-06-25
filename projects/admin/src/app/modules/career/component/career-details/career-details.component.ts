@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Course, CoursesService } from 'DAL';
+import { CareerDetailsDialogComponent } from 'projects/admin/src/app/modal/career-details-dialog/career-details-dialog.component';
 
 ///////////////////////////////// Interface of data //////////////////////////////////
 
@@ -16,14 +18,30 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-career-details',
   templateUrl: './career-details.component.html',
-  styleUrls: ['./career-details.component.scss']
+  styleUrls: ['./career-details.component.scss'],
+  
 })
 
-export class CareerDetailsComponent {
+export class CareerDetailsComponent implements OnInit{
+
+  courses: Course[];
 
   panelOpenState = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private coursesService: CoursesService) { }
+
+  ngOnInit(): void {
+    // this.coursesService.getAllCourses().subscribe(courses => {
+    //   this.courses = courses;
+    // })
+  }
+
+  addCourse() {
+    this.dialog.open(CareerDetailsDialogComponent, {
+      disableClose: true,
+      width: '500px'
+    })
+  }
 
   ///////////////////////////////// Array of data ////////////////////////////////////
 

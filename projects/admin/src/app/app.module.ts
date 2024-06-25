@@ -39,7 +39,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     DemoFlexyModule,
     ComponentsModule,
-    ModalModule,
+    
     DALModule,
     FormsModule,
     ModalModule,

@@ -1,36 +1,24 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      <button
-        (click)="onCreateNewSlide()"
-        class="btn add-course-button"
-        style="background-color: #03c9d7; margin: 12px; width: 150px"
-      >
+      <button (click)="onCreateNewSlide()" class="btn add-course-button"
+        style="background-color: #03c9d7; margin: 12px; width: 150px">
         Add Slide
       </button>
     </div>
   </div>
   <div class="row">
     <div class="d-flex justify-content-between slide-card">
-      <div
-        class="d-flex justify-content-center align-items-center slide-card-nav"
-      >
-        <button
-          class="slide-card-nav-button"
-          (click)="onToPreviousSlide()"
-          [disabled]="toPreviousSlideDisabled"
-        >
+      <div class="d-flex justify-content-center align-items-center slide-card-nav">
+        <button class="slide-card-nav-button" (click)="onToPreviousSlide()" [disabled]="toPreviousSlideDisabled">
           <i class="fa-solid fa-angle-left"></i>
         </button>
       </div>
       <div class="no-slides" *ngIf="slides.length === 0">
         This Lecture has no Slides, yet!
       </div>
-      <div
-        class="d-flex flex-column justify-content-center align-items-center content-area"
-        *ngIf="slides.length"
-        [ngSwitch]="activeSlide.type"
-      >
+      <div class="d-flex flex-column justify-content-center align-items-center content-area" *ngIf="slides.length"
+        [ngSwitch]="activeSlide.type">
         <div class="d-flex" style="margin-bottom: 10px">
           <div class="button button-edit" (click)="onEditSlide()">
             <div class="icon">
@@ -45,36 +33,15 @@
             <span>Delete</span>
           </div>
         </div>
-        <app-text-slide
-          class="single-slide-content"
-          *ngSwitchCase="'text'"
-          [slide]="activeSlide"
-        ></app-text-slide>
-        <app-text-image-slide
-          class="single-slide-content"
-          *ngSwitchCase="'text-image'"
-          [slide]="activeSlide"
-        ></app-text-image-slide>
-        <app-mcq-slide
-          class="single-slide-content"
-          *ngSwitchCase="'mcq'"
-          [slide]="activeSlide"
-        ></app-mcq-slide>
-        <app-fill-slide
-          *ngSwitchCase="'q-fill'"
-          [slide]="activeSlide"
-          class="single-slide-content"
-        >
+        <app-text-slide class="single-slide-content" *ngSwitchCase="'text'" [slide]="activeSlide"></app-text-slide>
+        <app-text-image-slide class="single-slide-content" *ngSwitchCase="'text-image'"
+          [slide]="activeSlide"></app-text-image-slide>
+        <app-mcq-slide class="single-slide-content" *ngSwitchCase="'mcq'" [slide]="activeSlide"></app-mcq-slide>
+        <app-fill-slide *ngSwitchCase="'q-fill'" [slide]="activeSlide" class="single-slide-content">
         </app-fill-slide>
       </div>
-      <div
-        class="d-flex justify-content-center align-items-center slide-card-nav"
-      >
-        <button
-          class="slide-card-nav-button"
-          (click)="onToNextSlide()"
-          [disabled]="toNextSlideDisabled"
-        >
+      <div class="d-flex justify-content-center align-items-center slide-card-nav">
+        <button class="slide-card-nav-button" (click)="onToNextSlide()" [disabled]="toNextSlideDisabled">
           <i class="fa-solid fa-angle-right"></i>
         </button>
       </div>

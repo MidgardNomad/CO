@@ -9,13 +9,16 @@ import { EditCareerComponent } from './edit-career/edit-career.component';
 import { DeleteCareerComponent } from './delete-career/delete-career.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
+import {MatButtonModule} from '@angular/material/button';
+import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
+
 
 @NgModule({
-  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent],
+  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,
-    FormsModule,MatDialogModule,ReactiveFormsModule
+    FormsModule,MatDialogModule,ReactiveFormsModule,MatButtonModule
   ]
 })
 export class ModalModule { }

@@ -3,6 +3,7 @@ import { CrudService } from "./crud.service";
 import { Cp } from '../models/content/cp'
 import { Observable, map } from "rxjs";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Course } from "DAL";
 
 @Injectable({
     providedIn: "root"
@@ -10,6 +11,8 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 export class CareerPathService {
     constructor(private crudService: CrudService) { }
+
+    // Career Path Collection
 
     getAllCareerPaths(): Observable<Cp[]> {
         return this.crudService.getData('career-path').pipe(
@@ -52,6 +55,21 @@ export class CareerPathService {
                 .then(res => resolve(res))
                 .catch(error => reject(error))
         })
+    }
+
+    // Courses SubCollection
+
+    getAllCareerCourses(careerID: string) {
+        return this.crudService.getData(`/career-path/${careerID}`).pipe(map(
+            careerDocSnaps => {
+                return careerDocSnaps.map(careerDoc => {
+                    return <Course> {
+                        id: careerDoc.payload.doc.id,
+                        ...careerDoc.payload.doc.data() as object
+                    }
+                })
+            }
+        ))
     }
 
 }
