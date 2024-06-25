@@ -76,7 +76,6 @@ export class LecturesComponent implements OnInit, OnDestroy {
             });
           }
           this.activeSlide = this.slides[Number(p['s'])];
-          console.log(this.activeSlide);
           this.navButtonDisplay(
             this.slides.indexOf(this.activeSlide),
             this.numberOfSlides

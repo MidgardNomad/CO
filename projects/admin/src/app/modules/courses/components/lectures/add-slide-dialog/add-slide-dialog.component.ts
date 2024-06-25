@@ -27,7 +27,7 @@ export class AddSlideDialogComponent implements OnInit {
 
   //Utilities:
   //===============================================
-  private uploadImage(file: NgxFileDropEntry): Promise<string> {
+  private uploadImage(file: any): Promise<string> {
     return new Promise((resolve, reject) => {
       this.s3ImgUploaderService.uploadFile(file).send((err, data) => {
         if (err) {
