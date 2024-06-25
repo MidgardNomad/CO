@@ -10,8 +10,19 @@
   </mat-form-field>
   <form #textForm="ngForm" (ngSubmit)="onSubmit(textForm, slideType.value)">
     <mat-form-field>
-      <mat-label>Text</mat-label>
+      <mat-label
+        for="text"
+        *ngIf="slideType.value === 'text' || slideType.value === 'text-image'"
+      >
+        Text
+      </mat-label>
+      <mat-label
+        for="text"
+        *ngIf="slideType.value === 'q-fill' || slideType.value === 'mcq'"
+        >Question
+      </mat-label>
       <textarea
+        id="text"
         #textField
         matInput
         type="text"
@@ -33,7 +44,20 @@
         name="fillAnswer"
       />
     </mat-form-field>
-    <ngx-file-drop
+    <div *ngIf="slideType.value === 'text-image'">
+      <button type="button" mat-raised-button (click)="fileInput.click()">
+        Choose File
+      </button>
+      <input
+        hidden
+        (change)="onFileSelected($event)"
+        #fileInput
+        type="file"
+        id="file"
+      />
+    </div>
+
+    <!-- <ngx-file-drop
       dropZoneLabel="Drop files here"
       *ngIf="slideType.value === 'text-image'"
       (onFileDrop)="dropped($event)"
@@ -50,7 +74,7 @@
           Browse Files
         </button>
       </ng-template>
-    </ngx-file-drop>
+    </ngx-file-drop> -->
     <div *ngIf="slideType.value === 'mcq'">
       <mat-form-field>
         <label for="mcq-answer">Answer</label>

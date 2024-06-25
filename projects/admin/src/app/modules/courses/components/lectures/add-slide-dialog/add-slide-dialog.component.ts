@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService, Ss, SsType } from 'DAL';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { S3ImgUploaderService } from 'projects/dal/src/lib/aws/s3-img-uploader.service';
 
 @Component({
   selector: 'app-add-slide-dialog',
@@ -10,8 +11,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
   styleUrls: ['./add-slide-dialog.component.scss'],
 })
 export class AddSlideDialogComponent implements OnInit {
-  file: NgxFileDropEntry;
-  pathIDs: string[];
+  file = null;
   constructor(
     private coursesService: CoursesService,
     @Inject(MAT_DIALOG_DATA)
@@ -21,16 +21,29 @@ export class AddSlideDialogComponent implements OnInit {
       lectureID: string;
       seqNo: number;
     },
-    private matDialogRef: MatDialogRef<AddSlideDialogComponent>
+    private matDialogRef: MatDialogRef<AddSlideDialogComponent>,
+    private s3ImgUploaderService: S3ImgUploaderService
   ) {}
 
-  ngOnInit(): void {
-    this.pathIDs = [
-      this.data.courseID,
-      this.data.chapterID,
-      this.data.lectureID,
-    ];
+  //Utilities:
+  //===============================================
+  private uploadImage(file: NgxFileDropEntry): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.s3ImgUploaderService.uploadFile(file).send((err, data) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        if (data) {
+          console.log(`File has been uploaded Successfuly ${data.Location}`);
+          resolve(data.Location);
+        }
+      });
+    });
   }
+  //===============================================
+
+  ngOnInit(): void {}
 
   private add(data: Ss) {
     return this.coursesService.addSlide(
@@ -41,9 +54,11 @@ export class AddSlideDialogComponent implements OnInit {
     );
   }
 
-  dropped(files: NgxFileDropEntry[]) {
-    this.file = files[0];
+  onFileSelected(event) {
+    this.file = event.target.files[0];
+    console.log(this.file);
   }
+
   async onSubmit(form: NgForm, slideType: string) {
     const {
       text,
@@ -70,11 +85,12 @@ export class AddSlideDialogComponent implements OnInit {
         }
       case 'text-image':
         try {
+          let imageURL = await this.uploadImage(this.file);
           await this.add({
             type: SsType.TextImage,
             text: text,
             seqNo: this.data.seqNo,
-            image: '../../../../../../assets/images/HTMLCSSJS.png',
+            image: imageURL,
           } as Ss);
           this.matDialogRef.close();
           break;
@@ -90,7 +106,7 @@ export class AddSlideDialogComponent implements OnInit {
           await this.add({
             type: SsType.MCQ,
             question: text,
-            answer: mcqAnswer,
+            mcqAnswer: mcqAnswer,
             options: options,
             seqNo: this.data.seqNo,
           } as Ss);
@@ -105,7 +121,7 @@ export class AddSlideDialogComponent implements OnInit {
           await this.add({
             type: SsType.QFill,
             question: text,
-            answer: fillAnswer,
+            qAnswer: fillAnswer,
             seqNo: this.data.seqNo,
           } as Ss);
           this.matDialogRef.close();
