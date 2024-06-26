@@ -56,25 +56,6 @@
         id="file"
       />
     </div>
-
-    <!-- <ngx-file-drop
-      dropZoneLabel="Drop files here"
-      *ngIf="slideType.value === 'text-image'"
-      (onFileDrop)="dropped($event)"
-    >
-      <ng-template
-        ngx-file-drop-content-tmp
-        let-openFileSelector="openFileSelector"
-      >
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="openFileSelector()"
-        >
-          Browse Files
-        </button>
-      </ng-template>
-    </ngx-file-drop> -->
     <div *ngIf="slideType.value === 'mcq'">
       <mat-form-field>
         <label for="mcq-answer">Answer</label>

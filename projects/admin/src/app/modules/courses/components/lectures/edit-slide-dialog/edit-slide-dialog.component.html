@@ -1,110 +1,112 @@
 <mat-dialog-content>
-  <form [formGroup]="slideForm" (ngSubmit)="editSlide()">
+  <form [formGroup]="slideTypeForm" (ngSubmit)="editSlide()">
     <mat-form-field>
-      <mat-label for="type">Slide Type</mat-label>
-      <mat-select formControlName="slideType" id="type">
+      <mat-label for="slideType">Type</mat-label>
+      <mat-select id="slideType" formControlName="slideType">
         <mat-option value="text">Text</mat-option>
         <mat-option value="text-image">Text & Image</mat-option>
         <mat-option value="mcq">MCQ</mat-option>
-        <mat-option value="q-fill">Fill the Blank</mat-option>
+        <mat-option value="q-fill">Fill</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field
-      *ngIf="
-        slideForm?.get('slideType').value === 'text' ||
-        slideForm?.get('slideType').value === 'text-image'
-      "
-    >
-      <mat-label for="text">Text</mat-label>
-      <textarea
-        id="text"
-        matInput
-        formControlName="slideText"
-        maxlength="240"
-      ></textarea>
-      <mat-hint align="end"
-        >{{ slideForm?.get("slideText").value?.length || 0 }} / 240</mat-hint
-      >
-    </mat-form-field>
-    <mat-form-field
-      *ngIf="
-        slideForm?.get('slideType').value === 'mcq' ||
-        slideForm?.get('slideType').value === 'q-fill'
-      "
-    >
-      <mat-label for="text">Question</mat-label>
-      <textarea
-        id="text"
-        matInput
-        formControlName="slideQuestion"
-        maxlength="240"
-      ></textarea>
-      <mat-hint align="end"
-        >{{ slideForm?.get("slideText").value?.length || 0 }} / 240</mat-hint
-      >
-    </mat-form-field>
-    <div *ngIf="slideForm?.get('slideType').value === 'mcq'">
-      <mat-form-field>
-        <mat-label for="mcqAnswer">Answer</mat-label>
-        <input
-          id="mcqAnswer"
-          matInput
-          type="number"
-          max="3"
-          min="0"
-          formControlName="mcqAnswer"
-        />
-      </mat-form-field>
-      <div class="d-flex" style="gap: 10px">
-        <mat-form-field>
-          <mat-label for="firstOption">Option One</mat-label>
-          <input
-            type="text"
-            matInput
-            id="firstOption"
-            formControlName="firstOption"
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label for="secondOption">Option Two</mat-label>
-          <input
-            type="text"
-            matInput
-            id="secondOption"
-            formControlName="secondOption"
-          />
-        </mat-form-field>
-      </div>
-      <div class="d-flex" style="gap: 10px">
-        <mat-form-field>
-          <mat-label for="thridOption">Option Three</mat-label>
-          <input
-            type="text"
-            matInput
-            id="thridOption"
-            formControlName="thirdOption"
-          />
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label for="fourthOption">Option Four</mat-label>
-          <input
-            type="text"
-            matInput
-            id="fourthOption"
-            formControlName="fourthOption"
-          />
-        </mat-form-field>
-      </div>
-    </div>
-    <div *ngIf="slideForm?.get('slideType').value === 'q-fill'">
-      <mat-form-field>
-        <mat-label for="qAnswer">Answer</mat-label>
-        <input type="text" matInput formControlName="fillAnswer" id="qAnswer" />
-      </mat-form-field>
-    </div>
     <mat-dialog-actions align="center">
       <button class="btn btn-primary" type="submit">Save</button>
       <button class="btn btn-danger" mat-dialog-close>Cancel</button>
     </mat-dialog-actions>
   </form>
+  <div [ngSwitch]="slideTypeForm.get('slideType')">
+    <form [formGroup]="slideTextForm" *ngSwitchCase="'text'">
+      <mat-form-field>
+        <mat-label for="text">Text</mat-label>
+        <input matInput type="text" id="text" formControlName="slideText" />
+      </mat-form-field>
+    </form>
+    <form [formGroup]="slideImageForm" *ngSwitchCase="'text-image'">
+      <mat-form-field>
+        <mat-label for="text-image">Text</mat-label>
+        <input
+          type="text"
+          matInput
+          id="text-image"
+          formControlName="slideImageText"
+        />
+      </mat-form-field>
+      <div>
+        <button type="button" mat-raised-button (click)="fileInput.click()">
+          Choose File
+        </button>
+        <input
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+          type="file"
+          id="file"
+        />
+      </div>
+      <div class="image-preview">
+        <img src="{{ data.slide.image }}" />
+      </div>
+    </form>
+    <form [formGroup]="slideMCQForm" *ngSwitchCase="'mcq'">
+      <mat-form-field>
+        <mat-label for="mcq-question">Question</mat-label>
+        <input
+          type="text"
+          matInput
+          id="mcq-question"
+          formControlName="slideMCQQuestion"
+          max="240"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="mcq-answer">Answer</mat-label>
+        <input
+          type="number"
+          matInput
+          id="mcq-answer"
+          formControlName="slideMCQAnswer"
+        />
+      </mat-form-field>
+      <div class="d-flex" style="gap: 10px">
+        <mat-form-field>
+          <mat-label for="mcq-first-option">Option 1</mat-label>
+          <input
+            type="text"
+            id="mcq-first-option"
+            matInput
+            formControlName="slideOptionOne"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="mcq-second-option">Option 2</mat-label>
+          <input
+            type="text"
+            matInput
+            id="mcq-second-option"
+            formControlName="slideOptionTwo"
+          />
+        </mat-form-field>
+      </div>
+      <div class="d-flex" style="gap: 10px">
+        <mat-form-field>
+          <mat-label for="mcq-third-option">Option 3</mat-label>
+          <input
+            type="text"
+            id="mcq-third-option"
+            matInput
+            formControlName="slideOptionThree"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label for="mcq-fourth-option">Option 4</mat-label>
+          <input
+            type="text"
+            matInput
+            id="mcq-fourth-option"
+            formControlName="slideOptionFour"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
 </mat-dialog-content>

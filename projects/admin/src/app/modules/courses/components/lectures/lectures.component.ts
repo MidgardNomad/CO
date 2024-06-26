@@ -100,36 +100,11 @@ export class LecturesComponent implements OnInit, OnDestroy {
 
   //Edit Individual Slides
   onEditSlide() {
-    let data: {};
-    switch (this.activeSlide.type) {
-      case 'text':
-        data = { slideText: this.activeSlide.text };
-        break;
-      case 'text-image':
-        data = {
-          slideText: this.activeSlide.text,
-          slideImage: this.activeSlide.image,
-        };
-        break;
-      case 'mcq':
-        data = {
-          slideQuestion: this.activeSlide.question,
-          slideMCQAnswer: this.activeSlide.mcqAnswer,
-          slideOptions: this.activeSlide.options,
-        };
-        break;
-      case 'q-fill':
-        data = {
-          slideQuestion: this.activeSlide.question,
-          slideQAnswer: this.activeSlide.qAnswer,
-        };
-    }
     this.matDialog.open(EditSlideDialogComponent, {
       width: '650px',
       disableClose: true,
       data: {
         slide: this.activeSlide,
-        qAnswer: 'Hi',
       },
     });
   }
