@@ -39,6 +39,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'learn',
+        loadChildren: () =>
+          import('../learn/learn.module').then((m) => m.LearnModule),
+      },
+      {
         path: 'about',
         loadChildren: () =>
           import('../about/about.module').then((m) => m.AboutModule),
@@ -69,7 +74,6 @@ const routes: Routes = [
       },
       {
         path: 'not-found',
-
         component: NotFoundComponent,
         data: { message: 'Page Not Found!' },
       },

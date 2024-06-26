@@ -7,7 +7,7 @@
       style="min-height: 200px"
     >
       <img [src]="userDoc.photoURL" alt="" class="user-avatar" />
-      <div class="d-flex flex-column align-items-start user-info">
+      <div class="d-flex flex-column align-items-center user-info">
         <h3>
           {{ userDoc.displayName }}
           <span (click)="navigateToSettings()" *ngIf="showSettingsButton">
