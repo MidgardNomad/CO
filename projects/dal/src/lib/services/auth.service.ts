@@ -1,10 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { EmailAuthProvider } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { BehaviorSubject, throwError } from 'rxjs';
-import { CrudService } from './crud.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,36 +13,17 @@ export class AuthService {
   user = this.auth.user;
   activeUser = this.auth.currentUser;
 
-  constructor(
-    private auth: AngularFireAuth,
-    private crudService: CrudService,
-    private router: Router
-  ) {}
+  constructor(private auth: AngularFireAuth) {}
 
   //Class Getters
+  async getUserID(): Promise<string> {
+    const userID = (await this.activeUser).uid;
+    return userID;
+  }
 
   //Class Setters
 
   //Class Utilities
-  private handleErrors(err: firebase.default.FirebaseError) {
-    let errMessage = 'Something Went Wrong! Please, Try Again.';
-    if (!err || !err.code) {
-      return throwError(() => new Error(errMessage));
-    }
-    switch (err.code) {
-      case 'auth/invalid-login-credentials':
-        errMessage = 'Invalid Credentials';
-        break;
-      case 'auth/network-request-failed':
-        errMessage =
-          'Something Went Wrong! Please, Check Your Internet Connection';
-        break;
-      default:
-        errMessage = 'Invalid Email';
-        break;
-    }
-    return throwError(() => new Error(errMessage));
-  }
 
   //Class Methods
   async signIn(

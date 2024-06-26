@@ -1,16 +1,30 @@
 import { map, tap } from 'rxjs';
 import { CrudService } from './crud.service';
 import { User } from '../models/user/user';
+import { Course } from '../models/content/course';
 import { Injectable } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(private crudService: CrudService) {}
+  private _usersCollection = 'users';
+  private _coursesCollection = 'courses';
+  userID: string;
+  constructor(
+    private crudService: CrudService,
+    private authService: AuthService
+  ) {
+    this.authService.user.subscribe((user) => {
+      setTimeout(() => {
+        this.userID = user.uid;
+      }, 3000);
+    });
+  }
 
   getAllUsers() {
-    return this.crudService.getData('users').pipe(
+    return this.crudService.getData(this._usersCollection).pipe(
       map((docSnaps) => {
         return docSnaps.map((docSnap) => {
           return {
@@ -23,7 +37,7 @@ export class UsersService {
   }
 
   getSingleUser(userID: string) {
-    return this.crudService.getSignleDoc('users', userID).pipe(
+    return this.crudService.getSignleDoc(this._usersCollection, userID).pipe(
       tap((userDocSnap) => {
         return <User>{
           id: userDocSnap.id,
@@ -33,5 +47,34 @@ export class UsersService {
     );
   }
   // get data coursrs
-  getUserCourses() {}
+  getUserCourses(userID: string) {
+    return this.crudService
+      .getSubCollectionData(
+        `/${this._usersCollection}/${userID}/${this._coursesCollection}`
+      )
+      .pipe(
+        map((courseDocSanps) => {
+          return courseDocSanps.docs.map((courseDocSnap) => {
+            return <Course>{
+              id: courseDocSnap.id,
+              ...(courseDocSnap.data() as object),
+            };
+          });
+        })
+      );
+  }
+
+  //Enroll User in Course
+  enrollInCourse(userID: string, courseID: string, data: Course) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .setSingleDoc(
+          `/${this._usersCollection}/${userID}/${this._coursesCollection}`,
+          courseID,
+          data
+        )
+        .then((response) => resolve(response))
+        .catch((error) => reject(error));
+    });
+  }
 }
