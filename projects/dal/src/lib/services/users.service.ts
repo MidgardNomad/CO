@@ -16,11 +16,7 @@ export class UsersService {
     private crudService: CrudService,
     private authService: AuthService
   ) {
-    this.authService.user.subscribe((user) => {
-      setTimeout(() => {
-        this.userID = user.uid;
-      }, 3000);
-    });
+    this.authService.user.subscribe((user) => (this.userID = user.uid));
   }
 
   getAllUsers() {
@@ -69,7 +65,7 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.crudService
         .setSingleDoc(
-          `/${this._usersCollection}/${userID}/${this._coursesCollection}`,
+          `${this._usersCollection}/${userID}/${this._coursesCollection}`,
           courseID,
           data
         )

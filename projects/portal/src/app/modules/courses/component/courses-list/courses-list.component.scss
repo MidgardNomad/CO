@@ -46,13 +46,17 @@ h1 {
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      i {
-        font-size: 40px;
-        color: #a9d9f7;
+      img {
+        height: 50px;
+        width: 50px;
       }
     }
 
+    .btn-enroll {
+      color: white;
+      padding: 5px 10px;
+      background-color: #2ea2eb;
+    }
     h3 {
       line-height: 28px;
       letter-spacing: -0.8px;

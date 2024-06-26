@@ -30,20 +30,16 @@ export class CoursesService {
     );
   }
 
-// get Courses By ID
-
-  // getCoursesByID(courseID:string): Observable<Course[]> {
-  //   return this.crudSerive.getData(`/courses/${courseID}`).pipe(
-  //     map((docSnapShots) => {
-  //       return docSnapShots.map((docSnap) => {
-  //         return <Course>{
-  //           id: docSnap.payload.doc.id,
-  //           ...(docSnap.payload.doc.data() as object),
-  //         };
-  //       });
-  //     })
-  //   );
-  // }
+  getCourse(courseID: string): Observable<Course> {
+    return this.crudSerive.getSignleDoc(this._coursesCollection, courseID).pipe(
+      map((courseDocSnap) => {
+        return <Course>{
+          id: courseDocSnap.id,
+          ...(courseDocSnap.data() as object),
+        };
+      })
+    );
+  }
 
   async createNewCourse(courseTitle: string, courseDescription: string) {
     return new Promise((resolve, reject) => {

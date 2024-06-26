@@ -6,17 +6,19 @@
     <!-- The Cards -->
     <div class="row cardes-list">
       <!-- Card__1 -->
-      <div class="card-one" *ngFor="let cours of courseDB">
+      <div class="card-one" *ngFor="let course of courseDB">
         <div class="image">
           <img
             src="../../../../../assets/images/courses-list/icon-green.svg"
             alt="icon"
           />
-          <i class="fa-solid fa-circle-arrow-right"></i>
+          <button class="btn btn-enroll" (click)="enroll(course)">
+            Enroll
+          </button>
         </div>
-        <h3>{{cours.title}}</h3>
+        <h3>{{ course.title }}</h3>
         <!-- <span>in progress</span> -->
-        <p> {{cours.description}} </p>
+        <p>{{ course.description }}</p>
         <div class="footer">
           <div class="witch">
             <img
@@ -34,7 +36,6 @@
           </div>
         </div>
       </div>
-
-
+    </div>
   </div>
 </div>
