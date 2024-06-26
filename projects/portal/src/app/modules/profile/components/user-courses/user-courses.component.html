@@ -4,6 +4,23 @@
       <p>Courses Progress</p>
       <span (click)="navigateToCourses()">See all</span>
     </div>
+    <div class="courses">
+      <div *ngFor="let course of userCourses | async">
+        <div
+          class="d-flex align-items-center course-card"
+          (click)="navigateToLearn(course)"
+        >
+          <img src="../../../../../assets/images/courseIcon.svg" alt="" />
+          <div class="d-flex flex-column justify-content-around course">
+            <p class="course-title">{{ course.title }}</p>
+            <span class="course-status">In Progress</span>
+          </div>
+          <div class="icon">
+            <i class="fa-regular fa-circle-play"></i>
+          </div>
+        </div>
+      </div>
+    </div>
     <button class="browse-button" type="button" (click)="navigateToCourses()">
       Browse Courses
     </button>

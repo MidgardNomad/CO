@@ -1,5 +1,6 @@
 .user-courses {
   margin-top: 25px;
+  width: 50%;
   &-card {
     width: 100%;
     background-color: #e7e8e9;
@@ -24,6 +25,40 @@
       color: white;
       padding: 16px 25px;
       border-radius: 12px;
+    }
+  }
+  .courses {
+    margin: 10px 0px 15px 0px;
+    .course-card {
+      margin: 10px 0px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(204, 219, 248);
+      }
+      .course {
+        margin-left: 20px;
+        padding: 0px;
+        &-title {
+          margin: 0px !important;
+          font-size: 20px;
+          font-weight: 600;
+          color: #2ea2eb;
+        }
+        &-status {
+          color: #9ba2a6;
+          font-weight: 400;
+        }
+      }
+      .icon {
+        margin-left: auto;
+        i {
+          font-size: 35px;
+          color: #52b2ee;
+        }
+      }
     }
   }
 }
