@@ -1,0 +1,11 @@
+<div *ngFor="let lecture of lectures | async">
+  <div
+    class="container-fluid d-flex align-items-baseline lecture"
+    (click)="navigateToLecture(lecture.id)"
+  >
+    <div class="d-flex flex-column">
+      <p class="lecture-text">Lesson</p>
+      <p class="lecture-title">{{ lecture.title }}</p>
+    </div>
+  </div>
+</div>

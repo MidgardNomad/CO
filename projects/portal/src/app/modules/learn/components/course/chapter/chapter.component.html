@@ -1,0 +1,32 @@
+<div *ngFor="let chapter of chapters; index as i">
+  <div class="accordion" [id]="'chapter-accordion' + i">
+    <div class="accordion-item">
+      <h2 class="accordion-header" [id]="'chapter-accordion-heading' + i">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#chapter' + i"
+          aria-expanded="true"
+          [attr.aria-controls]="'chapter' + i"
+        >
+          <div class="container-fluid d-flex align-items-center button-info">
+            <h3>{{ chapter.title }}</h3>
+            <i class="fa-solid fa-lock" style="margin-left: auto"></i>
+          </div>
+        </button>
+      </h2>
+      <div
+        [id]="'chapter' + i"
+        class="accordion-collapse collapse show"
+        [attr.aria-labelledby]="'chapter-accordion-heading' + i"
+        [attr.data-bs-parent]="'#chapter-accordion' + i"
+      >
+        <div class="accordion-body">
+          <p>{{ chapter.description }}</p>
+          <app-chapter-lectures [chapterID]="chapter.id"></app-chapter-lectures>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

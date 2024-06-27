@@ -1,0 +1,18 @@
+.course {
+  margin-top: 50px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  .header {
+    margin: 10px 0px 15px 10px;
+    h1 {
+      color: #52b2ee;
+      font-weight: 600;
+    }
+    p {
+      margin-left: 14px;
+      color: #9ca2a6;
+      font-weight: 300;
+    }
+  }
+}

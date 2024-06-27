@@ -1,0 +1,28 @@
+.accordion {
+  margin: 20px 0px 15px 10px;
+  .accordion-item {
+    .accordion-header {
+      .accordion-button {
+        background-color: #fbfdff;
+        .button-info {
+          h3 {
+            color: #35434c;
+          }
+          i {
+            color: #545f71;
+          }
+        }
+      }
+    }
+    .accordion-collapse {
+      .accordion-body {
+        background-color: #e7e8e9;
+        p {
+          margin-left: 14px;
+          // color: #9ca2a6;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}

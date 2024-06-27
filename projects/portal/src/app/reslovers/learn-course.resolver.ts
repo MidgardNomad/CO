@@ -7,7 +7,7 @@ import {
 import { Course, CoursesService } from 'DAL';
 import { Observable } from 'rxjs';
 
-const LearnCourseResolver: ResolveFn<Observable<Course>> = (
+export const LearnCourseResolver: ResolveFn<Observable<Course>> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {

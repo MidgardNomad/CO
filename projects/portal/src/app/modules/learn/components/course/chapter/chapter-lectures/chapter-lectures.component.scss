@@ -1,0 +1,18 @@
+.lecture {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin: 15px 0px;
+  cursor: pointer;
+  width: 100%;
+  text-decoration: none;
+  .lecture-text {
+    margin: 10px 0px 10px 0px !important;
+    color: #52b2ee;
+    font-weight: 300;
+  }
+  .lecture-title {
+    margin: 0px 0px 10px 0px !important;
+    color: #37434a;
+  }
+}

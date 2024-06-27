@@ -1,1 +1,13 @@
-<p>course works!</p>
+<section
+  class="container-md d-flex justify-content-center course"
+  style="position: relative"
+>
+  <div class="container-fluid d-flex flex-column">
+    <div class="container-md align-self-start header">
+      <h1>{{ course.title }}</h1>
+      <p>{{ course.description }}</p>
+    </div>
+
+    <app-chapter [chapters]="chapters"></app-chapter>
+  </div>
+</section>
