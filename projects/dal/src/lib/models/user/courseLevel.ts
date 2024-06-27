@@ -1,14 +1,14 @@
 export interface courseLevel {
     courseId: string,
-    lectureLevel: string[] ,
-    chapterLevel: string[],
+    lectureLevel: finished[] ,
+    chapterLevel: finished[],
 }
 
 
-// export interface lectureLevel {
-// lectureId: string,
-// isDone: boolean,
-// }
+export interface finished {
+id: string,
+date: Date,
+}
 
 
 // export interface chapterLevel {
