@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService, Lecture } from 'DAL';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +15,8 @@ export class ChapterLecturesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private uiComponentsService: UIComponentsService
   ) {}
 
   ngOnInit(): void {
