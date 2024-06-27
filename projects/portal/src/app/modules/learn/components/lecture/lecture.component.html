@@ -1,3 +1,47 @@
-<section class="container-fluid d-flex justify-content-center lecture-body">
-  <div class="container-md lecture"></div>
+<section
+  class="container-fluid d-flex flex-column align-items-center lecture-body"
+>
+  <div
+    class="container d-flex justify-content-between align-items-baseline slide-nav-header"
+  >
+    <div
+      class="d-flex flex-column justify-content-center align-items-center slide-nav"
+      (click)="onToPreviousSlide()"
+    >
+      <div class="icon">
+        <i class="fa-solid fa-angle-left"></i>
+      </div>
+    </div>
+    <div class="progress-wrapper flex-grow">
+      <div
+        class="slide-indicator"
+        style="top: -5px"
+        [ngStyle]="{ left: indicator }"
+      >
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
+      <div
+        class="progress"
+        role="progressbar"
+        aria-label="Basic example"
+        [attr.aria-valuenow]="progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        <div class="progress-bar" [ngStyle]="{ width: progress + '%' }"></div>
+      </div>
+    </div>
+    <div
+      class="d-flex flex-column justify-content-center align-items-center slide-nav"
+      (click)="onToNextSlide()"
+    >
+      <div class="icon">
+        <i class="fa-solid fa-angle-right"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-md d-flex justify-content-between lecture">
+    <div class="flex-grow"></div>
+  </div>
 </section>

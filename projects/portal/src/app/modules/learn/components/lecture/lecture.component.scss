@@ -1,9 +1,52 @@
 .lecture-body {
-  background-color: red;
   height: 100vh;
+  padding: 25px 50px;
+  align-content: center;
+  .slide-nav-header {
+    padding: 0px;
+    .progress-wrapper {
+      width: 80%;
+      margin: 0px;
+      padding: 0px;
+      position: relative;
+      .slide-indicator {
+        position: absolute;
+        transition: all 0.6s;
+        i {
+          color: #52b2ee;
+          font-size: 20px;
+        }
+      }
+      .progress {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        .progress-bar {
+          background-color: #52b2ee;
+        }
+      }
+    }
+    .slide-nav {
+      // margin: 15px;
+      .icon {
+        padding: 10px 17px;
+        border-radius: 50%;
+        &:hover {
+          background-color: rgba(201, 198, 198, 0.158);
+        }
+        i {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
   .lecture {
-    margin-top: 100px;
-    height: 100px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    height: 100%;
     background-color: white;
+    border-radius: 12px;
   }
 }

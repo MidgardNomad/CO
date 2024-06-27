@@ -4,6 +4,7 @@ import { LearnComponent } from './learn.component';
 import { CourseComponent } from './components/course/course.component';
 import { LectureComponent } from './components/lecture/lecture.component';
 import { LearnCourseResolver } from '../../reslovers/learn-course.resolver';
+import { LearnSlidesResolver } from '../../reslovers/learn-lecture.resolver';
 
 const routes: Routes = [
   {
@@ -25,6 +26,9 @@ const routes: Routes = [
       },
       {
         path: 'course/:courseID/chapter/:chapterID/lecture/:lectureID',
+        resolve: {
+          slides: LearnSlidesResolver,
+        },
         component: LectureComponent,
       },
     ],
