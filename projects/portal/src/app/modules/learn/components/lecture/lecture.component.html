@@ -1,17 +1,18 @@
 <section
   class="container-fluid d-flex flex-column align-items-center lecture-body"
 >
-  <div
+  <section
     class="container d-flex justify-content-between align-items-baseline slide-nav-header"
   >
-    <div
+    <button
       class="d-flex flex-column justify-content-center align-items-center slide-nav"
       (click)="onToPreviousSlide()"
+      [disabled]="disableToPreviousSlide"
     >
       <div class="icon">
         <i class="fa-solid fa-angle-left"></i>
       </div>
-    </div>
+    </button>
     <div class="progress-wrapper flex-grow">
       <div
         class="slide-indicator"
@@ -31,17 +32,23 @@
         <div class="progress-bar" [ngStyle]="{ width: progress + '%' }"></div>
       </div>
     </div>
-    <div
+    <button
       class="d-flex flex-column justify-content-center align-items-center slide-nav"
       (click)="onToNextSlide()"
+      [disabled]="disableToNextSlide"
     >
       <div class="icon">
         <i class="fa-solid fa-angle-right"></i>
       </div>
-    </div>
-  </div>
+    </button>
+  </section>
 
-  <div class="container-md d-flex justify-content-between lecture">
-    <div class="flex-grow"></div>
-  </div>
+  <section
+    class="container-md d-flex justify-content-between lecture"
+  ></section>
+  <section
+    class="container-fluid d-flex align-items-center justify-content-center lecture-controls"
+  >
+    <button class="btn btn-primary">Click Me</button>
+  </section>
 </section>
