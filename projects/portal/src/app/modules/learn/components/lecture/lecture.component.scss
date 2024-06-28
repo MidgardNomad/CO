@@ -29,7 +29,10 @@
       }
     }
     .slide-nav {
-      // margin: 15px;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      margin: 0;
       .icon {
         padding: 10px 17px;
         border-radius: 50%;
@@ -48,5 +51,14 @@
     height: 100%;
     background-color: white;
     border-radius: 12px;
+  }
+
+  .lecture-controls {
+    height: 100px;
+    .btn-primary {
+      background-color: #23a6f0;
+      padding: 12px 25px;
+      border: none;
+    }
   }
 }
