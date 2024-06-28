@@ -12,6 +12,8 @@ export class LectureComponent implements OnInit, OnDestroy {
   progress = 0;
   indicator = `${this.progress}%`;
   activeSlide: Ss;
+  disableToNextSlide = false;
+  disableToPreviousSlide = true;
   slides: Ss[] = [
     { type: SsType.Text, text: 'text', seqNo: 0 },
     {
@@ -45,7 +47,14 @@ export class LectureComponent implements OnInit, OnDestroy {
     this.activeSlide = this.slides[0];
     this.uiCompService.hideHeaderAndFooter.next(false);
     this.route.queryParams.subscribe((slideIndex) => {
-      console.log(this.slides[+slideIndex['s']]);
+      if (+slideIndex['s'] < 0 || +slideIndex['s'] > this.slides.length - 1) {
+        const queryParams = { s: 0 };
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams,
+          queryParamsHandling: 'merge',
+        });
+      } else console.log(this.slides[+slideIndex['s']]);
     });
   }
 
