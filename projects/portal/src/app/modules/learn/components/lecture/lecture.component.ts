@@ -12,30 +12,9 @@ export class LectureComponent implements OnInit, OnDestroy {
   progress = 0;
   indicator = `${this.progress}%`;
   activeSlide: Ss;
-  disableToNextSlide = false;
-  disableToPreviousSlide = true;
-  slides: Ss[] = [
-    { type: SsType.Text, text: 'text', seqNo: 0 },
-    {
-      type: SsType.TextImage,
-      seqNo: 1,
-      text: 'test image',
-      image: '../../../../../assets/images/HTMLCSSJS.png',
-    },
-    {
-      type: SsType.MCQ,
-      seqNo: 2,
-      question: 'What Does HTML Stand For?',
-      mcqAnswer: 0,
-      options: ['HyperText Markup Language', 'hybrid Track Madeup Language'],
-    },
-    {
-      type: SsType.QFill,
-      seqNo: 3,
-      question: '<p>Hello, World....',
-      qAnswer: '</p>',
-    },
-  ];
+  disableToNextSlide: boolean;
+  disableToPreviousSlide: boolean;
+  slides: Ss[] = [];
 
   constructor(
     private uiCompService: UIComponentsService,
@@ -43,18 +22,53 @@ export class LectureComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
+  //Class utilities
+  //==================================
+  private _navigateToFirstSlide() {
+    const queryParams = { s: 0 };
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  private navButtonDisplay(currentSlide: number, numberOfSlides: number) {
+    if (this.slides.length === 1 || this.slides.length === 0) {
+      this.disableToNextSlide = true;
+      this.disableToPreviousSlide = true;
+    } else if (currentSlide === numberOfSlides) {
+      this.disableToNextSlide = true;
+      this.disableToPreviousSlide = false;
+    } else if (currentSlide > 0 && currentSlide < numberOfSlides) {
+      this.disableToNextSlide = false;
+      this.disableToPreviousSlide = false;
+    } else if (currentSlide === 0) {
+      this.disableToNextSlide = false;
+      this.disableToPreviousSlide = true;
+    }
+  }
+  //==================================
+
   ngOnInit(): void {
+    this.disableToNextSlide = false;
+    this.disableToPreviousSlide = true;
     this.activeSlide = this.slides[0];
     this.uiCompService.hideHeaderAndFooter.next(false);
+    if (+this.route.snapshot.queryParamMap.get('s') !== 0) {
+      this._navigateToFirstSlide();
+    }
+    this.slides = this.route.snapshot.data['slides'];
     this.route.queryParams.subscribe((slideIndex) => {
       if (+slideIndex['s'] < 0 || +slideIndex['s'] > this.slides.length - 1) {
-        const queryParams = { s: 0 };
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams,
-          queryParamsHandling: 'merge',
-        });
-      } else console.log(this.slides[+slideIndex['s']]);
+        this._navigateToFirstSlide();
+      } else {
+        this.activeSlide = this.slides[+slideIndex['s']];
+        this.navButtonDisplay(
+          this.slides.indexOf(this.activeSlide),
+          this.slides.length - 1
+        );
+      }
     });
   }
 
