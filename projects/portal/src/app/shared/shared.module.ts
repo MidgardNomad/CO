@@ -18,14 +18,19 @@ import { RouterModule } from '@angular/router';
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    RouterModule,
+  ],
   exports: [
     HeaderComponent,
     FooterComponent,
     NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
-    RouterModule
   ],
 })
 export class SharedModule {}

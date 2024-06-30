@@ -51,11 +51,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getAllCourses() {
-    this.coursesService.getAllCourses().subscribe(res => {
-      console.log(res)
-      this.coursesList = res
-    }
-    )
+    this.coursesService.getAllCourses().subscribe((res) => {
+      console.log(res);
+      this.coursesList = res;
+    });
   }
 
   //Navigation
@@ -72,10 +71,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['profile', this.userID]);
   }
 
-  navigateToBlogs() {
-    this.router.navigate(['/blogs']);
-  }
-
   //========================================
 
   ngOnDestroy(): void {
@@ -85,6 +80,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateCourses(coursesID: string) {
-    this.router.navigateByUrl(`/learn/course/${coursesID}`)
+    this.router.navigateByUrl(`/learn/course/${coursesID}`);
   }
 }
