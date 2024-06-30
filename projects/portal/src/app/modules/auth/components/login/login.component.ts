@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'DAL';
 import { errorHandler } from '../../../../shared/functions/errorHandler';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private renderer: Renderer
+    private renderer: Renderer,
+    private uiService: UIComponentsService
   ) {}
 
   ngOnInit(): void {}
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit {
       );
       this.router.navigate(['profile', user.user.uid]);
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.uiService.userInfoPresist.next(true);
     } catch (error) {
       this.isLoading = false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);

@@ -11,7 +11,6 @@ export class StreakComponent implements OnInit {
   @Input() streakDays: Date[];
   @Input() currentStreak: number;
   @Input() maxStreak: number;
-  td = new Date();
 
   //Utilities:
   //===================

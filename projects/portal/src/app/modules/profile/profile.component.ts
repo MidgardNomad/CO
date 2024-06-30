@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { User } from 'projects/dal/src/lib/models/user/user';
-import { AuthService } from 'DAL';
+import { AuthService, User } from 'DAL';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -30,7 +29,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     //Get user data from resolver!
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
-      console.log(this.userDoc.photoURL);
+      console.log(this.userDoc);
     });
   }
 
