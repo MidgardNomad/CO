@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'DAL';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
 import { showSnackbar } from 'projects/portal/src/app/shared/functions/showsnackbar';
 
@@ -11,7 +12,11 @@ import { showSnackbar } from 'projects/portal/src/app/shared/functions/showsnack
 })
 export class LogoutComponent {
   private showSnackBar = showSnackbar();
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private uiService: UIComponentsService
+  ) {}
   onNavigateHome() {
     this.router.navigate(['/']);
   }
@@ -20,6 +25,8 @@ export class LogoutComponent {
     try {
       await this.authService.logout();
       this.router.navigate(['/']);
+      this.uiService.userInfoPresist.next(false);
+      this.uiService.userLogout.next(true);
     } catch (error) {
       this.showSnackBar(errorHandler(error), 'fail-snackbar');
     }

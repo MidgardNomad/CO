@@ -73,6 +73,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'subscribe',
+        loadChildren: () =>
+          import('../subscription/subscription.module').then(
+            (m) => m.SubscriptionModule
+          ),
+      },
+      {
         path: 'not-found',
         component: NotFoundComponent,
         data: { message: 'Page Not Found!' },

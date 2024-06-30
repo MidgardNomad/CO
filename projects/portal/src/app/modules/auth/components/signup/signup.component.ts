@@ -11,6 +11,7 @@ import { AuthService, CrudService } from 'DAL';
 import { User } from 'DAL';
 import { errorHandler } from '../../../../shared/functions/errorHandler';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 
 @Component({
   selector: 'app-signup',
@@ -29,7 +30,8 @@ export class SignupComponent implements OnInit {
     private authService: AuthService,
     private crudService: CrudService,
     private renderer: Renderer,
-    private router: Router
+    private router: Router,
+    private uiService: UIComponentsService
   ) {}
 
   private trimUserInput(input: string) {
@@ -72,6 +74,7 @@ export class SignupComponent implements OnInit {
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.isLoading = false;
       this.router.navigate(['profile', newUser.user.uid]);
+      this.uiService.userInfoPresist.next(true);
     } catch (error) {
       this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);

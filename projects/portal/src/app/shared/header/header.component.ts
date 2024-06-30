@@ -1,24 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'DAL';
 import { CoursesService } from 'DAL';
 import { Course } from 'projects/dal/src/public-api';
+import { UIComponentsService } from '../../services/ui-components.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   userDisplayName: string;
   userID: string;
   photoURL: string;
   coursesList: Course[] = [];
 
-  constructor(private router: Router, private authService: AuthService, private coursesService: CoursesService) { }
+  userInfoCard: boolean;
+
+  //=====Service Subscriptions======
+  uiServicePresistSub: Subscription;
+  uiServiceLogoutSub: Subscription;
+  authServiceSub: Subscription;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private uiService: UIComponentsService,
+    private coursesService: CoursesService
+  ) {}
 
   ngOnInit(): void {
-    this.authService.user.subscribe(user => {
+    this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
+      (presistUserInfoCard) => (this.userInfoCard = presistUserInfoCard)
+    );
+
+    this.uiService.userLogout.subscribe((userLogout) => {
+      if (userLogout) {
+        this.userDisplayName = '';
+      }
+    });
+
+    this.authServiceSub = this.authService.user.subscribe((user) => {
       this.userDisplayName = user.displayName;
       this.userID = user.uid;
       this.photoURL = user.photoURL;
@@ -34,6 +58,8 @@ export class HeaderComponent implements OnInit {
     )
   }
 
+  //Navigation
+  //===============================
   navigateToLogin() {
     this.router.navigate(['/auth/login']);
   }
@@ -43,11 +69,19 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToProfile() {
-    this.router.navigate(['profile', this.userID])
+    this.router.navigate(['profile', this.userID]);
   }
 
   navigateToBlogs() {
-    this.router.navigate(['/blogs'])
+    this.router.navigate(['/blogs']);
+  }
+
+  //========================================
+
+  ngOnDestroy(): void {
+    this.authServiceSub.unsubscribe();
+    this.uiServicePresistSub.unsubscribe();
+    this.uiServiceLogoutSub.unsubscribe();
   }
 
   navigateCourses(coursesID: string) {
