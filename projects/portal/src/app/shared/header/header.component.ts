@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userID: string;
   photoURL: string;
   userInfoCard: boolean;
-  userCardOpacity = '0';
 
   //=====Service Subscriptions======
   uiServicePresistSub: Subscription;
@@ -43,7 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userID = user.uid;
       this.photoURL = user.photoURL;
     });
-    this.userCardOpacity = '1';
   }
 
   navigateToLogin() {

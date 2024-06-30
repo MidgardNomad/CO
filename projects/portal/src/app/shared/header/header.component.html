@@ -74,8 +74,7 @@
 
           <div
             class="d-flex align-items-center justify-content-center ms-4"
-            *ngIf="!userDisplayName || !userInfoCard"
-            [ngStyle]="{ opacity: userCardOpacity }"
+            *ngIf="!userDisplayName && !userInfoCard"
           >
             <button class="btn btn-log" (click)="navigateToLogin()">
               Log in
@@ -90,7 +89,6 @@
             style="border: none"
             (click)="navigateToProfile()"
             *ngIf="userDisplayName || userInfoCard"
-            [ngStyle]="{ opacity: userCardOpacity }"
           >
             <img class="user-img" src="{{ photoURL }}" alt="" />
             <p class="p-0 m-0 user-name mb-3">{{ userDisplayName }}</p>
