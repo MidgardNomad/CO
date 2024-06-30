@@ -1,6 +1,7 @@
 .lecture-body {
-  height: 100vh;
-  padding: 25px 50px;
+  background-color: white;
+  max-height: 100vh;
+  padding: 25px 25px;
   align-content: center;
   .slide-nav-header {
     padding: 0px;
@@ -46,18 +47,16 @@
     }
   }
 
-  .lecture {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    height: 100%;
-    background-color: white;
-    border-radius: 12px;
-    &-slide {
-      padding: 30px;
-    }
+  .slide {
+    height: calc(100vh - 100px);
+    // padding: 30px;
   }
 
   .lecture-controls {
     height: 100px;
+    position: fixed;
+    bottom: 0px;
+    // margin-top: 15px;
     .btn-primary {
       background-color: #23a6f0;
       padding: 12px 25px;
