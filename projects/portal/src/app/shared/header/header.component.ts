@@ -44,6 +44,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  //Navigation
+  //===============================
   navigateToLogin() {
     this.router.navigate(['/auth/login']);
   }
@@ -59,6 +61,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateToBlogs() {
     this.router.navigate(['/blogs']);
   }
+
+  //========================================
 
   ngOnDestroy(): void {
     this.authServiceSub.unsubscribe();
