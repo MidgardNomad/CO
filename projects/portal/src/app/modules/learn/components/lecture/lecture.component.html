@@ -43,7 +43,10 @@
     </button>
   </section>
 
-  <div class="slide" [ngSwitch]="activeSlide.type">
+  <div
+    class="d-flex flex-column align-items-center slide"
+    [ngSwitch]="activeSlide.type"
+  >
     <app-text-slide
       [slide]="activeSlide"
       *ngSwitchCase="'text'"

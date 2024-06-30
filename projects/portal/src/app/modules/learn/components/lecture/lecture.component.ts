@@ -55,9 +55,9 @@ export class LectureComponent implements OnInit, OnDestroy {
     this.disableToPreviousSlide = true;
     this.activeSlide = this.slides[0];
     this.uiCompService.hideHeaderAndFooter.next(false);
-    // if (+this.route.snapshot.queryParamMap.get('s') !== 0) {
-    //   this._navigateToFirstSlide();
-    // }
+    if (+this.route.snapshot.queryParamMap.get('s') !== 0) {
+      this._navigateToFirstSlide();
+    }
     this.slides = this.route.snapshot.data['slides'];
     this.route.queryParams.subscribe((slideIndex) => {
       if (+slideIndex['s'] < 0 || +slideIndex['s'] > this.slides.length - 1) {

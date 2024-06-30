@@ -4,7 +4,7 @@
   }
   .image {
     width: 70%;
-    height: 450px;
+    max-height: 450px;
     img {
       object-fit: contain;
       width: 100%;
