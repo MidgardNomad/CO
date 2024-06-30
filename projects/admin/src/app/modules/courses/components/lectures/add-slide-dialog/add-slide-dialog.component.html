@@ -9,30 +9,15 @@
     </mat-select>
   </mat-form-field>
   <form #textForm="ngForm" (ngSubmit)="onSubmit(textForm, slideType.value)">
-    <mat-form-field>
-      <mat-label
-        for="text"
-        *ngIf="slideType.value === 'text' || slideType.value === 'text-image'"
-      >
-        Text
-      </mat-label>
-      <mat-label
-        for="text"
-        *ngIf="slideType.value === 'q-fill' || slideType.value === 'mcq'"
-        >Question
-      </mat-label>
-      <textarea
-        id="text"
-        #textField
-        matInput
-        type="text"
-        required
-        maxlength="240"
-        ngModel
-        name="text"
-      ></textarea>
-      <mat-hint align="end"> {{ textField.value.length }} / 240 </mat-hint>
-    </mat-form-field>
+
+    <div class="mb-3">
+      <editor apiKey="{{tinyEditorApiKey}}" name="text" required ngModel [init]="{
+        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        }">
+      </editor>
+    </div>
+
     <mat-form-field *ngIf="slideType.value === 'q-fill'">
       <mat-label>Answer</mat-label>
       <input

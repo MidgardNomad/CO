@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  tinyApiKey:'q041l2n8hnprcdmi5qb3j4gzzxk5bz3af0dyxfl65z5fuzic',
   userToken:'T'
 
 };

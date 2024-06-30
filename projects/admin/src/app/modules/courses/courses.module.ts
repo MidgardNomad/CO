@@ -24,6 +24,7 @@ import { McqSlideComponent } from './components/lectures/mcq-slide/mcq-slide.com
 import { FillSlideComponent } from './components/lectures/fill-slide/fill-slide.component';
 import { LectureDialogComponent } from './components/lectures/lecture-dialog/lecture-dialog.component';
 import { EditSlideDialogComponent } from './components/lectures/edit-slide-dialog/edit-slide-dialog.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { EditSlideDialogComponent } from './components/lectures/edit-slide-dialo
     MatExpansionModule,
     MatSelectModule,
     NgxFileDropModule,
+    EditorModule
   ],
   exports: [
     CourseCardComponent

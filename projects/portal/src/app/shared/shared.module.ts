@@ -8,6 +8,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { PasswordStrengthComponent } from './password-strength-meter/password-strength-meter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MaterialModule } from './material/material.module';
     NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
+    RouterModule
   ],
 })
 export class SharedModule {}
