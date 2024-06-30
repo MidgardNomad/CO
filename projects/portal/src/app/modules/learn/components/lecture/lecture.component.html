@@ -43,10 +43,15 @@
     </button>
   </section>
 
-  <section class="container-md d-flex justify-content-between lecture">
+  <section class="container-md d-flex justify-content-center lecture">
     <div class="lecture-slide" [ngSwitch]="activeSlide.type">
-      <app-text-slide *ngSwitchCase="'text'"></app-text-slide>
-      <app-text-image-slide *ngSwitchCase="'text-image'"></app-text-image-slide>
+      <app-text-slide
+        [slide]="activeSlide"
+        *ngSwitchCase="'text'"
+      ></app-text-slide>
+      <app-text-image-slide *ngSwitchCase="'text-image'">
+        {{ activeSlide.text }}
+      </app-text-image-slide>
       <app-mcq-slide *ngSwitchCase="'mcq'"></app-mcq-slide>
       <app-fill-slide *ngSwitchCase="'q-fill'"></app-fill-slide>
     </div>
