@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getAllCourses() {
     this.coursesService.getAllCourses().subscribe((res) => {
-      console.log(res);
       this.coursesList = res;
     });
   }
