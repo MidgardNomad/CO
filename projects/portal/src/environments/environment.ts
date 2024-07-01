@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api:'https://ep.careerofficer.org/',
+  stripeAPI:'pk_test_51Mr8zqEoIQFHfSQMKneIeSm21UQ3KEQgAoWWU2kpqshEM8XP0EB1BA7HiwAEJ9U2IrHn7hzNcRFolDu6sittM5Sg00p5wOxcHG'
 };
 
 /*

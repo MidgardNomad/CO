@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SubscribeComponent } from './subscribe.component';
+import { SubscriptionsListComponent } from './components/subscriptions-list/subscriptions-list.component';
+import { SubscriptionDetailsComponent } from './components/subscription-details/subscription-details.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: SubscribeComponent,
+    redirectTo:'pay',
+    pathMatch:'full',
   },
+  {
+    path:'list',
+    component:SubscriptionsListComponent
+  },
+  {
+    path:'pay',
+    component:SubscriptionDetailsComponent
+  }
 ];
 
 @NgModule({
