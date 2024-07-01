@@ -54,13 +54,10 @@
     <app-text-image-slide *ngSwitchCase="'text-image'" [slide]="activeSlide">
       {{ activeSlide.text }}
     </app-text-image-slide>
-    <app-mcq-slide *ngSwitchCase="'mcq'"></app-mcq-slide>
-    <app-fill-slide *ngSwitchCase="'q-fill'"></app-fill-slide>
+    <app-mcq-slide *ngSwitchCase="'mcq'" [slide]="activeSlide"></app-mcq-slide>
+    <app-fill-slide
+      *ngSwitchCase="'q-fill'"
+      [slide]="activeSlide"
+    ></app-fill-slide>
   </div>
-
-  <section
-    class="container-fluid d-flex align-items-center justify-content-center lecture-controls"
-  >
-    <button class="btn btn-primary">Click Me</button>
-  </section>
 </section>
