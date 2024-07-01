@@ -26,5 +26,6 @@ export { Ss, SsType } from './lib/models/content/ss';
 //User
 export { User } from './lib/models/user/user';
 export { courseLevel } from './lib/models/user/courseLevel';
+export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
 //Mentor
 export { Mentor } from './lib/models/mentor/mentor';

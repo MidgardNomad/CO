@@ -1,3 +1,4 @@
+import { ConnectedAccounts } from './connectedAccounts';
 import { courseLevel } from './courseLevel';
 
 export interface User {
@@ -17,5 +18,8 @@ export interface User {
   currentStreak: number;
   maxStreak: number;
   courseList: courseLevel[];
-  connectedAccounts: string[];
+  connectedAccounts: ConnectedAccounts[];
+  paid: boolean;
+  sessionExpirationDate: Date;
+  availableSessions: number;
 }
