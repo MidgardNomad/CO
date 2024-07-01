@@ -15,8 +15,14 @@ export class UsersService {
   constructor(
     private crudService: CrudService,
     private authService: AuthService
-  ) {
-    this.authService.user.subscribe((user) => (this.userID = user.uid));
+  ) {}
+
+  getUserID() {
+    return this.authService.user.pipe(
+      map((userData) => {
+        return userData.uid;
+      })
+    );
   }
 
   getAllUsers() {
@@ -34,7 +40,7 @@ export class UsersService {
 
   getSingleUser(userID: string) {
     return this.crudService.getSignleDoc(this._usersCollection, userID).pipe(
-      tap((userDocSnap) => {
+      map((userDocSnap) => {
         return <User>{
           id: userDocSnap.id,
           ...(userDocSnap.data() as object),
