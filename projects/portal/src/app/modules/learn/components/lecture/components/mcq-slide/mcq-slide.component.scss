@@ -1,0 +1,42 @@
+.answer-form {
+  height: calc(100vh - 150px);
+
+  &-content {
+    height: 100%;
+    .option-card {
+      background-color: #f7f7f7;
+      margin: 10px;
+
+      border-radius: 12px;
+      font-size: 1em;
+      label {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        border-radius: 12px;
+        gap: 10px;
+      }
+    }
+    .selected-option {
+      box-shadow: #005dc83d 0px 7px 29px 0px;
+      border: 1px solid #005cc8;
+    }
+    .btn-continue {
+      padding: 10px;
+      width: 150px;
+      color: white;
+      margin-top: auto;
+      margin-bottom: 50px;
+      position: fixed;
+      bottom: 0px;
+      background-color: #52b2ee;
+    }
+    .btn-continue-correct {
+      background-color: #57ee52;
+    }
+    .btn-continue-wrong {
+      background-color: #ee5252;
+    }
+  }
+}
