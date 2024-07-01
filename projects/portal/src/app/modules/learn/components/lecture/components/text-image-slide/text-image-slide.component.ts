@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ss } from 'DAL';
 
 @Component({
@@ -8,4 +8,9 @@ import { Ss } from 'DAL';
 })
 export class TextImageSlideComponent {
   @Input() slide: Ss;
+  @Output() next = new EventEmitter();
+
+  continue() {
+    this.next.emit();
+  }
 }
