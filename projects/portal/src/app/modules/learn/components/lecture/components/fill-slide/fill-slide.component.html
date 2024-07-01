@@ -17,12 +17,24 @@
     type="button"
     (click)="continue()"
     class="btn btn-continue align-self-center"
-    *ngIf="isAnswerCorrect || isAnswerWrong"
+    *ngIf="(isAnswerCorrect || isAnswerWrong) && isLastSlide"
     [ngClass]="{
       'btn-continue-correct': isAnswerCorrect,
       'btn-continue-wrong': isAnswerWrong
     }"
   >
     Continue
+  </button>
+  <button
+    type="button"
+    (click)="onFinish()"
+    class="btn btn-continue align-self-center"
+    *ngIf="(isAnswerCorrect || isAnswerWrong) && isLastSlide"
+    [ngClass]="{
+      'btn-continue-correct': isAnswerCorrect,
+      'btn-continue-wrong': isAnswerWrong
+    }"
+  >
+    Finish
   </button>
 </form>

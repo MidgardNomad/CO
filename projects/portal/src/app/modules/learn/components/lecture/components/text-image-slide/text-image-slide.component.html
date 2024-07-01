@@ -7,7 +7,16 @@
     class="btn btn-continue align-self-center"
     type="button"
     (click)="continue()"
+    *ngIf="!isLastSlide"
   >
     Continue
+  </button>
+  <button
+    class="btn btn-continue align-self-center"
+    type="button"
+    (click)="onFinish()"
+    *ngIf="isLastSlide"
+  >
+    Finish
   </button>
 </section>

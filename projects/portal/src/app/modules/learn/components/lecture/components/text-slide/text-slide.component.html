@@ -1,6 +1,17 @@
 <section class="d-flex flex-column">
   <div class="cont" [innerHTML]="slide.text"></div>
-  <button class="btn btn-continue align-self-center" (click)="continue()">
+  <button
+    class="btn btn-continue align-self-center"
+    (click)="continue()"
+    *ngIf="!isLastSlide"
+  >
     Continue
+  </button>
+  <button
+    class="btn btn-continue align-self-center"
+    (click)="onFinish()"
+    *ngIf="isLastSlide"
+  >
+    Finish
   </button>
 </section>

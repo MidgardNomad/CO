@@ -3,9 +3,11 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ss } from 'DAL';
 
 @Component({
@@ -13,11 +15,23 @@ import { Ss } from 'DAL';
   templateUrl: './mcq-slide.component.html',
   styleUrls: ['./mcq-slide.component.scss'],
 })
-export class McqSlideComponent {
+export class McqSlideComponent implements OnInit {
+  //Components Properties
+  //===============
   isAnswerCorrect = false;
   isAnswerWrong = false;
+  //===============
+
+  //Components Inputs & Outputs
+  //===============
   @Input() slide: Ss;
+  @Input() isLastSlide: boolean;
   @Output() next = new EventEmitter();
+  //===============
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {}
 
   onCheckAnswer(form: NgForm) {
     if (
@@ -25,12 +39,18 @@ export class McqSlideComponent {
     ) {
       this.isAnswerCorrect = true;
     } else {
-      console.log('wrong');
       this.isAnswerWrong = true;
     }
   }
 
   onContinue() {
     this.next.emit();
+  }
+
+  onFinish() {
+    this.router.navigate([
+      'learn/course',
+      this.route.snapshot.paramMap.get('courseID'),
+    ]);
   }
 }

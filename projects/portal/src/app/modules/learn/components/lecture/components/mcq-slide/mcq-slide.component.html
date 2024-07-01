@@ -24,7 +24,7 @@
       Check
     </button>
     <button
-      *ngIf="isAnswerCorrect || isAnswerWrong"
+      *ngIf="(isAnswerCorrect || isAnswerWrong) && !isLastSlide"
       type="button"
       class="btn btn-continue align-self-center"
       [ngClass]="{
@@ -34,6 +34,18 @@
       (click)="onContinue()"
     >
       Continue
+    </button>
+    <button
+      *ngIf="(isAnswerCorrect || isAnswerWrong) && isLastSlide"
+      type="button"
+      class="btn btn-continue align-self-center"
+      [ngClass]="{
+        'btn-continue-correct': isAnswerCorrect,
+        'btn-continue-wrong': isAnswerWrong
+      }"
+      (click)="onFinish()"
+    >
+      Finish
     </button>
   </div>
 </form>
