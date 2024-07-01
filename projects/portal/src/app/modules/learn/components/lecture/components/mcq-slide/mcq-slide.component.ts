@@ -17,7 +17,7 @@ export class McqSlideComponent {
   isAnswerCorrect = false;
   isAnswerWrong = false;
   @Input() slide: Ss;
-  @Output() continue = new EventEmitter();
+  @Output() next = new EventEmitter();
 
   onCheckAnswer(form: NgForm) {
     if (
@@ -31,6 +31,6 @@ export class McqSlideComponent {
   }
 
   onContinue() {
-    this.continue.emit();
+    this.next.emit();
   }
 }
