@@ -31,6 +31,7 @@ import { RouterModule } from '@angular/router';
     NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
+    MaterialModule,
   ],
 })
 export class SharedModule {}
