@@ -44,8 +44,8 @@ export class SubscriptionDetailsComponent implements OnInit {
       const response: any = await this.http.post(`${environment.api}payment/create-payment-intent`,reqBody).toPromise();
       console.log('response',response);
       
-      const { clientSecret } = response.data.data;
-      console.log("clientSecret ==> ", clientSecret);
+      const clientSecret = response.data.clientSecret;
+      console.log('clientSecret',clientSecret);
 
       // check if the paymentIntent is created successfully
       if (!clientSecret) {
