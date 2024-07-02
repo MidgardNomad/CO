@@ -13,6 +13,8 @@ export { AuthService } from './lib/services/auth.service';
 export { CoursesService } from './lib/services/courses.service';
 export { UsersService } from './lib/services/users.service';
 export { CareerPathService } from './lib/services/career-path.service';
+export { PackagesService } from './lib/services/packages.service'
+export { PaymentService } from './lib/services/payment.service'
 
 // export models
 //Admin
