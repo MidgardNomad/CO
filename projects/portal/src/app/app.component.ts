@@ -9,7 +9,7 @@ import { UsersService } from 'DAL';
 export class AppComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
-  ngOnInit(): void {
-    this.usersService.getUser();
-  }
+  async ngOnInit() {    
+    await this.usersService.getUser();
+  }  
 }

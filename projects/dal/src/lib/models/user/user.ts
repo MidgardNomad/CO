@@ -4,6 +4,7 @@ import { CourseLevel } from './courseLevel';
 export interface User {
   id: string;
   displayName: string;
+  email: string;
   photoURL: string;
   isVerified: boolean;
   isPro: boolean;

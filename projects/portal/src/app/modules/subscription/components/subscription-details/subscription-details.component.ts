@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from 'DAL';
+import { PaymentService, User, UsersService } from 'DAL';
 import { environment } from 'projects/portal/src/environments/environment';
 declare var Stripe: any;
 
@@ -13,12 +13,21 @@ export class SubscriptionDetailsComponent implements OnInit {
   stripe = Stripe(environment.stripeAPI);
   elements;
   cardElement;
+  user:User;
   
   
-  constructor(private paymentService:PaymentService) {}
+  constructor(private paymentService:PaymentService,private userServices:UsersService) {}
   
   ngOnInit(): void {   
+    this.getUser();
     this.initPaymentForm();
+  }
+
+  getUser(){
+    this.userServices.userDocData.subscribe(res=>{
+      this.user=res;
+      console.log('user',res)
+    }) 
   }
   
 
@@ -32,10 +41,10 @@ export class SubscriptionDetailsComponent implements OnInit {
     try {
       let reqBody = {
         amount: 15000,
-        userID: "userID-322",
+        userID: this.user.id,
         env: environment.env,
-        name: "M E",
-        email: "hozay@gmail.com",
+        name: this.user.displayName,
+        email: this.user.email,
         currency: "egp"
       }
       const response: any = await this.paymentService.createPaymentIntent(reqBody);
