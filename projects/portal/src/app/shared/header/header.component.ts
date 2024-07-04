@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userID: string;
   photoURL: string;
   coursesList: Course[] = [];
-
+  userCardOpacity = '0';
   userInfoCard: boolean;
 
   //=====Service Subscriptions======
@@ -46,15 +46,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userDisplayName = user.displayName;
       this.userID = user.uid;
       this.photoURL = user.photoURL;
+      this.userCardOpacity = '1';
     });
     this.getAllCourses();
   }
 
+  ngAfterViewInit(): void {}
+
   getAllCourses() {
-    this.coursesService.getAllCourses().subscribe(res => {
-      this.coursesList = res
-    }
-    )
+    this.coursesService.getAllCourses().subscribe((res) => {
+      this.coursesList = res;
+    });
   }
 
   //Navigation
@@ -71,10 +73,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['profile', this.userID]);
   }
 
-  navigateToBlogs() {
-    this.router.navigate(['/blogs']);
-  }
-
   //========================================
 
   ngOnDestroy(): void {
@@ -84,6 +82,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigateCourses(coursesID: string) {
-    this.router.navigateByUrl(`/learn/course/${coursesID}`)
+    this.router.navigateByUrl(`/learn/course/${coursesID}`);
   }
 }

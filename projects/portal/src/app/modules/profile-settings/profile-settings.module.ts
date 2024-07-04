@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { ConnectedAccountsComponent } from './components/connected-accounts/connected-accounts.component';
 import { ReauthenticateDialogComponent } from './components/reauthenticate-dialog/reauthenticate-dialog.component';
-import { MaterialModule } from '../../shared/material/material.module';
 import { DeleteAccountComponent } from './components/delete-account/delete-account.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -34,7 +33,6 @@ import { ProComponent } from './components/pro/pro.component';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
-    MaterialModule,
   ],
 })
 export class ProfileSettingsModule {}

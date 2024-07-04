@@ -74,6 +74,8 @@ export class CoursesService {
   //---------------------------------------------------------------------
   //Chapters Methods:
   //---------------------------------------------------------------------
+
+  //Get all chapters
   getChapters(courseID: string): Observable<Chapter[]> {
     return this.crudSerive
       .getDataByOrder(
@@ -88,6 +90,21 @@ export class CoursesService {
               ...(snap.payload.doc.data() as object),
             };
           });
+        })
+      );
+  }
+
+  //Get chapter ID by seqNo: 1
+  getFirstChapter(courseID: string) {
+    return this.crudSerive
+      .getSingleDataByField(
+        `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}`,
+        'seqNo',
+        1
+      )
+      .pipe(
+        map((chapterDocSnap) => {
+          return chapterDocSnap[0].payload.doc.id;
         })
       );
   }
@@ -149,6 +166,20 @@ export class CoursesService {
               ...(doc.payload.doc.data() as Object),
             };
           });
+        })
+      );
+  }
+
+  getFirstLecture(courseID: string, chapterId: string) {
+    return this.crudSerive
+      .getSingleDataByField(
+        `/${this._coursesCollection}/${courseID}/${this._chaptersCollection}/${chapterId}/${this._lecturesCollection}`,
+        'seqNo',
+        1
+      )
+      .pipe(
+        map((docSnaps) => {
+          return docSnaps[0].payload.doc.id;
         })
       );
   }

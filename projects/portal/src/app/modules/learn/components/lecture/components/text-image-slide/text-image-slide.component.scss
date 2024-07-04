@@ -1,0 +1,24 @@
+.text-image-slide {
+  .text {
+    margin-bottom: 10px;
+  }
+  .image {
+    width: 70%;
+    max-height: 450px;
+    img {
+      object-fit: contain;
+      width: 100%;
+      max-height: 100%;
+    }
+  }
+  .btn-continue {
+    padding: 10px;
+    width: 150px;
+    color: white;
+    margin-top: auto;
+    margin-bottom: 50px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #52b2ee;
+  }
+}

@@ -6,4 +6,5 @@ export interface Course {
   //Add it later because that might break a lot of things
   name?: string;
   description: string;
+  seqNo?: number;
 }

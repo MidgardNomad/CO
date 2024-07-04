@@ -1,0 +1,31 @@
+form {
+  height: calc(100vh - 150px);
+  input {
+    border: 1px solid gray;
+    border-radius: 12px;
+    height: 40px;
+    padding: 10px;
+    width: 75px;
+
+    &:focus {
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border: 1px solid gray;
+    }
+  }
+  .btn-continue {
+    padding: 10px;
+    width: 150px;
+    color: white;
+    margin-top: auto;
+    margin-bottom: 50px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #52b2ee;
+  }
+  .btn-continue-correct {
+    background-color: #57ee52;
+  }
+  .btn-continue-wrong {
+    background-color: #ee5252;
+  }
+}

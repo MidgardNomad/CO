@@ -1,0 +1,62 @@
+.card {
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px -6px #999;
+
+  .image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .course-info {
+    h3 {
+      line-height: 28px;
+      letter-spacing: -0.8px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #2ea2eb;
+      margin: 5px 0;
+    }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      line-height: 20px;
+      letter-spacing: -0.1px;
+      font-size: 14px;
+      font-weight: 300;
+      color: #727b82;
+      text-transform: capitalize;
+      margin: 20px 0;
+    }
+  }
+
+  .btn-enroll {
+    color: white;
+    padding: 5px 10px;
+    background-color: #2ea2eb;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e7e8e9;
+    padding-top: 12px;
+
+    .text {
+      line-height: 20px;
+      letter-spacing: -0.1px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #35434c;
+      margin-left: 15px;
+    }
+  }
+}

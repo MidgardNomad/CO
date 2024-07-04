@@ -1,4 +1,5 @@
-import { courseLevel } from './courseLevel';
+import { ConnectedAccounts } from './connectedAccounts';
+import { CourseLevel } from './courseLevel';
 
 export interface User {
   id: string;
@@ -16,6 +17,9 @@ export interface User {
   streakDays: Date[];
   currentStreak: number;
   maxStreak: number;
-  courseList: courseLevel[];
-  connectedAccounts: string[];
+  courseList: CourseLevel[];
+  connectedAccounts: ConnectedAccounts[];
+  paid: boolean;
+  sessionExpirationDate: Date;
+  availableSessions: number;
 }

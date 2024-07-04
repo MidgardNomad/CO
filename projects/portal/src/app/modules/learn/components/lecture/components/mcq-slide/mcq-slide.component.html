@@ -1,1 +1,51 @@
-<p>mcq-slide works!</p>
+<h3>{{ slide.question }}</h3>
+<form #mcqForm="ngForm" (ngSubmit)="onCheckAnswer(mcqForm)" class="answer-form">
+  <div class="d-flex flex-column justify-content answer-form-content">
+    <div class="radio option-card" *ngFor="let option of slide.options">
+      <label>
+        <input
+          type="radio"
+          #optionField
+          [value]="option"
+          ngModel
+          name="option"
+          required
+        />
+        {{ option }}
+      </label>
+    </div>
+
+    <button
+      class="btn btn-continue align-self-center"
+      type="submit"
+      *ngIf="!isAnswerCorrect && !isAnswerWrong"
+      [disabled]="mcqForm.invalid"
+    >
+      Check
+    </button>
+    <button
+      *ngIf="(isAnswerCorrect || isAnswerWrong) && !isLastSlide"
+      type="button"
+      class="btn btn-continue align-self-center"
+      [ngClass]="{
+        'btn-continue-correct': isAnswerCorrect,
+        'btn-continue-wrong': isAnswerWrong
+      }"
+      (click)="onContinue()"
+    >
+      Continue
+    </button>
+    <button
+      *ngIf="(isAnswerCorrect || isAnswerWrong) && isLastSlide"
+      type="button"
+      class="btn btn-continue align-self-center"
+      [ngClass]="{
+        'btn-continue-correct': isAnswerCorrect,
+        'btn-continue-wrong': isAnswerWrong
+      }"
+      (click)="onFinish()"
+    >
+      Finish
+    </button>
+  </div>
+</form>

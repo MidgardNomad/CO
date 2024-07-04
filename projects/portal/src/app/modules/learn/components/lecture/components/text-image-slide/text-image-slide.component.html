@@ -1,1 +1,22 @@
-<p>text-image-slide works!</p>
+<section class="d-flex flex-column align-items-center text-image-slide">
+  <div class="text" [innerHTML]="slide.text"></div>
+  <div class="image">
+    <img [src]="slide.image" alt="" />
+  </div>
+  <button
+    class="btn btn-continue align-self-center"
+    type="button"
+    (click)="continue()"
+    *ngIf="!isLastSlide"
+  >
+    Continue
+  </button>
+  <button
+    class="btn btn-continue align-self-center"
+    type="button"
+    (click)="onFinish()"
+    *ngIf="isLastSlide"
+  >
+    Finish
+  </button>
+</section>

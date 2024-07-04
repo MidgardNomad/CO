@@ -1,1 +1,13 @@
-
+section {
+  height: calc(100vh - 100px);
+  .btn-continue {
+    padding: 10px;
+    width: 150px;
+    color: white;
+    margin-top: auto;
+    margin-bottom: 50px;
+    position: fixed;
+    bottom: 0px;
+    background-color: #52b2ee;
+  }
+}

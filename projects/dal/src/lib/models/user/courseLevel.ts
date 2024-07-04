@@ -1,15 +1,31 @@
-export interface courseLevel {
-    courseId: string,
-    lectureLevel: finished[] ,
-    chapterLevel: finished[],
+export interface CourseLevel {
+  courseId: string;
+  chapterLevel: ChapterLevel[];
 }
 
-
-export interface finished {
-id: string,
-date: Date,
+export interface ChapterLevel {
+  chapterId: string;
+  finished: Date;
+  lectureLevel: LectureLevel[];
 }
 
+export interface LectureLevel {
+  lectureId: string;
+  finished: Date;
+}
+
+/* 
+interface finished {
+  chapterLevel: {
+    chapterId: this will always add the first chapter on enroll
+    finished: Date
+    lectureLevel: [{
+      lectureID: By defalut this should be an empty list and add to it as the user progresses in the chapter
+      finished: Date
+    }]
+  }
+}
+*/
 
 // export interface chapterLevel {
 // chapterId: string,

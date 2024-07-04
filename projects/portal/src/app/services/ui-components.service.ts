@@ -8,4 +8,8 @@ export class UIComponentsService {
   hideHeaderAndFooter = new Subject<boolean>();
   userInfoPresist = new Subject<boolean>();
   userLogout = new Subject<boolean>();
+
+  setRouteTitle(title: string) {
+    return title;
+  }
 }

@@ -43,22 +43,35 @@
     </button>
   </section>
 
-  <section class="container-md d-flex justify-content-center lecture">
-    <div class="lecture-slide" [ngSwitch]="activeSlide.type">
-      <app-text-slide
-        [slide]="activeSlide"
-        *ngSwitchCase="'text'"
-      ></app-text-slide>
-      <app-text-image-slide *ngSwitchCase="'text-image'">
-        {{ activeSlide.text }}
-      </app-text-image-slide>
-      <app-mcq-slide *ngSwitchCase="'mcq'"></app-mcq-slide>
-      <app-fill-slide *ngSwitchCase="'q-fill'"></app-fill-slide>
-    </div>
-  </section>
-  <section
-    class="container-fluid d-flex align-items-center justify-content-center lecture-controls"
+  <div
+    class="d-flex flex-column align-items-center slide"
+    [ngSwitch]="activeSlide.type"
   >
-    <button class="btn btn-primary">Click Me</button>
-  </section>
+    <app-text-slide
+      [slide]="activeSlide"
+      [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
+      (next)="onToNextSlide()"
+      *ngSwitchCase="'text'"
+    ></app-text-slide>
+    <app-text-image-slide
+      *ngSwitchCase="'text-image'"
+      [slide]="activeSlide"
+      [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
+      (next)="onToNextSlide()"
+    >
+      {{ activeSlide.text }}
+    </app-text-image-slide>
+    <app-mcq-slide
+      *ngSwitchCase="'mcq'"
+      [slide]="activeSlide"
+      [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
+      (next)="onToNextSlide()"
+    ></app-mcq-slide>
+    <app-fill-slide
+      *ngSwitchCase="'q-fill'"
+      [slide]="activeSlide"
+      [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
+      (next)="onToNextSlide()"
+    ></app-fill-slide>
+  </div>
 </section>
