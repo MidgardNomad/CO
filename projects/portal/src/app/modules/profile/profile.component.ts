@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { AuthService, User } from 'DAL';
 import { Subscription } from 'rxjs';
@@ -15,21 +16,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
     //Check if the user is viewing their own profile or visiting another student's profile!
     this.authServiceSub = this.authService.user.subscribe((activeUser) => {
-      if (activeUser.uid === this.route.snapshot.paramMap.get('uid')) {
-        this.showSettingsButton = true;
-      }
+      this.route.paramMap.subscribe((paramMap) => {
+        if (activeUser.uid === paramMap.get('uid')) {
+          this.showSettingsButton = true;
+        }
+      });
     });
 
     //Get user data from resolver!
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
-      console.log(this.userDoc);
+      this.titleService.setTitle(this.userDoc.displayName);
     });
   }
 

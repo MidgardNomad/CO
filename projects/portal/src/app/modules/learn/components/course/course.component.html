@@ -7,7 +7,12 @@
       <h1>{{ course.title }}</h1>
       <p>{{ course.description }}</p>
     </div>
-
-    <app-chapter [chapters]="chapters"></app-chapter>
+    <div *ngFor="let chapter of chapters; index as i">
+      <app-chapter
+        [chapter]="chapter"
+        [i]="i"
+        [userChapter]="getChapterProgress(chapter)"
+      ></app-chapter>
+    </div>
   </div>
 </section>

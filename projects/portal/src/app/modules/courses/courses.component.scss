@@ -1,0 +1,28 @@
+// The Header //
+h1 {
+  font: {
+    weight: 600;
+    size: 48px;
+  }
+
+  line-height: 36px;
+  letter-spacing: -1px;
+  color: #35434d;
+  text-align: center;
+  margin: 20px 0px 15px 0px;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    padding-bottom: 0px;
+    line-height: 50px;
+  }
+}
+
+// The Cards //
+.cardes-list {
+  padding: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px 35px;
+}

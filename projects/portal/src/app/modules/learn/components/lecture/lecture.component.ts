@@ -99,6 +99,7 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('lecture dest');
     this.uiCompService.hideHeaderAndFooter.next(true);
   }
 }

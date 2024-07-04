@@ -1,4 +1,4 @@
-<div *ngFor="let chapter of chapters; index as i">
+<div>
   <div class="accordion" [id]="'chapter-accordion' + i">
     <div class="accordion-item">
       <h2 class="accordion-header" [id]="'chapter-accordion-heading' + i">
@@ -12,7 +12,11 @@
         >
           <div class="container-fluid d-flex align-items-center button-info">
             <h3>{{ chapter.title }}</h3>
-            <i class="fa-solid fa-lock" style="margin-left: auto"></i>
+            <i
+              class="fa-solid fa-lock"
+              style="margin-left: auto"
+              *ngIf="isChapterInactive"
+            ></i>
           </div>
         </button>
       </h2>
@@ -24,7 +28,11 @@
       >
         <div class="accordion-body">
           <p>{{ chapter.description }}</p>
-          <app-chapter-lectures [chapterID]="chapter.id"></app-chapter-lectures>
+          <app-chapter-lectures
+            [lectures]="chapterLectures"
+            [userLectures]="userLectures"
+            [chapterID]="chapter.id"
+          ></app-chapter-lectures>
         </div>
       </div>
     </div>

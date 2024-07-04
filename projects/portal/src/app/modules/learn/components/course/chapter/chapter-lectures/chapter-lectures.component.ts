@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoursesService, Lecture } from 'DAL';
-import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
-import { Observable } from 'rxjs';
+import { Lecture, LectureLevel } from 'DAL';
 
 @Component({
   selector: 'app-chapter-lectures',
@@ -11,19 +9,16 @@ import { Observable } from 'rxjs';
 })
 export class ChapterLecturesComponent implements OnInit {
   @Input() chapterID: string;
-  lectures: Observable<Lecture[]>;
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private coursesService: CoursesService,
-    private uiComponentsService: UIComponentsService
-  ) {}
+  @Input() lectures: Lecture[];
+  @Input() userLectures: LectureLevel[];
+  userLecturesID: string[];
+  isLectureInactive = true;
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.lectures = this.coursesService.getAllLectures(
-      this.route.snapshot.paramMap.get('courseID'),
-      this.chapterID
-    );
+    this.userLecturesID = this.userLectures
+      ? this.userLectures.map((lecutresProgress) => lecutresProgress.lectureId)
+      : [];
   }
 
   navigateToLecture(lectureID: string) {

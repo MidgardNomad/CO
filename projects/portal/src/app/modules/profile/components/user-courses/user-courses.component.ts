@@ -29,6 +29,6 @@ export class UserCoursesComponent implements OnInit {
   }
 
   navigateToCourses() {
-    this.router.navigate(['/courses/courses-list']);
+    this.router.navigate(['/courses']);
   }
 }

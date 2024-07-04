@@ -85,27 +85,29 @@
 
           <!-- User Data -->
 
-          <div
-            class="d-flex align-items-center justify-content-center ms-4"
-            *ngIf="!userDisplayName"
-          >
-            <button class="btn btn-log" (click)="navigateToLogin()">
-              Log in
-            </button>
-            <button class="btn btn-signup" (click)="navigateToSignup()">
-              Sign up
+          <div [ngStyle]="{ opacity: userCardOpacity }">
+            <div
+              class="d-flex align-items-center justify-content-center ms-4"
+              *ngIf="!userDisplayName"
+            >
+              <button class="btn btn-log" (click)="navigateToLogin()">
+                Log in
+              </button>
+              <button class="btn btn-signup" (click)="navigateToSignup()">
+                Sign up
+              </button>
+            </div>
+
+            <button
+              class="btn btn-userData d-flex align-items-center justify-content-center p-0"
+              style="border: none"
+              (click)="navigateToProfile()"
+              *ngIf="userDisplayName"
+            >
+              <img class="user-img" src="{{ photoURL }}" alt="" />
+              <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>
             </button>
           </div>
-
-          <button
-            class="btn btn-userData d-flex align-items-center justify-content-center p-0"
-            style="border: none"
-            (click)="navigateToProfile()"
-            *ngIf="userDisplayName"
-          >
-            <img class="user-img" src="{{ photoURL }}" alt="" />
-            <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>
-          </button>
         </div>
       </div>
     </div>

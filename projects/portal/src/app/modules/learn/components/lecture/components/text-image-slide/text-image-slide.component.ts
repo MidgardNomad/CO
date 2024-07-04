@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ss } from 'DAL';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 
 @Component({
   selector: 'app-text-image-slide',
@@ -15,7 +16,11 @@ export class TextImageSlideComponent implements OnInit {
   @Output() next = new EventEmitter();
   //===============
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private uiService: UIComponentsService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -28,5 +33,6 @@ export class TextImageSlideComponent implements OnInit {
       'learn/course',
       this.route.snapshot.paramMap.get('courseID'),
     ]);
+    this.uiService.hideHeaderAndFooter.next(true);
   }
 }

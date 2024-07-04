@@ -9,6 +9,7 @@ import {
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ss } from 'DAL';
+import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 
 @Component({
   selector: 'app-mcq-slide',
@@ -29,7 +30,11 @@ export class McqSlideComponent implements OnInit {
   @Output() next = new EventEmitter();
   //===============
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private uiService: UIComponentsService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -52,5 +57,6 @@ export class McqSlideComponent implements OnInit {
       'learn/course',
       this.route.snapshot.paramMap.get('courseID'),
     ]);
+    this.uiService.hideHeaderAndFooter.next(true);
   }
 }

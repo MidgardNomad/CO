@@ -25,15 +25,15 @@ export class ConnectedAccountsComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.usersService
-      .getUserID()
-      .pipe(take(1))
-      .subscribe((userID) => {
-        this.usersService.getSingleUser(userID).subscribe((user) => {
-          this.connectedAccounts = user.connectedAccounts;
-          console.log(this.connectedAccounts);
-        });
-      });
+    // this.usersService
+    //   .getUserID()
+    //   .pipe(take(1))
+    //   .subscribe((userID) => {
+    //     this.usersService.getSingleUser(userID).subscribe((user) => {
+    //       this.connectedAccounts = user.connectedAccounts;
+    //       console.log(this.connectedAccounts);
+    //     });
+    //   });
   }
 
   onConnect() {}
