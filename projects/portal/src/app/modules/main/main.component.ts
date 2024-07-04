@@ -14,7 +14,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.uiService.hideHeaderAndFooter.subscribe((hide) => {
-      console.log(hide);
       this.showHeaderAndFooter = hide;
     });
   }

@@ -1,4 +1,3 @@
-import { SsType } from './lib/models/content/ss';
 /*
  * Public API Surface of dal
  */
