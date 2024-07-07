@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'DAL';
-import { CoursesService } from 'DAL';
-import { Course } from 'projects/dal/src/public-api';
+import { AuthService, Course, CoursesService } from 'DAL';
+
 import { UIComponentsService } from '../../services/ui-components.service';
 import { Subscription } from 'rxjs';
 
@@ -33,7 +32,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
-      (presistUserInfoCard) => (this.userInfoCard = presistUserInfoCard)
+      (presistUserInfoCard) => {
+        console.log(presistUserInfoCard);
+        this.userInfoCard = presistUserInfoCard;
+      }
     );
 
     this.uiService.userLogout.subscribe((userLogout) => {
