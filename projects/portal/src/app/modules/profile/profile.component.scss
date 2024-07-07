@@ -4,19 +4,10 @@
   &-header {
     width: 100%;
     min-height: 40vh;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
     background-repeat: no-repeat;
     background-image: url("../../../assets/images/CO_profile_cover1.svg");
     background-size: cover;
-    @media (max-width: 768px) {
-      border-bottom-left-radius: 25%;
-      border-bottom-right-radius: 25%;
-    }
-    @media (max-width: 576px) {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
+
     .user-avatar {
       max-width: 200px;
       max-height: 200px;
