@@ -90,10 +90,10 @@
 
           <!-- User Data -->
 
-          <div [ngStyle]="{ opacity: userCardOpacity }">
+          <div>
             <div
               class="d-flex align-items-center justify-content-center ms-4"
-              *ngIf="!userDisplayName"
+              *ngIf="!displayProfileCard"
             >
               <button class="btn btn-log" (click)="navigateToLogin()">
                 Log in
@@ -107,7 +107,7 @@
               class="btn btn-userData d-flex align-items-center justify-content-center p-0"
               style="border: none"
               (click)="navigateToProfile()"
-              *ngIf="userDisplayName"
+              *ngIf="displayProfileCard"
             >
               <img class="user-img" src="{{ photoURL }}" alt="" />
               <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>

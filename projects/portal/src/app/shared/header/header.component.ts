@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+  AfterContentInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, Course, CoursesService } from 'DAL';
 
@@ -10,13 +16,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
   userDisplayName: string;
   userID: string;
   photoURL: string;
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
+  displayProfileCard = false;
 
   //=====Service Subscriptions======
   uiServicePresistSub: Subscription;
@@ -31,6 +38,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.authServiceSub = this.authService.user.subscribe((user) => {
+      if (user !== null) {
+        this.userDisplayName = user.displayName;
+        this.userID = user.uid;
+        this.photoURL = user.photoURL;
+        this.displayProfileCard = true;
+      }
+    });
     this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
       (presistUserInfoCard) => {
         console.log(presistUserInfoCard);
@@ -38,22 +53,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.uiService.userLogout.subscribe((userLogout) => {
-      if (userLogout) {
-        this.userDisplayName = '';
+    this.uiServiceLogoutSub = this.uiService.userLogout.subscribe(
+      (userLogout) => {
+        if (userLogout) {
+          this.displayProfileCard = false;
+        }
       }
-    });
+    );
 
-    this.authServiceSub = this.authService.user.subscribe((user) => {
-      this.userDisplayName = user.displayName;
-      this.userID = user.uid;
-      this.photoURL = user.photoURL;
-      this.userCardOpacity = '1';
-    });
     this.getAllCourses();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.userCardOpacity = '1';
   }
 
