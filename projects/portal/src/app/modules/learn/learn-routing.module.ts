@@ -3,21 +3,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { LearnComponent } from './learn.component';
 import { CourseComponent } from './components/course/course.component';
 import { LectureComponent } from './components/lecture/lecture.component';
-import { LearnCourseResolver } from '../../reslovers/learn-course.resolver';
-import { LearnSlidesResolver } from '../../reslovers/learn-lecture.resolver';
+import { LearnCourseResolver } from '../../reslovers/learn/learn-course.resolver';
+import { LearnSlidesResolver } from '../../reslovers/learn/learn-lecture.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: LearnComponent,
     children: [
-      //Move The courses Module inside the Learn Module.
-      //Redirct To the component That displays all The Courses for the user to enroll
-      // {
-      //   path: '',
-      //   redirectTo: '/courses',
-      //   pathMatch: 'full'
-      // },
+      {
+        path: '',
+        redirectTo: '/courses',
+        pathMatch: 'full',
+      },
       {
         //temp use The course ID until I implement the course Name property
         path: 'course/:courseID',
