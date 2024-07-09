@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { PaymentService } from 'DAL';
 import { environment } from 'projects/portal/src/environments/environment';
 declare var Stripe: any;
 
@@ -15,8 +15,7 @@ export class SubscriptionDetailsComponent implements OnInit {
   cardElement;
   
   
-  // constructor() {}
-  constructor(private http:HttpClient) {}
+  constructor(private paymentService:PaymentService) {}
   
   ngOnInit(): void {   
     this.initPaymentForm();
@@ -27,8 +26,6 @@ export class SubscriptionDetailsComponent implements OnInit {
     this.elements = this.stripe.elements();
     this.cardElement = this.elements.create('card');
     this.cardElement.mount('#card-element');
-    console.log();
-    
   }
 
   async createPaymentIntent() {
@@ -36,12 +33,12 @@ export class SubscriptionDetailsComponent implements OnInit {
       let reqBody = {
         amount: 15000,
         userID: "userID-322",
-        env: 'test',
+        env: environment.env,
         name: "M E",
         email: "hozay@gmail.com",
         currency: "egp"
       }
-      const response: any = await this.http.post(`${environment.api}payment/create-payment-intent`,reqBody).toPromise();
+      const response: any = await this.paymentService.createPaymentIntent(reqBody);
       console.log('response',response);
       
       const clientSecret = response.data.clientSecret;
@@ -65,10 +62,22 @@ export class SubscriptionDetailsComponent implements OnInit {
         // alert('Payment failed: ' + error.message);
       } else {
         alert('Payment successful!');
+        if (response?.['data']?.['envRealized'] && response?.['data']?.['paymentID']) {
+          let obj={
+            env:response?.['data']?.['envRealized'],
+            paymentID:response?.['data']?.['paymentID']
+          }
+          await this.checkPayment(obj);
+        }
       }
     } catch (error) {
       console.error('Error:', error);
       // alert('Payment failed: ' + error.message);
     }
+  }
+
+  async checkPayment(obj){    
+    const response: any = await this.paymentService.checkPayment(obj)
+    console.log('response',response);
   }
 }
