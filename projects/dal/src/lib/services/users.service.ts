@@ -28,17 +28,6 @@ export class UsersService {
     });
   }
 
-  getActiveUser(userID) {
-    return this.crudService.getSignleDoc('users', userID).pipe(
-      map((docSnap) => {
-        return <User>{
-          id: docSnap.id,
-          ...(docSnap.data() as object),
-        };
-      })
-    );
-  }
-
   getAllUsers() {
     return this.crudService.getData(this._usersCollection).pipe(
       map((docSnaps) => {

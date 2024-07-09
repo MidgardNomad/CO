@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LearnService, Ss, Lecture, UsersService } from 'DAL';
+import { LearnService, Ss, Lecture, UsersService, CourseLevel } from 'DAL';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { Subscription } from 'rxjs';
 
@@ -12,20 +12,28 @@ import { Subscription } from 'rxjs';
 export class LectureComponent implements OnInit, OnDestroy {
   //Properties
   //=========================
+  //Template Properties
   progress = 0;
   indicator = `${this.progress}%`;
   activeSlide: Ss;
   disableToNextSlide = false;
   disableToPreviousSlide = true;
   slides: Ss[] = [];
-  lecture: Lecture;
-  nextLectureID: string;
+  //Class properties
+  private courseID: string;
+  private chapterID: string;
+  private lectureID: string;
+  private lecture: Lecture;
+  private nextLectureID: string;
+  private userID: string;
+  private userCourseList: CourseLevel[];
   //=========================
 
   //Subs
   //======================
-  learnServiceActiveLecSub: Subscription;
-  learnServiceNextLecSub: Subscription;
+  private learnServiceActiveLecSub: Subscription;
+  private learnServiceNextLecSub: Subscription;
+  private usersServiceSub: Subscription;
   //======================
 
   constructor(
@@ -66,23 +74,45 @@ export class LectureComponent implements OnInit, OnDestroy {
       this.disableToPreviousSlide = true;
     }
   }
+
+  private getUserIDCourseList() {
+    this.usersServiceSub = this.usersService.userDoc.subscribe((userDoc) => {
+      this.userID = userDoc.id;
+      this.userCourseList = userDoc.courseList;
+    });
+  }
+
+  private getRouteIDs() {
+    this.courseID = this.route.snapshot.paramMap.get('courseID');
+    this.chapterID = this.route.snapshot.paramMap.get('chapterID');
+    this.lectureID = this.route.snapshot.paramMap.get('lectureID');
+  }
+
+  private async updateUserProgress(
+    userID: string,
+    userCourseList: CourseLevel[]
+  ) {
+    try {
+      await this.usersService.addCourseLevelToUserDoc(userID, userCourseList);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //==================================
 
   ngOnInit(): void {
+    this.getUserIDCourseList();
+    this.getRouteIDs();
     this.activeSlide = this.slides[0];
     if (this.lecture === null) {
       this.learnServiceActiveLecSub = this.learnService
-        .getSingleLectureByID(
-          this.route.snapshot.paramMap.get('courseID'),
-          this.route.snapshot.paramMap.get('chapterID'),
-          this.route.snapshot.paramMap.get('lectureID')
-        )
+        .getSingleLectureByID(this.courseID, this.chapterID, this.lectureID)
         .subscribe((currentLecture) => {
           this.lecture = currentLecture;
           this.learnServiceNextLecSub = this.learnService
             .getNextLectureID(
-              this.route.snapshot.paramMap.get('courseID'),
-              this.route.snapshot.paramMap.get('chapterID'),
+              this.courseID,
+              this.chapterID,
               currentLecture.seqNo + 1
             )
             .subscribe((nextLecture) => {
@@ -92,7 +122,7 @@ export class LectureComponent implements OnInit, OnDestroy {
     } else {
       this.learnServiceNextLecSub = this.learnService
         .getNextLectureID(
-          this.route.snapshot.paramMap.get('courseID'),
+          this.courseID,
           this.route.snapshot.paramMap.get('chapterID'),
           this.lecture.seqNo + 1
         )
@@ -145,7 +175,20 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   finishLecture() {
-    console.log('Finish Lecture');
+    let lectureLevel = this.userCourseList
+      .find((course) => course.courseId === this.courseID)
+      .chapterLevel.find(
+        (chapter) => chapter.chapterId === this.chapterID
+      ).lectureLevel;
+    lectureLevel.find(
+      (lecture) => lecture.lectureId === this.lectureID
+    ).finished = new Date();
+    lectureLevel.push({
+      lectureId: this.nextLectureID,
+      finished: null,
+    });
+    this.updateUserProgress(this.userID, this.userCourseList);
+    this.router.navigate(['/learn/course', this.courseID]);
   }
 
   ngOnDestroy(): void {
@@ -153,6 +196,7 @@ export class LectureComponent implements OnInit, OnDestroy {
       this.learnServiceActiveLecSub.unsubscribe();
     }
     this.learnServiceNextLecSub.unsubscribe();
+    this.usersServiceSub.unsubscribe();
     this.uiCompService.hideHeaderAndFooter.next(true);
   }
 }
