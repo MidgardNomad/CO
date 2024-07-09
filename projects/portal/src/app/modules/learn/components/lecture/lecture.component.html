@@ -45,12 +45,13 @@
 
   <div
     class="d-flex flex-column align-items-center slide"
-    [ngSwitch]="activeSlide.type"
+    [ngSwitch]="activeSlide?.type"
   >
     <app-text-slide
       [slide]="activeSlide"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
+      (finish)="finishLecture()"
       *ngSwitchCase="'text'"
     ></app-text-slide>
     <app-text-image-slide
@@ -58,6 +59,7 @@
       [slide]="activeSlide"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
+      (finish)="finishLecture()"
     >
       {{ activeSlide.text }}
     </app-text-image-slide>
@@ -66,12 +68,14 @@
       [slide]="activeSlide"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
+      (finish)="finishLecture()"
     ></app-mcq-slide>
     <app-fill-slide
       *ngSwitchCase="'q-fill'"
       [slide]="activeSlide"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
+      (finish)="finishLecture()"
     ></app-fill-slide>
   </div>
 </section>
