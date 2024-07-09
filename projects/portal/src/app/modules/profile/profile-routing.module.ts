@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
-import { UserProfileResolver } from '../../reslovers/profile.resolver';
+import { UserProfileResolver } from '../../reslovers/profile/profile.resolver';
 
 const routes: Routes = [
   {
