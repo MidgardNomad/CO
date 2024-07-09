@@ -36,7 +36,12 @@
               >
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" role="button" routerLink="/courses">
+              <a
+                class="nav-link"
+                role="button"
+                routerLink="/courses"
+                routerLinkActive="active"
+              >
                 Courses
               </a>
             </li>
@@ -62,7 +67,12 @@
               </ul>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link" [routerLink]="['/subscribe']">Pricing</a>
+              <a
+                class="nav-link"
+                [routerLink]="['/subscribe']"
+                routerLinkActive="active"
+                >Pricing</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/blogs" routerLinkActive="active"
@@ -90,7 +100,7 @@
 
           <!-- User Data -->
 
-          <div>
+          <div [ngStyle]="{ opacity: userCardOpacity }">
             <div
               class="d-flex align-items-center justify-content-center ms-4"
               *ngIf="!displayProfileCard"
@@ -109,7 +119,7 @@
               (click)="navigateToProfile()"
               *ngIf="displayProfileCard"
             >
-              <img class="user-img" src="{{ photoURL }}" alt="" />
+              <img class="user-img" [src]="photoURL" alt="" />
               <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>
             </button>
           </div>

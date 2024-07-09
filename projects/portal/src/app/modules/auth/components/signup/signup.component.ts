@@ -74,7 +74,7 @@ export class SignupComponent implements OnInit {
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.isLoading = false;
       this.router.navigate(['profile', newUser.user.uid]);
-      this.uiService.userInfoPresist.next(true);
+      this.uiService.userSignupAction.next(true);
     } catch (error) {
       this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       );
       this.router.navigate(['profile', user.user.uid]);
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-      this.uiService.userInfoPresist.next(true);
+      this.uiService.userLoginAction.next(true);
     } catch (error) {
       this.isLoading = false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);

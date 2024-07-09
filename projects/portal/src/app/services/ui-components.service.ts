@@ -6,10 +6,9 @@ import { Subject } from 'rxjs';
 })
 export class UIComponentsService {
   hideHeaderAndFooter = new Subject<boolean>();
+  userLoginAction = new Subject<boolean>();
+  userSignupAction = new Subject<boolean>();
+  userLogoutAction = new Subject<boolean>();
   userInfoPresist = new Subject<boolean>();
   userLogout = new Subject<boolean>();
-
-  setRouteTitle(title: string) {
-    return title;
-  }
 }

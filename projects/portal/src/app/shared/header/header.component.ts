@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
-  displayProfileCard = false;
+  displayProfileCard: boolean;
 
   //=====Service Subscriptions======
   uiServicePresistSub: Subscription;
@@ -44,6 +44,10 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
         this.userID = user.uid;
         this.photoURL = user.photoURL;
         this.displayProfileCard = true;
+        this.userCardOpacity = '1';
+      } else {
+        this.displayProfileCard = false;
+        this.userCardOpacity = '1';
       }
     });
     this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(

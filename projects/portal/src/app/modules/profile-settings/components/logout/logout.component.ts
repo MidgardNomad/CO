@@ -25,8 +25,7 @@ export class LogoutComponent {
     try {
       await this.authService.logout();
       this.router.navigate(['/']);
-      this.uiService.userInfoPresist.next(false);
-      this.uiService.userLogout.next(true);
+      this.uiService.userLogoutAction.next(true);
     } catch (error) {
       this.showSnackBar(errorHandler(error), 'fail-snackbar');
     }
