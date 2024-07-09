@@ -85,6 +85,12 @@ export class CrudService {
       .snapshotChanges();
   }
 
+  getSingleDocByField(collectionName: string, field: string, value: any) {
+    return this.db
+      .collection(collectionName, (ref) => ref.where(field, '==', value))
+      .get();
+  }
+
   // get single data
   getSingleDataByField(collectionName: string, field: string, value: any) {
     return this.db

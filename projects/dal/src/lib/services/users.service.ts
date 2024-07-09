@@ -1,4 +1,4 @@
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map, of, tap } from 'rxjs';
 import { CrudService } from './crud.service';
 import { User } from '../models/user/user';
 import { CourseLevel } from '../models/user/courseLevel';
@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 export class UsersService {
   private _usersCollection = 'users';
   private _coursesCollection = 'courses';
-  userDoc: Observable<User>;
+  userDoc: Observable<User> | null;
   constructor(
     private crudService: CrudService,
     private authService: AuthService
@@ -20,7 +20,11 @@ export class UsersService {
 
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
-      this.userDoc = this.getSingleUser(userAuthObj.uid);
+      if (userAuthObj == null) {
+        this.userDoc = null;
+      } else {
+        this.userDoc = this.getSingleUser(userAuthObj.uid);
+      }
     });
   }
 

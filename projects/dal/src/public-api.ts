@@ -14,6 +14,7 @@ export { UsersService } from './lib/services/users.service';
 export { CareerPathService } from './lib/services/career-path.service';
 export { PackagesService } from './lib/services/packages.service';
 export { PaymentService } from './lib/services/payment.service';
+export { LearnService } from './lib/services/learn.service';
 
 // export models
 //Admin
