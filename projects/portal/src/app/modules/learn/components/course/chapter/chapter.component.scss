@@ -1,9 +1,14 @@
 .accordion {
   margin: 20px 0px 15px 10px;
+
   .accordion-item {
+    border: none;
+
     .accordion-header {
+      border-radius: 20px !important;
+      border: none;
       .accordion-button {
-        background-color: #fbfdff;
+        background-color: #f7f7f8;
         .button-info {
           h3 {
             color: #35434c;
