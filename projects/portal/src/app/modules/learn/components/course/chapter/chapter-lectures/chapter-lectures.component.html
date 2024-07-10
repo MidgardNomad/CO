@@ -13,5 +13,15 @@
       style="margin-left: auto"
       *ngIf="!userLecturesID.includes(lect.id)"
     ></i>
+    <div
+      class="d-flex flex-column align-self-center finished"
+      style="margin-left: auto"
+      *ngIf="getFinishDate(lect.id)"
+    >
+      <i class="fa-solid fa-check"></i>
+      <span style="margin-top: auto">{{
+        getFinishDate(lect.id) | date : "MMM d, y"
+      }}</span>
+    </div>
   </button>
 </div>

@@ -15,10 +15,23 @@ export class ChapterLecturesComponent implements OnInit {
   isLectureInactive = true;
   constructor(private route: ActivatedRoute, private router: Router) {}
 
+  private convertTimestampToDate(timestamp) {
+    return timestamp?.toDate();
+  }
+
   ngOnInit(): void {
     this.userLecturesID = this.userLectures
       ? this.userLectures.map((lecutresProgress) => lecutresProgress.lectureId)
       : [];
+  }
+
+  getFinishDate(lectureID: string) {
+    return (
+      this.convertTimestampToDate(
+        this.userLectures?.find((lecture) => lectureID === lecture.lectureId)
+          ?.finished
+      ) || null
+    );
   }
 
   navigateToLecture(lectureID: string, lecture: Lecture) {

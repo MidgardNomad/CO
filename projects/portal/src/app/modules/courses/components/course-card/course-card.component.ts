@@ -75,7 +75,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.coursesServiceChapterIDSub.unsubscribe();
-    this.coursesServiceLectureIDSub.unsubscribe();
+    // this.coursesServiceLectureIDSub.unsubscribe();
     this.usersServiceSub.unsubscribe();
   }
 }

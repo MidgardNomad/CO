@@ -20,4 +20,15 @@
     background-color: #d2dbe0a2;
     cursor: auto;
   }
+  .finished {
+    i {
+      font-size: 25px;
+      color: rgb(0, 255, 0);
+    }
+    span {
+      font-size: 14px;
+      font-weight: 300;
+      color: #9ca2a6;
+    }
+  }
 }

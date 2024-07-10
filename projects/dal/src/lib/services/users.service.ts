@@ -23,7 +23,7 @@ export class UsersService {
       if (userAuthObj == null) {
         this.userDoc = null;
       } else {
-        this.userDoc = this.getSingleUser(userAuthObj.uid);
+        this.userDoc = this.getActiveUser(userAuthObj.uid);
       }
     });
   }
@@ -39,6 +39,19 @@ export class UsersService {
         });
       })
     );
+  }
+
+  getActiveUser(userID: string) {
+    return this.crudService
+      .getSignleDocSnap(this._usersCollection, userID)
+      .pipe(
+        map((userDocSnap) => {
+          return <User>{
+            id: userDocSnap.payload.id,
+            ...(userDocSnap.payload.data() as object),
+          };
+        })
+      );
   }
 
   getSingleUser(userID: string) {

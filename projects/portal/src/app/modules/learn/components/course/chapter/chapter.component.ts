@@ -44,12 +44,8 @@ export class ChapterComponent implements OnInit {
     if (this.chapter.id === this.userChapter?.chapterId) {
       this.isChapterInactive = false;
     }
-    this.userLectures = this.userChapter ? this.userChapter.lectureLevel : null;
-  }
-
-  getUserLectureProgress(lecture: Lecture) {
-    return this.userLectures.find(
-      (userLecture) => lecture.id === userLecture.lectureId
-    );
+    this.userLectures = this.userChapter
+      ? this.userChapter?.lectureLevel
+      : null;
   }
 }
