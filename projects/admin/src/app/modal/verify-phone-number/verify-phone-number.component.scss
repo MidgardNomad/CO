@@ -1,0 +1,67 @@
+.dialog {
+  padding: 35px;
+  background: #fff;
+  direction: rtl;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resend {
+  background: none;
+  border: none !important;
+  color: #fff;
+  float: left;
+}
+
+.resend:disabled {
+  color: rgb(119, 117, 117);
+}
+
+.form-group {
+  position: relative;
+  margin-top: 15px;
+
+  input {
+    border: none;
+    background-color: #f7f7f7;
+    box-shadow: none;
+    color: #222222;
+    padding-left: 47px;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.send {
+  width: 75%;
+  background-color: #0096CB;
+  border: none;
+  height: 40px px;
+  border-radius: 200px;
+  color: #fff;
+  box-shadow: 0 4px 10px #94c0ed8c;
+  cursor: pointer;
+  padding: 7px;
+  margin-top: 30px;
+  font-size: 15px;
+}
+
+::ng-deep {
+  .ng-otp-input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    direction: ltr;
+  }
+
+  .mobile-modal {
+    border-radius: 14px !important;
+  }
+}

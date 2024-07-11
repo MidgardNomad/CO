@@ -1,0 +1,51 @@
+
+<div class="dialog">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">تأكيد رقم الهاتف</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="dialogRef.close(false)">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-2 pb-3">
+      <div>
+          <p>لقد أرسلنا رسالة الى رقم جوال <ins dir="ltr">{{phone}}</ins> برجاء ادخال الرمز الذى أرسل اليك هنا</p>
+      </div>
+
+      <div id="recaptcha-container"></div>
+
+      <div>
+          <form novalidate class="alcoach__forms__general alcoach__signup w-100" #verify="ngForm"
+              (submit)="verify.valid && verifyLoginCode()">
+              <div class="row">
+                  <div class=" p-1 mb-3">
+                      <div class="form-group ">
+
+
+                          <!-- <input class="form-control" name="code" ngModel #code="ngModel" autocomplete="off"
+                              [(ngModel)]="verificationCode" placeholder="الكود" required
+                              [ngClass]="{'is-invalid':verify.submitted && code.invalid}"> -->
+
+
+                          <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="{length:6}"></ng-otp-input>
+
+                          <!-- <div *ngIf="verify.submitted && code.invalid" class="invalid-feedback">
+                              <div> مطلوب ادخال الكود</div>
+                          </div> -->
+                      </div>
+                  </div>    
+    
+                  <div class="w-100 p-1">
+                      <div class="form-group text-center">
+                          <button type="submit" class="send">
+                              ارسال الكود
+                          </button>
+                      </div>
+                  </div>
+    
+              </div>
+          </form>
+    
+      </div>
+    
+    </div>
+</div>

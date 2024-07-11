@@ -11,14 +11,18 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
+import { VerifyPhoneNumberComponent } from './verify-phone-number/verify-phone-number.component';
+import { NgOtpInputModule } from  'ng-otp-input';
 
 
 @NgModule({
-  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent],
+  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent, VerifyPhoneNumberComponent],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,
-    FormsModule,MatDialogModule,ReactiveFormsModule,MatButtonModule
+    FormsModule,MatDialogModule,ReactiveFormsModule,MatButtonModule,
+    NgOtpInputModule
+
   ]
 })
 export class ModalModule { }

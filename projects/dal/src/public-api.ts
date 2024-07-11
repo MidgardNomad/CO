@@ -36,3 +36,4 @@ export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
 //Mentor
 export { Mentor } from './lib/models/mentor/mentor';
 export { environment } from './environments/environment';
+export { AdminAuthService } from './lib/services/admin-auth.service';
