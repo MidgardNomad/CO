@@ -22,4 +22,5 @@ export interface User {
   paid: boolean;
   sessionExpirationDate: Date;
   availableSessions: number;
+  countryCode: string;
 }

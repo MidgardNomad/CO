@@ -11,23 +11,32 @@
       <span style="color: #0096cb">Build Your Career</span>
     </h1>
 
-    <form #signUpForm="ngForm" (ngSubmit)="onSignUp(signUpForm)">
+    <form
+      #signUpForm="ngForm"
+      class="needs-validation"
+      (ngSubmit)="onSignUp(signUpForm)"
+      novalidate
+    >
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input
+          #firstName
           [disabled]="isLoading"
           type="text"
           class="form-control"
           id="firstName"
           placeholder="First Name"
-          ngModel
           name="userFirstName"
           required
+          [ngClass]="{
+            'is-valid': firstName.validity.valid,
+          }"
         />
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
         <input
+          #lastName
           [disabled]="isLoading"
           type="text"
           class="form-control"
@@ -36,11 +45,15 @@
           ngModel
           name="userLastName"
           required
+          [ngClass]="{
+            'is-valid': lastName.validity.valid,
+          }"
         />
       </div>
       <div class="form-group">
         <label for="email">Email address</label>
         <input
+          #email
           [disabled]="isLoading"
           type="email"
           class="form-control"
@@ -50,7 +63,10 @@
           email
           required
           name="userEmail"
-          [ngClass]="{ 'is-invalid': invalidEmail }"
+          [ngClass]="{
+            'is-invalid': invalidEmail,
+            'is-valid': email.validity.valid
+          }"
         />
       </div>
       <div class="form-group">
@@ -66,7 +82,27 @@
           name="userPassword"
           minlength="8"
         />
+        <div class="form-text text-muted">
+          Password Must be at least 8 Characters
+        </div>
       </div>
+      <select
+        class="form-select"
+        aria-label="select"
+        ngModel
+        required
+        name="country"
+      >
+        <option [selected]="!userCountry" value="" disabled>
+          Select Country
+        </option>
+        <option
+          *ngFor="let country of countryList; index as i"
+          [value]="country"
+        >
+          {{ country }}
+        </option>
+      </select>
       <div class="form-check mb-2 mr-sm-2">
         <input
           [disabled]="isLoading"

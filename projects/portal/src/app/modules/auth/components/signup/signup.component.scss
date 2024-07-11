@@ -11,6 +11,9 @@
       margin-bottom: 20px;
     }
     form {
+      .form-select {
+        width: 200px;
+      }
       display: flex;
       flex-direction: column;
       gap: 10px;
