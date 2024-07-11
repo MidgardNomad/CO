@@ -22,7 +22,7 @@ export class UsersService {
     private authService: AuthService
   ) {}
 
-  async createUserDoc(newUser: any, countryCode: string) {
+  async createUserDoc(newUser: any, country: string, countryCode: string) {
     return new Promise((resolve, reject) => {
       this.crudService
         .setSingleDoc('users', newUser.user.uid, {
@@ -45,6 +45,7 @@ export class UsersService {
           connectedAccounts: [],
           bio: '',
           countryCode,
+          country,
           paid: false,
           sessionExpirationDate: null,
           availableSessions: null,
@@ -56,7 +57,7 @@ export class UsersService {
 
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
-      console.log('userAuthObj',userAuthObj);
+      console.log('userAuthObj', userAuthObj);
       if (userAuthObj == null) {
         this.userDoc = null;
       } else {

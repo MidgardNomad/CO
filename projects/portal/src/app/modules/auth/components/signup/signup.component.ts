@@ -118,11 +118,13 @@ export class SignupComponent implements OnInit {
       });
       await this.usersService.createUserDoc(
         newUser,
+        country,
         this.getCountryCode(country)
       );
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.isLoading = false;
       this.disableEnableFormControls('enable');
+      this.usersService.getUser();
       this.router.navigate(['profile', newUser.user.uid]);
       this.uiService.userSignupAction.next(true);
     } catch (error) {
