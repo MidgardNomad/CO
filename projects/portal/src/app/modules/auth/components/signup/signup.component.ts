@@ -81,12 +81,12 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  async onSignUp(userCradentials: NgForm) {
+  async onSignUp() {
     // this.isLoading = true;
     // this.loadingAnimation('block', 0.8, this.loadingSpinner, this.form);
     const { userEmail, userPassword, userFirstName, userLastName, country } =
-      userCradentials.value;
-    console.log(userCradentials.value);
+      this.signUpForm.value;
+    console.log(this.signUpForm.value);
 
     // try {
     //   const newUser = await this.authService.signUp(userEmail, userPassword);
