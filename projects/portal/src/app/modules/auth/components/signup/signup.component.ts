@@ -5,12 +5,12 @@ import {
   Renderer2 as Renderer,
   ViewChild,
 } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, CrudService } from 'DAL';
-import { User } from 'DAL';
+import { AuthService, UsersService, User } from 'DAL';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
+import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
 
 @Component({
   selector: 'app-signup',
@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private crudService: CrudService,
+    private usersService: UsersService,
     private renderer: Renderer,
     private router: Router,
     private uiService: UIComponentsService
@@ -48,7 +48,25 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  getCountries(lang = 'en') {
+  private disableEnableFormControls(action: 'enable' | 'disable') {
+    if (action === 'disable') {
+      this.signUpForm.get('userFirstName').disable();
+      this.signUpForm.get('userLastName').disable();
+      this.signUpForm.get('userEmail').disable();
+      this.signUpForm.get('userPassword').disable();
+      this.signUpForm.get('country').disable();
+      this.signUpForm.get('userAgrement').disable();
+    } else if (action === 'enable') {
+      this.signUpForm.get('userFirstName').enable();
+      this.signUpForm.get('userLastName').enable();
+      this.signUpForm.get('userEmail').enable();
+      this.signUpForm.get('userPassword').enable();
+      this.signUpForm.get('country').enable();
+      this.signUpForm.get('userAgrement').enable();
+    }
+  }
+
+  private getCountries(lang = 'en') {
     const A = 65;
     const Z = 90;
     const countryName = new Intl.DisplayNames([lang], { type: 'region' });
@@ -68,7 +86,8 @@ export class SignupComponent implements OnInit {
   }
   ngOnInit(): void {
     this.countryList = this.getCountries();
-    // this.userCountry = localStorage.getItem('country');
+    this.userCountry = localStorage.getItem('country') || null;
+    console.log(this.userCountry);
     this.signUpForm = new FormGroup({
       userFirstName: new FormControl(null, Validators.required),
       userLastName: new FormControl(null, Validators.required),
@@ -77,55 +96,41 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
       ]),
-      country: new FormControl(null, [Validators.required]),
+      country: new FormControl(this.userCountry || '', [Validators.required]),
+      userAgrement: new FormControl(null, Validators.required),
     });
   }
 
   async onSignUp() {
-    // this.isLoading = true;
-    // this.loadingAnimation('block', 0.8, this.loadingSpinner, this.form);
+    this.isLoading = true;
+    this.disableEnableFormControls('disable');
+    this.loadingAnimation('block', 0.8, this.loadingSpinner, this.form);
     const { userEmail, userPassword, userFirstName, userLastName, country } =
       this.signUpForm.value;
-    console.log(this.signUpForm.value);
 
-    // try {
-    //   const newUser = await this.authService.signUp(userEmail, userPassword);
-    //   await newUser.user.updateProfile({
-    //     displayName: `${this.trimUserInput(userFirstName)} ${this.trimUserInput(
-    //       userLastName
-    //     )}`,
-    //     photoURL: '../../../../../assets/images/placeholder-avatar.svg',
-    //   });
-    //   await this.crudService.setSingleDoc('users', newUser.user.uid, {
-    //     id: newUser.user.uid,
-    //     displayName: newUser.user.displayName,
-    //     photoURL: newUser.user.photoURL,
-    //     isVerified: false,
-    //     isPro: false,
-    //     active: false,
-    //     lastLogin: new Date(),
-    //     createdAt: new Date(),
-    //     updatedAt: new Date(),
-    //     maxStreak: 0,
-    //     currentStreak: 0,
-    //     streakDays: [],
-    //     deletedAt: null,
-    //     deleted: false,
-    //     courseList: [],
-    //     connectedAccounts: [],
-    //     bio: '',
-    //     countryCode: this.getCountryCode(country),
-    //   } as User);
-    //   this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-    //   this.isLoading = false;
-    //   this.router.navigate(['profile', newUser.user.uid]);
-    //   this.uiService.userSignupAction.next(true);
-    // } catch (error) {
-    //   this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
-    //   this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-    //   this.errMessage = errorHandler(error);
-    //   this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
-    //   this.isLoading = false;
-    // }
+    try {
+      const newUser = await this.authService.signUp(userEmail, userPassword);
+      await newUser.user.updateProfile({
+        displayName: `${this.trimUserInput(userFirstName)} ${this.trimUserInput(
+          userLastName
+        )}`,
+        photoURL: '../../../../../assets/images/placeholder-avatar.svg',
+      });
+      await this.usersService.createUserDoc(
+        newUser,
+        this.getCountryCode(country)
+      );
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.isLoading = false;
+      this.disableEnableFormControls('enable');
+      this.router.navigate(['profile', newUser.user.uid]);
+      this.uiService.userSignupAction.next(true);
+    } catch (error) {
+      this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.errMessage = errorHandler(error);
+      this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
+      this.isLoading = false;
+    }
   }
 }

@@ -18,6 +18,38 @@ export class UsersService {
     private authService: AuthService
   ) {}
 
+  async createUserDoc(newUser: any, countryCode: string) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .setSingleDoc('users', newUser.user.uid, {
+          id: newUser.user.uid,
+          email: newUser.user.email,
+          displayName: newUser.user.displayName,
+          photoURL: newUser.user.photoURL,
+          isVerified: false,
+          isPro: false,
+          active: false,
+          lastLogin: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          maxStreak: 0,
+          currentStreak: 0,
+          streakDays: [],
+          deletedAt: null,
+          deleted: false,
+          courseList: [],
+          connectedAccounts: [],
+          bio: '',
+          countryCode,
+          paid: false,
+          sessionExpirationDate: null,
+          availableSessions: null,
+        } as User)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
       if (userAuthObj == null) {
