@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import {
   Course,
   CoursesService,
-  Chapter,
   UsersService,
+  Chapter,
   ChapterLevel,
 } from 'DAL';
-import { Observable, Subscription, retry } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course',
@@ -20,6 +20,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   userProgress: ChapterLevel[];
   coursesServiceSub: Subscription;
   usersServiceSub: Subscription;
+  showCourseSection = true;
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService,
@@ -27,8 +28,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((courseData) => {
-      this.course = courseData['course'];
+    this.route.data.subscribe((routeData) => {
+      this.course = routeData['course'];
     });
     this.coursesServiceSub = this.coursesService
       .getChapters(this.route.snapshot.paramMap.get('courseID'))
@@ -39,6 +40,10 @@ export class CourseComponent implements OnInit, OnDestroy {
       const userProgressObj = userDoc.courseList.find(
         (course) => this.course.id === course.courseId
       );
+      if (!userProgressObj) {
+        this.showCourseSection = false;
+        window.location.reload();
+      }
       this.userProgress = userProgressObj.chapterLevel;
     });
   }

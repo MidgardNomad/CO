@@ -51,7 +51,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getAllCourses();
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.userCardOpacity = '1';
+  }
 
   getAllCourses() {
     this.coursesService.getAllCourses().subscribe((res) => {
