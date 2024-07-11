@@ -38,3 +38,33 @@
   cursor: not-allowed;
   pointer-events: none;
 }
+
+.logInMethod{
+  margin: 20px 0px;
+  text-align: center;
+  ul{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    li{
+      list-style: none;
+      font-size: 36px;
+      cursor: pointer;
+      &:nth-child(1){
+        color: #ff4141;
+      }
+      &:nth-child(2){
+        color: #4267B2;
+      }
+      &:nth-child(3){
+        color: #24292e;
+      }
+      &:nth-child(4){
+        color: #1DA1F2;
+      }
+    }
+  }
+}
