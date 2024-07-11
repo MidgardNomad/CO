@@ -21,13 +21,10 @@ export class FillSlideComponent implements OnInit {
   @Input() slide: Ss;
   @Input() isLastSlide: boolean;
   @Output() next = new EventEmitter();
+  @Output() finish = new EventEmitter();
   //===================
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private uiService: UIComponentsService
-  ) {}
+  constructor(private uiService: UIComponentsService) {}
 
   ngOnInit(): void {}
 
@@ -43,10 +40,6 @@ export class FillSlideComponent implements OnInit {
     this.next.emit();
   }
   onFinish() {
-    this.router.navigate([
-      'learn/course',
-      this.route.snapshot.paramMap.get('courseID'),
-    ]);
-    this.uiService.hideHeaderAndFooter.next(true);
+    this.finish.emit();
   }
 }

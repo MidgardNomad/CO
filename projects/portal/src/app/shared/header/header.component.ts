@@ -1,8 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  AfterViewInit,
+  AfterContentInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'DAL';
-import { CoursesService } from 'DAL';
-import { Course } from 'projects/dal/src/public-api';
+import { AuthService, Course, CoursesService } from 'DAL';
+
 import { UIComponentsService } from '../../services/ui-components.service';
 import { Subscription } from 'rxjs';
 
@@ -11,13 +16,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
   userDisplayName: string;
   userID: string;
   photoURL: string;
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
+  displayProfileCard = false;
 
   //=====Service Subscriptions======
   uiServicePresistSub: Subscription;
@@ -32,26 +38,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
-      (presistUserInfoCard) => (this.userInfoCard = presistUserInfoCard)
-    );
-
-    this.uiService.userLogout.subscribe((userLogout) => {
-      if (userLogout) {
-        this.userDisplayName = '';
+    this.authServiceSub = this.authService.user.subscribe((user) => {
+      if (user !== null) {
+        this.userDisplayName = user.displayName;
+        this.userID = user.uid;
+        this.photoURL = user.photoURL;
+        this.displayProfileCard = true;
       }
     });
+    this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
+      (presistUserInfoCard) => {
+        console.log(presistUserInfoCard);
+        this.userInfoCard = presistUserInfoCard;
+      }
+    );
 
-    this.authServiceSub = this.authService.user.subscribe((user) => {
-      this.userDisplayName = user.displayName;
-      this.userID = user.uid;
-      this.photoURL = user.photoURL;
-      this.userCardOpacity = '1';
-    });
+    this.uiServiceLogoutSub = this.uiService.userLogout.subscribe(
+      (userLogout) => {
+        if (userLogout) {
+          this.displayProfileCard = false;
+        }
+      }
+    );
+
     this.getAllCourses();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
     this.userCardOpacity = '1';
   }
 

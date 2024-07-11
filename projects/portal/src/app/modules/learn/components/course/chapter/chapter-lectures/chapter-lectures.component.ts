@@ -21,10 +21,11 @@ export class ChapterLecturesComponent implements OnInit {
       : [];
   }
 
-  navigateToLecture(lectureID: string) {
+  navigateToLecture(lectureID: string, lecture: Lecture) {
     this.router.navigate(['chapter', this.chapterID, 'lecture', lectureID], {
       relativeTo: this.route,
       queryParams: { s: 0 },
+      state: { activeLecture: lecture },
     });
   }
 }

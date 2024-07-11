@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { LoggedoutGuard } from '../../guards/isLoggedout.guard';
 import { LoggedinGuard } from '../../guards/isLoggedin.guard';
-import { UserProfileResolver } from '../../reslovers/profile.resolver';
 import { NotFoundComponent } from '../../shared/not-found/not-found.component';
 
 const routes: Routes = [

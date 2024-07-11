@@ -1,7 +1,7 @@
 <div *ngFor="let lect of lectures">
   <button
     class="container-fluid d-flex align-items-baseline lecture"
-    (click)="navigateToLecture(lect.id)"
+    (click)="navigateToLecture(lect.id, lect)"
     [disabled]="!userLecturesID.includes(lect.id)"
   >
     <div class="d-flex flex-column align-items-start">

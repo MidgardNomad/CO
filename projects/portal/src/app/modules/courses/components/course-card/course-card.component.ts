@@ -18,6 +18,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   //Component Subscriptions
   coursesServiceChapterIDSub: Subscription;
   coursesServiceLectureIDSub: Subscription;
+  usersServiceSub = new Subscription();
 
   constructor(
     private usersService: UsersService,
@@ -26,15 +27,16 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // this.usersService.userDoc.then((userData) => (this.user = userData));
-    this.usersService.userDoc.subscribe((userData) => {
-      this.user = userData;
-      for (let course of userData.courseList) {
-        if (course.courseId === this.course.id) {
-          this.hideCourseCard = true;
+    if (this.usersService.userDoc !== null) {
+      this.usersServiceSub = this.usersService.userDoc.subscribe((userData) => {
+        this.user = userData;
+        for (let course of userData.courseList) {
+          if (course.courseId === this.course.id) {
+            this.hideCourseCard = true;
+          }
         }
-      }
-    });
+      });
+    }
     this.coursesServiceChapterIDSub = this.coursesService
       .getFirstChapter(this.course.id)
       .subscribe((chapterID) => {
@@ -74,5 +76,6 @@ export class CourseCardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.coursesServiceChapterIDSub.unsubscribe();
     this.coursesServiceLectureIDSub.unsubscribe();
+    this.usersServiceSub.unsubscribe();
   }
 }
