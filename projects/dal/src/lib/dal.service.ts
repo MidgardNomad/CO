@@ -12,9 +12,8 @@ export class DALService {
   getData() {
     // get admin collections available in career officer project
     return {
-      collections:['users','admin','career','path','course','class','content','quiz',],
- 
-  }
+      collections: ['users', 'admin', 'career', 'path', 'course', 'class', 'content', 'quiz',],
+    }
   }
 }
 

@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserData } from '../../../students/components/student-list/student-list.component';
+import { SessionService } from 'DAL';
 
 @Component({
   selector: 'app-mentors-list',
@@ -34,7 +35,7 @@ export class MentorsListComponent {
   }
 
   // -------------------------------------------------- Add Form-----------------------------
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public _session: SessionService) { }
   user = [];
 
   openDialog(): void {
