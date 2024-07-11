@@ -35,3 +35,4 @@ export {
 export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
 //Mentor
 export { Mentor } from './lib/models/mentor/mentor';
+export { environment } from './environments/environment';

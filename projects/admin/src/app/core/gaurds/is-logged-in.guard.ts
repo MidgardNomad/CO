@@ -1,5 +1,5 @@
 import { CanActivateFn,Router  } from '@angular/router';
-import { environment } from 'projects/admin/src/environments/environment';
+import { environment } from 'DAL';
 import { inject } from '@angular/core';
 
 export const isLoggedInGuard: CanActivateFn = (route, state) => {

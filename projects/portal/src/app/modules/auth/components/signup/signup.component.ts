@@ -11,6 +11,7 @@ import { AuthService, UsersService, User } from 'DAL';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
+import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
 
 @Component({
   selector: 'app-signup',

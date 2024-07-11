@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        canActivate: [LoggedoutGuard],
+        // canActivate: [LoggedoutGuard],
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfileModule),
       },
