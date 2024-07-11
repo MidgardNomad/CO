@@ -103,7 +103,7 @@
           <div [ngStyle]="{ opacity: userCardOpacity }">
             <div
               class="d-flex align-items-center justify-content-center ms-4"
-              *ngIf="!displayProfileCard"
+              *ngIf="displayAuthActions && !displayProfileCard"
             >
               <button class="btn btn-log" (click)="navigateToLogin()">
                 Log in
@@ -113,15 +113,53 @@
               </button>
             </div>
 
-            <button
-              class="btn btn-userData d-flex align-items-center justify-content-center p-0"
-              style="border: none"
-              (click)="navigateToProfile()"
-              *ngIf="displayProfileCard"
-            >
-              <img class="user-img" [src]="photoURL" alt="" />
-              <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>
-            </button>
+            <div class="dropdown">
+              <button
+                class="btn btn-userData d-flex align-items-center justify-content-center p-0"
+                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="border: none"
+                *ngIf="displayProfileCard && !displayAuthActions"
+              >
+                <img class="user-img" [src]="photoURL" alt="" />
+                <!-- <p class="p-0 m-0 user-name">{{ userDisplayName }}</p> -->
+              </button>
+              <ul class="dropdown-menu center-dropdown">
+                <li>
+                  <a
+                    class="dropdown-item d-flex flex-column justify-content-around profile"
+                    [routerLink]="['/profile', userID]"
+                  >
+                    <p>{{ userDisplayName }}</p>
+                    <span>Go to profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/profile-settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Help</span>
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item logout"
+                    href="#"
+                    style="color: red"
+                    (click)="onLogout()"
+                  >
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
