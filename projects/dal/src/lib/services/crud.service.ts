@@ -6,7 +6,7 @@ import { OrderByDirection } from 'firebase/firestore';
   providedIn: 'root',
 })
 export class CrudService {
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore) { }
 
   // get all data
   getData(collection: string) {
