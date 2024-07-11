@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     navigator.geolocation.getCurrentPosition(
       (res) => {
         fetch(
-          `https://geocode.xyz/${res.coords.latitude},${res.coords.longitude}?geoit=json`
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${res.coords.latitude}&lon=${res.coords.longitude}`
         )
           .then((response) => {
             if (!response.ok)
@@ -22,8 +22,7 @@ export class AppComponent implements OnInit {
             return response.json();
           })
           .then((data) => {
-            console.log(data);
-            localStorage.setItem('country', data.country);
+            localStorage.setItem('country', data.address.country);
           });
       },
       (err) => console.log(err)

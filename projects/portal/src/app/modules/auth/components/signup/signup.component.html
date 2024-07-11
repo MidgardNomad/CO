@@ -12,107 +12,93 @@
     </h1>
 
     <form
-      #signUpForm="ngForm"
+      [formGroup]="signUpForm"
       class="needs-validation"
-      (ngSubmit)="onSignUp(signUpForm)"
+      (ngSubmit)="onSignUp()"
       novalidate
     >
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input
-          #firstName
-          [disabled]="isLoading"
           type="text"
           class="form-control"
           id="firstName"
           placeholder="First Name"
-          name="userFirstName"
-          required
+          formControlName="userFirstName"
           [ngClass]="{
-            'is-valid': firstName.validity.valid,
+            'is-valid': signUpForm.get('userFirstName').valid,
+            'is-invalid':
+              signUpForm.get('userFirstName').touched &&
+              signUpForm.get('userFirstName').invalid
           }"
         />
       </div>
       <div class="form-group">
         <label for="lastName">Last Name</label>
         <input
-          #lastName
-          [disabled]="isLoading"
           type="text"
           class="form-control"
           id="lastName"
           placeholder="Last Name"
-          ngModel
-          name="userLastName"
-          required
+          formControlName="userLastName"
           [ngClass]="{
-            'is-valid': lastName.validity.valid,
+            'is-valid': signUpForm.get('userLastName').valid,
+            'is-invalid':
+              signUpForm.get('userLastName').touched &&
+              signUpForm.get('userLastName').invalid
           }"
         />
       </div>
       <div class="form-group">
         <label for="email">Email address</label>
         <input
-          #email
-          [disabled]="isLoading"
           type="email"
           class="form-control"
           id="email"
-          placeholder="Email"
-          ngModel
-          email
-          required
-          name="userEmail"
+          placeholder="Email@Example.com"
+          formControlName="userEmail"
           [ngClass]="{
-            'is-invalid': invalidEmail,
-            'is-valid': email.validity.valid
+            'is-valid': signUpForm.get('userEmail').valid,
+            'is-invalid':
+              (signUpForm.get('userEmail').touched &&
+                signUpForm.get('userEmail').invalid) ||
+              invalidEmail
           }"
         />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
         <input
-          [disabled]="isLoading"
           type="password"
           class="form-control"
           id="password"
           placeholder="Password"
-          ngModel
-          required
-          name="userPassword"
-          minlength="8"
+          formControlName="userPassword"
+          [ngClass]="{
+            'is-valid': signUpForm.get('userPassword').valid,
+            'is-invalid':
+              signUpForm.get('userPassword').touched &&
+              signUpForm.get('userPassword').invalid
+          }"
         />
         <div class="form-text text-muted">
           Password Must be at least 8 Characters
         </div>
       </div>
-      <select
-        class="form-select"
-        aria-label="select"
-        ngModel
-        required
-        name="country"
-      >
+      <select class="form-select" aria-label="select" formControlName="country">
         <option [selected]="!userCountry" value="" disabled>
           Select Country
         </option>
-        <option
-          *ngFor="let country of countryList; index as i"
-          [value]="country"
-        >
+        <option *ngFor="let country of countryList" [value]="country">
           {{ country }}
         </option>
       </select>
       <div class="form-check mb-2 mr-sm-2">
         <input
-          [disabled]="isLoading"
           class="form-check-input"
           type="checkbox"
           id="inlineFormCheck"
-          ngModel
-          name="userAgreement"
-          value="true"
-          required
+          formControlName="userAgrement"
         />
         <label class="form-check-label" for="inlineFormCheck">
           <span
