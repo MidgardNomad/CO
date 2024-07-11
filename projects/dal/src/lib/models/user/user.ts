@@ -25,4 +25,7 @@ export interface User {
   sessionExpirationDate: Date;
   availableSessions: number;
   countryCode: string;
+
+  timeZone: string;
+
 }

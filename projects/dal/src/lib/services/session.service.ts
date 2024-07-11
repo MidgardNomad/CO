@@ -9,37 +9,38 @@ import * as moment from 'moment-timezone';
   providedIn: 'root'
 })
 export class SessionService {
+  private _mentorsCollection = 'mentors';
+  private _sessionsCollection = 'sessions';
 
-  constructor(private crudSerive: CrudService) {
+  constructor(private _crud: CrudService) {
     // get time zone from moment
     console.log(" current time zone: ", moment.tz.guess());
 
-    // get current time and time zone
-    var a = moment.tz("2024-06-13 11:55", "Africa/Cairo");
+    // // get current time and time zone
+    // var a = moment.tz("2024-06-13 11:55", "Africa/Cairo");
 
-    // get time zone from moment
-    console.log(" current time zone: ", a.format());
+    // // get time zone from moment
+    // console.log(" current time zone: ", a.format());
 
-    // get qatar time of the same time
-    var b = a.clone().tz("Asia/Qatar");
-    console.log(" qatar time zone: ", b.format());
+    // // get qatar time of the same time
+    // var b = a.clone().tz("Asia/Qatar");
+    // console.log(" qatar time zone: ", b.format());
 
-    // get malaysia time of the same time
-    var c = a.clone().tz("Asia/Kuala_Lumpur");
-    console.log(" malaysia time zone: ", c.format());
+    // // get malaysia time of the same time
+    // var c = a.clone().tz("Asia/Kuala_Lumpur");
+    // console.log(" malaysia time zone: ", c.format());
 
-    // get london time of the same time
-    var d = a.clone().tz("Europe/London");
-    console.log(" london time zone: ", d.format());
+    // // get london time of the same time
+    // var d = a.clone().tz("Europe/London");
+    // console.log(" london time zone: ", d.format());
 
-    // get new york time of the same time
-    var e = a.clone().tz("America/New_York");
-    console.log(" new york time zone: ", e.format());
+    // // get new york time of the same time
+    // var e = a.clone().tz("America/New_York");
+    // console.log(" new york time zone: ", e.format());
 
   }
 
-  private _mentorsCollection = 'mentors';
-  private _sessionsCollection = 'sessions';
+
 
 
 
