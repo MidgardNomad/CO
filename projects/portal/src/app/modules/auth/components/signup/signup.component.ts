@@ -11,6 +11,7 @@ import { AuthService, CrudService } from 'DAL';
 import { User } from 'DAL';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
+import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
 
 @Component({
   selector: 'app-signup',
@@ -88,44 +89,45 @@ export class SignupComponent implements OnInit {
       userCradentials.value;
     console.log(userCradentials.value);
 
-    // try {
-    //   const newUser = await this.authService.signUp(userEmail, userPassword);
-    //   await newUser.user.updateProfile({
-    //     displayName: `${this.trimUserInput(userFirstName)} ${this.trimUserInput(
-    //       userLastName
-    //     )}`,
-    //     photoURL: '../../../../../assets/images/placeholder-avatar.svg',
-    //   });
-    //   await this.crudService.setSingleDoc('users', newUser.user.uid, {
-    //     id: newUser.user.uid,
-    //     displayName: newUser.user.displayName,
-    //     photoURL: newUser.user.photoURL,
-    //     isVerified: false,
-    //     isPro: false,
-    //     active: false,
-    //     lastLogin: new Date(),
-    //     createdAt: new Date(),
-    //     updatedAt: new Date(),
-    //     maxStreak: 0,
-    //     currentStreak: 0,
-    //     streakDays: [],
-    //     deletedAt: null,
-    //     deleted: false,
-    //     courseList: [],
-    //     connectedAccounts: [],
-    //     bio: '',
-    //     countryCode: this.getCountryCode(country),
-    //   } as User);
-    //   this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-    //   this.isLoading = false;
-    //   this.router.navigate(['profile', newUser.user.uid]);
-    //   this.uiService.userSignupAction.next(true);
-    // } catch (error) {
-    //   this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
-    //   this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-    //   this.errMessage = errorHandler(error);
-    //   this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
-    //   this.isLoading = false;
-    // }
+    try {
+      const newUser = await this.authService.signUp(userEmail, userPassword);
+      await newUser.user.updateProfile({
+        displayName: `${this.trimUserInput(userFirstName)} ${this.trimUserInput(
+          userLastName
+        )}`,
+        photoURL: '../../../../../assets/images/placeholder-avatar.svg',
+      });
+      await this.crudService.setSingleDoc('users', newUser.user.uid, {
+        id: newUser.user.uid,
+        email:userEmail,
+        displayName: newUser.user.displayName,
+        photoURL: newUser.user.photoURL,
+        isVerified: false,
+        isPro: false,
+        active: false,
+        lastLogin: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        maxStreak: 0,
+        currentStreak: 0,
+        streakDays: [],
+        deletedAt: null,
+        deleted: false,
+        courseList: [],
+        connectedAccounts: [],
+        bio: '',
+        countryCode: this.getCountryCode(country),
+      } as User);
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.isLoading = false;
+      this.router.navigate(['profile', newUser.user.uid]);
+      this.uiService.userSignupAction.next(true);
+    } catch (error) {
+      this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+      this.errMessage = errorHandler(error);
+      this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
+      this.isLoading = false;
+    }
   }
 }

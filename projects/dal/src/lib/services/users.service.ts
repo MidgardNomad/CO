@@ -24,10 +24,12 @@ export class UsersService {
 
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
+      console.log('userAuthObj',userAuthObj);
       if (userAuthObj == null) {
         this.userDoc = null;
       } else {
         this.userDoc = this.getActiveUser(userAuthObj.uid);
+        console.log(this.userDoc);
       }
     });
   }

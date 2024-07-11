@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PaymentService, User, UsersService } from 'DAL';
-import { environment } from 'projects/portal/src/environments/environment';
+import { environment } from 'DAL';
 declare var Stripe: any;
 
 @Component({

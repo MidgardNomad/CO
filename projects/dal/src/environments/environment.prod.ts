@@ -9,5 +9,9 @@ export const environment = {
     appId: "1:902443961352:web:99a41627c82a50ecdbd5bd",
     measurementId: "G-M3C1GE1CDW"
   },
-  api:'https://ep.careerofficer.org/'
+  api: 'https://ep.careerofficer.org/',
+  stripeAPI: 'pk_live_51Mr8zqEoIQFHfSQMmF3xmKkqi39cphhL7wboqep3Sxl9eEGpmwnZMqwtM3c3nQ31wXHr1QGnxFjepOGaABVANkz700er0Ac8ys',
+  env: 'live',
+  tinyApiKey: 'q041l2n8hnprcdmi5qb3j4gzzxk5bz3af0dyxfl65z5fuzic',
+  userToken: 'T'
 };

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CoursesService, Ss, SsType } from 'DAL';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { environment } from 'projects/admin/src/environments/environment';
+import { environment } from 'DAL';
 import { S3ImgUploaderService } from 'projects/dal/src/lib/aws/s3-img-uploader.service';
 
 @Component({

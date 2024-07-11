@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'DAL';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +35,9 @@ export class AppComponent implements OnInit {
       localStorage.getItem('country') == 'undefined'
     ) {
       this.getUserCountry();
-    }
+    }   
+    console.log('user doc',this.usersService.getUser());
+ 
     this.usersService.getUser();
   }
 }
