@@ -128,6 +128,7 @@ export class SignupComponent implements OnInit {
       this.router.navigate(['profile', newUser.user.uid]);
       this.uiService.userSignupAction.next(true);
     } catch (error) {
+      this.disableEnableFormControls('enable');
       this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.errMessage = errorHandler(error);
