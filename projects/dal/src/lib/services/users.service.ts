@@ -14,8 +14,6 @@ export class UsersService {
   private _coursesCollection = 'courses';
 
   userDoc: Observable<User> | null;
-  //new BehaviorSubject<User>(null);
-  // userDocData=this.userDoc.asObservable();
 
   constructor(
     private crudService: CrudService,
@@ -64,22 +62,6 @@ export class UsersService {
       }
     });
   }
-
-  // getUserPayment() {
-  //   return new Promise((resolve,reject)=>{
-  //     this.authService.user.subscribe((userAuthObj) => {
-  //       this.getSingleUser(userAuthObj.uid).subscribe((res:User)=>{
-  //         if (res) {
-  //           res.email=userAuthObj.email;
-  //           this.userDoc.next(res);
-  //           resolve(true);
-  //         }else{
-  //           reject(false);
-  //         }
-  //       })
-  //     });
-  //   })
-  // }
 
   getAllUsers() {
     return this.crudService.getData(this._usersCollection).pipe(
