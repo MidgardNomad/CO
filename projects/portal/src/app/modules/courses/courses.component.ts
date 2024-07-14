@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CoursesService, Course, CourseLevel, UsersService, User } from 'DAL';
+import { CoursesService, Course } from 'DAL';
 import { Subscription } from 'rxjs';
 
 @Component({
