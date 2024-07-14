@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
       this.titleService.setTitle(this.userDoc.displayName);
-      this.flag = `https://flagcdn.com/${this.userDoc.countryCode.toLowerCase()}.svg`;
+      this.flag = `https://flagcdn.com/${this.userDoc?.countryCode?.toLowerCase()}.svg`;
     });
   }
 
