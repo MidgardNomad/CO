@@ -9,7 +9,7 @@ export const LoggedinGuard: CanActivateChildFn = (route, state) => {
 
   return authService.user.pipe(
     map((user) => {
-      return user == null ? true : router.createUrlTree(['/']);
+      return user == null ? true : router.createUrlTree(['/profile', user.uid]);
     })
   );
 };
