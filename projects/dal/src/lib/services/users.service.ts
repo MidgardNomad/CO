@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CrudService } from './crud.service';
 import { User } from '../models/user/user';
 import { CourseLevel } from '../models/user/courseLevel';
@@ -57,12 +57,10 @@ export class UsersService {
 
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
-      console.log('userAuthObj', userAuthObj);
       if (userAuthObj == null) {
         this.userDoc = null;
       } else {
         this.userDoc = this.getActiveUser(userAuthObj.uid);
-        console.log(this.userDoc);
       }
     });
   }
