@@ -6,8 +6,8 @@
   .collapse {
     justify-content: space-around;
 
-    .headerLinks {
-    }
+    // .headerLinks {
+    // }
 
     .headerRight {
       .center-dropdown {
@@ -89,6 +89,9 @@
     font-size: 20px;
     font-weight: bolder;
     color: #1ebcff;
+    &:active {
+      border: none;
+    }
   }
 
   .btn-signup {

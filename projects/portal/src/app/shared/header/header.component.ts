@@ -1,26 +1,17 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  AfterViewInit,
-  AfterContentInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, Course, CoursesService, UsersService } from 'DAL';
+import { AuthService, Course, CoursesService, UsersService, User } from 'DAL';
 
 import { UIComponentsService } from '../../services/ui-components.service';
 import { Subscription } from 'rxjs';
-import { P } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
-  userDisplayName: string;
-  userID: string;
-  photoURL: string;
+export class HeaderComponent implements OnInit, OnDestroy {
+  user: User;
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
@@ -31,6 +22,7 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
   uiServicePresistSub: Subscription;
   uiServiceLogoutSub: Subscription;
   authServiceSub: Subscription;
+  userServiceSub: Subscription;
 
   constructor(
     private router: Router,
@@ -40,50 +32,34 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
     private coursesService: CoursesService
   ) {}
 
-  ngOnInit(): void {
-    if (this.usersService.userDoc !== null) {
-      this.usersService.userDoc.subscribe((userData) => {
-        this.userDisplayName = userData.displayName;
-        this.photoURL = userData.photoURL;
-        this.userID = userData.id;
+  private getUserInfo() {
+    if (this.usersService.userDoc === null) {
+      this.displayAuthActions = true;
+    } else {
+      this.userServiceSub = this.usersService.userDoc?.subscribe((userDoc) => {
+        this.user = userDoc;
         this.displayProfileCard = true;
       });
-    } else {
-      this.displayAuthActions = true;
     }
+  }
 
+  ngOnInit(): void {
+    this.getUserInfo();
     this.uiService.userLoginAction.subscribe((login) => {
       if (login) {
-        this.usersService.getUser();
-        this.displayAuthActions = false;
-        this.displayProfileCard = true;
+        window.location.reload();
       }
     });
 
     this.uiService.userSignupAction.subscribe((signup) => {
       if (signup) {
-        this.usersService.getUser();
-        this.displayAuthActions = false;
-        this.displayProfileCard = true;
+        window.location.reload();
       }
     });
     this.uiService.userLogoutAction.subscribe((logout) => {
       if (logout) {
-        this.displayAuthActions = true;
-        this.displayProfileCard = false;
+        window.location.reload();
       }
-    });
-
-    this.getAllCourses();
-  }
-
-  ngAfterContentInit(): void {
-    this.userCardOpacity = '1';
-  }
-
-  getAllCourses() {
-    this.coursesService.getAllCourses().subscribe((res) => {
-      this.coursesList = res;
     });
   }
 
@@ -102,9 +78,9 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
   async onLogout() {
     try {
       await this.authService.logout();
-      this.displayAuthActions = true;
-      this.displayProfileCard = false;
+      console.log('nav to auth');
       this.router.navigate(['/auth']);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
