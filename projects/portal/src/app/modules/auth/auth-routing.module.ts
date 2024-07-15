@@ -6,6 +6,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EmailComponent } from './components/email/email.component';
+import { EamilVerificationGuard } from '../../guards/email-verification.guard';
 
 const routes: Routes = [
   {
@@ -26,6 +28,12 @@ const routes: Routes = [
         path: 'signup',
         component: SignupComponent,
         title: 'Sign-up',
+      },
+      {
+        path: 'email-verification',
+        canActivate: [EamilVerificationGuard],
+        component: EmailComponent,
+        title: 'Email Verification',
       },
       {
         path: 'verify',

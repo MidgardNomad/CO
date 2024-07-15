@@ -52,9 +52,14 @@ export class LoginComponent implements OnInit {
         userPassword,
         rememberUser
       );
-      this.router.navigate(['profile', user.user.uid]);
-      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-      this.uiService.userLoginAction.next(true);
+      if (user.user.emailVerified) {
+        this.router.navigate(['profile', user.user.uid]);
+        this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+        this.uiService.userLoginAction.next(true);
+      } else {
+        this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+        this.router.navigate(['auth/email-']);
+      }
     } catch (error) {
       this.isLoading = false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
