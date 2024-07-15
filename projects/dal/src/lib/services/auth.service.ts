@@ -88,11 +88,15 @@ export class AuthService {
     });
   }
 
+  // async verifyNewEamil() {
+  //   this.activeUser.ve
+  // }
+
   async updateEmail(email: string): Promise<void> {
     const user = await this.auth.currentUser;
     return new Promise((resolve, reject) => {
       user
-        .updateEmail(email)
+        .verifyBeforeUpdateEmail(email)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
     });
