@@ -21,7 +21,7 @@ export class AuthService {
     password: string,
     stayLoggedIn: boolean | ''
   ): Promise<firebase.default.auth.UserCredential> {
-    this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
+    await this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
     return new Promise((resolve, reject) => {
       this.auth
         .signInWithEmailAndPassword(email, password)
@@ -37,13 +37,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       this.auth
         .createUserWithEmailAndPassword(email, password)
-        .then(async (res) => {
-          resolve(res);
-          // console.log(res.user.displayName);
-          // this.verifyEmail(res.user)
-          //   .then((_) => resolve(res))
-          //   .catch((error) => error);
-        })
+        .then((res) => resolve(res))
         .catch((error) => reject(error));
     });
   }
@@ -52,6 +46,15 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       user
         .sendEmailVerification()
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async resetPasswordEmail(email: string) {
+    return new Promise((resolve, reject) => {
+      this.auth
+        .sendPasswordResetEmail(email)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
     });
