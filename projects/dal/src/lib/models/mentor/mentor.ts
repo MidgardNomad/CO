@@ -7,6 +7,7 @@ export interface Mentor {
   age: number;
   linkedInLink: string;
   weeklySchedule: sessionForm[];
+  timeZone: string;
 }
 
 
@@ -14,7 +15,6 @@ export interface sessionForm {
   day: WeekDays;
   from: Date;
   duration: number;
-  timeZone: string;
 }
 
 

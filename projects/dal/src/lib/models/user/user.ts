@@ -26,4 +26,6 @@ export interface User {
   availableSessions: number;
   countryCode: string;
   country: string;
+
+  timeZone: string;
 }
