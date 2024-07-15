@@ -11,6 +11,7 @@ import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component
 import { SharedModule } from '../../shared/shared.module';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { EmailComponent } from './components/email/email.component';
+import { VerifyEmailDialogComponent } from './components/login/verify-email-dialog/verify-email-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EmailComponent } from './components/email/email.component';
     ResetPasswordComponent,
     VerifyOtpComponent,
     EmailComponent,
+    VerifyEmailDialogComponent,
   ],
   imports: [CommonModule, SharedModule, AuthRoutingModule, NgOtpInputModule],
 })
