@@ -6,11 +6,16 @@ import { OrderByDirection } from 'firebase/firestore';
   providedIn: 'root',
 })
 export class CrudService {
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {}
 
-  // get all data
+  // get all data (snapshot)
   getData(collection: string) {
     return this.db.collection(collection).snapshotChanges();
+  }
+
+  //get all data using get()
+  getAllData(collection: string) {
+    return this.db.collection(collection).get();
   }
 
   //set a single Document with a custom ID
