@@ -27,17 +27,13 @@
     </mat-form-field>
     <div formArrayName="expertise">
       <h5>Mentor Expertise</h5>
-      <button
-        class="btn btn-expertise"
-        type="button"
-        (click)="onAddExpertise()"
-      >
-        <i class="fa-solid fa-plus"></i>
-      </button>
       <mat-form-field *ngFor="let expertise of controls; let i = index">
         <mat-label>Mentor Expertise</mat-label>
         <input type="text" matInput [formControlName]="i" />
       </mat-form-field>
+      <button class="btn-expertise" type="button" (click)="onAddExpertise()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
     </div>
     <mat-dialog-actions align="center">
       <button type="submit" class="btn btn-primary" mat-dialog-close>
