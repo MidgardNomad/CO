@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Mentor, sessionForm, WeekDays } from '../models/mentor/mentor';
 import { CrudService } from './crud.service';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,16 @@ export class MentorService {
   constructor(private _crud: CrudService) {}
 
   getMentors() {
-    return this._crud.getData(this._mentorsCollection);
+    return this._crud.getAllData(this._mentorsCollection).pipe(
+      map((mentorsList) => {
+        return mentorsList.docs.map((mentorDoc) => {
+          return <Mentor>{
+            id: mentorDoc.id,
+            ...(mentorDoc.data() as object),
+          };
+        });
+      })
+    );
   }
 
   getMentorByID(mentorID: string) {
