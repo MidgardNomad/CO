@@ -9,7 +9,9 @@
 
   <ng-container matColumnDef="age">
     <th mat-header-cell *matHeaderCellDef>Age</th>
-    <td mat-cell *matCellDef="let element">{{ element.age }} years</td>
+    <td mat-cell *matCellDef="let element">
+      {{ element.birthdate | age }} years
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="experience">

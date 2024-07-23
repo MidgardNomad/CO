@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Mentor } from 'DAL';
-import * as moment from 'moment-timezone';
 import { MentorDialogComponent } from '../../modal/mentor-dialog/mentor-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-mentors',
@@ -10,25 +10,21 @@ import { MentorDialogComponent } from '../../modal/mentor-dialog/mentor-dialog.c
   styleUrls: ['./mentors.component.scss'],
 })
 export class MentorsComponent implements OnInit {
-  dataSource: Mentor[] = [
-    {
-      name: 'Mahmoud',
-      timeZone: moment.tz.guess(),
-      birthdate: new Date(),
-      experience: 1.5,
-      expertise: ['Flutter', 'Angular', 'Express'],
-      id: 'id',
-      linkedInLink: 'www.linkedin.com',
-      profilePicture: 'test',
-      weeklySchedule: null,
-    },
-  ];
+  dataSource: Mentor[] = [];
 
   displayedColumns = ['name', 'age', 'experience', 'timezone'];
 
-  constructor(private matDialog: MatDialog) {}
+  constructor(
+    private matDialog: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource = this.route.snapshot.data['mentorsList'];
+    const today = new Date().getFullYear();
+    console.log(today);
+  }
 
   onAddMentor() {
     this.matDialog.open(MentorDialogComponent, {
@@ -40,6 +36,6 @@ export class MentorsComponent implements OnInit {
   }
 
   navigateToMentor(data) {
-    console.log(data);
+    this.router.navigate(['/mentors', data.id]);
   }
 }
