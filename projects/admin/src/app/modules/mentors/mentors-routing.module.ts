@@ -7,8 +7,7 @@ import { MentorsListComponent } from './components/mentors-list/mentors-list.com
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'list',
-    pathMatch: 'full',
+    component: MentorsComponent,
   },
   {
     path: 'list',
