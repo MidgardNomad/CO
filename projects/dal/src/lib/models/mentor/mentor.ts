@@ -4,19 +4,17 @@ export interface Mentor {
   name: string;
   experience: number;
   expertise: string[];
-  age: number;
+  birthdate: Date;
   linkedInLink: string;
   weeklySchedule: sessionForm[];
   timeZone: string;
 }
-
 
 export interface sessionForm {
   day: WeekDays;
   from: Date;
   duration: number;
 }
-
 
 // week days enum
 export enum WeekDays {
