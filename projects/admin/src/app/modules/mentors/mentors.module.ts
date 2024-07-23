@@ -14,6 +14,7 @@ import { EditComponent } from './components/mentors-list/edit/edit.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatTableModule,
   ],
 })
 export class MentorsModule {}
