@@ -1,56 +1,42 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Course, CoursesService } from 'DAL';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CareerPathService, Course, CoursesService } from 'DAL';
 import { CareerDetailsDialogComponent } from 'projects/admin/src/app/modal/career-details-dialog/career-details-dialog.component';
-
-///////////////////////////////// Interface of data //////////////////////////////////
-
-// export interface CareerDetials {
-//   NO: number;
-//   id: string;
-//   title: string;
-//   description: string;
-//   courseList: string[];
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-career-details',
   templateUrl: './career-details.component.html',
   styleUrls: ['./career-details.component.scss'],
-  
 })
-
-export class CareerDetailsComponent implements OnInit{
-
-  courses: Course[];
-
+export class CareerDetailsComponent implements OnInit {
+  courses: Observable<Course[]>;
+  careerPathId: string;
   panelOpenState = false;
 
-  constructor(private dialog: MatDialog, private coursesService: CoursesService) { }
+  constructor(
+    private dialog: MatDialog,
+    private careerPathService: CareerPathService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // this.coursesService.getAllCourses().subscribe(courses => {
-    //   this.courses = courses;
-    // })
+    this.careerPathId = this.route.snapshot.paramMap.get('id');
+    this.courses = this.careerPathService.getAllCareerCourses(
+      this.careerPathId
+    );
   }
 
   addCourse() {
     this.dialog.open(CareerDetailsDialogComponent, {
       disableClose: true,
-      width: '500px'
-    })
+      width: '500px',
+      data: { careerPathID: this.careerPathId },
+    });
   }
-
-  ///////////////////////////////// Array of data ////////////////////////////////////
-
-  // ELEMENT_DATA: CareerDetials[] = [
-  //   { NO: 1, id: "", title: 'UI', description: "", courseList: [] },
-  //   { NO: 2, id: "", title: 'UI/UX', description: "", courseList: [] },
-  //   { NO: 3, id: "", title: 'Frontend', description: "", courseList: [] },
-  //   { NO: 4, id: "", title: 'Backend', description: "", courseList: [] },
-  //   { NO: 5, id: "", title: 'Fullstack', description: "", courseList: [] },
-  // ];
-
+  navigateToSessions() {
+    this.router.navigate(['sessions'], { relativeTo: this.route });
+  }
 }

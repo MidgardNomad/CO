@@ -1,26 +1,23 @@
-.checklist-card
-{
-  box-shadow: #b6bec4 0px 3px 8px; 
-  border-radius: 12px;
-  background-color: #b6bec4 ;
-  margin: 15px 0px;
-}
-
-.check-inpt
-{
-  width: 25px;
-  height: 25px;
-  border-radius: 5px;
-}
-
-.btn-primary {
-  background-color: #03c9d7;
-  border: none;
-  margin: 10px;
-}
-
-.btn-danger {
-  background-color: #ee5752;
-  border: none;
-  margin: 10px;
+.course {
+  gap: 10px;
+  &-card {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgb(216, 221, 226);
+    border-radius: 12px;
+    h4 {
+      margin: 0px 5px;
+    }
+  }
+  &-button {
+    button {
+      padding: 10px;
+      background-color: #53d8e2;
+      border-radius: 12px;
+      border: none;
+      i {
+        color: white;
+      }
+    }
+  }
 }
