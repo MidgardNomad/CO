@@ -92,8 +92,11 @@ export class UsersService {
   getSingleUser(userID: string) {
     return this.crudService.getSignleDoc(this._usersCollection, userID).pipe(
       map((userDocSnap) => {
+        console.log('userDocSnap',userDocSnap);
+        
         return <User>{
           id: userDocSnap.id,
+          isExist:userDocSnap.exists,
           ...(userDocSnap.data() as object),
         };
       })

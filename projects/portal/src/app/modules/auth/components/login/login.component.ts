@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'DAL';
+import { AuthService, User, UsersService } from 'DAL';
 import { errorHandler } from '../../../../shared/functions/errorHandler';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
@@ -45,10 +45,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private renderer: Renderer,
     private uiService: UIComponentsService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private usersService:UsersService
   ) {}
-    private uiService: UIComponentsService
-  ) { }
 
   ngOnInit(): void {
     this.logOut();
@@ -113,7 +112,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       // The signed-in user info.
       const user = result.user;
       console.log('user', user);
-      this.completeLogin(user.uid);
+      this.completeLogin(user,user.uid);
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     }).catch((error) => {
@@ -207,9 +206,28 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
   }
 
-  completeLogin(userID:string){    
-    this.router.navigateByUrl(`/profile/${userID}`);
-    this.uiService.userLoginAction.next(true);
+  completeLogin(userObj,userID:string){    
+    this.usersService.getSingleUser(userID).subscribe((user:User)=>{
+      console.log('user',user);
+      if (user.isExist) {
+        this.router.navigateByUrl(`/profile/${userID}`);
+        this.uiService.userLoginAction.next(true);
+      }else{
+        const user={
+          user:{
+            uid:userID,
+            email:userObj.email,
+            displayName:userObj.displayName,
+            photoURL:userObj.photoURL
+          }
+        }
+        this.usersService.createUserDoc(user,null,null).then(res=>{
+          console.log('res',res);
+        }).catch(err=>{
+          console.log(err);
+        })
+      }
+    })
   }
 
   async logOut() {

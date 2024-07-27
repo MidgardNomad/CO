@@ -28,4 +28,6 @@ export interface User {
   country: string;
 
   timeZone: string;
+
+  isExist?:boolean;
 }
