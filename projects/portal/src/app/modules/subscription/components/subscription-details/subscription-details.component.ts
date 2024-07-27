@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment-timezone';
-import { PaymentService, User, AuthService } from 'DAL';
+import { PaymentService, User, UsersService } from 'DAL';
 import { environment } from 'DAL';
 declare var Stripe: any;
 
@@ -13,11 +12,11 @@ export class SubscriptionDetailsComponent implements OnInit {
   stripe = Stripe(environment.stripeAPI);
   elements;
   cardElement;
-  user: firebase.default.User;
+  user: User;
 
   constructor(
     private paymentService: PaymentService,
-    private authService: AuthService
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +25,7 @@ export class SubscriptionDetailsComponent implements OnInit {
   }
 
   getUser() {
-    this.authService.user.subscribe((userAuthObj) => {
+    this.usersService.userDoc.subscribe((userAuthObj) => {
       this.user = userAuthObj;
     });
   }
@@ -41,11 +40,11 @@ export class SubscriptionDetailsComponent implements OnInit {
     try {
       let reqBody = {
         amount: 15000,
-        userID: this.user.uid,
+        userID: this.user.id,
         env: environment.env,
         name: this.user.displayName,
         email: this.user.email,
-        currency: moment.tz.guess() === 'Africa/Cairo' ? 'egp' : 'usd',
+        currency: this.user.countryCode === 'EG' ? 'EGP' : 'USD',
       };
       const response: any = await this.paymentService.createPaymentIntent(
         reqBody
