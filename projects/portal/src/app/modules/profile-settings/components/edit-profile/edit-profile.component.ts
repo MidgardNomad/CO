@@ -44,7 +44,7 @@ export class EditProfileComponent implements OnInit, OnDestroy {
       form.value.userSecondName === ''
         ? this.userLastName
         : form.value.userSecondName;
-    const userEmail = form.value.userEmail;
+    // const userEmail = form.value.userEmail;
     const userBIO = form.value.userBIO;
     try {
       if (form.value.userFirstName !== '' || form.value.userSecondName !== '') {
@@ -58,24 +58,23 @@ export class EditProfileComponent implements OnInit, OnDestroy {
           bio: userBIO,
         });
       }
-      if (userEmail !== '') {
-        this.matDialog.open(ReauthenticateDialogComponent, {
-          height: '300px',
-          width: '500px',
-          disableClose: true,
-          data: {
-            title: 'Update Your Account Info',
-            header: 'Enter Your Password to Confrim Updating Your Info',
-            button: 'Update Profile',
-            class: 'update-profile',
-            email: userEmail,
-          },
-        });
-      }
+      // if (userEmail !== '') {
+      //   this.matDialog.open(ReauthenticateDialogComponent, {
+      //     height: '300px',
+      //     width: '500px',
+      //     disableClose: true,
+      //     data: {
+      //       title: 'Update Your Account Info',
+      //       header: 'Enter Your Password to Confrim Updating Your Info',
+      //       button: 'Update Profile',
+      //       class: 'update-profile',
+      //       email: userEmail,
+      //     },
+      //   });
+      // }
       this.loading = false;
     } catch (error) {
       this.loading = false;
-
       console.log(error);
     }
   }
