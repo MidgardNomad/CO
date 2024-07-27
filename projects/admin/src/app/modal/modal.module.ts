@@ -9,14 +9,24 @@ import { EditCareerComponent } from './edit-career/edit-career.component';
 import { DeleteCareerComponent } from './delete-career/delete-career.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
 import { VerifyPhoneNumberComponent } from './verify-phone-number/verify-phone-number.component';
 import { NgOtpInputModule } from  'ng-otp-input';
 
+import { MentorDialogComponent } from './mentor-dialog/mentor-dialog.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent, VerifyPhoneNumberComponent],
+  declarations: [
+    AddNewCareerComponent,
+    EditCareerComponent,
+    DeleteCareerComponent,
+    DeleteDialogComponent,
+    CareerDetailsDialogComponent,
+    MentorDialogComponent,
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,
@@ -24,5 +34,13 @@ import { NgOtpInputModule } from  'ng-otp-input';
     NgOtpInputModule
 
   ]
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+  ],
 })
-export class ModalModule { }
+export class ModalModule {}

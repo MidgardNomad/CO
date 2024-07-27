@@ -17,12 +17,14 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CourseCardComponent } from '../courses/components/courses-details/course-card/course-card.component';
 import { CoursesModule } from '../courses/courses.module';
+import { CareerSessionsComponent } from './component/career-sessions/career-sessions.component';
 
 @NgModule({
   declarations: [
     CareerComponent,
     CareerListComponent,
     CareerDetailsComponent,
+    CareerSessionsComponent,
     
   ],
   imports: [

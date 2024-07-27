@@ -9,22 +9,17 @@
     background-size: cover;
 
     .user-avatar {
-      max-width: 200px;
-      max-height: 200px;
+      border: 2px solid white;
+      max-width: 128px;
+      max-height: 128px;
       margin: 30px;
+      border-radius: 50%;
     }
     .user-info {
       width: 300px;
       h3 {
         color: white;
         font-size: 25px;
-        span {
-          margin-right: 5px;
-          cursor: pointer;
-          i {
-            font-size: 14px;
-          }
-        }
       }
       p {
         font-size: 14px;

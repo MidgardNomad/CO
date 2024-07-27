@@ -10,6 +10,9 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { VerifyOtpComponent } from './components/verify-otp/verify-otp.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { EmailComponent } from './components/email/email.component';
+import { VerifyEmailDialogComponent } from './components/login/verify-email-dialog/verify-email-dialog.component';
+import { ResetPasswordEmailComponent } from './components/reset-password-email/reset-password-email.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,9 @@ import { NgOtpInputModule } from 'ng-otp-input';
     LoginComponent,
     ResetPasswordComponent,
     VerifyOtpComponent,
+    EmailComponent,
+    VerifyEmailDialogComponent,
+    ResetPasswordEmailComponent,
   ],
   imports: [CommonModule, SharedModule, AuthRoutingModule, NgOtpInputModule],
 })

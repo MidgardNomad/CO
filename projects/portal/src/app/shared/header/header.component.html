@@ -9,8 +9,6 @@
       </a>
     </div>
 
-    <i class="fa-solid fa-magnifying-glass search-icon1"></i>
-
     <button
       class="navbar-toggler"
       type="button"
@@ -35,45 +33,6 @@
                 >My Home</a
               >
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link"
-                role="button"
-                routerLink="/courses"
-                routerLinkActive="active"
-              >
-                Courses
-              </a>
-            </li>
-            <!-- <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Courses
-              </a>
-              <ul class="dropdown-menu coursesList">
-                <li *ngFor="let course of coursesList">
-                  <a
-                    class="dropdown-item"
-                    [routerLink]="['/learn/course', course?.id]"
-                    routerLinkActive="active"
-                    >{{ course?.title }}</a
-                  >
-                </li>
-              </ul>
-            </li> -->
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                [routerLink]="['/subscribe']"
-                routerLinkActive="active"
-                >Pricing</a
-              >
-            </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/blogs" routerLinkActive="active"
                 >Blog</a
@@ -95,15 +54,12 @@
           </ul>
         </div>
         <div class="headerRight d-flex align-items-center">
-          <i class="fa-solid fa-magnifying-glass search-icon2"></i>
-          <i class="fa-regular fa-bell"></i>
-
           <!-- User Data -->
 
-          <div [ngStyle]="{ opacity: userCardOpacity }">
+          <div>
             <div
               class="d-flex align-items-center justify-content-center ms-4"
-              *ngIf="!displayProfileCard"
+              *ngIf="displayAuthActions && !displayProfileCard"
             >
               <button class="btn btn-log" (click)="navigateToLogin()">
                 Log in
@@ -113,15 +69,53 @@
               </button>
             </div>
 
-            <button
-              class="btn btn-userData d-flex align-items-center justify-content-center p-0"
-              style="border: none"
-              (click)="navigateToProfile()"
-              *ngIf="displayProfileCard"
-            >
-              <img class="user-img" [src]="photoURL" alt="" />
-              <p class="p-0 m-0 user-name">{{ userDisplayName }}</p>
-            </button>
+            <div class="dropdown">
+              <button
+                class="btn btn-userData d-flex align-items-center justify-content-center p-0"
+                data-toggle="dropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="border: none"
+                *ngIf="displayProfileCard && !displayAuthActions"
+              >
+                <img class="user-img" [src]="user?.photoURL" alt="" />
+                <!-- <p class="p-0 m-0 user-name">{{ userDisplayName }}</p> -->
+              </button>
+              <ul class="dropdown-menu center-dropdown">
+                <li>
+                  <a
+                    class="dropdown-item d-flex flex-column justify-content-around profile"
+                    [routerLink]="['/profile', user?.id]"
+                  >
+                    <p>{{ user?.displayName }}</p>
+                    <span>Go to profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" routerLink="/profile-settings">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Help</span>
+                  </a>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item logout"
+                    href="#"
+                    style="color: red"
+                    (click)="onLogout()"
+                  >
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

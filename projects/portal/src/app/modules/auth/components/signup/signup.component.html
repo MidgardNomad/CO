@@ -99,6 +99,7 @@
           type="checkbox"
           id="inlineFormCheck"
           formControlName="userAgrement"
+          value="true"
         />
         <label class="form-check-label" for="inlineFormCheck">
           <span
@@ -128,7 +129,11 @@
       <button
         type="submit"
         class="btn btn-primary my-1 app-custom-button"
-        [disabled]="signUpForm.invalid || isLoading"
+        [disabled]="
+          signUpForm.invalid ||
+          isLoading ||
+          signUpForm.get('userAgrement').value !== true
+        "
       >
         Sign Up
       </button>

@@ -15,23 +15,13 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth) {}
 
-  //Class Getters
-  async getUserID(): Promise<string> {
-    const userID = (await this.activeUser).uid;
-    return userID;
-  }
-
-  //Class Setters
-
-  //Class Utilities
-
   //Class Methods
   async signIn(
     email: string,
     password: string,
     stayLoggedIn: boolean | ''
   ): Promise<firebase.default.auth.UserCredential> {
-    this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
+    await this.auth.setPersistence(stayLoggedIn ? 'local' : 'session').then();
     return new Promise((resolve, reject) => {
       this.auth
         .signInWithEmailAndPassword(email, password)
@@ -52,12 +42,23 @@ export class AuthService {
     });
   }
 
-  // async verifyEmail(email: string) {
-  //   let user = await this.auth.currentUser;
-  //   return new Promise((resolve, reject) => {
-  //     user.sendEmailVerification
-  //   })
-  // }
+  async verifyEmail(user: firebase.default.User): Promise<void> {
+    return new Promise((resolve, reject) => {
+      user
+        .sendEmailVerification()
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  async resetPasswordEmail(email: string) {
+    return new Promise((resolve, reject) => {
+      this.auth
+        .sendPasswordResetEmail(email)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
 
   async reauthenticate(
     password: string
@@ -87,11 +88,15 @@ export class AuthService {
     });
   }
 
+  // async verifyNewEamil() {
+  //   this.activeUser.ve
+  // }
+
   async updateEmail(email: string): Promise<void> {
     const user = await this.auth.currentUser;
     return new Promise((resolve, reject) => {
       user
-        .updateEmail(email)
+        .verifyBeforeUpdateEmail(email)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
     });

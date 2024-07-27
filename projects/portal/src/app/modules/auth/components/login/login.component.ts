@@ -12,6 +12,9 @@ import { AuthService } from 'DAL';
 import { errorHandler } from '../../../../shared/functions/errorHandler';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
+import { MatDialog } from '@angular/material/dialog';
+import { VerifyEmailDialogComponent } from './verify-email-dialog/verify-email-dialog.component';
+import { Subscription } from 'rxjs';
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider,TwitterAuthProvider,signOut  } from "firebase/auth";
 
 
@@ -20,13 +23,15 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, Git
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('form') form: ElementRef;
   @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
   @ViewChild('alert') alert: ElementRef;
   errMessage: string;
   isLoading = false;
   loadingAnimation = loadingAnimation();
+  //Subs
+  matDialogSub: Subscription;
 
 
   auth = getAuth();
@@ -39,6 +44,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private renderer: Renderer,
+    private uiService: UIComponentsService,
+    private matDialog: MatDialog
+  ) {}
     private uiService: UIComponentsService
   ) { }
 
@@ -64,15 +72,36 @@ export class LoginComponent implements OnInit {
         userPassword,
         rememberUser
       );
-      this.router.navigate(['profile', user.user.uid]);
-      this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
-      this.uiService.userLoginAction.next(true);
+      if (user.user.emailVerified) {
+        this.router.navigate(['profile', user.user.uid]);
+        this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+        this.uiService.userLoginAction.next(true);
+      } else {
+        await this.authService.logout();
+        this.isLoading = false;
+        this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
+        this.matDialogSub = this.matDialog
+          .open(VerifyEmailDialogComponent)
+          .afterClosed()
+          .subscribe((userResponse) => {
+            if (userResponse) {
+              this.authService.verifyEmail(user.user);
+              this.router.navigate(['auth/email-verification'], {
+                state: { userEmail },
+              });
+            }
+          });
+      }
     } catch (error) {
       this.isLoading = false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.errMessage = errorHandler(error);
       this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.matDialogSub) this.matDialogSub.unsubscribe();
   }
 
   googleSignIn() {

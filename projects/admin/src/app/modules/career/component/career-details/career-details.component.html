@@ -1,27 +1,23 @@
 <section class="section1 text-center">
+  <div
+    class="d-flex justify-content-center align-items-center border border-2 border-info rounded-3 div1"
+  >
+    <i class="fa-regular fa-file-code fs-1 text-warning me-3"></i>
+    <h1 class="border-2 rounded-2 text-center mt-2">Career detials</h1>
+  </div>
+  <br /><br />
 
-    <div class="d-flex justify-content-center align-items-center border border-2 border-info rounded-3 div1">
-        <i class="fa-regular fa-file-code fs-1 text-warning me-3"></i>
-        <h1 class="border-2 rounded-2 text-center mt-2">Career detials</h1>
+  <div class="container-fluid d-flex justify-content-start actions">
+    <button class="add-button" (click)="addCourse()">Add Course</button>
+    <button class="add-button" (click)="navigateToSessions()">Sessions</button>
+  </div>
+
+  <br /><br />
+  <div class="container">
+    <div class="row" style="gap: 25px">
+      <div class="col-5" *ngFor="let course of courses | async">
+        <app-course-card [course]="course" [hide]="true"></app-course-card>
+      </div>
     </div>
-    <br><br>
-
-    <button class="btn btn-info w-50 fs-3 text-white fw-bold" (click)="addCourse()">Select courses</button>
-    <br><br>
-
-    <!-- <div class="d-flex align-items-start justify-content-center">
-        <div class="text-center w-50 bg-info-subtle m-3 border border-0 rounded-4 p-3" *ngFor="let course of courses">
-            <h2 class="title text-info">{{course.title}}</h2>
-            <p class="description text-warning">{{course.description}}</p>
-        </div>
-    </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-6" *ngFor="let course of courses">
-            <app-course-card [course]="course"></app-course-card>
-        </div>
-    </div>
-</div> -->
-
+  </div>
 </section>

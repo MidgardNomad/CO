@@ -12,10 +12,8 @@
       >
         <h3>
           {{ userDoc.displayName }}
-          <span (click)="navigateToSettings()" *ngIf="showSettingsButton">
-            <i class="fa-solid fa-pen-to-square"></i>
-          </span>
         </h3>
+
         <p *ngIf="userDoc.bio">
           {{ userDoc.bio }}
         </p>
@@ -28,5 +26,5 @@
     [maxStreak]="userDoc.maxStreak"
   ></app-streak>
   <app-user-courses></app-user-courses>
-  <section class="profile-courses"></section>
+  <app-sessions></app-sessions>
 </section>

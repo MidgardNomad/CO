@@ -15,6 +15,7 @@ export class CourseCardComponent implements OnDestroy {
   //============================================
   //Properties
   @Input('course') course: Course;
+  @Input('hide') hide: boolean;
   deleteDialogSub = new Subscription();
   //============================================
 

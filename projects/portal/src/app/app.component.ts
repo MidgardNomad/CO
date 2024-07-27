@@ -34,9 +34,8 @@ export class AppComponent implements OnInit {
       localStorage.getItem('country') == 'undefined'
     ) {
       this.getUserCountry();
-    }   
-    console.log('user doc',this.usersService.getUser());
- 
+    }
+
     this.usersService.getUser();
   }
 }

@@ -1,12 +1,6 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  AfterViewInit,
-  AfterContentInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, Course, CoursesService } from 'DAL';
+import { AuthService, Course, CoursesService, UsersService, User } from 'DAL';
 
 import { UIComponentsService } from '../../services/ui-components.service';
 import { Subscription } from 'rxjs';
@@ -16,65 +10,56 @@ import { Subscription } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
-  userDisplayName: string;
-  userID: string;
-  photoURL: string;
+export class HeaderComponent implements OnInit, OnDestroy {
+  user: User;
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
-  displayProfileCard: boolean;
+  displayAuthActions = false;
+  displayProfileCard = false;
 
   //=====Service Subscriptions======
   uiServicePresistSub: Subscription;
   uiServiceLogoutSub: Subscription;
   authServiceSub: Subscription;
+  userServiceSub: Subscription;
 
   constructor(
     private router: Router,
     private authService: AuthService,
+    private usersService: UsersService,
     private uiService: UIComponentsService,
     private coursesService: CoursesService
   ) {}
 
-  ngOnInit(): void {
-    this.authServiceSub = this.authService.user.subscribe((user) => {
-      if (user !== null) {
-        this.userDisplayName = user.displayName;
-        this.userID = user.uid;
-        this.photoURL = user.photoURL;
+  private getUserInfo() {
+    if (this.usersService.userDoc === null) {
+      this.displayAuthActions = true;
+    } else {
+      this.userServiceSub = this.usersService.userDoc?.subscribe((userDoc) => {
+        this.user = userDoc;
         this.displayProfileCard = true;
-        this.userCardOpacity = '1';
-      } else {
-        this.displayProfileCard = false;
-        this.userCardOpacity = '1';
+      });
+    }
+  }
+
+  ngOnInit(): void {
+    this.getUserInfo();
+    this.uiService.userLoginAction.subscribe((login) => {
+      if (login) {
+        window.location.reload();
       }
     });
-    this.uiServicePresistSub = this.uiService.userInfoPresist.subscribe(
-      (presistUserInfoCard) => {
-        console.log(presistUserInfoCard);
-        this.userInfoCard = presistUserInfoCard;
+
+    this.uiService.userSignupAction.subscribe((signup) => {
+      if (signup) {
+        window.location.reload();
       }
-    );
-
-    this.uiServiceLogoutSub = this.uiService.userLogout.subscribe(
-      (userLogout) => {
-        if (userLogout) {
-          this.displayProfileCard = false;
-        }
+    });
+    this.uiService.userLogoutAction.subscribe((logout) => {
+      if (logout) {
+        window.location.reload();
       }
-    );
-
-    this.getAllCourses();
-  }
-
-  ngAfterContentInit(): void {
-    this.userCardOpacity = '1';
-  }
-
-  getAllCourses() {
-    this.coursesService.getAllCourses().subscribe((res) => {
-      this.coursesList = res;
     });
   }
 
@@ -88,19 +73,22 @@ export class HeaderComponent implements OnInit, AfterContentInit, OnDestroy {
     this.router.navigate(['/auth/signup']);
   }
 
-  navigateToProfile() {
-    this.router.navigate(['profile', this.userID]);
-  }
-
   //========================================
 
-  ngOnDestroy(): void {
-    this.authServiceSub.unsubscribe();
-    this.uiServicePresistSub.unsubscribe();
-    this.uiServiceLogoutSub.unsubscribe();
+  async onLogout() {
+    try {
+      await this.authService.logout();
+      console.log('nav to auth');
+      this.router.navigate(['/auth']);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  navigateCourses(coursesID: string) {
-    this.router.navigateByUrl(`/learn/course/${coursesID}`);
+  ngOnDestroy(): void {
+    // this.authServiceSub.unsubscribe();
+    // this.uiServicePresistSub.unsubscribe();
+    // this.uiServiceLogoutSub.unsubscribe();
   }
 }

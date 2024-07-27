@@ -12,6 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        canActivate: [LoggedinGuard],
         loadChildren: () =>
           import('../landing-page/landing-page.module').then(
             (m) => m.LandingPageModule
@@ -25,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        // canActivate: [LoggedoutGuard],
+        canActivate: [LoggedoutGuard],
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfileModule),
       },

@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CrudService } from './crud.service';
 import { User } from '../models/user/user';
 import { CourseLevel } from '../models/user/courseLevel';
@@ -14,15 +14,13 @@ export class UsersService {
   private _coursesCollection = 'courses';
 
   userDoc: Observable<User> | null;
-  //new BehaviorSubject<User>(null);
-  // userDocData=this.userDoc.asObservable();
 
   constructor(
     private crudService: CrudService,
     private authService: AuthService
   ) {}
 
-  async createUserDoc(newUser: any, countryCode: string) {
+  async createUserDoc(newUser: any, country: string, countryCode: string) {
     return new Promise((resolve, reject) => {
       this.crudService
         .setSingleDoc('users', newUser.user.uid, {
@@ -45,6 +43,7 @@ export class UsersService {
           connectedAccounts: [],
           bio: '',
           countryCode,
+          country,
           paid: false,
           sessionExpirationDate: null,
           availableSessions: null,
@@ -56,31 +55,13 @@ export class UsersService {
 
   getUser() {
     this.authService.user.subscribe((userAuthObj) => {
-      console.log('userAuthObj',userAuthObj);
       if (userAuthObj == null) {
         this.userDoc = null;
       } else {
         this.userDoc = this.getActiveUser(userAuthObj.uid);
-        console.log(this.userDoc);
       }
     });
   }
-
-  // getUserPayment() {
-  //   return new Promise((resolve,reject)=>{
-  //     this.authService.user.subscribe((userAuthObj) => {
-  //       this.getSingleUser(userAuthObj.uid).subscribe((res:User)=>{
-  //         if (res) {
-  //           res.email=userAuthObj.email;
-  //           this.userDoc.next(res);
-  //           resolve(true);
-  //         }else{
-  //           reject(false);
-  //         }
-  //       })
-  //     });
-  //   })
-  // }
 
   getAllUsers() {
     return this.crudService.getData(this._usersCollection).pipe(

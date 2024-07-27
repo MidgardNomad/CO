@@ -37,6 +37,10 @@
         }
         &:last-child {
           margin-top: 25px;
+          @media (max-width: 991px) {
+            margin-top: 0px;
+            margin-left: 25px;
+          }
           a,
           a:hover {
             i {

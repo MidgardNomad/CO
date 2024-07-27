@@ -1,0 +1,47 @@
+<h3 mat-dialog-title>{{ data.header }}</h3>
+<mat-dialog-content>
+  <form [formGroup]="mentorForm" (ngSubmit)="onAddMentor()">
+    <mat-form-field>
+      <mat-label>Mentor Name</mat-label>
+      <input type="text" matInput formControlName="mentorName" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Experience</mat-label>
+      <input type="number" matInput formControlName="experience" />
+      <mat-hint>Mentor experience is expressed in years</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Birthdate"
+        formControlName="birthdate"
+        [max]="maxdate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>LinkedIn Profile</mat-label>
+      <input type="text" matInput formControlName="linkedIn" />
+    </mat-form-field>
+    <div formArrayName="expertise">
+      <h5>Mentor Expertise</h5>
+      <mat-form-field *ngFor="let expertise of controls; let i = index">
+        <mat-label>Mentor Expertise</mat-label>
+        <input type="text" matInput [formControlName]="i" />
+      </mat-form-field>
+      <button class="btn-expertise" type="button" (click)="onAddExpertise()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+    <mat-dialog-actions align="center">
+      <button type="submit" class="btn btn-primary" mat-dialog-close>
+        Add Mentor
+      </button>
+      <button type="button" class="btn btn-danger" mat-dialog-close>
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

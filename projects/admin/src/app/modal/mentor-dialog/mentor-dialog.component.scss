@@ -1,0 +1,24 @@
+.btn-primary {
+  background-color: #03c9d7;
+  border: none;
+  margin: 10px;
+}
+
+.btn-danger {
+  background-color: #ee5752;
+  border: none;
+  margin: 10px;
+}
+
+.btn-expertise {
+  background-color: #03c9d7;
+  padding: 10px 15px;
+  margin: 10px 0px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  i {
+    color: white;
+  }
+}

@@ -87,7 +87,7 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.countryList = this.getCountries();
     this.userCountry = localStorage.getItem('country') || null;
-    console.log(this.userCountry);
+
     this.signUpForm = new FormGroup({
       userFirstName: new FormControl(null, Validators.required),
       userLastName: new FormControl(null, Validators.required),
@@ -118,14 +118,23 @@ export class SignupComponent implements OnInit {
       });
       await this.usersService.createUserDoc(
         newUser,
+        country,
         this.getCountryCode(country)
       );
+      await this.authService.verifyEmail(newUser.user);
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.isLoading = false;
-      this.disableEnableFormControls('enable');
-      this.router.navigate(['profile', newUser.user.uid]);
-      this.uiService.userSignupAction.next(true);
+      await this.authService.logout();
+      this.router.navigate(['auth/email-verification'], {
+        state: { userEmail },
+      });
+
+      // this.usersService.getUser();
+      // this.router.navigate(['profile', newUser.user.uid]);
+      // this.uiService.userSignupAction.next(true);
     } catch (error) {
+      console.log(error);
+      this.disableEnableFormControls('enable');
       this.invalidEmail = error.code === 'auth/invalid-email' ? true : false;
       this.loadingAnimation('none', 1, this.loadingSpinner, this.form);
       this.errMessage = errorHandler(error);

@@ -1,10 +1,6 @@
-////////////////////////////////////  Fonts  ////////////////////////////////////
-
-@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
-
 //////////////////////////////////  Variables  //////////////////////////////////
 
-$mainColor: #52B2EE;
+$mainColor: #52b2ee;
 $blue: #1e90ff;
 $darkBlue: #313860;
 $shadowColor: lightblue;
@@ -16,7 +12,6 @@ $Font20: 20px;
 ////////////////////////////////////  Code  ////////////////////////////////////
 
 h1 {
-  font-family: "Poetsen One", sans-serif;
   color: $darkBlue;
 }
 
@@ -51,4 +46,16 @@ h2 {
 .title {
   font-size: 40px;
   font-weight: bolder;
+}
+
+.add-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  background-color: #52b2ee;
+}
+
+.actions {
+  gap: 10px;
 }

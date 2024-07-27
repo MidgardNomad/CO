@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Mentor, sessionForm, WeekDays } from '../models/mentor/mentor';
 import { CrudService } from './crud.service';
+import { map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MentorService {
   private _mentorsCollection = 'mentors';
   private _sessionsCollection = 'sessions';
 
-
-  constructor(private _crud: CrudService) { }
+  constructor(private _crud: CrudService) {}
 
   getMentors() {
-    return this._crud.getData(this._mentorsCollection);
+    return this._crud.getAllData(this._mentorsCollection).pipe(
+      map((mentorsList) => {
+        return mentorsList.docs.map((mentorDoc) => {
+          return <Mentor>{
+            id: mentorDoc.id,
+            ...(mentorDoc.data() as object),
+          };
+        });
+      })
+    );
   }
 
   getMentorByID(mentorID: string) {
@@ -21,7 +30,12 @@ export class MentorService {
   }
 
   addMentor(mentor: Mentor) {
-    return this._crud.addData(this._mentorsCollection, mentor);
+    return new Promise((resolve, reject) => {
+      this._crud
+        .addData(this._mentorsCollection, mentor)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
   }
 
   updateMentor(mentorID: string, mentor: Mentor) {
@@ -33,12 +47,14 @@ export class MentorService {
   }
 
   getMentorSessions(mentorID: string) {
-    return this._crud.getSingleDataByField(this._sessionsCollection, 'mentorId', mentorID);
+    return this._crud.getSingleDataByField(
+      this._sessionsCollection,
+      'mentorId',
+      mentorID
+    );
   }
 
   addToSessionSchedule(mentorID: string, session: sessionForm) {
     return this._crud.addData(this._mentorsCollection, session);
   }
-
-
 }

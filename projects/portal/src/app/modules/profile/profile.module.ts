@@ -6,9 +6,10 @@ import { ProfileComponent } from './profile.component';
 import { SharedModule } from '../../shared/shared.module';
 import { StreakComponent } from './components/streak/streak.component';
 import { UserCoursesComponent } from './components/user-courses/user-courses.component';
+import { SessionsComponent } from './components/sessions/sessions.component';
 
 @NgModule({
-  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent],
+  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent, SessionsComponent],
   imports: [CommonModule, ProfileRoutingModule, SharedModule],
 })
 export class ProfileModule {}

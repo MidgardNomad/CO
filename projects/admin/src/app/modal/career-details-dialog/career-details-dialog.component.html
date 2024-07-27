@@ -1,18 +1,19 @@
+<h2 mat-dialog-title>Add Courses to This Career Path</h2>
 <mat-dialog-content>
-  <section class="container p-4">
-    <div class="checklist-card" *ngFor="let course of courses">
-      <div class="form-check d-flex align-items-center justify-content-start p-3">
-        <input class="form-check-inpu check-inpt me-3" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label fs-4 text-white" for="flexCheckDefault">
-          {{ course.title }}
-        </label>
-      </div>
+  <div
+    class="d-flex align-items-baseline course"
+    *ngFor="let course of courses"
+  >
+    <div class="container course-card">
+      <h4>{{ course.title }}</h4>
     </div>
-  </section>
+    <div class="course-button">
+      <button type="button" (click)="onAddCourseToCareer(course)">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </div>
+  </div>
 </mat-dialog-content>
-
-<mat-dialog-actions class="justify-content-center" >
-  <button mat-dialog-close class="btn btn-primary">Save</button>
-  <button mat-dialog-close class="btn btn-danger">Close</button>
+<mat-dialog-actions align="center">
+  <button type="button" mat-dialog-close>Done</button>
 </mat-dialog-actions>
-

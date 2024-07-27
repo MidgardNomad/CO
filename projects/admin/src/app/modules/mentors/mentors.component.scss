@@ -1,0 +1,16 @@
+.add-mentor {
+  margin: 15px 0px;
+  .btn-primary {
+    background-color: #0dcaf0;
+    border: none;
+  }
+}
+.mentor-table-header {
+  background-color: #0dcaf0;
+}
+.mentor-table-data {
+  cursor: pointer;
+  &:hover {
+    background-color: #9eb2b659;
+  }
+}

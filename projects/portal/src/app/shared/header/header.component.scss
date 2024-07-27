@@ -1,89 +1,142 @@
 .navbar {
-    width: 100%;
-    background-color: #FFFFFF !important;
-    padding: 10px 0px;
+  width: 100%;
+  background-color: #ffffff !important;
+  padding: 10px 0px;
 
-    .collapse {
-        justify-content: space-around;
+  .collapse {
+    justify-content: space-around;
 
-        .headerLinks {}
+    // .headerLinks {
+    // }
 
-        .headerRight {
-
-            i,
-            button,
-            img {
-                margin: 0px 10px;
-            }
-
-            .goProButton {
-                background-color: #F2AE37;
-                color: #FFFFFF;
-                padding: 6px 10px;
-
-                img {
-                    margin-right: 0px;
-                }
-            }
+    .headerRight {
+      .center-dropdown {
+        a:active {
+          text-decoration: none;
+          background-color: initial;
+          color: initial;
         }
-    }
-
-    .coursesList{
-        li{
-            cursor: pointer;
+        right: auto;
+        left: 50%;
+        -webkit-transform: translate(-50%, 0);
+        -o-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        @media (max-width: 991px) {
+          left: 0%;
+          -webkit-transform: translate(0, 0);
+          -o-transform: translate(0, 0);
+          transform: translate(0, 0);
         }
+        .dropdown-item {
+          padding-left: 5px;
+        }
+        .profile {
+          border-bottom: 1px solid black;
+          padding: 10px;
+          p,
+          span {
+            margin: 0px;
+          }
+          span {
+            margin-top: 5px;
+            color: #8e9192;
+          }
+        }
+        i {
+          color: #8e9192;
+          margin-left: 5px;
+        }
+        .logout {
+          border: none;
+          padding: 0px;
+          margin: 5px;
+          &:hover {
+            border: none;
+            background-color: transparent;
+          }
+          i {
+            color: red;
+          }
+        }
+      }
+
+      i,
+      button,
+      img {
+        margin: 0px 10px;
+      }
+
+      .goProButton {
+        background-color: #f2ae37;
+        color: #ffffff;
+        padding: 6px 10px;
+
+        img {
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+
+  .coursesList {
+    li {
+      cursor: pointer;
+    }
+  }
+
+  .btn-log {
+    width: 100px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #1ebcff;
+    &:active {
+      border: none;
+    }
+  }
+
+  .btn-signup {
+    width: 100px;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    background-color: #1ebcff;
+  }
+
+  .user-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+  }
+
+  .user-name {
+    color: #2ea2eb;
+  }
+
+  @media screen and (max-width: 991px) {
+    .div1 {
+      margin-top: 10px;
     }
 
-    .btn-log {
-        width: 100px;
-        font-size: 20px;
-        font-weight: bolder;
-        color: #1ebcff;
+    .fa-bell {
+      display: none;
     }
 
-    .btn-signup {
-        width: 100px;
-        font-size: 20px;
-        font-weight: bolder;
-        color: white;
-        background-color: #1ebcff;
+    .search-icon1 {
+      display: block;
+      margin-left: 150px;
+    }
+
+    .search-icon2 {
+      display: none;
+    }
+
+    .btn-userData {
+      margin: 0px !important;
+      margin-top: 15px !important;
     }
 
     .user-img {
-        width: 40px;
-        height: 40px;
-        border-radius: 5px;
+      margin-left: 0px !important;
     }
-
-    .user-name {
-        color: #2EA2EB;
-    }
-
-    @media screen and (max-width:991px) {
-        .div1 {
-            margin-top: 10px;
-        }
-
-        .fa-bell {
-            display: none;
-        }
-
-        .search-icon1 {
-            display: block;
-            margin-left: 150px;
-        }
-
-        .search-icon2 {
-            display: none;
-        }
-
-        .btn-userData {
-            margin: 0px !important;
-            margin-top: 15px !important;
-        }
-
-        .user-img {
-            margin-left: 0px !important;
-        }
-    }
+  }
 }
