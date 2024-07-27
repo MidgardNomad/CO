@@ -26,7 +26,14 @@ export class MentorService {
   }
 
   getMentorByID(mentorID: string) {
-    return this._crud.getSingleData(this._mentorsCollection, mentorID);
+    return this._crud.getSingleData(this._mentorsCollection, mentorID).pipe(
+      map((mentorFBDoc) => {
+        return <Mentor>{
+          id: mentorFBDoc.id,
+          ...(mentorFBDoc.data() as object),
+        };
+      })
+    );
   }
 
   addMentor(mentor: Mentor) {
