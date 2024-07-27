@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
 import { MentorDialogComponent } from './mentor-dialog/mentor-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-schedule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     DeleteDialogComponent,
     CareerDetailsDialogComponent,
     MentorDialogComponent,
+    MentorScheduleDialogComponent,
   ],
   imports: [
     CommonModule,
