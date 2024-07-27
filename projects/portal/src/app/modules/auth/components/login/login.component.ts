@@ -198,6 +198,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
       // The signed-in user info.
       const user = result.user;
+
+      this.completeLogin(user,user.uid)
       
       // IdP data available using getAdditionalUserInfo(result)
       // ...
