@@ -12,7 +12,7 @@ export interface Mentor {
 
 export interface sessionForm {
   day: WeekDays;
-  from: Date;
+  from: string; // 23:15
   duration: number;
 }
 
