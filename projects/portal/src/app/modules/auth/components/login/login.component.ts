@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.logOut();
+    // this.logOut();
   }
 
   async onLogin(userCradentials: NgForm) {
@@ -233,6 +233,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
         this.usersService.createUserDoc(user, this.country, this.countryCode).then(res => {
           this.router.navigate(['profile', userID]);
+          this.uiService.userLoginAction.next(true);
         }).catch(err => {
           console.log(err);
         })

@@ -219,6 +219,7 @@ export class SignupComponent implements OnInit {
         }
         this.usersService.createUserDoc(user, this.country, this.countryCode).then(res => {
           this.router.navigate(['profile', userID]);
+          this.uiService.userLoginAction.next(true);
         }).catch(err => {
           console.log(err);
         })
