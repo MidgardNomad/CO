@@ -14,6 +14,7 @@ import { CareerDetailsDialogComponent } from './career-details-dialog/career-det
 import { MentorDialogComponent } from './mentor-dialog/mentor-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-schedule-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-s
     ReactiveFormsModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatSelectModule,
   ],
 })
 export class ModalModule {}
