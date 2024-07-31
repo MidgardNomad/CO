@@ -45,7 +45,7 @@ export class MentorDialogComponent implements OnInit {
         expertise,
         profilePicture: '../../../assets/images/placeholder-avatar.svg',
         timeZone: 'Africa/Cairo',
-        weeklySchedule: null,
+        weeklySchedule: [],
       });
     } catch (error) {
       console.log(error);
