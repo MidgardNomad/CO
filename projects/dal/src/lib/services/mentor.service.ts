@@ -61,7 +61,14 @@ export class MentorService {
     );
   }
 
-  addToSessionSchedule(mentorID: string, session: sessionForm) {
-    return this._crud.addData(this._mentorsCollection, session);
+  addToSessionSchedule(mentorID: string, session: sessionForm[]) {
+    return new Promise((resolve, reject) => {
+      this._crud
+        .updateData(this._mentorsCollection, mentorID, {
+          weeklySchedule: session,
+        })
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
   }
 }
