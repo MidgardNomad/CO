@@ -1,0 +1,22 @@
+form {
+  div {
+    gap: 15px;
+  }
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 10px 15px;
+  margin: 10px 10px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+}
+
+.btn-submit {
+  background-color: #03c9d7;
+}
+
+.btn-cancel {
+  background-color: #ee5752;
+}

@@ -1,1 +1,48 @@
-<p>mentor-profile works!</p>
+<section class="container-md mentor">
+  <section class="container d-flex mentor-info">
+    <div class="mentor-info-img">
+      <img [src]="mentor.profilePicture" alt="" />
+      <i class="fa-regular fa-pen-to-square"></i>
+    </div>
+    <div class="mentor-info-data">
+      <h3>{{ mentor.name }}</h3>
+      <p>Age: {{ mentor.birthdate | age }}</p>
+      <p>Experience: {{ mentor.experience }}</p>
+      <p>
+        Expertise:
+        <span *ngFor="let exp of mentor.expertise; index as i">
+          {{ exp }}{{ i === mentor.expertise.length - 1 ? "." : ", " }}
+        </span>
+      </p>
+      <p>Timezone: {{ mentor.timeZone }}</p>
+      <a [href]="'https://' + mentor.linkedInLink" target="_blank">
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+    </div>
+  </section>
+  <hr />
+  <section class="mentor-schedule">
+    <div class="d-flex align-items-center">
+      <h4>Weekly Schedule</h4>
+      <button
+        class="mentor-schedule-edit"
+        type="button"
+        (click)="editSchedule()"
+      >
+        Edit Schedule
+      </button>
+    </div>
+    <div
+      class="container-md d-flex flex-wrap align-items-center mentor-schedule-week"
+    >
+      <div *ngFor="let day of mentor.weeklySchedule">
+        <div>
+          <div>{{ day.day }}</div>
+          <div>{{ day.from }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr />
+  <section></section>
+</section>

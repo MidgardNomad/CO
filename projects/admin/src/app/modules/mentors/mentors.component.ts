@@ -22,8 +22,6 @@ export class MentorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = this.route.snapshot.data['mentorsList'];
-    const today = new Date().getFullYear();
-    console.log(today);
   }
 
   onAddMentor() {

@@ -1,1 +1,32 @@
-<p>mentor-schedule-dialog works!</p>
+<h3 mat-dialog-title>Mentor Schdule</h3>
+<mat-dialog-content>
+  <form [formGroup]="scheduleForm" (ngSubmit)="onAddSchedule()">
+    <div class="d-flex">
+      <mat-form-field>
+        <mat-label>Day</mat-label>
+        <mat-select formControlName="day">
+          <mat-option *ngFor="let day of weekdays" [value]="day">
+            {{ day }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Time</mat-label>
+        <input type="time" matInput formControlName="from" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Duration</mat-label>
+        <mat-select formControlName="duration">
+          <mat-option *ngFor="let duration of durations" [value]="duration">
+            {{ duration }}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Mintues</mat-hint>
+      </mat-form-field>
+    </div>
+    <mat-dialog-actions align="center">
+      <button type="submit" class="btn-submit">Save</button>
+      <button mat-dialog-close type="button" class="btn-cancel">Cancele</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

@@ -12,18 +12,32 @@ import { MentorScheduleDialogComponent } from 'projects/admin/src/app/modal/ment
 })
 export class MentorProfileComponent implements OnInit {
   mentor: Mentor;
-  weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  weekdays = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
   constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
     this.mentor = this.route.snapshot.data['mentor'];
   }
 
-  navigateToMentorLinkedInProfile() {
-    window.open(this.mentor.linkedInLink);
-  }
+  // getDaySchedule(day) {
+  //   Object
+  // }
 
   editSchedule() {
-    this.matDialog.open(MentorScheduleDialogComponent);
+    this.matDialog.open(MentorScheduleDialogComponent, {
+      width: '650px',
+      data: {
+        mentor: this.mentor,
+      },
+    });
   }
 }
