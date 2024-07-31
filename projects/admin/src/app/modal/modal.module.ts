@@ -11,12 +11,16 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
+import { VerifyPhoneNumberComponent } from './verify-phone-number/verify-phone-number.component';
+import { NgOtpInputModule } from  'ng-otp-input';
+
 import { MentorDialogComponent } from './mentor-dialog/mentor-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-schedule-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
+  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent, VerifyPhoneNumberComponent],
   declarations: [
     AddNewCareerComponent,
     EditCareerComponent,
@@ -28,6 +32,11 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   imports: [
     CommonModule,
+    MatFormFieldModule, MatInputModule,
+    FormsModule,MatDialogModule,ReactiveFormsModule,MatButtonModule,
+    NgOtpInputModule
+
+  ]
     MatFormFieldModule,
     MatInputModule,
     FormsModule,

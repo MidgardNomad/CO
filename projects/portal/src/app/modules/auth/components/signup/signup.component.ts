@@ -11,6 +11,8 @@ import { AuthService, UsersService, User } from 'DAL';
 import { loadingAnimation } from '../../../../shared/functions/loadingAnimation';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { errorHandler } from 'projects/portal/src/app/shared/functions/errorHandler';
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-signup',
@@ -29,6 +31,14 @@ export class SignupComponent implements OnInit {
   countryList: string[] = [];
   userCountry: string;
   signUpForm: FormGroup;
+
+  country:string='';
+  countryCode:string='';
+
+  auth = getAuth();
+  googleProvider = new GoogleAuthProvider();
+  githubProvider = new GithubAuthProvider();
+
 
   constructor(
     private authService: AuthService,
@@ -84,6 +94,7 @@ export class SignupComponent implements OnInit {
 
     return Object.values(countries).sort() as string[];
   }
+
   ngOnInit(): void {
     this.countryList = this.getCountries();
     this.userCountry = localStorage.getItem('country') || null;
@@ -141,5 +152,82 @@ export class SignupComponent implements OnInit {
       this.renderer.setStyle(this.alert.nativeElement, 'display', 'block');
       this.isLoading = false;
     }
+  }
+
+  googleSignUp(){
+    signInWithPopup(this.auth, this.googleProvider).then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      this.completeLogin(user, user.uid);
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+    });
+  }
+
+  githubSignUp(){
+    signInWithPopup(this.auth, this.githubProvider).then((result) => {
+      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+
+      // The signed-in user info.
+      const user = result.user;
+      this.completeLogin(user, user.uid);
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GithubAuthProvider.credentialFromError(error);
+      // ...
+    });
+  }
+
+  completeLogin(userObj, userID: string) {
+    this.usersService.getSingleUser(userID).subscribe((user: User) => {
+      if (user.isExist) {
+        this.router.navigate(['profile', userID]);
+      } else {
+        const tz = this.getTimeZone();
+        if (tz === 'Africa/Cairo') {
+          this.country = 'Egypt',
+            this.countryCode = 'EG'
+        }
+        const user = {
+          user: {
+            uid: userID,
+            email: userObj.email,
+            displayName: userObj.displayName,
+            photoURL: userObj.photoURL
+          }
+        }
+        this.usersService.createUserDoc(user, this.country, this.countryCode).then(res => {
+          this.router.navigate(['profile', userID]);
+          this.uiService.userLoginAction.next(true);
+        }).catch(err => {
+          console.log(err);
+        })
+      }
+    })
+  }
+
+  getTimeZone(): string {
+    return moment.tz.guess();
   }
 }
