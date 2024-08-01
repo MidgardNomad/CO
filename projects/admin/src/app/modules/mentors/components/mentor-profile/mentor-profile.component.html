@@ -38,7 +38,10 @@
       <div *ngFor="let day of mentor.weeklySchedule">
         <div>
           <div>{{ day.day }}</div>
-          <div>{{ day.from }}</div>
+          <div *ngFor="let day of day.from">
+            <div>{{ day.time }}</div>
+            <div>{{ day.duration }}</div>
+          </div>
         </div>
       </div>
     </div>

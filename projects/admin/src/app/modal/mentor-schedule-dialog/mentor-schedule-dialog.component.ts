@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Mentor, MentorService } from 'DAL';
-import { from } from 'rxjs';
+import { Mentor, MentorService, dayTime, sessionForm } from 'DAL';
 
 @Component({
   selector: 'app-mentor-schedule-dialog',
@@ -39,12 +38,23 @@ export class MentorScheduleDialogComponent implements OnInit {
   async onAddSchedule() {
     try {
       const { day, from, duration } = this.scheduleForm.value;
-
-      this.data.mentor.weeklySchedule.push({
-        day,
-        from,
+      const dayTime: dayTime = {
+        time: from,
         duration,
-      });
+      };
+
+      console.log(this.data.mentor.weeklySchedule.find((sc) => sc.day === day));
+
+      if (this.data.mentor.weeklySchedule.find((sc) => sc.day === day)) {
+        this.data.mentor.weeklySchedule
+          .find((sc) => sc.day === day)
+          .from.push(dayTime);
+      } else {
+        this.data.mentor.weeklySchedule.push({
+          day: day,
+          from: [dayTime],
+        } as sessionForm);
+      }
       await this.mentorService.addToSessionSchedule(
         this.data.mentor.id,
         this.data.mentor.weeklySchedule

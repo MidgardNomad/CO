@@ -35,7 +35,12 @@ export {
 } from './lib/models/user/courseLevel';
 export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
 //Mentor
-export { Mentor, sessionForm, WeekDays } from './lib/models/mentor/mentor';
+export {
+  Mentor,
+  sessionForm,
+  WeekDays,
+  dayTime,
+} from './lib/models/mentor/mentor';
 export { environment } from './environments/environment';
 
 // sessions
