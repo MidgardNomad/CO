@@ -42,3 +42,6 @@ export { environment } from './environments/environment';
 export { Session } from './lib/models/session/session'; // session model
 export { SessionService } from './lib/services/session.service'; // session service
 export { AdminAuthService } from './lib/services/admin-auth.service';
+
+// Add Project
+export { Projects } from './lib/models/project';

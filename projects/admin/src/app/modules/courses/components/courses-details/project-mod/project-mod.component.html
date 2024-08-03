@@ -1,0 +1,12 @@
+<div class="card align-items-center" *ngFor="let prog of project">
+  <div class="card-body">
+    <h5 class="card-title">{{ prog.title }}</h5>
+    <p class="card-text" hidden>{{ prog.content }}</p>
+  </div>
+  <img
+    [src]="prog.image"
+    style="width: 30%"
+    class="card-img-bottom"
+    [alt]="prog.title"
+  />
+</div>
