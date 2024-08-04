@@ -1,5 +1,13 @@
 <section class="container-md sessions">
-  <div class="sessions-card">
-    <p>Sessions Works!</p>
+  <div class="continer sessions-card">
+    <h4>Sessions</h4>
+    <div class="row">
+      <div *ngFor="let session of sessions; index as i" class="col">
+        <app-session-card
+          [session]="session"
+          [dayNumber]="i"
+        ></app-session-card>
+      </div>
+    </div>
   </div>
 </section>

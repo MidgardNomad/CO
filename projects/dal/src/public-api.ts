@@ -44,6 +44,7 @@ export {
 export { environment } from './environments/environment';
 
 // sessions
-export { Session } from './lib/models/session/session'; // session model
+export { BookedSession } from './lib/models/session/bookedSession'; // booked session model
+export { Session } from './lib/models/session/session';
 export { SessionService } from './lib/services/session.service'; // session service
 export { AdminAuthService } from './lib/services/admin-auth.service';
