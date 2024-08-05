@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Mentor } from 'DAL';
+import { Mentor, MentorService } from 'DAL';
 import { MentorDialogComponent } from '../../modal/mentor-dialog/mentor-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,7 +17,8 @@ export class MentorsComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private mentorServices:MentorService
   ) {}
 
   ngOnInit(): void {
@@ -25,12 +26,28 @@ export class MentorsComponent implements OnInit {
   }
 
   onAddMentor() {
-    this.matDialog.open(MentorDialogComponent, {
+    const mentorDialog=this.matDialog.open(MentorDialogComponent, {
       width: '700px',
       data: {
         header: 'Add new Mentor',
       },
     });
+
+    mentorDialog.afterClosed().subscribe((res)=>{
+      console.log(res);
+      
+      if (res===true) {
+        this.getAll();
+      }
+    })
+  }
+
+  getAll(){
+    this.mentorServices.getMentors().subscribe((res)=>{
+      console.log(res);
+      
+      this.dataSource=res;
+    })
   }
 
   navigateToMentor(data) {

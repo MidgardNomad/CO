@@ -31,25 +31,33 @@ export class MentorScheduleDialogComponent implements OnInit {
   ngOnInit(): void {
     this.scheduleForm = new FormGroup({
       day: new FormControl(null, Validators.required),
-      from: new FormControl(null, Validators.required),
-      duration: new FormControl(null, Validators.required),
+      // from: new FormControl(null, Validators.required),
+      // duration: new FormControl(null, Validators.required),
     });
   }
 
   async onAddSchedule() {
     try {
-      const { day, from, duration } = this.scheduleForm.value;
+      const { day } = this.scheduleForm.value;
+      this.data.mentor.freeDay=day;
 
-      this.data.mentor.weeklySchedule.push({
-        day,
-        from,
-        duration,
-      });
-      await this.mentorService.addToSessionSchedule(
+
+      // this.data.mentor.weeklySchedule.push({
+      //   day,
+      //   from,
+      //   duration,
+      // });
+      // await this.mentorService.addToSessionSchedule(
+      //   this.data.mentor.id,
+      //   this.data.mentor.weeklySchedule
+      // );
+
+      await this.mentorService.updateMentor(
         this.data.mentor.id,
-        this.data.mentor.weeklySchedule
+        this.data.mentor
       );
-      this.matDialogRef.close();
+
+      this.matDialogRef.close(true);
     } catch (error) {
       console.log(error);
     }

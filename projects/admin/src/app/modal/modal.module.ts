@@ -20,31 +20,27 @@ import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-s
 import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [AddNewCareerComponent, EditCareerComponent, DeleteCareerComponent, DeleteDialogComponent, CareerDetailsDialogComponent, VerifyPhoneNumberComponent],
   declarations: [
     AddNewCareerComponent,
     EditCareerComponent,
     DeleteCareerComponent,
     DeleteDialogComponent,
     CareerDetailsDialogComponent,
+    VerifyPhoneNumberComponent,
     MentorDialogComponent,
     MentorScheduleDialogComponent,
   ],
   imports: [
     CommonModule,
     MatFormFieldModule, MatInputModule,
-    FormsModule,MatDialogModule,ReactiveFormsModule,MatButtonModule,
-    NgOtpInputModule
-
-  ]
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
+    FormsModule, 
+    MatDialogModule, 
+    ReactiveFormsModule, 
     MatButtonModule,
+    NgOtpInputModule,
     MatDatepickerModule,
     MatSelectModule,
-  ],
+
+  ]
 })
 export class ModalModule {}
