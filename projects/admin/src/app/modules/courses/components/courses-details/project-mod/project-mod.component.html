@@ -1,12 +1,31 @@
-<div class="card align-items-center" *ngFor="let prog of project">
+<div *ngIf="loding" class="position-absolute start-50 top-50">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="!loding" class="card w-75 text-center mb-3 align-items-center">
+  <div>
+    <i
+      class="fa-solid fa-arrow-left go-back-icon"
+      matTooltip="undo"
+      (click)="goBack()"
+    ></i>
+  </div>
   <div class="card-body">
-    <h5 class="card-title">{{ prog.title }}</h5>
-    <p class="card-text" hidden>{{ prog.content }}</p>
+    <button
+      mat-icon-button
+      (click)="editContent(project)"
+      matTooltip="edit content"
+      matTooltipPosition="above"
+      class="border-0"
+    >
+      <mat-icon color="primary">edit</mat-icon>
+    </button>
+    <div class="card-text" [innerHTML]="project?.content"></div>
+    <hr />
   </div>
   <img
-    [src]="prog.image"
-    style="width: 30%"
-    class="card-img-bottom"
-    [alt]="prog.title"
+    [src]="project?.image"
+    style="width: 50%"
+    class="card-img-bottom rounded-3 mb-5"
+    [alt]="project?.title"
   />
 </div>

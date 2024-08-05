@@ -8,6 +8,7 @@ import { Observable, tap } from 'rxjs';
 import { AddProjectComponent } from '../courses-list/course-dialog/add-project/add-project.component';
 import { Projects } from 'DAL';
 import { RemovCardComponent } from './project-mod/remov-card/remov-card.component';
+import { EditCardComponent } from './project-mod/edit-card/edit-card.component';
 
 @Component({
   selector: 'app-courses-details',
@@ -16,6 +17,7 @@ import { RemovCardComponent } from './project-mod/remov-card/remov-card.componen
 })
 export class CoursesDetailsComponent implements OnInit {
   courseID: string;
+
   chapters: Observable<Chapter[]>;
   numOfChapters: number;
   cards: Array<Projects> = [];
@@ -29,6 +31,7 @@ export class CoursesDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.courseID = this.route.snapshot.paramMap.get('id');
+
     this.chapters = this.coursesService
       .getChapters(this.courseID)
       .pipe(tap((chapters) => (this.numOfChapters = chapters.length)));
@@ -66,15 +69,27 @@ export class CoursesDetailsComponent implements OnInit {
       }
     });
   }
-  // Remove
-  delete(card: any) {
+  // Remove Card For Project
+  deleteCard(card: any) {
     const dialogRef = this.matDialog.open(RemovCardComponent, {
       disableClose: true,
       data: { ...card },
     });
 
-    dialogRef.afterClosed().subscribe(() => {
-      this.coursesService.deletProject(this.courseID, card.id);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.coursesService.deletProject(this.courseID, card.id);
+    });
+  }
+  // Edit Card For Project
+  editCard(card: any) {
+    const dialogRef = this.matDialog.open(EditCardComponent, {
+      disableClose: true,
+      data: { ...card },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.coursesService.editCard(this.courseID, result.id, result.title);
+      }
     });
   }
 }

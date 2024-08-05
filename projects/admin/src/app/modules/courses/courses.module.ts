@@ -31,6 +31,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { RemovCardComponent } from './components/courses-details/project-mod/remov-card/remov-card.component';
 import { MatButtonModule } from '@angular/material/button';
 import { ContentProjectComponent } from './components/courses-details/project-mod/content-dialoge/content-project.component';
+import { EditCardComponent } from './components/courses-details/project-mod/edit-card/edit-card.component';
+import { EditContentComponent } from './components/courses-details/project-mod/edit-content/edit-content.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,8 @@ import { ContentProjectComponent } from './components/courses-details/project-mo
     ProjectModComponent,
     RemovCardComponent,
     ContentProjectComponent,
+    EditCardComponent,
+    EditContentComponent,
   ],
   imports: [
     CommonModule,
@@ -68,6 +74,8 @@ import { ContentProjectComponent } from './components/courses-details/project-mo
     EditorModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
   ],
   exports: [CourseCardComponent],
 })

@@ -1,0 +1,26 @@
+<div class="padd">
+  <h1 mat-dialog-title class="text-center mb-3">Edit Content</h1>
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          formControlName="content"
+          placeholder="edit description"
+        />
+      </mat-form-field>
+    </div>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button color="warn" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="editContent()"
+      cdkFocusInitial
+    >
+      Edit
+    </button>
+  </div>
+</div>

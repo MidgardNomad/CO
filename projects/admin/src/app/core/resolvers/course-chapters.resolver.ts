@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { Chapter, CoursesService } from 'DAL';
-import { Observable, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export const ChaptersResolver: ResolveFn<Observable<Chapter[]>> = (
   route: ActivatedRouteSnapshot,
