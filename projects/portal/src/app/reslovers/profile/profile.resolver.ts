@@ -23,8 +23,6 @@ export const UserProfileResolver: ResolveFn<Observable<User>> = (
   } else {
     return crudService.getSingleData('users', route.paramMap.get('uid')).pipe(
       map((docSnap) => {
-        console.log('docSnap',docSnap);
-        
         if (docSnap.exists) {
           return <User>{
             id: docSnap.id,

@@ -11,13 +11,13 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { CareerDetailsDialogComponent } from './career-details-dialog/career-details-dialog.component';
-import { VerifyPhoneNumberComponent } from './verify-phone-number/verify-phone-number.component';
-import { NgOtpInputModule } from  'ng-otp-input';
 
 import { MentorDialogComponent } from './mentor-dialog/mentor-dialog.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MentorScheduleDialogComponent } from './mentor-schedule-dialog/mentor-schedule-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { VerifyPhoneNumberComponent } from './verify-phone-number/verify-phone-number.component';
+import { NgOtpInputModule } from 'ng-otp-input';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
     VerifyPhoneNumberComponent,
     MentorDialogComponent,
     MentorScheduleDialogComponent,
+    VerifyPhoneNumberComponent,
   ],
   imports: [
     CommonModule,
@@ -40,7 +41,7 @@ import { MatSelectModule } from '@angular/material/select';
     NgOtpInputModule,
     MatDatepickerModule,
     MatSelectModule,
-
-  ]
+    NgOtpInputModule,
+  ],
 })
 export class ModalModule {}

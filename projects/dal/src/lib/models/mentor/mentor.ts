@@ -1,3 +1,5 @@
+import { duration } from 'moment';
+
 export interface Mentor {
   id: string;
   profilePicture: string;
@@ -10,10 +12,14 @@ export interface Mentor {
   timeZone: string;
 }
 
+//Time and Duration in for a day
+export interface dayTime {
+  time: string;
+  duration: number;
+}
 export interface sessionForm {
   day: WeekDays;
-  from: string[]; // [22:00, 23:15]
-  duration: number;
+  from: dayTime[];
 }
 
 // week days enum

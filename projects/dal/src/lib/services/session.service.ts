@@ -4,9 +4,11 @@ import { CrudService } from './crud.service';
 
 // import moment time zone
 import * as moment from 'moment-timezone';
+import { map } from 'rxjs';
+import { Session } from '../models/session/session';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
   private _mentorsCollection = 'mentors';
@@ -14,7 +16,21 @@ export class SessionService {
 
   constructor(private _crud: CrudService) {
     // get time zone from moment
-    console.log(" current time zone: ", moment.tz.guess());
+    moment.tz.setDefault('Africa/Cairo');
+
+    console.log(' current time zone: ', moment.tz.guess());
+
+    const time = '20:00';
+
+    let day = new Date();
+    day.setDate(day.getDate() + ((0 + (7 - day.getDay())) % 7));
+    day.setHours(+time.split(':')[0]);
+    day.setMinutes(+time.split(':')[1]);
+    day.setSeconds(0);
+
+    if (day.getDate() === new Date().getDate()) {
+      day.setDate(day.getDate() + 7);
+    }
 
     // // get current time and time zone
     // var a = moment.tz("2024-06-13 11:55", "Africa/Cairo");
@@ -37,13 +53,28 @@ export class SessionService {
     // // get new york time of the same time
     // var e = a.clone().tz("America/New_York");
     // console.log(" new york time zone: ", e.format());
-
   }
 
+  getDate() {
+    return this._crud.getAllData('_date').pipe(
+      map((doc) => {
+        return doc.docs.map((date) => {
+          return date.data();
+        });
+      })
+    );
+  }
 
-
-
-
-
-
+  getAllSessions() {
+    return this._crud.getDataByOrder('sessions', 'index').pipe(
+      map((rawData) => {
+        return rawData.map((doc) => {
+          return <Session>{
+            id: doc.payload.doc.id,
+            ...(doc.payload.doc.data() as object),
+          };
+        });
+      })
+    );
+  }
 }

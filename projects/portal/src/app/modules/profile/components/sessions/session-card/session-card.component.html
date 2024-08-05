@@ -1,0 +1,8 @@
+<div class="sessions-card available">
+  <h5>{{ session.title }}</h5>
+  <p>
+    {{ getTimeAndDate(session.time, dayNumber - 1) | date : "d/M/yy, h:mm a" }}
+  </p>
+  <p>{{ session.duration }} Minutes</p>
+  <div class="book-button" (click)="bookSession(session)">Book</div>
+</div>
