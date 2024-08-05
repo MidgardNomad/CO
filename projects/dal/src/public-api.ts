@@ -48,3 +48,6 @@ export { BookedSession } from './lib/models/session/bookedSession'; // booked se
 export { Session } from './lib/models/session/session';
 export { SessionService } from './lib/services/session.service'; // session service
 export { AdminAuthService } from './lib/services/admin-auth.service';
+
+// Add Project
+export { Projects } from './lib/models/project';

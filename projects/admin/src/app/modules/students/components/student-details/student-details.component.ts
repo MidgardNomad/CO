@@ -1,5 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+// import { User } from 'aws-sdk/clients/budgets';
+// import { UsersService } from 'projects/dal/src/public-api';
 import { User, UsersService } from 'DAL';
 
 export interface Data {
@@ -57,7 +59,7 @@ export class StudentDetailsComponent implements OnInit {
 
   // ----------------------------------------get Data--------------------------------------------//
   constructor(private usersService: UsersService) {}
-  details: User;
+  details: any;
   createdAt: Date;
   lastLogin: Date;
   bio: string;
