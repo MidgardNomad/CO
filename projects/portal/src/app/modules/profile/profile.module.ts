@@ -7,9 +7,12 @@ import { SharedModule } from '../../shared/shared.module';
 import { StreakComponent } from './components/streak/streak.component';
 import { UserCoursesComponent } from './components/user-courses/user-courses.component';
 import { SessionsComponent } from './components/sessions/sessions.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { SessionCardComponent } from './components/sessions/session-card/session-card.component';
+import { BookSessionDialogComponent } from './components/sessions/book-session-dialog/book-session-dialog.component';
 
 @NgModule({
-  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent, SessionsComponent],
+  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent, SessionsComponent, ProjectsComponent, SessionCardComponent, BookSessionDialogComponent],
   imports: [CommonModule, ProfileRoutingModule, SharedModule],
 })
 export class ProfileModule {}

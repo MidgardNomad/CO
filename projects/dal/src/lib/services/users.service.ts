@@ -5,6 +5,7 @@ import { CourseLevel } from '../models/user/courseLevel';
 import { Course } from '../models/content/course';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { BookedSession } from '../models/session/bookedSession';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { AuthService } from './auth.service';
 export class UsersService {
   private _usersCollection = 'users';
   private _coursesCollection = 'courses';
+  private _bookedSessionsCollection = 'booked-sessions';
 
   userDoc: Observable<User> | null;
 
@@ -92,11 +94,11 @@ export class UsersService {
   getSingleUser(userID: string) {
     return this.crudService.getSignleDoc(this._usersCollection, userID).pipe(
       map((userDocSnap) => {
-        console.log('userDocSnap',userDocSnap);
-        
+        console.log('userDocSnap', userDocSnap);
+
         return <User>{
           id: userDocSnap.id,
-          isExist:userDocSnap.exists,
+          isExist: userDocSnap.exists,
           ...(userDocSnap.data() as object),
         };
       })
@@ -138,6 +140,16 @@ export class UsersService {
     return new Promise((resolve, reject) => {
       this.crudService
         .updateData('users', userID, { courseList: courseLevel })
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
+    });
+  }
+
+  //Books Sessions:
+  async bookSession(session: BookedSession) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .addData(this._bookedSessionsCollection, session)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
     });

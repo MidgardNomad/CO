@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MentorService, Mentor } from 'DAL';
 
 @Component({
@@ -17,7 +17,9 @@ export class MentorDialogComponent implements OnInit {
     public data: {
       header: string;
     },
-    private mentorSerivce: MentorService
+    private mentorSerivce: MentorService,
+    public dialog:MatDialogRef<MentorDialogComponent>
+
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +49,14 @@ export class MentorDialogComponent implements OnInit {
         timeZone: 'Africa/Cairo',
         weeklySchedule: [],
       });
+
+      this.dialog.close({status:true});
+
     } catch (error) {
       console.log(error);
+
+      this.dialog.close({status:false});
+
     }
   }
 
