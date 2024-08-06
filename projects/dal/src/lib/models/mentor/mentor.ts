@@ -10,6 +10,7 @@ export interface Mentor {
   linkedInLink: string;
   weeklySchedule: sessionForm[];
   timeZone: string;
+  freeDay: string;
 }
 
 //Time and Duration in for a day

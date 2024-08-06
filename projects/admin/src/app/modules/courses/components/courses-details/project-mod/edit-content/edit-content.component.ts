@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'DAL';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -8,6 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-content.component.scss'],
 })
 export class EditContentComponent {
+  tinyEditorApiKey: string = environment.tinyApiKey;
   form: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<EditContentComponent>,

@@ -2,14 +2,18 @@
   <h1 mat-dialog-title class="text-center mb-3">Edit Content</h1>
   <form [formGroup]="form">
     <div mat-dialog-content>
-      <mat-form-field class="example-full-width">
-        <mat-label>Description</mat-label>
-        <input
-          matInput
-          formControlName="content"
-          placeholder="edit description"
-        />
-      </mat-form-field>
+      <!-- content -->
+
+      <!-- content -->
+      <editor
+        formControlName="content"
+        apiKey="{{ tinyEditorApiKey }}"
+        [init]="{
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      }"
+      >
+      </editor>
     </div>
   </form>
   <div mat-dialog-actions>

@@ -71,4 +71,10 @@ export class MentorService {
         .catch((error) => reject(error));
     });
   }
+  // Edit Image For Profile Mentor
+  updateMentorProfilePicture(mentorID: string, profilePicture: string) {
+    return this._crud.updateData(this._mentorsCollection, mentorID, {
+      profilePicture,
+    });
+  }
 }

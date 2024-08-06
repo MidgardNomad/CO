@@ -46,13 +46,11 @@ export class ProjectModComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // console.log('result', result);
-        // console.log('project', this.projectID);
-        this.coursesService.editContent(
-          this.courseID,
-          this.projectID,
-          result.content
-        );
+        this.coursesService
+          .editContent(this.courseID, this.projectID, result.content)
+          .then(() => {
+            console.log('yesss');
+          });
       }
     });
   }

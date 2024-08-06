@@ -2,7 +2,10 @@
   <section class="container d-flex mentor-info">
     <div class="mentor-info-img">
       <img [src]="mentor.profilePicture" alt="" />
-      <i class="fa-regular fa-pen-to-square"></i>
+      <i
+        class="fa-regular fa-pen-to-square"
+        (click)="editImageProfile(mentor)"
+      ></i>
     </div>
     <div class="mentor-info-data">
       <h3>{{ mentor.name }}</h3>
@@ -23,29 +26,29 @@
   <hr />
 
   <div class="row">
-
     <div class="col-12 col-sm-12 col-md-7 col-lg-8">
       <section class="sessionContainer">
-        <div class="session">
-
-        </div>
+        <div class="session"></div>
       </section>
     </div>
-
 
     <div class="col-12 col-sm-12 col-md-5 col-lg-4">
       <section class="mentor-schedule">
         <div class="d-flex align-items-center">
           <h4>Weekly Schedule</h4>
-          <button class="mentor-schedule-edit" type="button" (click)="editSchedule()">
+          <button
+            class="mentor-schedule-edit"
+            type="button"
+            (click)="editSchedule()"
+          >
             Edit Schedule
           </button>
         </div>
-        <div class="container-md d-flex flex-wrap align-items-center mentor-schedule-week">
-
-          <span *ngIf="mentor?.freeDay">{{mentor?.freeDay}}</span>
+        <div
+          class="container-md d-flex flex-wrap align-items-center mentor-schedule-week"
+        >
+          <span *ngIf="mentor?.freeDay">{{ mentor?.freeDay }}</span>
           <span *ngIf="!mentor?.freeDay">No Data</span>
-
 
           <!-- <div *ngFor="let day of mentor.weeklySchedule">
             <div>
@@ -55,15 +58,12 @@
           </div> -->
         </div>
 
-        <div *ngIf="mentor?.freeDay" class="session">
-
-        </div>
+        <div *ngIf="mentor?.freeDay" class="session"></div>
 
         <div *ngIf="!mentor?.freeDay">
           <h5>Not have Session Yet</h5>
         </div>
       </section>
     </div>
-
   </div>
 </section>
