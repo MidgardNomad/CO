@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Mentor, MentorService, dayTime, sessionForm } from 'DAL';
+import { Mentor, MentorService, sessionForm } from 'DAL';
 
 @Component({
   selector: 'app-mentor-schedule-dialog',
@@ -56,8 +56,8 @@ export class MentorScheduleDialogComponent implements OnInit {
 
       await this.mentorService.updateMentor(
         this.data.mentor.id,
-        this.data.mentor);
-
+        this.data.mentor
+      );
 
       //mahmoud
       // const { day, from, duration } = this.scheduleForm.value;

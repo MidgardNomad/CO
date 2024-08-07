@@ -19,9 +19,9 @@ const routes: Routes = [
     component: CoursesDetailsComponent,
     resolve: { chapters: ChaptersResolver },
   },
-  // test
+
   {
-    path: ':id/project',
+    path: ':id/project/:projectID',
     component: ProjectModComponent,
     // resolve: { chapters: ChaptersResolver },
   },

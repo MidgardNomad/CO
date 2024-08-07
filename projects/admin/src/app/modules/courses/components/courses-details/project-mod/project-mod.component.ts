@@ -5,10 +5,10 @@ import {
   MatDialog,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
-import { ReferenceFile } from 'aws-sdk/clients/omics';
-import { CoursesService } from 'projects/dal/src/public-api';
-import { ContentProjectComponent } from './content-dialoge/content-project.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CoursesService, ContentProject } from 'DAL';
+
+import { EditContentComponent } from './edit-content/edit-content.component';
 
 @Component({
   selector: 'app-project-mod',
@@ -16,14 +16,46 @@ import { ContentProjectComponent } from './content-dialoge/content-project.compo
   styleUrls: ['./project-mod.component.scss'],
 })
 export class ProjectModComponent {
-  project = [];
+  loding: boolean = false;
+  project: ContentProject;
   courseID: string;
-  constructor(private route: ActivatedRoute, private cs: CoursesService) {}
+  projectID: string;
+  constructor(
+    private route: ActivatedRoute,
+    private coursesService: CoursesService,
+    private matDialog: MatDialog,
+    private cs: CoursesService,
+    private router: Router
+  ) {}
+
   ngOnInit() {
+    this.loding = true;
     this.courseID = this.route.snapshot.paramMap.get('id');
-    this.cs
-      .getDataProject(this.courseID)
-      .subscribe((data) => [(this.project = data)]);
-    console.log(this.courseID);
+    this.projectID = this.route.snapshot.paramMap.get('projectID');
+    this.cs.getOneProject(this.courseID, this.projectID).subscribe((data) => {
+      this.project = data;
+      this.loding = false;
+    });
+    // this.content.innerHTML = this.project.content;
+  }
+  // Edit Content
+  editContent(project: any) {
+    const dialogRef = this.matDialog.open(EditContentComponent, {
+      disableClose: true,
+      data: { content: project.content, dataID: this.projectID },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.coursesService
+          .editContent(this.courseID, this.projectID, result.content)
+          .then(() => {
+            console.log('yesss');
+          });
+      }
+    });
+  }
+  // GoBack
+  goBack() {
+    this.router.navigate([`/courses/${this.courseID}`]);
   }
 }

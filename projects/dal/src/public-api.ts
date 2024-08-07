@@ -51,3 +51,4 @@ export { AdminAuthService } from './lib/services/admin-auth.service';
 
 // Add Project
 export { Projects } from './lib/models/project';
+export { ContentProject } from './lib/models/content-project';

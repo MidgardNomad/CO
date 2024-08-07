@@ -12,12 +12,4 @@ export class RemovCardComponent {
     private dialogRef: MatDialogRef<RemovCardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
-
-  // onAdd() {
-  //   this.dialogRef.close(...this.data);
-  // }
-  // // Close Dialoge
-  onCancel() {
-    this.dialogRef.close();
-  }
 }

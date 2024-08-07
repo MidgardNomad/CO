@@ -84,4 +84,10 @@ export class MentorService {
   getAllStudentReservedSession(day:string,date:string){
     return this._crud.getDocByTwoField(this._bookedSessions,'sessionDay',day,'sessionDate',date);
   }
+  // Edit Image For Profile Mentor
+  updateMentorProfilePicture(mentorID: string, profilePicture: string) {
+    return this._crud.updateData(this._mentorsCollection, mentorID, {
+      profilePicture,
+    });
+  }
 }
