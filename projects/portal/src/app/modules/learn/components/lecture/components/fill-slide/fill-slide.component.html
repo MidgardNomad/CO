@@ -8,7 +8,15 @@
   <button
     class="btn btn-continue align-self-center"
     type="submit"
-    *ngIf="!isAnswerCorrect && !isAnswerWrong"
+    *ngIf="!isAnswerCorrect && !isAnswerWrong && !allowContinue"
+    [disabled]="qForm.invalid"
+  >
+    Check
+  </button>
+  <button
+    class="btn btn-continue btn-continue-wrong align-self-center"
+    type="submit"
+    *ngIf="!isAnswerCorrect && isAnswerWrong && !allowContinue"
     [disabled]="qForm.invalid"
   >
     Check
@@ -17,7 +25,7 @@
     type="button"
     (click)="continue()"
     class="btn btn-continue align-self-center"
-    *ngIf="(isAnswerCorrect || isAnswerWrong) && !isLastSlide"
+    *ngIf="allowContinue && !isLastSlide"
     [ngClass]="{
       'btn-continue-correct': isAnswerCorrect,
       'btn-continue-wrong': isAnswerWrong

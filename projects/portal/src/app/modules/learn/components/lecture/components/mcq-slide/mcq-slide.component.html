@@ -18,13 +18,21 @@
     <button
       class="btn btn-continue align-self-center"
       type="submit"
-      *ngIf="!isAnswerCorrect && !isAnswerWrong"
+      *ngIf="!isAnswerCorrect && !isAnswerWrong && !allowContinue"
       [disabled]="mcqForm.invalid"
     >
       Check
     </button>
     <button
-      *ngIf="(isAnswerCorrect || isAnswerWrong) && !isLastSlide"
+      class="btn btn-continue btn-continue-wrong align-self-center"
+      type="submit"
+      *ngIf="!isAnswerCorrect && isAnswerWrong && !allowContinue"
+      [disabled]="mcqForm.invalid"
+    >
+      Check
+    </button>
+    <button
+      *ngIf="allowContinue && !isLastSlide"
       type="button"
       class="btn btn-continue align-self-center"
       [ngClass]="{
@@ -36,7 +44,7 @@
       Continue
     </button>
     <button
-      *ngIf="(isAnswerCorrect || isAnswerWrong) && isLastSlide"
+      *ngIf="isAnswerCorrect && isLastSlide"
       type="button"
       class="btn btn-continue align-self-center"
       [ngClass]="{

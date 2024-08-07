@@ -14,6 +14,7 @@ export class FillSlideComponent implements OnInit {
   //===================
   isAnswerWrong = false;
   isAnswerCorrect = false;
+  allowContinue = false;
   //===================
 
   //Component Inputs & Outputs
@@ -31,6 +32,8 @@ export class FillSlideComponent implements OnInit {
   onCheck(qForm: NgForm) {
     if (qForm.value.answer === this.slide.qAnswer) {
       this.isAnswerCorrect = true;
+      this.allowContinue = true;
+      this.isAnswerWrong = false;
     } else {
       this.isAnswerWrong = true;
     }
