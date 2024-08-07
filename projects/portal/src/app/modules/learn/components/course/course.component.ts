@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   Course,
   CoursesService,
@@ -24,7 +24,8 @@ export class CourseComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -40,17 +41,13 @@ export class CourseComponent implements OnInit, OnDestroy {
       const userProgressObj = userDoc.courseList.find(
         (course) => this.course.id === course.courseId
       );
-      if (!userProgressObj) {
-        this.showCourseSection = false;
-        window.location.reload();
-      }
-      this.userProgress = userProgressObj.chapterLevel;
+      this.userProgress = userProgressObj?.chapterLevel;
     });
   }
 
   getChapterProgress(chapter: Chapter) {
     return (
-      this.userProgress.find(
+      this.userProgress?.find(
         (chapterProgress) => chapter.id === chapterProgress.chapterId
       ) || null
     );

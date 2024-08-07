@@ -5,6 +5,7 @@ import { CourseComponent } from './components/course/course.component';
 import { LectureComponent } from './components/lecture/lecture.component';
 import { LearnCourseResolver } from '../../reslovers/learn/learn-course.resolver';
 import { LearnSlidesResolver } from '../../reslovers/learn/learn-lecture.resolver';
+// import { CourseLearnGuard } from '../../guards/learn-course.guard';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
         //temp use The course ID until I implement the course Name property
         path: 'course/:courseID',
         resolve: { course: LearnCourseResolver },
+        // canActivate: [CourseLearnGuard],
         component: CourseComponent,
       },
       {

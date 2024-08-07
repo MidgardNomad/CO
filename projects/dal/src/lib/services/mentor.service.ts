@@ -9,6 +9,7 @@ import { map } from 'rxjs';
 export class MentorService {
   private _mentorsCollection = 'mentors';
   private _sessionsCollection = 'sessions';
+  private _bookedSessions = 'booked-sessions';
 
   constructor(private _crud: CrudService) {}
 
@@ -70,6 +71,18 @@ export class MentorService {
         .then((res) => resolve(res))
         .catch((error) => reject(error));
     });
+  }
+
+  getMenorBySessionID(sessionID:string){
+    return this._crud.getSingleDocByField(this._mentorsCollection,'freeDay',sessionID).pipe(map(data=>{
+      return data.docs.map(res=>{
+        return {...res.metadata,id:res.id}
+      })
+    }))
+  }
+
+  getAllStudentReservedSession(day:string,date:string){
+    return this._crud.getDocByTwoField(this._bookedSessions,'sessionDay',day,'sessionDate',date);
   }
   // Edit Image For Profile Mentor
   updateMentorProfilePicture(mentorID: string, profilePicture: string) {
