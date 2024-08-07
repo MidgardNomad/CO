@@ -1,10 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService, ContentProject } from 'DAL';
 
@@ -46,11 +42,11 @@ export class ProjectModComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.coursesService
-          .editContent(this.courseID, this.projectID, result.content)
-          .then(() => {
-            console.log('yesss');
-          });
+        this.coursesService.editContent(
+          this.courseID,
+          this.projectID,
+          result.content
+        );
       }
     });
   }

@@ -14,24 +14,27 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-career-list',
   templateUrl: './career-list.component.html',
-  styleUrls: ['./career-list.component.scss']
+  styleUrls: ['./career-list.component.scss'],
 })
-
 export class CareerListComponent implements OnInit, OnDestroy {
-
   dataSource;
   cpSub: Subscription;
 
-  constructor(public dialog: MatDialog, private cpService: CareerPathService) {
-  }
+  constructor(public dialog: MatDialog, private cpService: CareerPathService) {}
 
   ngOnInit(): void {
-    this.cpSub = this.cpService.getAllCareerPaths().subscribe(cpList => {
-    this.dataSource = new MatTableDataSource(cpList);
+    this.cpSub = this.cpService.getAllCareerPaths().subscribe((cpList) => {
+      this.dataSource = new MatTableDataSource(cpList);
     });
   }
 
-  displayedColumns: string[] = ['title', 'description', 'Details', 'Update', 'Delete'];
+  displayedColumns: string[] = [
+    'title',
+    'description',
+    'Details',
+    'Update',
+    'Delete',
+  ];
 
   ///////////////////////////////////// Search ///////////////////////////////////////
 
@@ -59,7 +62,7 @@ export class CareerListComponent implements OnInit, OnDestroy {
   openDialogDelete(cpID: string): void {
     let dialogRefDelete = this.dialog.open(DeleteCareerComponent);
 
-    dialogRefDelete.afterClosed().subscribe(result => {
+    dialogRefDelete.afterClosed().subscribe((result) => {
       if (result) {
         this.cpService.deleteCareerPath(cpID);
       }
@@ -69,7 +72,6 @@ export class CareerListComponent implements OnInit, OnDestroy {
   ////////////////////////////////////////////////////////////////////////////////////
 
   ngOnDestroy(): void {
-    this.cpSub.unsubscribe()
+    this.cpSub.unsubscribe();
   }
-
 }

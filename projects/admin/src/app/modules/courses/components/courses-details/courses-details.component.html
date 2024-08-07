@@ -21,15 +21,14 @@
         <h5 class="card-title mb-3" style="font-size: 25px; font-weight: 600">
           {{ card.title }}
         </h5>
-        <div class="">
-          <a [routerLink]="['project', card.id]" class="btn btn-primary"
+        <div class="row justify-content-around align-items-center">
+          <a [routerLink]="['project', card.id]" class="btn btn-primary col-6"
             >Go Project</a
           >
-          <hr />
           <button
             mat-icon-button
             (click)="deleteCard(card)"
-            class="border-0 zer"
+            class="border-0 zer col-2"
             matTooltip="delete project"
           >
             <mat-icon color="warn">delete</mat-icon>
@@ -38,7 +37,7 @@
             mat-icon-button
             matTooltip="edit project"
             (click)="editCard(card)"
-            class="border-0"
+            class="border-0 col-2"
           >
             <mat-icon color="primary">edit</mat-icon>
           </button>

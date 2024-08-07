@@ -1,5 +1,4 @@
-import { DialogRef } from '@angular/cdk/dialog';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Chapter, CoursesService } from 'DAL';
@@ -58,6 +57,7 @@ export class CoursesDetailsComponent implements OnInit {
   onAddProject() {
     const dialogRef = this.matDialog.open(AddProjectComponent, {
       disableClose: true,
+      width: '50%',
       data: {
         projectID: this.courseID,
       },
