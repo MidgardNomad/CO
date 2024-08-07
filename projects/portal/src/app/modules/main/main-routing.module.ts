@@ -40,6 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'learn',
+        canActivate: [LoggedoutGuard],
         loadChildren: () =>
           import('../learn/learn.module').then((m) => m.LearnModule),
       },
@@ -60,11 +61,11 @@ const routes: Routes = [
             (m) => m.ContactUsModule
           ),
       },
-      {
-        path: 'courses',
-        loadChildren: () =>
-          import('../courses/courses.module').then((m) => m.CoursesModule),
-      },
+      // {
+      //   path: 'courses',
+      //   loadChildren: () =>
+      //     import('../courses/courses.module').then((m) => m.CoursesModule),
+      // },
       {
         path: 'privacy-policy',
         loadChildren: () =>
