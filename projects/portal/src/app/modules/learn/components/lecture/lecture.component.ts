@@ -30,6 +30,8 @@ export class LectureComponent implements OnInit, OnDestroy {
   disableToNextSlide = false;
   disableToPreviousSlide = true;
   slides: Ss[] = [];
+  numOfFinishedSlides = 0;
+  userAnsweredCorrectly = false;
   //Class properties
   private courseChapters: Chapter[];
   private chapterLectures: Lecture[];
@@ -267,6 +269,8 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   onToNextSlide() {
+    this.userAnsweredCorrectly = false;
+    this.numOfFinishedSlides++;
     if (this.progress !== 100) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] + 1 };
       this.progress = this.progress + (1 / (this.slides.length - 1)) * 100;
@@ -283,6 +287,7 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   onToPreviousSlide() {
+    this.userAnsweredCorrectly = true;
     if (this.progress !== 0) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] - 1 };
 
@@ -295,6 +300,10 @@ export class LectureComponent implements OnInit, OnDestroy {
         queryParamsHandling: 'merge',
       });
     }
+  }
+
+  OnCorrectAnswer() {
+    this.userAnsweredCorrectly = true;
   }
 
   onQuitLecture() {

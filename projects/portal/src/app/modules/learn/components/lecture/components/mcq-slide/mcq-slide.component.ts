@@ -21,6 +21,8 @@ export class McqSlideComponent {
   @Input() isLastSlide: boolean;
   @Output() next = new EventEmitter();
   @Output() finish = new EventEmitter();
+  @Output() correctAnswer = new EventEmitter();
+
   //===============
 
   onCheckAnswer(form: NgForm) {
@@ -30,6 +32,7 @@ export class McqSlideComponent {
       this.isAnswerCorrect = true;
       this.allowContinue = true;
       this.isAnswerWrong = false;
+      this.correctAnswer.emit();
     } else {
       this.isAnswerWrong = true;
     }

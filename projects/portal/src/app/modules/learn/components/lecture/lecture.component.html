@@ -45,7 +45,12 @@
     <button
       class="d-flex flex-column justify-content-center align-items-center slide-nav"
       (click)="onToNextSlide()"
-      [disabled]="disableToNextSlide"
+      [disabled]="
+        disableToNextSlide ||
+        ((activeSlide?.type === 'mcq' || activeSlide?.type === 'q-fill') &&
+          !(this.activeSlide?.seqNo < numOfFinishedSlides) &&
+          !userAnsweredCorrectly)
+      "
     >
       <div class="icon">
         <i class="fa-solid fa-angle-right"></i>
@@ -78,11 +83,13 @@
       [slide]="activeSlide"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
+      (correctAnswer)="OnCorrectAnswer()"
       (finish)="finishLecture()"
     ></app-mcq-slide>
     <app-fill-slide
       *ngSwitchCase="'q-fill'"
       [slide]="activeSlide"
+      (correctAnswer)="OnCorrectAnswer()"
       [isLastSlide]="slides.indexOf(activeSlide) === slides.length - 1"
       (next)="onToNextSlide()"
       (finish)="finishLecture()"
