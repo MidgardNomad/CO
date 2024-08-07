@@ -56,6 +56,7 @@ export class LearnService {
       .pipe(
         map((lectureDocs) => {
           return lectureDocs.map((lectureDoc) => {
+            console.log(lectureDoc.payload.doc.id);
             return lectureDoc.payload.doc.id;
           });
         })
@@ -81,7 +82,11 @@ export class LearnService {
 
   getNextChapterID(courseID: string, seqNo: number) {
     return this.crudService
-      .getSingleDocByField(`courses/${courseID}/chapters/`, 'seqNo', seqNo)
+      .getSingleDocByField(
+        `${this._coursesCollection}/${courseID}/${this._chaptersCollection}`,
+        'seqNo',
+        seqNo
+      )
       .pipe(
         map((chapterDoc) => {
           if (chapterDoc.docs[0]?.exists) {
@@ -89,6 +94,20 @@ export class LearnService {
           } else {
             return null;
           }
+        })
+      );
+  }
+
+  //Courses
+
+  getNextCourseID(seqNo: number) {
+    return this.crudService
+      .getSingleDataByField(this._coursesCollection, 'seqNo', seqNo)
+      .pipe(
+        map((courseDocs) => {
+          return courseDocs.map((courseDoc) => {
+            return courseDoc.payload.doc.id;
+          });
         })
       );
   }
