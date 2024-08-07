@@ -61,11 +61,11 @@ const routes: Routes = [
             (m) => m.ContactUsModule
           ),
       },
-      // {
-      //   path: 'courses',
-      //   loadChildren: () =>
-      //     import('../courses/courses.module').then((m) => m.CoursesModule),
-      // },
+      {
+        path: 'courses',
+        loadChildren: () =>
+          import('../courses/courses.module').then((m) => m.CoursesModule),
+      },
       {
         path: 'privacy-policy',
         loadChildren: () =>
