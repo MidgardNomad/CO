@@ -15,9 +15,16 @@ import { UIComponentsService } from 'projects/portal/src/app/services/ui-compone
 import { MatDialog } from '@angular/material/dialog';
 import { VerifyEmailDialogComponent } from './verify-email-dialog/verify-email-dialog.component';
 import { Subscription } from 'rxjs';
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, GithubAuthProvider, TwitterAuthProvider, signOut } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+  TwitterAuthProvider,
+  signOut,
+} from 'firebase/auth';
 import * as moment from 'moment-timezone';
-
 
 @Component({
   selector: 'app-login',
@@ -34,7 +41,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   //Subs
   matDialogSub: Subscription;
 
-
   auth = getAuth();
   googleProvider = new GoogleAuthProvider();
   facebookProvider = new FacebookAuthProvider();
@@ -50,8 +56,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private renderer: Renderer,
     private uiService: UIComponentsService,
     private matDialog: MatDialog,
-    private usersService: UsersService,
-  ) { }
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     // this.logOut();
@@ -108,45 +114,48 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   googleSignIn() {
-    signInWithPopup(this.auth, this.googleProvider).then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      this.completeLogin(user, user.uid);
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
+    signInWithPopup(this.auth, this.googleProvider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        this.completeLogin(user, user.uid);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   }
 
   facebookSignIn() {
     console.log('facebook');
 
-    signInWithPopup(this.auth, this.facebookProvider).then((result) => {
-      // The signed-in user info.
-      const user = result.user;
+    signInWithPopup(this.auth, this.facebookProvider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
 
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
 
-      console.log('facebook user', user);
-      console.log('facebook accessToken', accessToken);
-      this.completeLogin(user, user.uid);
+        console.log('facebook user', user);
+        console.log('facebook accessToken', accessToken);
+        this.completeLogin(user, user.uid);
 
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    })
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -161,86 +170,93 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   githubLogin() {
-    signInWithPopup(this.auth, this.githubProvider).then((result) => {
-      // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-      const credential = GithubAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+    signInWithPopup(this.auth, this.githubProvider)
+      .then((result) => {
+        // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+        const credential = GithubAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
 
-      // The signed-in user info.
-      const user = result.user;
-      this.completeLogin(user, user.uid);
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GithubAuthProvider.credentialFromError(error);
-      // ...
-    });
+        // The signed-in user info.
+        const user = result.user;
+        this.completeLogin(user, user.uid);
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GithubAuthProvider.credentialFromError(error);
+        // ...
+      });
   }
 
   twitterLogin() {
     console.log('twitter');
-    
-    signInWithPopup(this.auth, this.twitterProvider).then((result) => {
-      console.log('res', result);
 
-      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-      // You can use these server side with your app's credentials to access the Twitter API.
-      const credential = TwitterAuthProvider.credentialFromResult(result);
-      console.log('user',credential);
-      const token = credential.accessToken;
-      const secret = credential.secret;
+    signInWithPopup(this.auth, this.twitterProvider)
+      .then((result) => {
+        console.log('res', result);
 
-      // The signed-in user info.
-      const user = result.user;
+        // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+        // You can use these server side with your app's credentials to access the Twitter API.
+        const credential = TwitterAuthProvider.credentialFromResult(result);
+        console.log('user', credential);
+        const token = credential.accessToken;
+        const secret = credential.secret;
 
-      this.completeLogin(user,user.uid)
-      
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = TwitterAuthProvider.credentialFromError(error);
-      // ...
-    });
+        // The signed-in user info.
+        const user = result.user;
+
+        this.completeLogin(user, user.uid);
+
+        // IdP data available using getAdditionalUserInfo(result)
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = TwitterAuthProvider.credentialFromError(error);
+        // ...
+      });
   }
 
   completeLogin(userObj, userID: string) {
     this.usersService.getSingleUser(userID).subscribe((user: User) => {
       if (user.isExist) {
         this.router.navigate(['profile', userID]);
+        this.uiService.userLoginAction.next(true);
       } else {
         const tz = this.getTimeZone();
         if (tz === 'Africa/Cairo') {
-          this.country = 'Egypt',
-            this.countryCode = 'EG'
+          (this.country = 'Egypt'), (this.countryCode = 'EG');
         }
         const user = {
           user: {
             uid: userID,
             email: userObj.email,
             displayName: userObj.displayName,
-            photoURL: userObj.photoURL
-          }
-        }
-        this.usersService.createUserDoc(user, this.country, this.countryCode).then(res => {
-          this.router.navigate(['profile', userID]);
-          this.uiService.userLoginAction.next(true);
-        }).catch(err => {
-          console.log(err);
-        })
+            photoURL: userObj.photoURL,
+          },
+        };
+        this.usersService
+          .createUserDoc(user, this.country, this.countryCode)
+          .then((res) => {
+            this.router.navigate(['profile', userID]);
+            this.uiService.userLoginAction.next(true);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
-    })
+    });
   }
 
   getTimeZone(): string {
@@ -248,16 +264,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   async logOut() {
+    signOut(this.auth)
+      .then(() => {
+        console.log('sign out success');
 
-    signOut(this.auth).then(() => {
-      console.log('sign out success');
-
-      // Sign-out successful.
-    }).catch((error) => {
-      console.log('sign out fail');
-      // An error happened.
-    });
-
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log('sign out fail');
+        // An error happened.
+      });
 
     // await this.authService.logout().then(res => {
     //   console.log(res);
