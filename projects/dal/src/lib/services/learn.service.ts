@@ -56,7 +56,6 @@ export class LearnService {
       .pipe(
         map((lectureDocs) => {
           return lectureDocs.map((lectureDoc) => {
-            console.log(lectureDoc.payload.doc.id);
             return lectureDoc.payload.doc.id;
           });
         })
