@@ -85,7 +85,6 @@ export class LearnService {
       .pipe(
         map((chapterDoc) => {
           if (chapterDoc.docs[0]?.exists) {
-            console.log('I do not exist!');
             return chapterDoc.docs[0].id;
           } else {
             return null;
