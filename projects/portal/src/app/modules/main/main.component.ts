@@ -20,7 +20,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (this.userService.userDoc !== null) {
-      this.userServiceSub = this.userService.userDoc.subscribe(
+      this.userServiceSub = this.userService.userDoc?.subscribe(
         async (userDate) => {
           const lastStreakDay = (
             (
