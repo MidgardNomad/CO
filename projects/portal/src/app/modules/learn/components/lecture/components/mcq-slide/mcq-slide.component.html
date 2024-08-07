@@ -1,4 +1,4 @@
-<h3>{{ slide.question }}</h3>
+<p [innerHTML]="slide.question"></p>
 <form #mcqForm="ngForm" (ngSubmit)="onCheckAnswer(mcqForm)" class="answer-form">
   <div class="d-flex flex-column justify-content answer-form-content">
     <div class="radio option-card" *ngFor="let option of slide.options">
