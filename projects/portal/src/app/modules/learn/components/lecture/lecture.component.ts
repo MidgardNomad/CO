@@ -317,51 +317,56 @@ export class LectureComponent implements OnInit, OnDestroy {
       let lectureLevel = this.getLectureLevel();
       let chapterLevel = this.getChapterLevel();
 
-      if (this.chapterLectures.length !== this.lecture.seqNo) {
-        lectureLevel.find(
-          (lecture) => lecture.lectureId === this.lectureID
-        ).finished = new Date();
-
-        lectureLevel.push({
-          lectureId: this.nextLectureID,
-          finished: null,
-        });
-      } else if (
-        this.chapterLectures.length === this.lecture.seqNo &&
-        this.courseChapters.length === this.chapter.seqNo
+      if (
+        lectureLevel.find((lecture) => lecture.lectureId === this.lectureID)
+          .finished === null
       ) {
-        lectureLevel.find(
-          (lecture) => this.lectureID === lecture.lectureId
-        ).finished = new Date();
-        chapterLevel.find((chapter) => this.chapterID === chapter.chapterId)
-          .finished === new Date();
-        chapterLevel.find(
-          (chapter) => chapter.chapterId === this.chapterID
-        ).finished = new Date();
-        this.userCourseList.find(
-          (course) => this.courseID === course.courseId
-        ).finished = new Date();
-      } else {
-        lectureLevel.find(
-          (lecture) => lecture.lectureId === this.lectureID
-        ).finished = new Date();
-        chapterLevel.find(
-          (chapter) => chapter.chapterId === this.chapterID
-        ).finished = new Date();
+        if (this.chapterLectures.length !== this.lecture.seqNo) {
+          lectureLevel.find(
+            (lecture) => lecture.lectureId === this.lectureID
+          ).finished = new Date();
 
-        chapterLevel.push({
-          chapterId: this.NextChapterID,
-          finished: null,
-          lectureLevel: [
-            {
-              lectureId: this.firstLectureIDOfNextChapter,
-              finished: null,
-            },
-          ],
-        });
+          lectureLevel.push({
+            lectureId: this.nextLectureID,
+            finished: null,
+          });
+        } else if (
+          this.chapterLectures.length === this.lecture.seqNo &&
+          this.courseChapters.length === this.chapter.seqNo
+        ) {
+          lectureLevel.find(
+            (lecture) => this.lectureID === lecture.lectureId
+          ).finished = new Date();
+          chapterLevel.find((chapter) => this.chapterID === chapter.chapterId)
+            .finished === new Date();
+          chapterLevel.find(
+            (chapter) => chapter.chapterId === this.chapterID
+          ).finished = new Date();
+          this.userCourseList.find(
+            (course) => this.courseID === course.courseId
+          ).finished = new Date();
+        } else {
+          lectureLevel.find(
+            (lecture) => lecture.lectureId === this.lectureID
+          ).finished = new Date();
+          chapterLevel.find(
+            (chapter) => chapter.chapterId === this.chapterID
+          ).finished = new Date();
+
+          chapterLevel.push({
+            chapterId: this.NextChapterID,
+            finished: null,
+            lectureLevel: [
+              {
+                lectureId: this.firstLectureIDOfNextChapter,
+                finished: null,
+              },
+            ],
+          });
+        }
+
+        await this.updateUserProgress(this.userID, this.userCourseList);
       }
-
-      await this.updateUserProgress(this.userID, this.userCourseList);
       await this.updateUserStreak(
         this.userID,
         this.userStreakDays,
