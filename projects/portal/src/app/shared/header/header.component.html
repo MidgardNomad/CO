@@ -78,16 +78,16 @@
                 style="border: none"
                 *ngIf="displayProfileCard && !displayAuthActions"
               >
-                <img class="user-img" [src]="user?.photoURL" alt="" />
+                <img class="user-img" [src]="userPhotoURL" alt="" />
                 <!-- <p class="p-0 m-0 user-name">{{ userDisplayName }}</p> -->
               </button>
               <ul class="dropdown-menu center-dropdown">
                 <li>
                   <a
                     class="dropdown-item d-flex flex-column justify-content-around profile"
-                    [routerLink]="['/profile', user?.id]"
+                    [routerLink]="['/profile', userID]"
                   >
-                    <p>{{ user?.displayName }}</p>
+                    <p>{{ userDisplayName }}</p>
                     <span>Go to profile</span>
                   </a>
                 </li>
