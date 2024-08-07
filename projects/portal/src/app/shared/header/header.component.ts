@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private uiService: UIComponentsService
   ) {}
 
-  private getUserInfo() {}
-
   ngOnInit(): void {
     this.authService.user.subscribe((userAuthObj) => {
       if (userAuthObj !== null) {
