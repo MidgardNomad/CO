@@ -24,6 +24,7 @@ export class LectureComponent implements OnInit, OnDestroy {
   //=========================
   //Template Properties
   progress = 0;
+  progressBar = 0;
   indicator = `${this.progress}%`;
   activeSlide: Ss;
   disableToNextSlide = false;
@@ -269,6 +270,9 @@ export class LectureComponent implements OnInit, OnDestroy {
     if (this.progress !== 100) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] + 1 };
       this.progress = this.progress + (1 / (this.slides.length - 1)) * 100;
+      if (this.progress > this.progressBar) {
+        this.progressBar = this.progress;
+      }
       this.indicator = `calc(${this.progress}% - 6px)`;
       this.router.navigate([], {
         relativeTo: this.route,
@@ -281,8 +285,10 @@ export class LectureComponent implements OnInit, OnDestroy {
   onToPreviousSlide() {
     if (this.progress !== 0) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] - 1 };
+
       this.progress = this.progress - (1 / (this.slides.length - 1)) * 100;
       this.indicator = `calc(${this.progress}% - 6px)`;
+
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams,
