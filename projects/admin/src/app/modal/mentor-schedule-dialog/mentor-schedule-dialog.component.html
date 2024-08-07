@@ -26,7 +26,7 @@
     </div>
     <mat-dialog-actions align="center">
       <button type="submit" class="btn-submit">Save</button>
-      <button mat-dialog-close type="button" class="btn-cancel">Cancele</button>
+      <button mat-dialog-close type="button" class="btn-cancel" (click)="matDialogRef.close(false)">Cancel</button>
     </mat-dialog-actions>
   </form>
 </mat-dialog-content>

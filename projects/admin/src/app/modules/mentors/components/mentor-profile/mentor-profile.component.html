@@ -2,7 +2,10 @@
   <section class="container d-flex mentor-info">
     <div class="mentor-info-img">
       <img [src]="mentor.profilePicture" alt="" />
-      <i class="fa-regular fa-pen-to-square"></i>
+      <i
+        class="fa-regular fa-pen-to-square"
+        (click)="editImageProfile(mentor)"
+      ></i>
     </div>
     <div class="mentor-info-data">
       <h3>{{ mentor.name }}</h3>
@@ -21,31 +24,60 @@
     </div>
   </section>
   <hr />
-  <section class="mentor-schedule">
-    <div class="d-flex align-items-center">
-      <h4>Weekly Schedule</h4>
-      <button
-        class="mentor-schedule-edit"
-        type="button"
-        (click)="editSchedule()"
-      >
-        Edit Schedule
-      </button>
-    </div>
-    <div
-      class="container-md d-flex flex-wrap align-items-center mentor-schedule-week"
-    >
-      <div *ngFor="let day of mentor.weeklySchedule">
-        <div>
-          <div>{{ day.day }}</div>
-          <div *ngFor="let day of day.from">
-            <div>{{ day.time }}</div>
-            <div>{{ day.duration }}</div>
+
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-7 col-lg-8">
+      <section class="sessionContainer">
+        <div class="session">
+          <div class="sessions-card available">
+            <!-- <h5>{{ session.title }}</h5> -->
+            <h6>{{ mentor.freeDay }}</h6>
+            <p>
+              {{ day | date : "d/M/yy, h:mm" }}
+            </p>
+            <p>{{ mentor.duration }} Minutes</p>
+            <p>
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="mx-2">{{students}}</span>
+            </p>
           </div>
+          
         </div>
-      </div>
+      </section>
     </div>
-  </section>
-  <hr />
-  <section></section>
+
+    <div class="col-12 col-sm-12 col-md-5 col-lg-4">
+      <section class="mentor-schedule">
+        <div class="d-flex align-items-center">
+          <h4>Weekly Schedule</h4>
+          <button
+            class="mentor-schedule-edit"
+            type="button"
+            (click)="editSchedule()"
+          >
+            Edit Schedule
+          </button>
+        </div>
+        <div
+          class="container-md d-flex flex-wrap align-items-center mentor-schedule-week"
+        >
+          <span *ngIf="mentor?.freeDay">{{ mentor?.freeDay }}</span>
+          <span *ngIf="!mentor?.freeDay">No Data</span>
+
+          <!-- <div *ngFor="let day of mentor.weeklySchedule">
+            <div>
+              <div>{{ day.day }}</div>
+              <div>{{ day.from }}</div>
+            </div>
+          </div> -->
+        </div>
+
+        <div *ngIf="mentor?.freeDay" class="session"></div>
+
+        <div *ngIf="!mentor?.freeDay">
+          <h5>Not have Session Yet</h5>
+        </div>
+      </section>
+    </div>
+  </div>
 </section>

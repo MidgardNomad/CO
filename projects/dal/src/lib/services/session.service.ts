@@ -6,31 +6,33 @@ import { CrudService } from './crud.service';
 import * as moment from 'moment-timezone';
 import { map } from 'rxjs';
 import { Session } from '../models/session/session';
+import { BookedSession } from '../../public-api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
   private _mentorsCollection = 'mentors';
-  private _sessionsCollection = 'sessions';
+  private _bookedSessionsCollection = 'booked-sessions';
 
   constructor(private _crud: CrudService) {
     // get time zone from moment
-    moment.tz.setDefault('Africa/Cairo');
 
-    console.log(' current time zone: ', moment.tz.guess());
+    // moment.tz.setDefault('Africa/Cairo');
 
-    const time = '20:00';
+    // console.log(' current time zone: ', moment.tz.guess());
 
-    let day = new Date();
-    day.setDate(day.getDate() + ((0 + (7 - day.getDay())) % 7));
-    day.setHours(+time.split(':')[0]);
-    day.setMinutes(+time.split(':')[1]);
-    day.setSeconds(0);
+    // const time = '20:00';
 
-    if (day.getDate() === new Date().getDate()) {
-      day.setDate(day.getDate() + 7);
-    }
+    // let day = new Date();
+    // day.setDate(day.getDate() + ((0 + (7 - day.getDay())) % 7));
+    // day.setHours(+time.split(':')[0]);
+    // day.setMinutes(+time.split(':')[1]);
+    // day.setSeconds(0);
+
+    // if (day.getDate() === new Date().getDate()) {
+    //   day.setDate(day.getDate() + 7);
+    // }
 
     // // get current time and time zone
     // var a = moment.tz("2024-06-13 11:55", "Africa/Cairo");
@@ -76,5 +78,14 @@ export class SessionService {
         });
       })
     );
+  }
+
+  bookSession(session: BookedSession) {
+    return new Promise((resolve, reject) => {
+      this._crud.addData(this._bookedSessionsCollection, session)
+      .then((res) => resolve(res))
+      .catch((error) => reject(error));
+    });
+
   }
 }

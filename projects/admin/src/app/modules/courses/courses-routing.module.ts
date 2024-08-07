@@ -5,6 +5,7 @@ import { CoursesDetailsComponent } from './components/courses-details/courses-de
 import { ChaptersResolver } from '../../core/resolvers/course-chapters.resolver';
 import { CoursesResolver } from '../../core/resolvers/courses-resolver.resolver';
 import { LecturesComponent } from './components/lectures/lectures.component';
+import { ProjectModComponent } from './components/courses-details/project-mod/project-mod.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
@@ -17,6 +18,12 @@ const routes: Routes = [
     path: ':id',
     component: CoursesDetailsComponent,
     resolve: { chapters: ChaptersResolver },
+  },
+
+  {
+    path: ':id/project/:projectID',
+    component: ProjectModComponent,
+    // resolve: { chapters: ChaptersResolver },
   },
   {
     path: ':id/chapter/:chapterID/lecture/:lectureID',

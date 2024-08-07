@@ -1,0 +1,22 @@
+<div class="padd">
+  <h1 mat-dialog-title class="text-center mb-3">Edit file {{ data.title }}</h1>
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" placeholder="edit title" />
+      </mat-form-field>
+    </div>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button color="warn" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="editCard()"
+      cdkFocusInitial
+    >
+      Edit
+    </button>
+  </div>
+</div>

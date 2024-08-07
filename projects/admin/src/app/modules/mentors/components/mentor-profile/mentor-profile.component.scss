@@ -65,3 +65,53 @@
     }
   }
 }
+
+.sessionContainer{
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  width: 70%;
+  p {
+    margin-bottom: 0px;
+  }
+  
+  .sessions-card {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 12px;
+    min-width: 150px;
+  
+    .book-button {
+      padding: 10px 18px;
+      margin: 10px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  
+  .available {
+    border: 2px solid #52b2ee;
+    h5 {
+      color: #52b2ee;
+    }
+    .book-button {
+      background-color: #52b2ee;
+      color: white;
+    }
+  }
+  
+  .unavailable {
+    border: 2px solid #9ea2a5;
+    h5 {
+      color: #9ea2a5;
+    }
+    .book-button {
+      background-color: #9ea2a5;
+      color: white;
+    }
+  }
+  
+}
+

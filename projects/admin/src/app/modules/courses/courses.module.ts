@@ -25,6 +25,16 @@ import { FillSlideComponent } from './components/lectures/fill-slide/fill-slide.
 import { LectureDialogComponent } from './components/lectures/lecture-dialog/lecture-dialog.component';
 import { EditSlideDialogComponent } from './components/lectures/edit-slide-dialog/edit-slide-dialog.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { AddProjectComponent } from './components/courses-list/course-dialog/add-project/add-project.component';
+import { ProjectModComponent } from './components/courses-details/project-mod/project-mod.component';
+import { MatIconModule } from '@angular/material/icon';
+import { RemovCardComponent } from './components/courses-details/project-mod/remov-card/remov-card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ContentProjectComponent } from './components/courses-details/project-mod/content-dialoge/content-project.component';
+import { EditCardComponent } from './components/courses-details/project-mod/edit-card/edit-card.component';
+import { EditContentComponent } from './components/courses-details/project-mod/edit-content/edit-content.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,6 +53,12 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     McqSlideComponent,
     FillSlideComponent,
     EditSlideDialogComponent,
+    AddProjectComponent,
+    ProjectModComponent,
+    RemovCardComponent,
+    ContentProjectComponent,
+    EditCardComponent,
+    EditContentComponent,
   ],
   imports: [
     CommonModule,
@@ -55,10 +71,12 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MatExpansionModule,
     MatSelectModule,
     NgxFileDropModule,
-    EditorModule
+    EditorModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
   ],
-  exports: [
-    CourseCardComponent
-  ]
+  exports: [CourseCardComponent],
 })
 export class CoursesModule {}

@@ -6,6 +6,7 @@ import { ChapterDialogComponent } from '../chapter-dialog/chapter-dialog.compone
 import { Observable, Subscription, tap } from 'rxjs';
 import { LectureDialogComponent } from '../../lectures/lecture-dialog/lecture-dialog.component';
 import { DeleteDialogComponent } from 'projects/admin/src/app/modal/delete-dialog/delete-dialog.component';
+// import { Chapter, CoursesService, Lecture } from 'projects/dal/src/public-api';
 
 @Component({
   selector: 'app-chapter-expansion-panel',

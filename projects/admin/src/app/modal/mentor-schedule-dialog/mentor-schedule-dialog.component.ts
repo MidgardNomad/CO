@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Mentor, MentorService, dayTime, sessionForm } from 'DAL';
+import { Mentor, MentorService, sessionForm } from 'DAL';
 
 @Component({
   selector: 'app-mentor-schedule-dialog',
@@ -24,7 +24,7 @@ export class MentorScheduleDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: { mentor: Mentor },
     private mentorService: MentorService,
-    private matDialogRef: MatDialogRef<MentorScheduleDialogComponent>
+    public matDialogRef: MatDialogRef<MentorScheduleDialogComponent>
   ) {}
 
   ngOnInit(): void {
@@ -37,29 +37,53 @@ export class MentorScheduleDialogComponent implements OnInit {
 
   async onAddSchedule() {
     try {
-      const { day, from, duration } = this.scheduleForm.value;
-      const dayTime: dayTime = {
-        time: from,
-        duration,
-      };
+      const { day,from,duration } = this.scheduleForm.value;
+      this.data.mentor.freeDay=day;
+      this.data.mentor.from=from;
+      this.data.mentor.duration=duration;
 
-      console.log(this.data.mentor.weeklySchedule.find((sc) => sc.day === day));
+      console.log(this.data.mentor);
+      
+      // this.data.mentor.weeklySchedule.push({
+      //   day,
+      //   from,
+      //   duration,
+      // });
+      // await this.mentorService.addToSessionSchedule(
+      //   this.data.mentor.id,
+      //   this.data.mentor.weeklySchedule
+      // );
 
-      if (this.data.mentor.weeklySchedule.find((sc) => sc.day === day)) {
-        this.data.mentor.weeklySchedule
-          .find((sc) => sc.day === day)
-          .from.push(dayTime);
-      } else {
-        this.data.mentor.weeklySchedule.push({
-          day: day,
-          from: [dayTime],
-        } as sessionForm);
-      }
-      await this.mentorService.addToSessionSchedule(
+      await this.mentorService.updateMentor(
         this.data.mentor.id,
-        this.data.mentor.weeklySchedule
+        this.data.mentor
       );
-      this.matDialogRef.close();
+
+      //mahmoud
+      // const { day, from, duration } = this.scheduleForm.value;
+      // const dayTime: dayTime = {
+      //   time: from,
+      //   duration,
+      // };
+
+      // console.log(this.data.mentor.weeklySchedule.find((sc) => sc.day === day));
+
+      // if (this.data.mentor.weeklySchedule.find((sc) => sc.day === day)) {
+      //   this.data.mentor.weeklySchedule
+      //     .find((sc) => sc.day === day)
+      //     .from.push(dayTime);
+      // } else {
+      //   this.data.mentor.weeklySchedule.push({
+      //     day: day,
+      //     from: [dayTime],
+      //   } as sessionForm);
+      // }
+      // await this.mentorService.addToSessionSchedule(
+      //   this.data.mentor.id,
+      //   this.data.mentor
+      // );
+
+      this.matDialogRef.close(true);
     } catch (error) {
       console.log(error);
     }

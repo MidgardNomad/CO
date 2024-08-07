@@ -1,9 +1,12 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ActivatedRoute } from '@angular/router';
-import { Mentor } from 'DAL';
+import { Mentor, MentorService } from 'DAL';
 import { MentorScheduleDialogComponent } from 'projects/admin/src/app/modal/mentor-schedule-dialog/mentor-schedule-dialog.component';
+import * as moment from 'moment-timezone';
+import { AddImageComponent } from './add-image/add-image.component';
 
 @Component({
   selector: 'app-mentor-profile',
@@ -12,6 +15,7 @@ import { MentorScheduleDialogComponent } from 'projects/admin/src/app/modal/ment
 })
 export class MentorProfileComponent implements OnInit {
   mentor: Mentor;
+  mentorID: string;
   weekdays = [
     'Sunday',
     'Monday',
@@ -22,22 +26,108 @@ export class MentorProfileComponent implements OnInit {
     'Saturday',
   ];
 
-  constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
+  students:number=0;
+  day;
+
+  constructor(
+    private route: ActivatedRoute,
+    private matDialog: MatDialog,
+    private mentorServices: MentorService
+  ) {}
 
   ngOnInit(): void {
+    this.mentorID = this.route.snapshot.paramMap.get('id');
     this.mentor = this.route.snapshot.data['mentor'];
+    console.log(this.mentor);
+    
+    this.getMySessionDetails();
+
+    this.getTimeAndDate(this.mentor.from, this.mentor.freeDay);
+    this.getNumberOfBookedSession();
   }
 
   // getDaySchedule(day) {
   //   Object
   // }
 
+  getMySessionDetails() {}
+
+  getDayIndex(day){
+    return this.weekdays.findIndex(res=>res===day)
+  }
+
+  getMentorData(){
+    this.mentorServices.getMentorByID(this.mentor.id).subscribe(res=>this.mentor=res);
+  }
+
   editSchedule() {
-    this.matDialog.open(MentorScheduleDialogComponent, {
+    const dialogRed = this.matDialog.open(MentorScheduleDialogComponent, {
       width: '650px',
       data: {
         mentor: this.mentor,
       },
     });
+
+    dialogRed.afterClosed().subscribe((res) => {
+      console.log(res);
+      this.getMentorData();
+    });
+  }
+
+  // Edit Image For
+  editImageProfile(mentor: Mentor) {
+    const dialogRef = this.matDialog.open(AddImageComponent, {
+      disableClose: true,
+      data: mentor,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('result', result);
+      // if (result) {
+      //   this.mentorServices.updateMentorProfilePicture(
+      //     this.mentorID,
+      //     result.profilePicture
+      //   );
+      // }
+    });
+  }
+
+  getTimeAndDate(time: string, day: string) {
+
+    this.day = new Date();
+    this.day.setDate(this.day.getDate() + ((this.getDayIndex(day) + (7 - this.day.getDay())) % 7));
+
+    let userTime=this.convertTime(time,this.mentor.timeZone,'Africa/Cairo');
+
+    this.day.setHours(+userTime.split(':')[0]);
+    this.day.setMinutes(+userTime.split(':')[1]);
+    this.day.setSeconds(0);
+
+    if (this.day.getDate() === new Date().getDate()) {
+      this.day.setDate(this.day.getDate() + 7);
+    }    
+    return this.day;   
+
+  }
+
+  convertTime(time:string,sessionTZ:string,userTZ:string){
+
+    const cairoTime = moment.tz(time, 'HH:mm', sessionTZ);
+
+    // Convert to user Time (ET)
+    const easternTime = cairoTime.clone().tz(userTZ);
+
+    return easternTime.format('HH:mm');
+
+  }
+
+  getNumberOfBookedSession(){
+
+    const date=`${this.day.getMonth()+1}-${this.day.getDate()}-${this.day.getFullYear()}`; 
+    
+    this.mentorServices.getAllStudentReservedSession(this.mentor.freeDay,date).subscribe(res=>{
+      console.log('studnet reserved session',res);
+      this.students=res?.length;
+      
+    })
   }
 }

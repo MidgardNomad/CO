@@ -5,6 +5,9 @@ import { Chapter } from '../models/content/chapter';
 import { Lecture } from '../models/content/lecture';
 import { Ss } from '../models/content/ss';
 import { Observable, map, pipe, retry, tap } from 'rxjs';
+import { Projects } from '../models/project';
+import { ContentProject } from '../models/content-project';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -150,6 +153,53 @@ export class CoursesService {
         .catch((error) => reject(error));
     });
   }
+
+  //---------------------------------------------------------------------
+  //Projects Methods:
+  //---------------------------------------------------------------------
+  // add Project
+  addProjects(
+    id: string,
+    data: { title: string; content: string; image: any }
+  ) {
+    this.crudSerive.addData(`courses/${id}/project`, data);
+  }
+  // Get Data From Collection Project
+  getDataProject(id: string) {
+    return this.crudSerive.getData(`courses/${id}/project`).pipe(
+      map((data) => {
+        return data.map((ele) => {
+          return {
+            id: ele.payload.doc.id,
+            ...(ele.payload.doc.data() as object),
+          } as Projects;
+        });
+      })
+    );
+  }
+  // delet Project
+  deletProject(id: string, uid: string) {
+    return this.crudSerive.deleteData(`courses/${id}/project`, uid);
+  }
+  // getOne For card Project
+  getOneProject(id: string, uid: string) {
+    return this.crudSerive.getSignleDoc(`courses/${id}/project`, uid).pipe(
+      map((projectDocSnap) => {
+        return { ...(projectDocSnap.data() as object) } as ContentProject;
+      })
+    );
+  }
+  //  Edit Card For Project
+  editCard(id: string, uid: string, title: string) {
+    return this.crudSerive.updateData(`courses/${id}/project`, uid, { title });
+  }
+  //  Edit Content inside Project
+  editContent(courseID: string, uid: string, content: string) {
+    return this.crudSerive.updateData(`courses/${courseID}/project/`, uid, {
+      content,
+    });
+  }
+  //---------------------------------------------------------------------
 
   //---------------------------------------------------------------------
   //Lectures Methods:

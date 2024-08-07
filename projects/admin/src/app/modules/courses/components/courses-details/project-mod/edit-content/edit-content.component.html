@@ -1,0 +1,30 @@
+<div class="padd">
+  <h1 mat-dialog-title class="text-center mb-3">Edit Content</h1>
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <!-- content -->
+
+      <!-- content -->
+      <editor
+        formControlName="content"
+        apiKey="{{ tinyEditorApiKey }}"
+        [init]="{
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount linkchecker',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+      }"
+      >
+      </editor>
+    </div>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-button color="warn" mat-dialog-close>Cancel</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="editContent()"
+      cdkFocusInitial
+    >
+      Edit
+    </button>
+  </div>
+</div>
