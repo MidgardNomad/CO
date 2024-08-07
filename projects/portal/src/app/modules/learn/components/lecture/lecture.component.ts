@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   LearnService,
@@ -11,6 +12,7 @@ import {
 import { CoursesService } from 'projects/dal/src/public-api';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { Subscription } from 'rxjs';
+import { ConfirmQuitLectureComponent } from './components/confirm-quit-lecture/confirm-quit-lecture.component';
 
 @Component({
   selector: 'app-lecture',
@@ -63,7 +65,8 @@ export class LectureComponent implements OnInit, OnDestroy {
     private router: Router,
     private learnService: LearnService,
     private usersService: UsersService,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private matDialog: MatDialog
   ) {
     this.lecture =
       this.router.getCurrentNavigation()?.extras?.state['activeLecture'] ||
@@ -286,6 +289,12 @@ export class LectureComponent implements OnInit, OnDestroy {
         queryParamsHandling: 'merge',
       });
     }
+  }
+
+  onQuitLecture() {
+    this.matDialog.open(ConfirmQuitLectureComponent, {
+      data: { courseID: this.courseID },
+    });
   }
 
   async finishLecture() {

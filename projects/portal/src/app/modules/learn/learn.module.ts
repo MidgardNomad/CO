@@ -13,6 +13,7 @@ import { TextImageSlideComponent } from './components/lecture/components/text-im
 import { McqSlideComponent } from './components/lecture/components/mcq-slide/mcq-slide.component';
 import { FillSlideComponent } from './components/lecture/components/fill-slide/fill-slide.component';
 import { ProjectComponent } from './components/course/project/project.component';
+import { ConfirmQuitLectureComponent } from './components/lecture/components/confirm-quit-lecture/confirm-quit-lecture.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProjectComponent } from './components/course/project/project.component'
     McqSlideComponent,
     FillSlideComponent,
     ProjectComponent,
+    ConfirmQuitLectureComponent,
   ],
   imports: [CommonModule, LearnRoutingModule, SharedModule],
 })

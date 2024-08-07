@@ -1,6 +1,13 @@
 <section
   class="container-fluid d-flex flex-column align-items-center lecture-body"
 >
+  <button
+    type="button"
+    (click)="onQuitLecture()"
+    class="align-self-start exit-lecture"
+  >
+    <i class="fa-regular fa-circle-xmark"></i>
+  </button>
   <section
     class="container d-flex justify-content-between align-items-baseline slide-nav-header"
   >
