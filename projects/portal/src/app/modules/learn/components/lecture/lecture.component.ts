@@ -10,7 +10,7 @@ import {
 } from 'DAL';
 import { CoursesService } from 'projects/dal/src/public-api';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
-import { max, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lecture',
@@ -37,6 +37,7 @@ export class LectureComponent implements OnInit, OnDestroy {
   private nextLectureID: string;
   private chapter: Chapter;
   private NextChapterID: string;
+  private firstLectureIDOfNextChapter: string;
   private userID: string;
   private userCourseList: CourseLevel[];
   private userStreakDays: Date[];
@@ -51,6 +52,9 @@ export class LectureComponent implements OnInit, OnDestroy {
   private usersServiceSub: Subscription;
   private getAllLecturesSub: Subscription;
   private getAllChaptersSub: Subscription;
+  private getCurrentChapterSub: Subscription;
+  private getNextChapterIDSub: Subscription;
+  private getNextFirstLectureIDofNextChapter: Subscription;
   //======================
 
   constructor(
@@ -112,6 +116,24 @@ export class LectureComponent implements OnInit, OnDestroy {
       .subscribe((chapters) => (this.courseChapters = chapters));
   }
 
+  private getCurrentChapter() {
+    this.getCurrentChapterSub = this.learnService
+      .getSigleChapter(this.courseID, this.chapterID)
+      .subscribe((chapter) => {
+        this.chapter = chapter;
+        this.getNextChapterIDSub = this.learnService
+          .getNextChapterID(this.courseID, chapter.seqNo + 1)
+          .subscribe((chpaterId) => {
+            this.NextChapterID = chpaterId;
+            this.getNextFirstLectureIDofNextChapter = this.learnService
+              .getFirstLectureIDOfChapter(this.courseID, this.NextChapterID)
+              .subscribe(
+                (lectureId) => (this.firstLectureIDOfNextChapter = lectureId[0])
+              );
+          });
+      });
+  }
+
   private getAllLectures() {
     this.getAllLecturesSub = this.coursesService
       .getAllLectures(this.courseID, this.chapterID)
@@ -164,9 +186,8 @@ export class LectureComponent implements OnInit, OnDestroy {
         });
 
         if (streakDay === undefined) {
-          console.log('push new date');
           streakDays.push(new Date());
-          console.log(currentStreak);
+
           currentStreak++;
 
           maxStreak = currentStreak > maxStreak ? currentStreak : maxStreak;
@@ -176,8 +197,6 @@ export class LectureComponent implements OnInit, OnDestroy {
         maxStreak++;
         currentStreak++;
       }
-
-      console.log(currentStreak);
 
       await this.usersService.updateUserStearkDays(
         userID,
@@ -196,12 +215,14 @@ export class LectureComponent implements OnInit, OnDestroy {
     this.getRouteIDs();
     this.getAllChapters();
     this.getAllLectures();
+    this.getCurrentChapter();
     this.activeSlide = this.slides[0];
     if (this.lecture === null) {
       this.learnServiceActiveLecSub = this.learnService
         .getSingleLectureByID(this.courseID, this.chapterID, this.lectureID)
         .subscribe((currentLecture) => {
           this.lecture = currentLecture;
+
           this.learnServiceNextLecSub = this.learnService
             .getNextLectureID(
               this.courseID,
@@ -269,26 +290,60 @@ export class LectureComponent implements OnInit, OnDestroy {
 
   async finishLecture() {
     try {
-      if (
-        this.chapterLectures[this.chapterLectures.length - 1] !== this.lecture
-      ) {
-        let lectureLevel = this.getLectureLevel();
+      let lectureLevel = this.getLectureLevel();
+      let chapterLevel = this.getChapterLevel();
+
+      if (this.chapterLectures.length !== this.lecture.seqNo) {
         lectureLevel.find(
           (lecture) => lecture.lectureId === this.lectureID
         ).finished = new Date();
+
         lectureLevel.push({
           lectureId: this.nextLectureID,
           finished: null,
         });
-        await this.updateUserProgress(this.userID, this.userCourseList);
-        await this.updateUserStreak(
-          this.userID,
-          this.userStreakDays,
-          this.userCurrentStreak,
-          this.userMaxStreak
-        );
+      } else if (
+        this.chapterLectures.length === this.lecture.seqNo &&
+        this.courseChapters.length === this.chapter.seqNo
+      ) {
+        lectureLevel.find(
+          (lecture) => this.lectureID === lecture.lectureId
+        ).finished = new Date();
+        chapterLevel.find((chapter) => this.chapterID === chapter.chapterId)
+          .finished === new Date();
+        chapterLevel.find(
+          (chapter) => chapter.chapterId === this.chapterID
+        ).finished = new Date();
+        this.userCourseList.find(
+          (course) => this.courseID === course.courseId
+        ).finished = new Date();
       } else {
+        lectureLevel.find(
+          (lecture) => lecture.lectureId === this.lectureID
+        ).finished = new Date();
+        chapterLevel.find(
+          (chapter) => chapter.chapterId === this.chapterID
+        ).finished = new Date();
+
+        chapterLevel.push({
+          chapterId: this.NextChapterID,
+          finished: null,
+          lectureLevel: [
+            {
+              lectureId: this.firstLectureIDOfNextChapter,
+              finished: null,
+            },
+          ],
+        });
       }
+
+      await this.updateUserProgress(this.userID, this.userCourseList);
+      await this.updateUserStreak(
+        this.userID,
+        this.userStreakDays,
+        this.userCurrentStreak,
+        this.userMaxStreak
+      );
       this.router.navigate(['/learn/course', this.courseID]);
     } catch (error) {
       console.log(error);
@@ -303,6 +358,9 @@ export class LectureComponent implements OnInit, OnDestroy {
     this.usersServiceSub.unsubscribe();
     this.getAllChaptersSub.unsubscribe();
     this.getAllLecturesSub.unsubscribe();
+    this.getCurrentChapterSub.unsubscribe();
+    this.getNextChapterIDSub.unsubscribe();
+    this.getNextFirstLectureIDofNextChapter.unsubscribe();
     this.uiCompService.hideHeaderAndFooter.next(true);
   }
 }

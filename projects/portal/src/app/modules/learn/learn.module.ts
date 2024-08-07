@@ -12,6 +12,7 @@ import { TextSlideComponent } from './components/lecture/components/text-slide/t
 import { TextImageSlideComponent } from './components/lecture/components/text-image-slide/text-image-slide.component';
 import { McqSlideComponent } from './components/lecture/components/mcq-slide/mcq-slide.component';
 import { FillSlideComponent } from './components/lecture/components/fill-slide/fill-slide.component';
+import { ProjectComponent } from './components/course/project/project.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FillSlideComponent } from './components/lecture/components/fill-slide/f
     TextImageSlideComponent,
     McqSlideComponent,
     FillSlideComponent,
+    ProjectComponent,
   ],
   imports: [CommonModule, LearnRoutingModule, SharedModule],
 })
