@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Mentor, MentorService } from 'DAL';
 import { MentorScheduleDialogComponent } from 'projects/admin/src/app/modal/mentor-schedule-dialog/mentor-schedule-dialog.component';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-mentor-profile',
@@ -22,11 +23,19 @@ export class MentorProfileComponent implements OnInit {
     'Saturday',
   ];
 
+  students:number=0;
+  day;
+
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private mentorServices:MentorService) {}
 
   ngOnInit(): void {
     this.mentor = this.route.snapshot.data['mentor'];
+    console.log(this.mentor);
+    
     this.getMySessionDetails();
+
+    this.getTimeAndDate(this.mentor.from, this.mentor.freeDay);
+    this.getNumberOfBookedSession();
   }
 
   // getDaySchedule(day) {
@@ -35,6 +44,10 @@ export class MentorProfileComponent implements OnInit {
 
   getMySessionDetails(){
     
+  }
+
+  getDayIndex(day){
+    return this.weekdays.findIndex(res=>res===day)
   }
 
   getMentorData(){
@@ -52,6 +65,46 @@ export class MentorProfileComponent implements OnInit {
     dialogRed.afterClosed().subscribe((res)=>{
       console.log(res);
       this.getMentorData();
+    })
+  }
+
+  getTimeAndDate(time: string, day: string) {
+
+    this.day = new Date();
+    this.day.setDate(this.day.getDate() + ((this.getDayIndex(day) + (7 - this.day.getDay())) % 7));
+
+    let userTime=this.convertTime(time,this.mentor.timeZone,'Africa/Cairo');
+
+    this.day.setHours(+userTime.split(':')[0]);
+    this.day.setMinutes(+userTime.split(':')[1]);
+    this.day.setSeconds(0);
+
+    if (this.day.getDate() === new Date().getDate()) {
+      this.day.setDate(this.day.getDate() + 7);
+    }    
+    return this.day;   
+
+  }
+
+  convertTime(time:string,sessionTZ:string,userTZ:string){
+
+    const cairoTime = moment.tz(time, 'HH:mm', sessionTZ);
+
+    // Convert to user Time (ET)
+    const easternTime = cairoTime.clone().tz(userTZ);
+
+    return easternTime.format('HH:mm');
+
+  }
+
+  getNumberOfBookedSession(){
+
+    const date=`${this.day.getMonth()+1}-${this.day.getDate()}-${this.day.getFullYear()}`; 
+    
+    this.mentorServices.getAllStudentReservedSession(this.mentor.freeDay,date).subscribe(res=>{
+      console.log('studnet reserved session',res);
+      this.students=res?.length;
+      
     })
   }
 }

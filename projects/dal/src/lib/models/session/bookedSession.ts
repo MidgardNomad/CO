@@ -2,10 +2,11 @@ export interface BookedSession {
   sessionId: string;
   mentorId: string;
   userId: string;
-  sessionDate: Date;
-  sessionTime: Date;
+  sessionDate: string;
+  sessionTime: string;
   sessionDuration: number;
   sessionStatus: string;
   sessionType: string;
   sessionPrice: number;
+  sessionDay:string;
 }

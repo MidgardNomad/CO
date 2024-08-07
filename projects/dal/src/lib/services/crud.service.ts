@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { OrderByDirection } from 'firebase/firestore';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -74,6 +75,12 @@ export class CrudService {
     return this.db
       .collection(collectionName, (ref) => ref.where(field, '==', value))
       .get();
+  }
+
+  getDocByTwoField(collectionName: string, field1: string, value1: any,field2:string,value2:any) {
+    return this.db
+      .collection(collectionName, (ref) => ref.where(field1, '==', value1).where(field2,'==',value2))
+      .get().pipe(map((res) => res.docs.map((c: any) => { return { ...c.data() }; })))
   }
 
   // get single data
