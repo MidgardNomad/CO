@@ -7,8 +7,9 @@ import {
   Chapter,
   ChapterLevel,
   LearnService,
+  User,
 } from 'DAL';
-import { Subscription } from 'rxjs';
+import { map, Observable, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'app-course',
@@ -19,6 +20,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   course: Course;
   chapters: Chapter[];
   userProgress: ChapterLevel[];
+  userDoc: User;
   coursesServiceSub: Subscription;
   usersServiceSub: Subscription;
   learnServiceSub: Subscription;
@@ -32,79 +34,50 @@ export class CourseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.course = this.route.snapshot.data['course'];
+    this.userDoc = this.route.snapshot.data['userProgress'];
+    this.userProgress = this.userDoc.courseList.find(
+      (course) => this.course.id === course.courseId
+    ).chapterLevel;
+
     this.coursesServiceSub = this.coursesService
       .getChapters(this.route.snapshot.paramMap.get('courseID'))
       .subscribe((chapters) => {
         this.chapters = chapters;
       });
-    this.usersServiceSub = this.usersService.userDoc.subscribe((userDoc) => {
-      const userProgressObj = userDoc.courseList.find(
-        (course) => this.course.id === course.courseId
-      );
-      this.userProgress = userProgressObj?.chapterLevel;
-      if (userProgressObj.finished !== null) {
-        this.learnServiceSub = this.learnService
-          .getNextCourseID(this.course.seqNo + 1)
-          .subscribe((courseID) => {
-            try {
-              const nextCourseProgress = userDoc.courseList.find(
-                (course) => course.courseId === courseID[0]
+
+    if (
+      this.userDoc.courseList.find(
+        (courseProgress) => (courseProgress.courseId = this.course.id)
+      ).finished
+    ) {
+      this.learnService
+        .getNextCourseID(this.course.seqNo + 1)
+        .subscribe(async (courseID) => {
+          try {
+            const nextCourseProgress = this.userDoc.courseList.find(
+              (courseLevel) => courseID[0] === courseLevel.courseId
+            );
+            if (!nextCourseProgress) {
+              console.log('Adding next chapter');
+              this.userDoc.courseList.push({
+                courseId: courseID[0],
+                finished: null,
+                chapterLevel: [],
+              });
+              await this.usersService.addCourseLevelToUserDoc(
+                this.userDoc.id,
+                this.userDoc.courseList
               );
-              if (nextCourseProgress === undefined) {
-                userDoc.courseList.push({
-                  courseId: courseID[0],
-                  finished: null,
-                  chapterLevel: [],
-                });
-                this.learnService
-                  .getNextChapterID(courseID[0], 1)
-                  .subscribe((chapterID) => {
-                    userDoc.courseList
-                      .find((course) => course.courseId === courseID[0])
-                      .chapterLevel.push({
-                        chapterId: chapterID,
-                        finished: null,
-                        lectureLevel: [],
-                      });
-
-                    this.learnService
-                      .getFirstLectureIDOfChapter(courseID[0], chapterID)
-                      .subscribe(async (lecture) => {
-                        userDoc.courseList
-                          .find((course) => course.courseId === courseID[0])
-                          .chapterLevel.find(
-                            (chapter) => chapter.chapterId === chapterID
-                          )
-                          .lectureLevel.push({
-                            lectureId: lecture[0],
-                            finished: null,
-                          });
-                        await this.usersService.addCourseLevelToUserDoc(
-                          userDoc.id,
-                          userDoc.courseList
-                        );
-                      });
-                  });
-              }
-            } catch (error) {
-              console.log(error);
             }
-          });
-      }
-    });
-  }
-
-  getChapterProgress(chapter: Chapter) {
-    return (
-      this.userProgress?.find(
-        (chapterProgress) => chapter.id === chapterProgress.chapterId
-      ) || null
-    );
+          } catch (error) {
+            console.log(error);
+          }
+        });
+    }
   }
 
   ngOnDestroy(): void {
     this.coursesServiceSub.unsubscribe();
-    this.usersServiceSub.unsubscribe();
     if (this.learnServiceSub) this.learnServiceSub.unsubscribe();
   }
 }

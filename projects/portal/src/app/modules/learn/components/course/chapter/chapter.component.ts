@@ -19,9 +19,10 @@ export class ChapterComponent implements OnInit {
   isChapterInactive = true;
   chapterLectures: Lecture[];
   userLectures: LectureLevel[];
+  userChapterProgress: ChapterLevel;
   @Input() chapter: Chapter;
   @Input() i: number;
-  @Input() userChapter: ChapterLevel;
+  @Input() userChapter: ChapterLevel[];
 
   constructor(
     private coursesService: CoursesService,
@@ -41,11 +42,15 @@ export class ChapterComponent implements OnInit {
         error: (err) => console.log(err),
       });
 
-    if (this.chapter.id === this.userChapter?.chapterId) {
+    this.userChapterProgress = this.userChapter?.find(
+      (chapter) => chapter.chapterId == this.chapter.id
+    );
+
+    if (this.userChapterProgress) {
       this.isChapterInactive = false;
     }
     this.userLectures = this.userChapter
-      ? this.userChapter?.lectureLevel
+      ? this.userChapterProgress?.lectureLevel
       : null;
   }
 }
