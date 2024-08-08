@@ -19,6 +19,7 @@ export class CourseDialogComponent implements OnInit {
       courseTitle: string;
       courseDescription: string;
       button: string;
+      seqNo: number;
     }
   ) {}
 
@@ -33,7 +34,8 @@ export class CourseDialogComponent implements OnInit {
       try {
         await this.coursesService.createNewCourse(
           courseTitle,
-          courseDescription
+          courseDescription,
+          this.data.seqNo
         );
         this.dilogRef.close();
       } catch (error) {

@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row" style="gap: 25px">
-    <div class="col-5" *ngFor="let course of courses$ | async">
+    <div class="col-5" *ngFor="let course of courses">
       <app-course-card [course]="course" [hide]="false"></app-course-card>
     </div>
   </div>

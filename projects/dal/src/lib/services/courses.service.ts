@@ -46,12 +46,17 @@ export class CoursesService {
     );
   }
 
-  async createNewCourse(courseTitle: string, courseDescription: string) {
+  async createNewCourse(
+    courseTitle: string,
+    courseDescription: string,
+    seqNo: number
+  ) {
     return new Promise((resolve, reject) => {
       this.crudSerive
         .addData(this._coursesCollection, {
           title: courseTitle,
           description: courseDescription,
+          seqNo,
         } as Course)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
