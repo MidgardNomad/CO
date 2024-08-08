@@ -22,7 +22,6 @@ export class AddProjectComponent {
   ) {
     this.myForm = this.fb.group({
       title: ['', Validators.required],
-      requirement: ['', Validators.required],
       content: ['', Validators.required],
       image: ['', Validators.required],
     });

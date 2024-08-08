@@ -3,5 +3,4 @@ export interface ContentProject {
   title: string;
   content: string;
   image: string;
-  requirement: string;
 }
