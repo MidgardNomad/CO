@@ -88,6 +88,18 @@ export class AuthService {
     });
   }
 
+  async updatePhoto(photoURL: string): Promise<void> {
+    let user = await this.auth.currentUser;
+    return new Promise((resolve, reject) => {
+      user
+        .updateProfile({
+          photoURL,
+        })
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
   // async verifyNewEamil() {
   //   this.activeUser.ve
   // }

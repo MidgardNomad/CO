@@ -1,4 +1,19 @@
-<section class="container edit-profile" style="position: relative">
+<section
+  #editPForm
+  class="container edit-profile"
+  style="position: relative; opacity: 1"
+>
+  <div
+    style="
+      position: absolute;
+      top: calc(50% - 40px);
+      left: calc(50% - 40px);
+      display: none;
+    "
+    #loadingSpinner
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </div>
   <div class="row title">
     <div class="col">
       <h2>Edit Profile</h2>
@@ -7,14 +22,20 @@
   <section class="row user-card">
     <div class="col d-flex" style="gap: 15px">
       <div class="user-img">
-        <img [src]="userPhotoURL" alt="User Profile Picture" />
-        <div class="d-flex justify-content-center align-items-end edit-button">
+        <img [src]="user.photoURL" alt="User Profile Picture" />
+        <div
+          class="d-flex justify-content-center align-items-end edit-button"
+          (click)="onUpdatePhoto()"
+        >
           <i class="fa-solid fa-pen-to-square"></i>
         </div>
       </div>
       <div class="d-flex flex-column justify-content-center" style="gap: 8px">
         <p>JPG, GIF or PNG. Max size 800K</p>
-        <div class="d-flex align-items-center delete-img">
+        <div
+          class="d-flex align-items-center delete-img"
+          (click)="onDeletePhoto()"
+        >
           <i class="fa-regular fa-trash-can"></i>
           <span>Delete</span>
         </div>
@@ -32,7 +53,7 @@
               class="form-control"
               id="firstName"
               placeholder="First Name"
-              [(ngModel)]="userFirstName"
+              [(ngModel)]="user.displayName.split(' ')[0]"
               name="userFirstName"
             />
           </div>
@@ -43,26 +64,16 @@
               class="form-control"
               id="lastName"
               placeholder="Last Name"
-              [(ngModel)]="userLastName"
+              [(ngModel)]="user.displayName.split(' ')[1]"
               name="userSecondName"
             />
           </div>
         </div>
-        <!-- <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Email"
-            ngModel
-            email
-            name="userEmail"
-          />
-        </div> -->
+
         <div class="form-group">
           <label for="bio">Bio</label>
           <textarea
+            [(ngModel)]="user.bio"
             class="form-control"
             id="bio"
             rows="3"
@@ -72,7 +83,11 @@
           ></textarea>
         </div>
         <div>
-          <button class="btn-primary my-1 app-custom-button" type="submit">
+          <button
+            class="btn-primary my-1 app-custom-button"
+            type="submit"
+            [disabled]="!editProfileForm.touched && !editProfileForm.dirty"
+          >
             Save
           </button>
         </div>

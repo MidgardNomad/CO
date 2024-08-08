@@ -1,0 +1,48 @@
+<section style="position: relative; opacity: 1" #uploadPP>
+  <div
+    style="
+      position: absolute;
+      top: calc(50% - 40px);
+      left: calc(50% - 40px);
+      display: none;
+    "
+    #loadingSpinner
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="d-flex">
+    <h4 mat-dialog-title [align]="'center'">Update Profile Picture</h4>
+    <button class="close-button" type="button" mat-dialog-close>
+      <i class="fa-regular fa-circle-xmark"></i>
+    </button>
+  </div>
+  <mat-dialog-content>
+    <ngx-dropzone
+      (change)="onSelect($event)"
+      [multiple]="false"
+      [disabled]="isLoading"
+    >
+      <ngx-dropzone-label>Drop Here!</ngx-dropzone-label>
+      <ngx-dropzone-image-preview
+        ngProjectAs="ngx-dropzone-preview"
+        *ngFor="let f of files"
+        [file]="f"
+      >
+        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+    </ngx-dropzone>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button
+      type="button"
+      class="btn-update"
+      (click)="updateProfilePicture()"
+      [disabled]="files.length === 0 || isLoading"
+    >
+      Update
+    </button>
+    <button type="button" class="btn-cancel" [mat-dialog-close]="false">
+      Cancel
+    </button>
+  </mat-dialog-actions>
+</section>

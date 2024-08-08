@@ -7,7 +7,7 @@ import {
 import { User, UsersService } from 'DAL';
 import { Observable } from 'rxjs';
 
-export const UserProgressResolver: ResolveFn<Observable<User>> = (
+export const UserResovler: ResolveFn<Observable<User>> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
