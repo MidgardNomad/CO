@@ -5,13 +5,14 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { CoursesService, Project } from 'DAL';
-import { Observable } from 'rxjs';
 
-export const CourseProjectResolver: ResolveFn<Project[]> = (
+export const ProjectResolver: ResolveFn<Project> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  const coursesService = inject(CoursesService);
   const courseID = route.paramMap.get('courseID');
-  return coursesService.getDataProject(courseID);
+  const projectID = route.paramMap.get('projectID');
+  const coursesService = inject(CoursesService);
+
+  return coursesService.getOneProject(courseID, projectID);
 };

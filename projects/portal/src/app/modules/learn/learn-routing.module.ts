@@ -8,6 +8,7 @@ import { LearnSlidesResolver } from '../../reslovers/learn/learn-lecture.resolve
 import { UserResovler } from '../../reslovers/user.resolver';
 import { CourseProjectResolver } from '../../reslovers/learn/course-project.resolver';
 import { ProjectComponent } from './components/project/project.component';
+import { ProjectResolver } from '../../reslovers/learn/project.resolver';
 // import { CourseLearnGuard } from '../../guards/learn-course.guard';
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       },
       {
         path: 'course/:courseID/project/:projectID',
+        resolve: { project: ProjectResolver },
         component: ProjectComponent,
       },
       {
