@@ -6,7 +6,7 @@ import { Chapter, CoursesService } from 'DAL';
 import { ChapterDialogComponent } from './chapter-dialog/chapter-dialog.component';
 import { Observable, tap } from 'rxjs';
 import { AddProjectComponent } from '../courses-list/course-dialog/add-project/add-project.component';
-import { Projects } from 'DAL';
+import { Project } from 'DAL';
 import { RemovCardComponent } from './project-mod/remov-card/remov-card.component';
 import { EditCardComponent } from './project-mod/edit-card/edit-card.component';
 
@@ -20,7 +20,7 @@ export class CoursesDetailsComponent implements OnInit {
 
   chapters: Observable<Chapter[]>;
   numOfChapters: number;
-  cards: Array<Projects> = [];
+  cards: Array<Project> = [];
 
   constructor(
     private route: ActivatedRoute,

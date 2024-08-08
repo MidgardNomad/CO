@@ -1,12 +1,7 @@
-import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CoursesService, ContentProject } from 'DAL';
+import { CoursesService, Project } from 'DAL';
 
 import { EditContentComponent } from './edit-content/edit-content.component';
 
@@ -17,7 +12,7 @@ import { EditContentComponent } from './edit-content/edit-content.component';
 })
 export class ProjectModComponent {
   loding: boolean = false;
-  project: ContentProject;
+  project: Project;
   courseID: string;
   projectID: string;
   constructor(
