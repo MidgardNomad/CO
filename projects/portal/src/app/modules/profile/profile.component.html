@@ -10,9 +10,20 @@
       <div
         class="d-flex flex-column align-items-center align-items-sm-start user-info"
       >
-        <h3>
-          {{ userDoc.displayName }}
-        </h3>
+        <div class="d-flex align-items-center" style="gap: 10px">
+          <h3>
+            {{ userDoc.displayName }}
+          </h3>
+          <img
+            [src]="
+              'https://flagcdn.com/' +
+              userDoc.countryCode.toLowerCase() +
+              '.svg'
+            "
+            [alt]="userDoc.countryCode"
+            [title]="userDoc.country"
+          />
+        </div>
 
         <p *ngIf="userDoc.bio">
           {{ userDoc.bio }}
