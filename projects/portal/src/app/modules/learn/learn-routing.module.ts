@@ -6,6 +6,8 @@ import { LectureComponent } from './components/lecture/lecture.component';
 import { LearnCourseResolver } from '../../reslovers/learn/learn-course.resolver';
 import { LearnSlidesResolver } from '../../reslovers/learn/learn-lecture.resolver';
 import { UserResovler } from '../../reslovers/user.resolver';
+import { CourseProjectResolver } from '../../reslovers/learn/course-project.resolver';
+import { ProjectComponent } from './components/project/project.component';
 // import { CourseLearnGuard } from '../../guards/learn-course.guard';
 
 const routes: Routes = [
@@ -24,9 +26,14 @@ const routes: Routes = [
         resolve: {
           course: LearnCourseResolver,
           userProgress: UserResovler,
+          courseProject: CourseProjectResolver,
         },
         // canActivate: [CourseLearnGuard],
         component: CourseComponent,
+      },
+      {
+        path: 'course/:courseID/project/:projectID',
+        component: ProjectComponent,
       },
       {
         path: 'course/:courseID/chapter/:chapterID/lecture/:lectureID',

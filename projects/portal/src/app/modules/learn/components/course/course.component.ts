@@ -9,7 +9,7 @@ import {
   LearnService,
   User,
 } from 'DAL';
-import { map, Observable, Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course',
@@ -25,6 +25,7 @@ export class CourseComponent implements OnInit, OnDestroy {
   usersServiceSub: Subscription;
   learnServiceSub: Subscription;
   showCourseSection = true;
+  finished: Date;
   constructor(
     private route: ActivatedRoute,
     private coursesService: CoursesService,
@@ -45,11 +46,10 @@ export class CourseComponent implements OnInit, OnDestroy {
         this.chapters = chapters;
       });
 
-    if (
-      this.userDoc.courseList.find(
-        (courseProgress) => (courseProgress.courseId = this.course.id)
-      ).finished
-    ) {
+    this.finished = this.userDoc.courseList.find(
+      (courseProgress) => (courseProgress.courseId = this.course.id)
+    ).finished;
+    if (this.finished) {
       this.learnService
         .getNextCourseID(this.course.seqNo + 1)
         .subscribe(async (courseID) => {

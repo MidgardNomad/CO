@@ -1,0 +1,21 @@
+.project-card,
+.project-button {
+  margin: 20px 0px 15px 10px;
+  padding: 20px;
+  border-radius: 12px;
+  p {
+    text-align: center;
+    font-weight: 400;
+  }
+}
+.project-card {
+  background-color: grey;
+  color: rgb(209, 207, 207);
+}
+
+.project-button {
+  border: none;
+  background-color: #0096cb;
+  color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

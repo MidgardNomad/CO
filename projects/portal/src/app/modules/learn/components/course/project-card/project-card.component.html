@@ -1,0 +1,23 @@
+<div
+  *ngIf="!finished"
+  class="container d-flex flex-column align-items-center justify-content-center project-card"
+>
+  <p>
+    Put the skills and knowledge you gained in this course to the test by
+    building a project.
+  </p>
+  <h3>{{ project.title }}</h3>
+</div>
+
+<button
+  *ngIf="finished"
+  type="button"
+  class="project-button"
+  (click)="navToProject()"
+>
+  <p>
+    Put the skills and knowledge you gained in this course to the test by
+    building a project.
+  </p>
+  <h3>{{ project.title }}</h3>
+</button>

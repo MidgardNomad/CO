@@ -5,8 +5,7 @@ import { Chapter } from '../models/content/chapter';
 import { Lecture } from '../models/content/lecture';
 import { Ss } from '../models/content/ss';
 import { Observable, map, pipe, retry, tap } from 'rxjs';
-import { Projects } from '../models/project';
-import { ContentProject } from '../models/content-project';
+import { Project } from '../models/content/project';
 
 @Injectable({
   providedIn: 'root',
@@ -182,7 +181,7 @@ export class CoursesService {
             return {
               id: ele.payload.doc.id,
               ...(ele.payload.doc.data() as object),
-            } as Projects;
+            } as Project;
           });
         })
       );
@@ -203,7 +202,7 @@ export class CoursesService {
       )
       .pipe(
         map((projectDocSnap) => {
-          return { ...(projectDocSnap.data() as object) } as ContentProject;
+          return { ...(projectDocSnap.data() as object) } as Project;
         })
       );
   }
