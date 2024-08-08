@@ -36,6 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'connected-accounts',
+        resolve: { user: UserResovler },
         component: ConnectedAccountsComponent,
       },
       {
