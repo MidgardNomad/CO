@@ -2,18 +2,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
 import { AuthService, User } from 'DAL';
-import * as moment from 'moment-timezone';
-import { tap } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   userDoc = <User>{};
   flag: string;
   isActiveUserProfile = false;
+
+  authServiceSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,17 +24,21 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     //Check if this the active user is reaching their profile!
-    this.authService.user.subscribe((user) => {
-      if (user.uid === this.route.snapshot.paramMap.get('uid')) {
-        this.isActiveUserProfile = true;
-      }
+    this.route.paramMap.subscribe((params) => {
+      this.authServiceSub = this.authService.user.subscribe((user) => {
+        if (params.get('uid') === user.uid) {
+          this.isActiveUserProfile = true;
+        }
+      });
     });
     //Get user data from resolver!
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
       console.log(this.userDoc);
       this.titleService.setTitle(this.userDoc.displayName);
-      this.flag = `https://flagcdn.com/${this.userDoc?.countryCode?.toLowerCase()}.svg`;
     });
+  }
+  ngOnDestroy(): void {
+    this.authServiceSub.unsubscribe();
   }
 }

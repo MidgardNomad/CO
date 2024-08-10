@@ -36,6 +36,7 @@ export {
   LectureLevel,
 } from './lib/models/user/courseLevel';
 export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
+export { UserProject } from './lib/models/user/userProject';
 //Mentor
 export {
   Mentor,

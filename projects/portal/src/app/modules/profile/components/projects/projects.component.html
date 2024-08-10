@@ -1,1 +1,30 @@
-<p>projects works!</p>
+<section class="container-md d-flex justify-content-center projects">
+  <div class="projects-card">
+    <div class="container-fluid d-flex justify-content-between">
+      <h4>Projects</h4>
+      <button
+        (click)="onSubmitProject()"
+        *ngIf="showSubmissionButton && showSubmissionButton"
+      >
+        Submit a project
+      </button>
+    </div>
+    <p *ngIf="userProjects.length === 0 && showSubmissionForm">
+      You haven't submitted any projects yet. Complete your courses to unlock
+      our tailored projects, or showcase your personal projects to the world!
+    </p>
+    <p *ngIf="userProjects.length === 0 && !showSubmissionForm">
+      {{ userName }} haven't submitted any projects, yet.
+    </p>
+    <div *ngIf="userProjects.length !== 0">
+      <div
+        *ngFor="let project of userProjects"
+        class="user-project"
+        (click)="goToProjectRepo(project.projectRepo)"
+      >
+        <h5>{{ project.projectTitle }}</h5>
+        <p class="user-project-description">{{ project.projectDescription }}</p>
+      </div>
+    </div>
+  </div>
+</section>
