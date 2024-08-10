@@ -41,10 +41,11 @@
     [userDoc]="userDoc"
     *ngIf="isActiveUserProfile"
   ></app-user-courses>
+  <app-sessions *ngIf="isActiveUserProfile"></app-sessions>
   <app-projects
     [showSubmissionForm]="isActiveUserProfile"
     [showSubmissionButton]="userDoc.paid"
     [userName]="userDoc.displayName.split(' ')[0]"
+    [userProjects]="userProjects"
   ></app-projects>
-  <app-sessions *ngIf="isActiveUserProfile"></app-sessions>
 </section>

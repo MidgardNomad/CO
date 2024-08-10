@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
-import { AuthService, User } from 'DAL';
+import { AuthService, User, UserProject, UsersService } from 'DAL';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,16 +13,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userDoc = <User>{};
   flag: string;
   isActiveUserProfile = false;
+  userProjects: UserProject[];
 
   authServiceSub: Subscription;
+  usersServiceSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
-    private authService: AuthService
+    private authService: AuthService,
+    private usersService: UsersService
   ) {}
 
   ngOnInit(): void {
+    this.usersServiceSub = this.usersService
+      .getUserProjects(this.route.snapshot.paramMap.get('uid'))
+      .subscribe((projects) => {
+        this.userProjects = projects;
+      });
     //Check if this the active user is reaching their profile!
     this.route.paramMap.subscribe((params) => {
       this.authServiceSub = this.authService.user.subscribe((user) => {
@@ -40,5 +48,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.authServiceSub.unsubscribe();
+    this.usersServiceSub.unsubscribe();
   }
 }

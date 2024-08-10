@@ -14,21 +14,10 @@ export class ProjectsComponent implements OnInit {
   @Input() userName: string;
   @Input() showSubmissionForm: boolean;
   @Input() showSubmissionButton: boolean;
-  userProjects: UserProject[] = [];
-  matDialogSub: Subscription;
-  constructor(
-    private route: ActivatedRoute,
-    private matDialog: MatDialog,
-    private usersService: UsersService
-  ) {}
+  @Input() userProjects: UserProject[] = [];
+  constructor(private route: ActivatedRoute, private matDialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.usersService
-      .getUserProjects(this.route.snapshot.paramMap.get('uid'))
-      .subscribe((projects) => {
-        this.userProjects = projects;
-      });
-  }
+  ngOnInit(): void {}
 
   goToProjectRepo(link: string) {
     if (link.substring(0, 8) === 'https://') {
@@ -40,11 +29,8 @@ export class ProjectsComponent implements OnInit {
   }
 
   onSubmitProject() {
-    this.matDialogSub = this.matDialog
-      .open(SubmitProjectDialogComponent, {
-        data: { userID: this.route.snapshot.paramMap.get('uid') },
-      })
-      .afterClosed()
-      .subscribe();
+    this.matDialog.open(SubmitProjectDialogComponent, {
+      data: { userID: this.route.snapshot.paramMap.get('uid') },
+    });
   }
 }
