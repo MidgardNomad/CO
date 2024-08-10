@@ -16,7 +16,7 @@ export class StreakComponent implements OnInit {
   //===================
   private convertTimestampToJSDateObj(timestamp): string {
     let date: Date = timestamp.toDate();
-    date = new Date(date.setDate(date.getDate() + 1));
+    date = new Date(date.setDate(date.getDate()));
     return date.toISOString().slice(0, 10);
   }
   //===================

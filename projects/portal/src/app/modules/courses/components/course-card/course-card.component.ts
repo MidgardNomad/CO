@@ -54,6 +54,7 @@ export class CourseCardComponent implements OnInit, OnDestroy {
       await this.usersService.enrollInCourse(this.user.id, course.id, course);
       const userCourseLevel: CourseLevel = {
         courseId: course.id,
+        finished: null,
         chapterLevel: [
           {
             chapterId: this.firstChapterID,

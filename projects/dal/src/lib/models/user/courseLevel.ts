@@ -1,6 +1,7 @@
 export interface CourseLevel {
   courseId: string;
   chapterLevel: ChapterLevel[];
+  finished: Date;
 }
 
 export interface ChapterLevel {

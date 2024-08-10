@@ -123,7 +123,7 @@ export class UsersService {
   }
 
   //Enroll User in Course
-  enrollInCourse(userID: string, courseID: string, data: Course) {
+  async enrollInCourse(userID: string, courseID: string, data: Course) {
     return new Promise((resolve, reject) => {
       this.crudService
         .setSingleDoc(
@@ -136,7 +136,7 @@ export class UsersService {
     });
   }
 
-  addCourseLevelToUserDoc(userID: string, courseLevel: CourseLevel[]) {
+  async addCourseLevelToUserDoc(userID: string, courseLevel: CourseLevel[]) {
     return new Promise((resolve, reject) => {
       this.crudService
         .updateData('users', userID, { courseList: courseLevel })
@@ -145,6 +145,32 @@ export class UsersService {
     });
   }
 
+  async updateUserStearkDays(
+    userID: string,
+    streakDays: Date[],
+    maxStreak: number,
+    currentStreak: number
+  ) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .updateData('users', userID, {
+          streakDays,
+          maxStreak,
+          currentStreak,
+        })
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
+  async TareCurrentStreak(userID: string) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .updateData('users', userID, { currentStreak: 0 })
+        .then(resolve)
+        .catch(reject);
+    });
+  }
   //Books Sessions:
   async bookSession(session: BookedSession) {
     return new Promise((resolve, reject) => {

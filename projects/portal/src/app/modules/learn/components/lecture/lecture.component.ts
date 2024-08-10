@@ -1,8 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LearnService, Ss, Lecture, UsersService, CourseLevel } from 'DAL';
+import {
+  LearnService,
+  Ss,
+  Lecture,
+  UsersService,
+  CourseLevel,
+  Chapter,
+} from 'DAL';
+import { CoursesService } from 'projects/dal/src/public-api';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
-import { Subscription } from 'rxjs';
+import { max, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lecture',
@@ -20,13 +28,20 @@ export class LectureComponent implements OnInit, OnDestroy {
   disableToPreviousSlide = true;
   slides: Ss[] = [];
   //Class properties
+  private courseChapters: Chapter[];
+  private chapterLectures: Lecture[];
   private courseID: string;
   private chapterID: string;
   private lectureID: string;
   private lecture: Lecture;
   private nextLectureID: string;
+  private chapter: Chapter;
+  private NextChapterID: string;
   private userID: string;
   private userCourseList: CourseLevel[];
+  private userStreakDays: Date[];
+  private userMaxStreak: number;
+  private userCurrentStreak: number;
   //=========================
 
   //Subs
@@ -34,6 +49,8 @@ export class LectureComponent implements OnInit, OnDestroy {
   private learnServiceActiveLecSub: Subscription;
   private learnServiceNextLecSub: Subscription;
   private usersServiceSub: Subscription;
+  private getAllLecturesSub: Subscription;
+  private getAllChaptersSub: Subscription;
   //======================
 
   constructor(
@@ -41,7 +58,8 @@ export class LectureComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private learnService: LearnService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private coursesService: CoursesService
   ) {
     this.lecture =
       this.router.getCurrentNavigation()?.extras?.state['activeLecture'] ||
@@ -75,10 +93,38 @@ export class LectureComponent implements OnInit, OnDestroy {
     }
   }
 
+  private getLectureLevel() {
+    return this.userCourseList
+      .find((course) => course.courseId === this.courseID)
+      .chapterLevel.find((chapter) => chapter.chapterId === this.chapterID)
+      .lectureLevel;
+  }
+
+  private getChapterLevel() {
+    return this.userCourseList.find(
+      (course) => course.courseId === this.courseID
+    ).chapterLevel;
+  }
+
+  private getAllChapters() {
+    this.getAllChaptersSub = this.coursesService
+      .getChapters(this.courseID)
+      .subscribe((chapters) => (this.courseChapters = chapters));
+  }
+
+  private getAllLectures() {
+    this.getAllLecturesSub = this.coursesService
+      .getAllLectures(this.courseID, this.chapterID)
+      .subscribe((lectures) => (this.chapterLectures = lectures));
+  }
+
   private getUserIDCourseList() {
     this.usersServiceSub = this.usersService.userDoc.subscribe((userDoc) => {
       this.userID = userDoc.id;
       this.userCourseList = userDoc.courseList;
+      this.userStreakDays = userDoc.streakDays;
+      this.userCurrentStreak = userDoc.currentStreak;
+      this.userMaxStreak = userDoc.maxStreak;
     });
   }
 
@@ -98,11 +144,58 @@ export class LectureComponent implements OnInit, OnDestroy {
       console.log(error);
     }
   }
+
+  private async updateUserStreak(
+    userID: string,
+    streakDays: Date[],
+    currentStreak: number,
+    maxStreak: number
+  ) {
+    try {
+      if (streakDays) {
+        const today = new Date().toISOString().substring(0, 10);
+        const streakDay = streakDays.find((streakDay) => {
+          const day = new Date(
+            new Date((streakDay as any).seconds * 1000).getTime()
+          )
+            .toISOString()
+            .substring(0, 10);
+          return today === day;
+        });
+
+        if (streakDay === undefined) {
+          console.log('push new date');
+          streakDays.push(new Date());
+          console.log(currentStreak);
+          currentStreak++;
+
+          maxStreak = currentStreak > maxStreak ? currentStreak : maxStreak;
+        }
+      } else {
+        streakDays.push(new Date());
+        maxStreak++;
+        currentStreak++;
+      }
+
+      console.log(currentStreak);
+
+      await this.usersService.updateUserStearkDays(
+        userID,
+        streakDays,
+        maxStreak,
+        currentStreak
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
   //==================================
 
   ngOnInit(): void {
     this.getUserIDCourseList();
     this.getRouteIDs();
+    this.getAllChapters();
+    this.getAllLectures();
     this.activeSlide = this.slides[0];
     if (this.lecture === null) {
       this.learnServiceActiveLecSub = this.learnService
@@ -174,21 +267,32 @@ export class LectureComponent implements OnInit, OnDestroy {
     }
   }
 
-  finishLecture() {
-    let lectureLevel = this.userCourseList
-      .find((course) => course.courseId === this.courseID)
-      .chapterLevel.find(
-        (chapter) => chapter.chapterId === this.chapterID
-      ).lectureLevel;
-    lectureLevel.find(
-      (lecture) => lecture.lectureId === this.lectureID
-    ).finished = new Date();
-    lectureLevel.push({
-      lectureId: this.nextLectureID,
-      finished: null,
-    });
-    this.updateUserProgress(this.userID, this.userCourseList);
-    this.router.navigate(['/learn/course', this.courseID]);
+  async finishLecture() {
+    try {
+      if (
+        this.chapterLectures[this.chapterLectures.length - 1] !== this.lecture
+      ) {
+        let lectureLevel = this.getLectureLevel();
+        lectureLevel.find(
+          (lecture) => lecture.lectureId === this.lectureID
+        ).finished = new Date();
+        lectureLevel.push({
+          lectureId: this.nextLectureID,
+          finished: null,
+        });
+        await this.updateUserProgress(this.userID, this.userCourseList);
+        await this.updateUserStreak(
+          this.userID,
+          this.userStreakDays,
+          this.userCurrentStreak,
+          this.userMaxStreak
+        );
+      } else {
+      }
+      this.router.navigate(['/learn/course', this.courseID]);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   ngOnDestroy(): void {
@@ -197,6 +301,8 @@ export class LectureComponent implements OnInit, OnDestroy {
     }
     this.learnServiceNextLecSub.unsubscribe();
     this.usersServiceSub.unsubscribe();
+    this.getAllChaptersSub.unsubscribe();
+    this.getAllLecturesSub.unsubscribe();
     this.uiCompService.hideHeaderAndFooter.next(true);
   }
 }

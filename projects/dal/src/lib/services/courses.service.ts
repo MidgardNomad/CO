@@ -18,16 +18,18 @@ export class CoursesService {
 
   //Courses Methods:
   getAllCourses(): Observable<Course[]> {
-    return this.crudSerive.getData(this._coursesCollection).pipe(
-      map((docSnapShots) => {
-        return docSnapShots.map((docSnap) => {
-          return <Course>{
-            id: docSnap.payload.doc.id,
-            ...(docSnap.payload.doc.data() as object),
-          };
-        });
-      })
-    );
+    return this.crudSerive
+      .getDataByOrder(this._coursesCollection, 'seqNo')
+      .pipe(
+        map((docSnapShots) => {
+          return docSnapShots.map((docSnap) => {
+            return <Course>{
+              id: docSnap.payload.doc.id,
+              ...(docSnap.payload.doc.data() as object),
+            };
+          });
+        })
+      );
   }
 
   getCourse(courseID: string): Observable<Course> {

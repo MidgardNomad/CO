@@ -8,7 +8,8 @@
       border-radius: 20px !important;
       border: none;
       .accordion-button {
-        background-color: #f7f7f8;
+        background-color: #fbfdff;
+        border: none !important;
         .button-info {
           h3 {
             color: #35434c;
@@ -21,7 +22,7 @@
     }
     .accordion-collapse {
       .accordion-body {
-        background-color: #e7e8e9;
+        background-color: #fbfdff;
         p {
           margin-left: 14px;
           // color: #9ca2a6;

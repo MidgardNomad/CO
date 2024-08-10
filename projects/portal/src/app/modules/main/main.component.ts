@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UIComponentsService } from '../../services/ui-components.service';
 import { Subscription } from 'rxjs';
+import { UsersService } from 'DAL';
 
 @Component({
   selector: 'app-main',
@@ -10,19 +11,40 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit, OnDestroy {
   showHeaderAndFooter = true;
   uiServiceSub: Subscription;
+  userServiceSub: Subscription;
   constructor(
     private uiService: UIComponentsService,
-    private changeDetctorRef: ChangeDetectorRef
+    private changeDetctorRef: ChangeDetectorRef,
+    private userService: UsersService
   ) {}
 
   ngOnInit(): void {
-    this.uiService.hideHeaderAndFooter.subscribe((hide) => {
+    if (this.userService.userDoc !== null) {
+      this.userServiceSub = this.userService.userDoc.subscribe(
+        async (userDate) => {
+          const lastStreakDay = (
+            (
+              userDate.streakDays[userDate.streakDays.length - 1] as any
+            ).toDate() as Date
+          ).getDate();
+
+          const today = new Date().getDate();
+
+          if (today - lastStreakDay > 1 && userDate.currentStreak !== 0) {
+            await this.userService.TareCurrentStreak(userDate.id);
+          }
+        }
+      );
+    }
+    this.uiServiceSub = this.uiService.hideHeaderAndFooter.subscribe((hide) => {
       this.showHeaderAndFooter = hide;
       this.changeDetctorRef.detectChanges();
     });
   }
 
   ngOnDestroy(): void {
-    // this.uiServiceSub.unsubscribe();
+    console.log('main component has been destroyed');
+    this.uiServiceSub.unsubscribe();
+    this.userServiceSub.unsubscribe();
   }
 }
