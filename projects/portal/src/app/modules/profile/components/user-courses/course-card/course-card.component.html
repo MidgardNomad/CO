@@ -1,0 +1,23 @@
+<div class="courses">
+  <button
+    class="container-fluid d-flex align-items-center course-card"
+    (click)="navigateToLearn()"
+    [disabled]="!isCourseActive || isLoading"
+  >
+    <img src="../../../../../assets/images/courseIcon.svg" alt="" />
+    <div class="d-flex flex-column justify-content-around course">
+      <p class="course-title">{{ course.title }}</p>
+    </div>
+    <p class="course-status" *ngIf="isCourseInProgress">In Progress</p>
+    <i
+      class="fa-solid fa-check finished-course"
+      style="margin-left: auto; margin-right: 15px"
+      *ngIf="isCourseFinished"
+    ></i>
+    <i
+      class="fa-solid fa-lock align-self-center locked-course"
+      style="margin-left: auto; margin-right: 15px"
+      *ngIf="!isCourseActive"
+    ></i>
+  </button>
+</div>

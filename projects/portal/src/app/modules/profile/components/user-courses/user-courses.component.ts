@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Course, UsersService } from 'DAL';
-import { Observable } from 'rxjs';
+import { Course, User } from 'DAL';
+
+import { loadingAnimation } from 'projects/portal/src/app/shared/functions/loadingAnimation';
 
 @Component({
   selector: 'app-user-courses',
@@ -9,26 +10,22 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user-courses.component.scss'],
 })
 export class UserCoursesComponent implements OnInit {
-  userCourses: Observable<Course[]>;
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private usersService: UsersService
-  ) {}
+  courses: Course[];
+  @Input() userDoc: User;
+  @ViewChild('container') container: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
+  loadingAnimation = loadingAnimation();
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.get('uid') !== null) {
-      this.userCourses = this.usersService.getUserCourses(
-        this.route.snapshot.paramMap.get('uid')
-      );
+    this.courses = this.route.snapshot.data['courses'];
+  }
+
+  enrollingUser(event) {
+    if (event) {
+      this.loadingAnimation('block', 0.8, this.loadingSpinner, this.container);
+    } else {
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.container);
     }
-  }
-
-  navigateToLearn(course: Course) {
-    this.router.navigate(['/learn/course', course.id]);
-  }
-
-  navigateToCourses() {
-    this.router.navigate(['/courses']);
   }
 }

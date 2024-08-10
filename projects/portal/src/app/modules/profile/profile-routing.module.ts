@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile.component';
 import { UserProfileResolver } from '../../reslovers/profile/profile.resolver';
+import { CoursesResolver } from '../../reslovers/coursess/courses.resolver';
 
 const routes: Routes = [
   {
@@ -11,8 +12,8 @@ const routes: Routes = [
   },
   {
     path: ':uid',
+    resolve: { userData: UserProfileResolver, courses: CoursesResolver },
     component: ProfileComponent,
-    resolve: { userData: UserProfileResolver },
   },
 ];
 

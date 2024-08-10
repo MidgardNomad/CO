@@ -34,22 +34,27 @@ export class CourseComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.course = this.route.snapshot.data['course'];
-    this.userDoc = this.route.snapshot.data['userProgress'];
-    this.userProgress = this.userDoc.courseList.find(
-      (course) => this.course.id === course.courseId
-    ).chapterLevel;
-
     this.coursesServiceSub = this.coursesService
       .getChapters(this.route.snapshot.paramMap.get('courseID'))
       .subscribe((chapters) => {
         this.chapters = chapters;
       });
 
+    this.course = this.route.snapshot.data['course'];
+    this.userDoc = this.route.snapshot.data['userProgress'];
+    this.userProgress = this.userDoc.courseList.find(
+      (courseLevel) =>
+        courseLevel.courseId === this.route.snapshot.paramMap.get('courseID')
+    ).chapterLevel;
+
+    console.log(this.userProgress);
     this.finished = this.userDoc.courseList.find(
-      (courseProgress) => (courseProgress.courseId = this.course.id)
+      (courseLevel) =>
+        courseLevel.courseId === this.route.snapshot.paramMap.get('courseID')
     ).finished;
+
     if (this.finished) {
+      console.log('enroll in the next course');
       this.learnService
         .getNextCourseID(this.course.seqNo + 1)
         .subscribe(async (courseID) => {

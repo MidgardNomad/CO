@@ -15,9 +15,10 @@
             {{ userDoc.displayName }}
           </h3>
           <img
+            *ngIf="userDoc.countryCode"
             [src]="
               'https://flagcdn.com/' +
-              userDoc.countryCode.toLowerCase() +
+              userDoc?.countryCode?.toLowerCase() +
               '.svg'
             "
             [alt]="userDoc.countryCode"
@@ -36,6 +37,9 @@
     [currentStreak]="userDoc.currentStreak"
     [maxStreak]="userDoc.maxStreak"
   ></app-streak>
-  <app-user-courses></app-user-courses>
-  <app-sessions></app-sessions>
+  <app-user-courses
+    [userDoc]="userDoc"
+    *ngIf="isActiveUserProfile"
+  ></app-user-courses>
+  <app-sessions *ngIf="isActiveUserProfile"></app-sessions>
 </section>
