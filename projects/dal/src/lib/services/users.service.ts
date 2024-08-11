@@ -20,7 +20,7 @@ export class UsersService {
   constructor(
     private crudService: CrudService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   async createUserDoc(newUser: any, country: string, countryCode: string) {
     return new Promise((resolve, reject) => {
@@ -48,7 +48,7 @@ export class UsersService {
           country,
           paid: false,
           sessionExpirationDate: null,
-          availableSessions: null,
+          // availableSessions: null,
         } as User)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
@@ -158,6 +158,17 @@ export class UsersService {
           maxStreak,
           currentStreak,
         })
+        .then(resolve)
+        .catch(reject);
+    });
+  }
+
+  async updateUserDoc(
+    user: User
+  ) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .updateData('users', user.id, user)
         .then(resolve)
         .catch(reject);
     });

@@ -17,8 +17,8 @@ export class SessionsComponent implements OnInit {
       .getAllSessions()
       .subscribe((dbSessions) => (this.sessions = dbSessions));
 
-    this.sessionService.getDate().subscribe((dates) => {
-      console.log(new Date((dates[0] as any).date.seconds * 1000));
-    });
+    // this.sessionService.getDate().subscribe((dates) => {
+    //   console.log(new Date((dates[0] as any).date.seconds * 1000));
+    // });
   }
 }

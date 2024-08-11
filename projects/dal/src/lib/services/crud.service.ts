@@ -83,12 +83,32 @@ export class CrudService {
       .get().pipe(map((res) => res.docs.map((c: any) => { return { ...c.data() }; })))
   }
 
-  // get single data
+  getDocByThreeField(collectionName: string, field1: string, value1: any,field2:string,value2:any,field3:string,value3:any) {
+    return this.db
+      .collection(collectionName, (ref) => ref.where(field1, '==', value1).where(field2,'==',value2).where(field3,'==',value3))
+      .get().pipe(map((res) => res.docs.map((c: any) => { return { ...c.data(),id:c.id }; })))
+  }
+
+  // get single data snapshotChanges
   getSingleDataByField(collectionName: string, field: string, value: any) {
     return this.db
       .collection(collectionName, (ref) => ref.where(field, '==', value))
       .snapshotChanges();
   }
+
+  // get single data snapshotChanges
+  getDataByOneField(collectionName: string, field: string, value: any) {
+    return this.db
+      .collection(collectionName, (ref) => ref.where(field, '==', value))
+      .get().pipe(map((res) => res.docs.map((c: any) => { return { ...c.data(),id:c.id }; })))
+  }
+
+    // get single data Asc
+    getSingleDataAsc(collectionName: string) {
+      return this.db
+        .collection(collectionName, (ref) => ref.orderBy('seqNo').limit(1))
+        .get().pipe(map(data => { const doc = data.docs[0]; return doc ? { id: doc.id, ...doc.data } : null}));
+    }
 
   // get single data
   getSingleDataByFieldWithLimit(

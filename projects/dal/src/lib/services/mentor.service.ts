@@ -55,8 +55,8 @@ export class MentorService {
   }
 
   getMentorSessions(mentorID: string) {
-    return this._crud.getSingleDataByField(
-      this._sessionsCollection,
+    return this._crud.getDataByOneField(
+      this._bookedSessions,
       'mentorId',
       mentorID
     );
@@ -74,11 +74,11 @@ export class MentorService {
   }
 
   getMenorBySessionID(sessionID:string){
-    return this._crud.getSingleDocByField(this._mentorsCollection,'freeDay',sessionID).pipe(map(data=>{
-      return data.docs.map(res=>{
-        return {...res.metadata,id:res.id}
+    return this._crud.getSingleDocByField(this._mentorsCollection,'freeDay',sessionID).pipe(map(data=>
+      data.docs.map((res:any)=>{
+        return {...res.data(),id:res.id}
       })
-    }))
+    ))
   }
 
   getAllStudentReservedSession(day:string,date:string){

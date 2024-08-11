@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService, User, UsersService } from 'DAL';
+import { Router } from '@angular/router';
+import { CoursesService, PackagePricingService, PaymentService, User, UsersService } from 'DAL';
 import { environment } from 'DAL';
+import * as moment from 'moment';
 declare var Stripe: any;
 
 @Component({
@@ -16,17 +18,22 @@ export class SubscriptionDetailsComponent implements OnInit {
 
   constructor(
     private paymentService: PaymentService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private packagePricingService: PackagePricingService,
+    private coursesServices:CoursesService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
     this.getUser();
     this.initPaymentForm();
+    
+    // this.updateUserStatus()
   }
 
   getUser() {
     this.usersService.userDoc.subscribe((userAuthObj) => {
-      this.user = userAuthObj;
+      this.user = userAuthObj;      
     });
   }
 
@@ -39,20 +46,18 @@ export class SubscriptionDetailsComponent implements OnInit {
   async createPaymentIntent() {
     try {
       let reqBody = {
-        amount: 15000,
+        amount: this.packagePricingService.getPackagePriceAndCurrency(this.user.country).price *100,
         userID: this.user.id,
         env: environment.env,
         name: this.user.displayName,
         email: this.user.email,
-        currency: this.user.countryCode === 'EG' ? 'EGP' : 'USD',
+        currency: this.packagePricingService.getPackagePriceAndCurrency(this.user.country).currency,
       };
       const response: any = await this.paymentService.createPaymentIntent(
         reqBody
       );
-      console.log('response', response);
 
       const clientSecret = response.data.clientSecret;
-      console.log('clientSecret', clientSecret);
 
       // check if the paymentIntent is created successfully
       if (!clientSecret) {
@@ -82,7 +87,10 @@ export class SubscriptionDetailsComponent implements OnInit {
             env: response?.['data']?.['envRealized'],
             paymentID: response?.['data']?.['paymentID'],
           };
-          await this.checkPayment(obj);
+          let result:any=await this.checkPayment(obj);
+          if (result?.['status'] && result?.['message'] === 'Payment Succeeded') {
+            this.updateUserStatus();
+          }
         }
       }
     } catch (error) {
@@ -92,7 +100,41 @@ export class SubscriptionDetailsComponent implements OnInit {
   }
 
   async checkPayment(obj) {
-    const response: any = await this.paymentService.checkPayment(obj);
-    console.log('response', response);
+    return await this.paymentService.checkPayment(obj);
+  }
+
+  async updateUserStatus(){
+    const course:{id:string}=await this.getFirstCourseID();    
+
+    this.user.paid=true;
+    this.user.sessionExpirationDate=moment().add(6,'M').toDate();
+    const courseObj={
+      courseId:course.id,
+      chapterLevel:[],
+      finished:null
+    }
+    this.user.courseList.push(courseObj);    
+
+    await this.usersService.updateUserDoc(this.user).then(res=>{
+      window.location.reload();
+      // this.router.navigate(['/profile/',this.user.id])
+    }).catch(err=>{
+      console.log('user err',err);
+      
+    })
+  }
+
+  async getFirstCourseID():Promise<{id:string}>{
+    return new Promise((resolve,reject)=>{
+      this.coursesServices.getFirstCourse().subscribe({
+        next:(res:any)=>{
+          resolve(res)
+        },
+        error:()=>{
+          reject(false)
+        }
+      })
+    })
+    
   }
 }

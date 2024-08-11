@@ -9,6 +9,8 @@ import { PasswordStrengthComponent } from './password-strength-meter/password-st
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
+import { PaymentReminderComponent } from './payment-reminder/payment-reminder.component';
+import { SubscriptionDetailsComponent } from '../modules/subscription/components/subscription-details/subscription-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { RouterModule } from '@angular/router';
     NotFoundComponent,
     LoadingSpinnerComponent,
     PasswordStrengthComponent,
+    PaymentReminderComponent,
+    SubscriptionDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +38,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    PaymentReminderComponent
   ],
 })
 export class SharedModule {}

@@ -29,13 +29,15 @@ export class MentorProfileComponent implements OnInit {
   students:number=0;
   day;
 
+  reminderSession;
+
   constructor(
     private route: ActivatedRoute,
     private matDialog: MatDialog,
     private mentorServices: MentorService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.mentorID = this.route.snapshot.paramMap.get('id');
     this.mentor = this.route.snapshot.data['mentor'];
     console.log(this.mentor);
@@ -43,7 +45,9 @@ export class MentorProfileComponent implements OnInit {
     this.getMySessionDetails();
 
     this.getTimeAndDate(this.mentor.from, this.mentor.freeDay);
-    this.getNumberOfBookedSession();
+    this.students = await this.getNumberOfBookedSession(this.day);
+
+    this.getReminderSession()
   }
 
   // getDaySchedule(day) {
@@ -68,9 +72,10 @@ export class MentorProfileComponent implements OnInit {
       },
     });
 
-    dialogRed.afterClosed().subscribe((res) => {
+    dialogRed.afterClosed().subscribe(async(res) => {
       console.log(res);
       this.getMentorData();
+      this.students=await this.getNumberOfBookedSession(this.day);
     });
   }
 
@@ -120,14 +125,39 @@ export class MentorProfileComponent implements OnInit {
 
   }
 
-  getNumberOfBookedSession(){
-
-    const date=`${this.day.getMonth()+1}-${this.day.getDate()}-${this.day.getFullYear()}`; 
-    
-    this.mentorServices.getAllStudentReservedSession(this.mentor.freeDay,date).subscribe(res=>{
-      console.log('studnet reserved session',res);
-      this.students=res?.length;
+  getNumberOfBookedSession(dateTime:Date):Promise<number>{
+    // console.log(dateTime);
+    dateTime =new Date(dateTime);
+    return new Promise((resolve,reject)=>{
+      const date=`${dateTime.getMonth()+1}-${dateTime.getDate()}-${dateTime.getFullYear()}`; 
       
+      this.mentorServices.getAllStudentReservedSession(this.mentor.freeDay,date).subscribe(res=>{
+        console.log('studnet reserved session',res);
+        resolve(res?.length)
+        
+      })
+    })
+
+    //  this.students;
+  }
+
+  getReminderSession(){
+    console.log(this.day);
+    
+    let sessionDate=`${this.day.getMonth() + 1}-${this.day.getDate()}-${this.day.getFullYear()}`;
+    this.mentorServices.getMentorSessions(this.mentor.id).subscribe((res)=>{
+      console.log(res);
+      if (res.length >0) {
+        const index=res.findIndex(ele=>ele['sessionDate'] === sessionDate);
+        if (index>=0) {
+          res.splice(index,1);
+        }
+      }
+      this.reminderSession=res;
+      this.reminderSession.forEach(async(element) => {
+        element['studnetNum']=await this.getNumberOfBookedSession(element.sessionDate);
+        element.sessionDate=`${element.sessionDate} ${element.sessionTime}`
+      });
     })
   }
 }

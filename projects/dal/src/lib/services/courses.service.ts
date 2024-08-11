@@ -356,4 +356,10 @@ export class CoursesService {
         .catch((error) => reject(error));
     });
   }
+
+  getFirstCourse(){
+    return this.crudSerive.getSingleDataAsc(this._coursesCollection);
+    // return new Promise((resolve,reject)=>{
+    // })
+  }
 }

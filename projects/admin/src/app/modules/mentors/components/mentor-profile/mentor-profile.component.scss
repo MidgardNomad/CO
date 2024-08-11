@@ -67,7 +67,6 @@
 }
 
 .sessionContainer{
-  border: 1px solid #ccc;
   padding: 10px;
   border-radius: 10px;
   width: 70%;
@@ -115,3 +114,11 @@
   
 }
 
+
+.reminderSession{
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 12px;
+  margin-top: 10px;
+}

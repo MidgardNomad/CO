@@ -16,6 +16,7 @@ export { PackagesService } from './lib/services/packages.service';
 export { PaymentService } from './lib/services/payment.service';
 export { LearnService } from './lib/services/learn.service';
 export { MentorService } from './lib/services/mentor.service';
+export { PackagePricingService } from './lib/services/package-pricing.service';
 
 // export models
 //Admin

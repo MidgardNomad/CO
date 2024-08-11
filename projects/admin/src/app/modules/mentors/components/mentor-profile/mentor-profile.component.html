@@ -33,7 +33,7 @@
             <!-- <h5>{{ session.title }}</h5> -->
             <h6>{{ mentor.freeDay }}</h6>
             <p>
-              {{ day | date : "d/M/yy, h:mm" }}
+              {{ day | date : "M/d/yy, h:mm" }}
             </p>
             <p>{{ mentor.duration }} Minutes</p>
             <p>
@@ -78,6 +78,33 @@
           <h5>Not have Session Yet</h5>
         </div>
       </section>
+    </div>
+
+
+  </div>
+
+</section>
+
+<section class="reminderSession">
+  <h4>Reminder Sessions</h4>
+  <div class="row">
+    <div *ngFor="let rSession of reminderSession" class="col-12 col-sm-12 col-md-4 col-lg-3">
+      <div class="sessionContainer w-100">
+        <div class="session">
+          <div class="sessions-card unavailable">
+            <h5>{{ rSession.sessionType }}</h5>
+            <h6>{{ rSession.sessionDay }}</h6>
+            <p>
+              {{ rSession.sessionDate  | date : "M/d/yy, h:mm" }}
+            </p>
+            <p>{{ rSession.sessionDuration }} Minutes</p>
+            <p>
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="mx-2">{{rSession.studnetNum}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -86,6 +86,20 @@ export class SessionService {
       .then((res) => resolve(res))
       .catch((error) => reject(error));
     });
+  }
 
+  cancelSession(userID:string,mentorID:string,date:string){
+    return new Promise((resolve,reject)=>{
+      this._crud.getDocByThreeField(this._bookedSessionsCollection,'userId',userID,'mentorId',mentorID,'sessionDate',date).subscribe(res=>{
+        console.log(res);
+        if (res?.length>0) {
+          this._crud.deleteData(this._bookedSessionsCollection,res[0].id).then(()=>{
+            resolve(true)
+          }).catch(()=>{
+            reject(false)
+          })
+        }
+      })
+    })
   }
 }

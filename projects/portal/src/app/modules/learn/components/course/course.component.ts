@@ -31,11 +31,14 @@ export class CourseComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.data.subscribe((routeData) => {
       this.course = routeData['course'];
+      console.log(this.course);
+      
     });
     this.coursesServiceSub = this.coursesService
-      .getChapters(this.route.snapshot.paramMap.get('courseID'))
-      .subscribe((chapters) => {
-        this.chapters = chapters;
+    .getChapters(this.route.snapshot.paramMap.get('courseID'))
+    .subscribe((chapters) => {
+      this.chapters = chapters;
+      console.log(this.chapters);
       });
     this.usersServiceSub = this.usersService.userDoc.subscribe((userDoc) => {
       const userProgressObj = userDoc.courseList.find(

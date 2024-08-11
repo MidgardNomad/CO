@@ -1,30 +1,36 @@
-<section class="profile" *ngIf="userDoc.photoURL !== undefined">
-  <section
-    class="d-flex justify-content-center align-items-center profile-header"
-  >
-    <div
-      class="d-flex flex-column flex-sm-row justify-content-center align-items-center"
-      style="min-height: 200px"
-    >
-      <img [src]="userDoc.photoURL" alt="" class="user-avatar" />
-      <div
-        class="d-flex flex-column align-items-center align-items-sm-start user-info"
-      >
-        <h3>
-          {{ userDoc.displayName }}
-        </h3>
+<div *ngIf="!userPaid">
+  <app-payment-reminder [user]="userDoc"></app-payment-reminder>
+</div>
 
-        <p *ngIf="userDoc.bio">
-          {{ userDoc.bio }}
-        </p>
+<section *ngIf="userPaid" class="profile">
+  <div *ngIf="userDoc.photoURL !== undefined">
+    <section
+      class="d-flex justify-content-center align-items-center profile-header"
+    >
+      <div
+        class="d-flex flex-column flex-sm-row justify-content-center align-items-center"
+        style="min-height: 200px"
+      >
+        <img [src]="userDoc.photoURL" alt="" class="user-avatar" />
+        <div
+          class="d-flex flex-column align-items-center align-items-sm-start user-info"
+        >
+          <h3>
+            {{ userDoc.displayName }}
+          </h3>
+  
+          <p *ngIf="userDoc.bio">
+            {{ userDoc.bio }}
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
-  <app-streak
-    [streakDays]="userDoc.streakDays"
-    [currentStreak]="userDoc.currentStreak"
-    [maxStreak]="userDoc.maxStreak"
-  ></app-streak>
-  <app-user-courses></app-user-courses>
-  <app-sessions></app-sessions>
+    </section>
+    <app-streak
+      [streakDays]="userDoc.streakDays"
+      [currentStreak]="userDoc.currentStreak"
+      [maxStreak]="userDoc.maxStreak"
+    ></app-streak>
+    <app-user-courses></app-user-courses>
+    <app-sessions></app-sessions>
+  </div>
 </section>

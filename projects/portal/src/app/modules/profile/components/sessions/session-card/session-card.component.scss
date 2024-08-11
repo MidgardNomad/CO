@@ -9,33 +9,64 @@ p {
   border-radius: 12px;
   min-width: 150px;
 
+  .bottomSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .btn{
+      padding: 10px 5px;
+      flex-grow:1;
+    }
+
+    img {
+      width: 35px;
+      border-radius: 100%;
+    }
+  }
+
   .book-button {
     padding: 10px 18px;
-    margin: 10px;
+    margin: 10px 0px;
     border-radius: 12px;
     border: none;
     cursor: pointer;
+    flex-grow: 1;
   }
 }
 
 .available {
   border: 2px solid #52b2ee;
+
   h5 {
     color: #52b2ee;
   }
+
   .book-button {
     background-color: #52b2ee;
     color: white;
   }
 }
 
+.notAlailable{
+  border: 2px solid #ccc!important;
+  background: #ccc!important;
+}
+
 .unavailable {
   border: 2px solid #9ea2a5;
+
   h5 {
     color: #9ea2a5;
   }
+
   .book-button {
     background-color: #9ea2a5;
     color: white;
   }
+}
+
+.disabledButton{
+  background-color: #9ea2a5!important;
+  cursor: not-allowed!important;
 }

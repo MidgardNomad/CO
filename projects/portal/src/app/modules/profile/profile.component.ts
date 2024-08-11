@@ -12,6 +12,7 @@ import * as moment from 'moment-timezone';
 export class ProfileComponent implements OnInit {
   userDoc = <User>{};
   flag: string;
+  userPaid:boolean=false;
 
   constructor(private route: ActivatedRoute, private titleService: Title) {}
 
@@ -19,6 +20,8 @@ export class ProfileComponent implements OnInit {
     //Get user data from resolver!
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
+      console.log(this.userDoc);
+      this.userPaid=this.userDoc.paid;
       this.titleService.setTitle(this.userDoc.displayName);
       this.flag = `https://flagcdn.com/${this.userDoc?.countryCode?.toLowerCase()}.svg`;
     });

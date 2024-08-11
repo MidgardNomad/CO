@@ -22,11 +22,18 @@ export class MainComponent implements OnInit, OnDestroy {
     if (this.userService.userDoc !== null) {
       this.userServiceSub = this.userService.userDoc.subscribe(
         async (userDate) => {
-          const lastStreakDay = (
-            (
-              userDate.streakDays[userDate.streakDays.length - 1] as any
-            ).toDate() as Date
-          ).getDate();
+          console.log('userDate',userDate);
+          
+          const lastStreakDay=0;
+          if (userDate.streakDays.length) {
+            const lastStreakDay = (
+              (
+                userDate.streakDays[userDate.streakDays.length - 1] as any
+              ).toDate() as Date
+            ).getDate();
+          }
+
+          
 
           const today = new Date().getDate();
 

@@ -23,7 +23,7 @@ export interface User {
   connectedAccounts: ConnectedAccounts[];
   paid: boolean;
   sessionExpirationDate: Date;
-  availableSessions: number;
+  // availableSessions: number;
   countryCode: string;
   country: string;
 
