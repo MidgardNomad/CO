@@ -54,14 +54,18 @@ export class AddImageComponent {
   // ================================
 
   async onSubmit(form: any) {
-    let imageURL = await this.uploadImage(this.file);
+    try {
+      let imageURL = await this.uploadImage(this.file);
 
-    console.log('imageURL', imageURL);
-    console.log('form', form);
+      await this.mentorService.updateMentorProfilePicture(
+        this.data.id,
+        imageURL
+      );
 
-    await this.mentorService.updateMentorProfilePicture(this.data.id, imageURL);
-
-    this.dialogRef.close();
+      this.dialogRef.close();
+    } catch (error) {
+      console.log('error in upload', error);
+    }
 
     // if (this.form.valid) {
     //   const projectObj = {
