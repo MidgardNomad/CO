@@ -1,14 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ss } from 'DAL';
-import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 
 @Component({
   selector: 'app-text-slide',
   templateUrl: './text-slide.component.html',
   styleUrls: ['./text-slide.component.scss'],
 })
-export class TextSlideComponent implements OnInit {
+export class TextSlideComponent {
   //Components Inputs & Outputs
   //===============
   @Input() slide: Ss;
@@ -16,10 +14,6 @@ export class TextSlideComponent implements OnInit {
   @Output() next = new EventEmitter();
   @Output() finish = new EventEmitter();
   //===============
-
-  constructor(private uiService: UIComponentsService) {}
-
-  ngOnInit(): void {}
 
   continue() {
     this.next.emit();

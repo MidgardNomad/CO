@@ -1,0 +1,16 @@
+.project {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin: 20px auto;
+  padding: 20px;
+  h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 72px;
+  }
+  &-content {
+    margin: 15px 25px;
+  }
+}

@@ -1,10 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from 'DAL';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService, User } from 'DAL';
 import { CrudService } from 'projects/dal/src/public-api';
+import { loadingAnimation } from 'projects/portal/src/app/shared/functions/loadingAnimation';
+import { showSnackbar } from 'projects/portal/src/app/shared/functions/showsnackbar';
 import { Subscription } from 'rxjs';
-import { ReauthenticateDialogComponent } from '../reauthenticate-dialog/reauthenticate-dialog.component';
+import { DeletePhotoDialogComponent } from '../delete-photo-dialog/delete-photo-dialog.component';
+import { UpdatePhotoDialogComponent } from '../update-photo-dialog/update-photo-dialog.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,73 +22,90 @@ import { ReauthenticateDialogComponent } from '../reauthenticate-dialog/reauthen
   styleUrls: ['./edit-profile.component.scss'],
 })
 export class EditProfileComponent implements OnInit, OnDestroy {
-  userID: string;
-  userPhotoURL: string;
-  userFirstName: string;
-  userLastName: string;
-  userEmail: string;
-  userSubscription: Subscription;
-  loading = false;
+  user: User;
+  @ViewChild('editPForm') editPForm: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
+  showSnackBar = showSnackbar();
+  loadingAnimation = loadingAnimation();
+
+  //Subcsriptions
+  //=================
+  private matDialogSub: Subscription;
+  //=================
   constructor(
     private authService: AuthService,
     private crudService: CrudService,
+    private route: ActivatedRoute,
     private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.user.subscribe((user) => {
-      this.userID = user.uid;
-      this.userPhotoURL = user.photoURL;
-      this.userEmail = user.email;
-      [this.userFirstName, this.userLastName] = user.displayName.split(' ');
+    this.route.data.subscribe((data) => {
+      this.user = data['user'];
     });
   }
 
+  onDeletePhoto() {
+    this.matDialogSub = this.matDialog
+      .open(DeletePhotoDialogComponent)
+      .afterClosed()
+      .subscribe(async (answer) => {
+        if (answer) {
+          try {
+            this.user.photoURL =
+              '../../../../../assets/images/placeholder-avatar.svg';
+            await this.authService.updatePhoto(
+              '../../../../../assets/images/placeholder-avatar.svg'
+            );
+            await this.crudService.updateData('users', this.user.id, {
+              photoURL: '../../../../../assets/images/placeholder-avatar.svg',
+            });
+            this.showSnackBar('Updated Successfully', 'success-snackbar');
+          } catch (error) {
+            this.showSnackBar('Something went wrong', 'fail-snackbar');
+          }
+        }
+      });
+  }
+
+  onUpdatePhoto() {
+    this.matDialog
+      .open(UpdatePhotoDialogComponent, {
+        width: '500px',
+        data: { userDoc: this.user },
+      })
+      .afterClosed()
+      .subscribe((answer) => {
+        console.log(this.user);
+      });
+  }
+
   async onEditProfile(form: NgForm) {
-    this.loading = true;
-    const userFirstName =
-      form.value.userFirstName === ''
-        ? this.userFirstName
-        : form.value.userFirstName;
-    const userLastName =
-      form.value.userSecondName === ''
-        ? this.userLastName
-        : form.value.userSecondName;
-    // const userEmail = form.value.userEmail;
-    const userBIO = form.value.userBIO;
+    const { userFirstName, userSecondName, userBIO } = form.value;
+    this.loadingAnimation('block', 0.8, this.loadingSpinner, this.editPForm);
     try {
-      if (form.value.userFirstName !== '' || form.value.userSecondName !== '') {
-        await this.authService.updateDisplayName(userFirstName, userLastName);
-        await this.crudService.updateData('users', this.userID, {
-          displayName: `${userFirstName} ${userLastName}`,
-        });
-      }
-      if (userBIO !== '') {
-        await this.crudService.updateData('users', this.userID, {
-          bio: userBIO,
-        });
-      }
-      // if (userEmail !== '') {
-      //   this.matDialog.open(ReauthenticateDialogComponent, {
-      //     height: '300px',
-      //     width: '500px',
-      //     disableClose: true,
-      //     data: {
-      //       title: 'Update Your Account Info',
-      //       header: 'Enter Your Password to Confrim Updating Your Info',
-      //       button: 'Update Profile',
-      //       class: 'update-profile',
-      //       email: userEmail,
-      //     },
-      //   });
-      // }
-      this.loading = false;
+      await this.authService.updateDisplayName(userFirstName, userSecondName);
+      await this.crudService.updateData('users', this.user.id, {
+        displayName: `${userFirstName} ${userSecondName}`,
+        bio: userBIO,
+      });
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.editPForm);
+      this.showSnackBar(
+        'Your Info has been updated successfully',
+        'success-snackbar'
+      );
     } catch (error) {
-      this.loading = false;
+      this.loadingAnimation('none', 1, this.loadingSpinner, this.editPForm);
+
+      this.showSnackBar(
+        'Something went wrong! please try again later.',
+        'fail-snackbar'
+      );
+
       console.log(error);
     }
   }
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
+    if (this.matDialogSub) this.matDialogSub.unsubscribe();
   }
 }

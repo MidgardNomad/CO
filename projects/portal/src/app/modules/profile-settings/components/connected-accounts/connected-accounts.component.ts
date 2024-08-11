@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectedAccounts, UsersService } from 'DAL';
-import { take } from 'rxjs';
-
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'DAL';
 //Type: Connected Accounts Object
 
 @Component({
@@ -10,7 +10,7 @@ import { take } from 'rxjs';
   styleUrls: ['./connected-accounts.component.scss'],
 })
 export class ConnectedAccountsComponent implements OnInit {
-  connectedAccounts: ConnectedAccounts[] = [];
+  user: User;
   accountTemplates: { website: string; example: string }[] = [
     {
       website: 'LinkedIn',
@@ -22,19 +22,19 @@ export class ConnectedAccountsComponent implements OnInit {
     },
   ];
 
-  constructor(private usersService: UsersService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // this.usersService
-    //   .getUserID()
-    //   .pipe(take(1))
-    //   .subscribe((userID) => {
-    //     this.usersService.getSingleUser(userID).subscribe((user) => {
-    //       this.connectedAccounts = user.connectedAccounts;
-    //       console.log(this.connectedAccounts);
-    //     });
-    //   });
+    this.route.data.subscribe((data) => {
+      this.user = data['user'];
+    });
   }
 
-  onConnect() {}
+  // getUserAccountLink(website: string) {
+  //   return
+  // }
+
+  onConnect(form: NgForm) {
+    const { linkedin, github } = form.value;
+  }
 }

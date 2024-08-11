@@ -81,15 +81,32 @@ export class LearnService {
 
   getNextChapterID(courseID: string, seqNo: number) {
     return this.crudService
-      .getSingleDocByField(`courses/${courseID}/chapters/`, 'seqNo', seqNo)
+      .getSingleDocByField(
+        `${this._coursesCollection}/${courseID}/${this._chaptersCollection}`,
+        'seqNo',
+        seqNo
+      )
       .pipe(
         map((chapterDoc) => {
           if (chapterDoc.docs[0]?.exists) {
-            console.log('I do not exist!');
             return chapterDoc.docs[0].id;
           } else {
             return null;
           }
+        })
+      );
+  }
+
+  //Courses
+
+  getNextCourseID(seqNo: number) {
+    return this.crudService
+      .getSingleDataByField(this._coursesCollection, 'seqNo', seqNo)
+      .pipe(
+        map((courseDocs) => {
+          return courseDocs.map((courseDoc) => {
+            return courseDoc.payload.doc.id;
+          });
         })
       );
   }

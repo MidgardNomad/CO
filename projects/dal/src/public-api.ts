@@ -17,14 +17,16 @@ export { PaymentService } from './lib/services/payment.service';
 export { LearnService } from './lib/services/learn.service';
 export { MentorService } from './lib/services/mentor.service';
 export { PackagePricingService } from './lib/services/package-pricing.service';
+export { S3ImgUploaderService } from './lib/aws/s3-img-uploader.service';
 
 // export models
 //Admin
 export { Admin } from './lib/models/admin/admin';
 //Content
-export { Chapter } from './lib/models/content/chapter';
 export { Course } from './lib/models/content/course';
 export { Cp } from './lib/models/content/cp';
+export { Chapter } from './lib/models/content/chapter';
+export { Project } from './lib/models/content/project';
 export { Lecture, LectureType } from './lib/models/content/lecture';
 export { Ss, SsType } from './lib/models/content/ss';
 //User
@@ -35,6 +37,7 @@ export {
   LectureLevel,
 } from './lib/models/user/courseLevel';
 export { ConnectedAccounts } from './lib/models/user/connectedAccounts';
+export { UserProject } from './lib/models/user/userProject';
 //Mentor
 export {
   Mentor,
@@ -49,7 +52,3 @@ export { BookedSession } from './lib/models/session/bookedSession'; // booked se
 export { Session } from './lib/models/session/session';
 export { SessionService } from './lib/services/session.service'; // session service
 export { AdminAuthService } from './lib/services/admin-auth.service';
-
-// Add Project
-export { Projects } from './lib/models/project';
-export { ContentProject } from './lib/models/content-project';

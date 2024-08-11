@@ -10,9 +10,11 @@ import { SessionsComponent } from './components/sessions/sessions.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { SessionCardComponent } from './components/sessions/session-card/session-card.component';
 import { BookSessionDialogComponent } from './components/sessions/book-session-dialog/book-session-dialog.component';
+import { CourseCardComponent } from './components/user-courses/course-card/course-card.component';
+import { SubmitProjectDialogComponent } from './components/projects/submit-project-dialog/submit-project-dialog.component';
 
 @NgModule({
-  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent, SessionsComponent, ProjectsComponent, SessionCardComponent, BookSessionDialogComponent],
+  declarations: [ProfileComponent, StreakComponent, UserCoursesComponent, SessionsComponent, ProjectsComponent, SessionCardComponent, BookSessionDialogComponent, CourseCardComponent, SubmitProjectDialogComponent],
   imports: [CommonModule, ProfileRoutingModule, SharedModule],
 })
 export class ProfileModule {}

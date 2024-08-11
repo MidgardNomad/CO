@@ -6,6 +6,7 @@ import { Course } from '../models/content/course';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { BookedSession } from '../models/session/bookedSession';
+import { UserProject } from '../models/user/userProject';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class UsersService {
   private _usersCollection = 'users';
   private _coursesCollection = 'courses';
   private _bookedSessionsCollection = 'booked-sessions';
+  private _projectsCollection = 'projects';
 
   userDoc: Observable<User> | null;
 
@@ -189,6 +191,36 @@ export class UsersService {
         .addData(this._bookedSessionsCollection, session)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
+    });
+  }
+  //Projects
+
+  getUserProjects(userID: string) {
+    return this.crudService
+      .getData(
+        `/${this._usersCollection}/${userID}/${this._projectsCollection}`
+      )
+      .pipe(
+        map((userProjectsDocs) => {
+          return userProjectsDocs.map((project) => {
+            return <UserProject>{
+              id: project.payload.doc.id,
+              ...(project.payload.doc.data() as object),
+            };
+          });
+        })
+      );
+  }
+
+  async submitProject(userID: string, project: UserProject) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .addData(
+          `${this._usersCollection}/${userID}/${this._projectsCollection}`,
+          project
+        )
+        .then(resolve)
+        .catch(reject);
     });
   }
 }

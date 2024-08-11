@@ -11,14 +11,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./courses-list.component.scss'],
 })
 export class CoursesListComponent implements OnInit {
-  courses$: Observable<Course[]>;
+  courses: Course[];
   constructor(
     private coursesService: CoursesService,
     private matDialog: MatDialog,
     private route: ActivatedRoute
   ) {}
   ngOnInit(): void {
-    this.courses$ = this.coursesService.getAllCourses();
+    this.coursesService.getAllCourses().subscribe((courses) => {
+      this.courses = courses;
+    });
   }
 
   onCreateNewCourse() {
@@ -26,6 +28,7 @@ export class CoursesListComponent implements OnInit {
       data: {
         dialogTitle: 'Add a New Course',
         button: 'Add',
+        seqNo: this.courses.length,
       },
       disableClose: true,
     });

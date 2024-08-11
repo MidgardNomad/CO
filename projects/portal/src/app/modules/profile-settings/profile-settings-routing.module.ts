@@ -8,11 +8,13 @@ import { ProComponent } from './components/pro/pro.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DeleteAccountComponent } from './components/delete-account/delete-account.component';
 import { ConnectedAccountsComponent } from './components/connected-accounts/connected-accounts.component';
+import { UserResovler } from '../../reslovers/user.resolver';
 
 const routes: Routes = [
   {
     path: '',
     component: ProfileSettingsComponent,
+
     children: [
       {
         path: '',
@@ -25,6 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'edit-profile',
+        resolve: { user: UserResovler },
         component: EditProfileComponent,
       },
       {
@@ -33,6 +36,7 @@ const routes: Routes = [
       },
       {
         path: 'connected-accounts',
+        resolve: { user: UserResovler },
         component: ConnectedAccountsComponent,
       },
       {

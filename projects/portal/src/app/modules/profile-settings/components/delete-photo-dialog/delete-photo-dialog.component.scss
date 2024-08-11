@@ -1,0 +1,17 @@
+button {
+  margin: 10px;
+  padding: 8px 20px;
+  border-radius: 12px;
+  border: none;
+  :focus {
+    border: none !important;
+  }
+}
+.btn-delete {
+  background-color: #e43535;
+  color: white;
+}
+.btn-cancel {
+  background-color: #52b2ee;
+  color: white;
+}

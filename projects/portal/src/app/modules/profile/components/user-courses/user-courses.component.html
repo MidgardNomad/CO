@@ -1,28 +1,34 @@
-<section class="container-md d-flex justify-content-center user-courses">
-  <div class="user-courses-card">
+<section
+  class="container-md d-flex justify-content-center user-courses"
+  #container
+>
+  <div
+    style="
+      position: absolute;
+      top: calc(50% - 40px);
+      left: calc(50% - 40px);
+      display: none;
+    "
+    #loadingSpinner
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="user-courses-card" style="opacity: inherit">
     <div class="d-flex align-items-baseline user-courses-card-header">
       <h4>Courses in Progress</h4>
-      <span (click)="navigateToCourses()">See all</span>
     </div>
-    <div class="courses">
-      <div *ngFor="let course of userCourses | async">
-        <div
-          class="d-flex align-items-center course-card"
-          (click)="navigateToLearn(course)"
-        >
-          <img src="../../../../../assets/images/courseIcon.svg" alt="" />
-          <div class="d-flex flex-column justify-content-around course">
-            <p class="course-title">{{ course.title }}</p>
-            <span class="course-status">In Progress</span>
-          </div>
-          <div class="icon">
-            <i class="fa-regular fa-circle-play"></i>
-          </div>
-        </div>
-      </div>
+    <p *ngIf="!userDoc.paid" class="unpaid-user-message">
+      You don't have any ongoing courses, yet. Start your learning jouney,
+      <span><a routerLink="/subscribe/pay">NOW</a></span
+      >!
+    </p>
+    <div *ngIf="userDoc.paid">
+      <app-course-card
+        *ngFor="let course of courses"
+        [course]="course"
+        [userCourseList]="userDoc.courseList"
+        (enrolling)="enrollingUser($event)"
+      ></app-course-card>
     </div>
-    <button class="browse-button" type="button" (click)="navigateToCourses()">
-      Browse Courses
-    </button>
   </div>
 </section>

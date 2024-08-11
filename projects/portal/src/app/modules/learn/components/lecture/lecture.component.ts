@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   LearnService,
@@ -11,6 +12,7 @@ import {
 import { CoursesService } from 'projects/dal/src/public-api';
 import { UIComponentsService } from 'projects/portal/src/app/services/ui-components.service';
 import { Subscription } from 'rxjs';
+import { ConfirmQuitLectureComponent } from './components/confirm-quit-lecture/confirm-quit-lecture.component';
 
 @Component({
   selector: 'app-lecture',
@@ -22,11 +24,14 @@ export class LectureComponent implements OnInit, OnDestroy {
   //=========================
   //Template Properties
   progress = 0;
+  progressBar = 0;
   indicator = `${this.progress}%`;
   activeSlide: Ss;
   disableToNextSlide = false;
   disableToPreviousSlide = true;
   slides: Ss[] = [];
+  numOfFinishedSlides = 0;
+  userAnsweredCorrectly = false;
   //Class properties
   private courseChapters: Chapter[];
   private chapterLectures: Lecture[];
@@ -63,7 +68,8 @@ export class LectureComponent implements OnInit, OnDestroy {
     private router: Router,
     private learnService: LearnService,
     private usersService: UsersService,
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private matDialog: MatDialog
   ) {
     this.lecture =
       this.router.getCurrentNavigation()?.extras?.state['activeLecture'] ||
@@ -263,9 +269,14 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   onToNextSlide() {
+    this.userAnsweredCorrectly = false;
+    this.numOfFinishedSlides++;
     if (this.progress !== 100) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] + 1 };
       this.progress = this.progress + (1 / (this.slides.length - 1)) * 100;
+      if (this.progress > this.progressBar) {
+        this.progressBar = this.progress;
+      }
       this.indicator = `calc(${this.progress}% - 6px)`;
       this.router.navigate([], {
         relativeTo: this.route,
@@ -276,10 +287,13 @@ export class LectureComponent implements OnInit, OnDestroy {
   }
 
   onToPreviousSlide() {
+    this.userAnsweredCorrectly = true;
     if (this.progress !== 0) {
       const queryParams = { s: +this.route.snapshot.queryParams['s'] - 1 };
+
       this.progress = this.progress - (1 / (this.slides.length - 1)) * 100;
       this.indicator = `calc(${this.progress}% - 6px)`;
+
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams,
@@ -288,56 +302,71 @@ export class LectureComponent implements OnInit, OnDestroy {
     }
   }
 
+  OnCorrectAnswer() {
+    this.userAnsweredCorrectly = true;
+  }
+
+  onQuitLecture() {
+    this.matDialog.open(ConfirmQuitLectureComponent, {
+      data: { courseID: this.courseID },
+    });
+  }
+
   async finishLecture() {
     try {
       let lectureLevel = this.getLectureLevel();
       let chapterLevel = this.getChapterLevel();
 
-      if (this.chapterLectures.length !== this.lecture.seqNo) {
-        lectureLevel.find(
-          (lecture) => lecture.lectureId === this.lectureID
-        ).finished = new Date();
-
-        lectureLevel.push({
-          lectureId: this.nextLectureID,
-          finished: null,
-        });
-      } else if (
-        this.chapterLectures.length === this.lecture.seqNo &&
-        this.courseChapters.length === this.chapter.seqNo
+      if (
+        lectureLevel.find((lecture) => lecture.lectureId === this.lectureID)
+          .finished === null
       ) {
-        lectureLevel.find(
-          (lecture) => this.lectureID === lecture.lectureId
-        ).finished = new Date();
-        chapterLevel.find((chapter) => this.chapterID === chapter.chapterId)
-          .finished === new Date();
-        chapterLevel.find(
-          (chapter) => chapter.chapterId === this.chapterID
-        ).finished = new Date();
-        this.userCourseList.find(
-          (course) => this.courseID === course.courseId
-        ).finished = new Date();
-      } else {
-        lectureLevel.find(
-          (lecture) => lecture.lectureId === this.lectureID
-        ).finished = new Date();
-        chapterLevel.find(
-          (chapter) => chapter.chapterId === this.chapterID
-        ).finished = new Date();
+        if (this.chapterLectures.length !== this.lecture.seqNo) {
+          lectureLevel.find(
+            (lecture) => lecture.lectureId === this.lectureID
+          ).finished = new Date();
 
-        chapterLevel.push({
-          chapterId: this.NextChapterID,
-          finished: null,
-          lectureLevel: [
-            {
-              lectureId: this.firstLectureIDOfNextChapter,
-              finished: null,
-            },
-          ],
-        });
+          lectureLevel.push({
+            lectureId: this.nextLectureID,
+            finished: null,
+          });
+        } else if (
+          this.chapterLectures.length === this.lecture.seqNo &&
+          this.courseChapters.length === this.chapter.seqNo
+        ) {
+          lectureLevel.find(
+            (lecture) => this.lectureID === lecture.lectureId
+          ).finished = new Date();
+          chapterLevel.find((chapter) => this.chapterID === chapter.chapterId)
+            .finished === new Date();
+          chapterLevel.find(
+            (chapter) => chapter.chapterId === this.chapterID
+          ).finished = new Date();
+          this.userCourseList.find(
+            (course) => this.courseID === course.courseId
+          ).finished = new Date();
+        } else {
+          lectureLevel.find(
+            (lecture) => lecture.lectureId === this.lectureID
+          ).finished = new Date();
+          chapterLevel.find(
+            (chapter) => chapter.chapterId === this.chapterID
+          ).finished = new Date();
+
+          chapterLevel.push({
+            chapterId: this.NextChapterID,
+            finished: null,
+            lectureLevel: [
+              {
+                lectureId: this.firstLectureIDOfNextChapter,
+                finished: null,
+              },
+            ],
+          });
+        }
+
+        await this.updateUserProgress(this.userID, this.userCourseList);
       }
-
-      await this.updateUserProgress(this.userID, this.userCourseList);
       await this.updateUserStreak(
         this.userID,
         this.userStreakDays,

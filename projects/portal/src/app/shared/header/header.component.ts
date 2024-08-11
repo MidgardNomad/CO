@@ -11,7 +11,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  user: User;
+  userDisplayName: string;
+  userPhotoURL: string;
+  userID: string;
   coursesList: Course[] = [];
   userCardOpacity = '0';
   userInfoCard: boolean;
@@ -28,23 +30,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private usersService: UsersService,
-    private uiService: UIComponentsService,
-    private coursesService: CoursesService
+    private uiService: UIComponentsService
   ) {}
 
-  private getUserInfo() {
-    if (this.usersService.userDoc === null) {
-      this.displayAuthActions = true;
-    } else {
-      this.userServiceSub = this.usersService.userDoc?.subscribe((userDoc) => {
-        this.user = userDoc;
-        this.displayProfileCard = true;
-      });
-    }
-  }
-
   ngOnInit(): void {
-    this.getUserInfo();
+    this.authService.user.subscribe((userAuthObj) => {
+      if (userAuthObj !== null) {
+        this.userDisplayName = userAuthObj.displayName;
+        this.userID = userAuthObj.uid;
+        this.userPhotoURL = userAuthObj.photoURL;
+        this.displayProfileCard = true;
+      } else {
+        this.displayAuthActions = true;
+      }
+    });
     this.uiService.userLoginAction.subscribe((login) => {
       if (login) {
         window.location.reload();

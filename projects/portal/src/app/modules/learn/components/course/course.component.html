@@ -1,5 +1,5 @@
 <section
-  class="container-md d-flex justify-content-center course"
+  class="container-md d-flex flex-column align-items-center course"
   style="position: relative"
   *ngIf="showCourseSection"
 >
@@ -12,8 +12,11 @@
       <app-chapter
         [chapter]="chapter"
         [i]="i"
-        [userChapter]="getChapterProgress(chapter)"
+        [userChapter]="userProgress"
       ></app-chapter>
+    </div>
+    <div class="container-fluid">
+      <app-project-card [finished]="finished"></app-project-card>
     </div>
   </div>
 </section>

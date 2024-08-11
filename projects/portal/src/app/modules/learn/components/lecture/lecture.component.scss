@@ -3,6 +3,16 @@
   max-height: 100vh;
   padding: 25px 25px;
   align-content: center;
+  .exit-lecture {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+    i {
+      color: grey;
+      font-size: 25px;
+    }
+  }
   .slide-nav-header {
     padding: 0px;
     .progress-wrapper {

@@ -40,6 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'learn',
+        canActivate: [LoggedoutGuard],
         loadChildren: () =>
           import('../learn/learn.module').then((m) => m.LearnModule),
       },

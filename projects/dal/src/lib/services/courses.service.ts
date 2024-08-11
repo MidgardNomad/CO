@@ -5,9 +5,7 @@ import { Chapter } from '../models/content/chapter';
 import { Lecture } from '../models/content/lecture';
 import { Ss } from '../models/content/ss';
 import { Observable, map, pipe, retry, tap } from 'rxjs';
-import { Projects } from '../models/project';
-import { ContentProject } from '../models/content-project';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Project } from '../models/content/project';
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +13,13 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class CoursesService {
   private _coursesCollection = 'courses';
   private _chaptersCollection = 'chapters';
+  private _projectsCollection = 'project';
   private _lecturesCollection = 'lectures';
   private _slidesCollection = 'slides';
   constructor(private crudSerive: CrudService) {}
 
   //Courses Methods:
+  //=============================================================
   getAllCourses(): Observable<Course[]> {
     return this.crudSerive
       .getDataByOrder(this._coursesCollection, 'seqNo')
@@ -46,12 +46,17 @@ export class CoursesService {
     );
   }
 
-  async createNewCourse(courseTitle: string, courseDescription: string) {
+  async createNewCourse(
+    courseTitle: string,
+    courseDescription: string,
+    seqNo: number
+  ) {
     return new Promise((resolve, reject) => {
       this.crudSerive
         .addData(this._coursesCollection, {
           title: courseTitle,
           description: courseDescription,
+          seqNo,
         } as Course)
         .then((res) => resolve(res))
         .catch((error) => reject(error));
@@ -76,10 +81,9 @@ export class CoursesService {
     });
   }
 
-  //---------------------------------------------------------------------
+  //=============================================================
   //Chapters Methods:
-  //---------------------------------------------------------------------
-
+  //=============================================================
   //Get all chapters
   getChapters(courseID: string): Observable<Chapter[]> {
     return this.crudSerive
@@ -154,56 +158,77 @@ export class CoursesService {
     });
   }
 
-  //---------------------------------------------------------------------
+  //=============================================================
   //Projects Methods:
-  //---------------------------------------------------------------------
+  //=============================================================
   // add Project
   addProjects(
     id: string,
     data: { title: string; content: string; image: any }
   ) {
-    this.crudSerive.addData(`courses/${id}/project`, data);
+    this.crudSerive.addData(
+      `${this._coursesCollection}/${id}/${this._projectsCollection}`,
+      data
+    );
   }
   // Get Data From Collection Project
   getDataProject(id: string) {
-    return this.crudSerive.getData(`courses/${id}/project`).pipe(
-      map((data) => {
-        return data.map((ele) => {
-          return {
-            id: ele.payload.doc.id,
-            ...(ele.payload.doc.data() as object),
-          } as Projects;
-        });
-      })
-    );
+    return this.crudSerive
+      .getData(`${this._coursesCollection}/${id}/${this._projectsCollection}`)
+      .pipe(
+        map((data) => {
+          return data.map((ele) => {
+            return {
+              id: ele.payload.doc.id,
+              ...(ele.payload.doc.data() as object),
+            } as Project;
+          });
+        })
+      );
   }
   // delet Project
   deletProject(id: string, uid: string) {
-    return this.crudSerive.deleteData(`courses/${id}/project`, uid);
+    return this.crudSerive.deleteData(
+      `${this._coursesCollection}/${id}/${this._projectsCollection}`,
+      uid
+    );
   }
   // getOne For card Project
   getOneProject(id: string, uid: string) {
-    return this.crudSerive.getSignleDoc(`courses/${id}/project`, uid).pipe(
-      map((projectDocSnap) => {
-        return { ...(projectDocSnap.data() as object) } as ContentProject;
-      })
-    );
+    return this.crudSerive
+      .getSignleDoc(
+        `${this._coursesCollection}/${id}/${this._projectsCollection}`,
+        uid
+      )
+      .pipe(
+        map((projectDocSnap) => {
+          return { ...(projectDocSnap.data() as object) } as Project;
+        })
+      );
   }
   //  Edit Card For Project
   editCard(id: string, uid: string, title: string) {
-    return this.crudSerive.updateData(`courses/${id}/project`, uid, { title });
+    return this.crudSerive.updateData(
+      `${this._coursesCollection}/${id}/${this._projectsCollection}`,
+      uid,
+      { title }
+    );
   }
   //  Edit Content inside Project
   editContent(courseID: string, uid: string, content: string) {
-    return this.crudSerive.updateData(`courses/${courseID}/project/`, uid, {
-      content,
-    });
+    return this.crudSerive.updateData(
+      `${this._coursesCollection}/${courseID}/${this._projectsCollection}/`,
+      uid,
+      {
+        content,
+      }
+    );
   }
-  //---------------------------------------------------------------------
+  //=============================================================
 
-  //---------------------------------------------------------------------
+  //=============================================================
   //Lectures Methods:
-  //---------------------------------------------------------------------
+  //=============================================================
   getAllLectures(courseID: string, chapterID: string): Observable<Lecture[]> {
     return this.crudSerive
       .getDataByOrder(
@@ -280,8 +305,11 @@ export class CoursesService {
         .catch((error) => reject(error));
     });
   }
+  //=============================================================
 
+  //=============================================================
   //Slides Methods:
+  //=============================================================
   getAllSlides(
     courseID: string,
     chapterID: string,
@@ -362,4 +390,5 @@ export class CoursesService {
     // return new Promise((resolve,reject)=>{
     // })
   }
+  //=============================================================
 }

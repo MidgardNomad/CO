@@ -1,29 +1,50 @@
 <section class="container connected-accounts">
-  <div class="row title">
-    <div class="col">
-      <h2>Connected Accounts</h2>
-    </div>
-  </div>
-
-  <div
-    class="d-flex flex-column"
-    style="row-gap: 20px"
-    *ngFor="let account of accountTemplates"
+  <form
+    #connectedAccountsForm="ngForm"
+    (ngSubmit)="onConnect(connectedAccountsForm)"
   >
-    <div class="d-flex flex-column">
-      <h5>{{ account.website }}</h5>
-      <div class="d-flex connect-card">
-        <img
-          [src]="
-            '../../../../../assets/images/' +
-            account.website.toLowerCase() +
-            '.svg'
-          "
-          alt=""
-        />
-        <p>{{ account.example }}</p>
-        <button class="btn btn-primary" (click)="onConnect()">Connect</button>
-      </div>
+    <div class="form-group">
+      <label for="linkedin"
+        >LinkedIn
+        <span
+          ><i
+            class="fa-brands fa-linkedin"
+            style="color: #0077b5; font-size: 18px"
+          ></i></span
+      ></label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="https://www.linkedin.com/in/username"
+        ngModel
+        name="linkedin"
+        id="linkedin"
+      />
     </div>
-  </div>
+    <div class="form-group">
+      <label for="github"
+        >GitHub
+        <span>
+          <i
+            class="fa-brands fa-github"
+            style="color: #2b3137; font-size: 18px"
+          ></i></span
+      ></label>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="https://github.com/username"
+        ngModel
+        name="github"
+        id="github"
+      />
+    </div>
+    <button
+      class="btn-primary app-custom-button"
+      type="submit"
+      style="border: none; color: white; margin-left: 15px; margin-top: 20px"
+    >
+      Save
+    </button>
+  </form>
 </section>

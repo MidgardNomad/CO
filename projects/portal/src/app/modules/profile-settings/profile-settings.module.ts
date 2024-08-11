@@ -13,6 +13,10 @@ import { DeleteAccountComponent } from './components/delete-account/delete-accou
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { ProComponent } from './components/pro/pro.component';
+import { DeletePhotoDialogComponent } from './components/delete-photo-dialog/delete-photo-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UpdatePhotoDialogComponent } from './components/update-photo-dialog/update-photo-dialog.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ import { ProComponent } from './components/pro/pro.component';
     EditProfileComponent,
     LogoutComponent,
     ProComponent,
+    DeletePhotoDialogComponent,
+    UpdatePhotoDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +39,7 @@ import { ProComponent } from './components/pro/pro.component';
     ReactiveFormsModule,
     FormsModule,
     SharedModule,
+    NgxDropzoneModule,
   ],
 })
 export class ProfileSettingsModule {}
