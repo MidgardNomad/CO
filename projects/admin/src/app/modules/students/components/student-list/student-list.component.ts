@@ -1,5 +1,5 @@
 import { EeditUserComponent } from './Edit-user/edit-user.component';
-import { UsersService } from './../../../../../../../dal/src/lib/services/users.service';
+import { UsersService } from 'DAL';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
