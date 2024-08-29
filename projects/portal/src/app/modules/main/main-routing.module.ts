@@ -54,13 +54,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('../blogs/blogs.module').then((m) => m.BlogsModule),
       },
-      {
-        path: 'contact-us',
-        loadChildren: () =>
-          import('../contact-us/contact-us.module').then(
-            (m) => m.ContactUsModule
-          ),
-      },
+      // {
+      //   path: 'contact-us',
+      //   loadChildren: () =>
+      //     import('../contact-us/contact-us.module').then(
+      //       (m) => m.ContactUsModule
+      //     ),
+      // },
       {
         path: 'courses',
         loadChildren: () =>
