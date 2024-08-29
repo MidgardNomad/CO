@@ -1,3 +1,16 @@
-.form-group {
-  margin: 15px;
+.connected-accounts {
+  form {
+    .form-group {
+      margin: 15px;
+    }
+    button {
+      border: none;
+      color: white;
+      margin-left: 15px;
+      margin-top: 20px;
+      // &:disabled {
+      //   background-color: #0095cb77;
+      // }
+    }
+  }
 }

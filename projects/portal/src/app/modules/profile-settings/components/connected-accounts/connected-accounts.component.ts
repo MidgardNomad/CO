@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'DAL';
+import { User, UsersService } from 'DAL';
+import { loadingAnimation } from 'projects/portal/src/app/shared/functions/loadingAnimation';
+import { showSnackbar } from 'projects/portal/src/app/shared/functions/showsnackbar';
 //Type: Connected Accounts Object
 
 @Component({
@@ -11,18 +13,15 @@ import { User } from 'DAL';
 })
 export class ConnectedAccountsComponent implements OnInit {
   user: User;
-  accountTemplates: { website: string; example: string }[] = [
-    {
-      website: 'LinkedIn',
-      example: 'https://www.linkedin.com/in/username',
-    },
-    {
-      website: 'GitHub',
-      example: 'https://github.com/username',
-    },
-  ];
+  @ViewChild('connectedAccounts') connectedAccounts: ElementRef;
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
+  showSnackBar = showSnackbar();
+  loadingAnimation = loadingAnimation();
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
@@ -30,11 +29,55 @@ export class ConnectedAccountsComponent implements OnInit {
     });
   }
 
-  // getUserAccountLink(website: string) {
-  //   return
-  // }
+  async onConnect(form: NgForm) {
+    this.loadingAnimation(
+      'block',
+      0.8,
+      this.loadingSpinner,
+      this.connectedAccounts
+    );
+    try {
+      const { linkedIn, gitHub } = form.value;
+      console.log(linkedIn);
+      console.log(gitHub);
+      if (linkedIn && !gitHub) {
+        await this.usersService.addUserSocials(this.user.id, {
+          linkedIn: linkedIn,
+        });
+      } else if (!linkedIn && gitHub) {
+        await this.usersService.addUserSocials(this.user.id, {
+          gitHub: gitHub,
+        });
+      } else if (!linkedIn && !gitHub) {
+      } else {
+        await this.usersService.addUserSocials(this.user.id, {
+          linkedIn: linkedIn,
+          gitHub: gitHub,
+        });
+      }
+      this.loadingAnimation(
+        'none',
+        1,
+        this.loadingSpinner,
+        this.connectedAccounts
+      );
+      this.showSnackBar(
+        'Profile info updated successfully',
+        'success-snackbar'
+      );
+    } catch (e) {
+      this.loadingAnimation(
+        'none',
+        1,
+        this.loadingSpinner,
+        this.connectedAccounts
+      );
+      this.showSnackBar(
+        'Something went wrong! Please, try again later',
+        'fail-snackbar'
+      );
 
-  onConnect(form: NgForm) {
-    const { linkedin, github } = form.value;
+      console.log(e);
+    }
   }
 }

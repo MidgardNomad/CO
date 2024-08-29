@@ -20,7 +20,8 @@ export interface User {
   currentStreak: number;
   maxStreak: number;
   courseList: CourseLevel[];
-  connectedAccounts: ConnectedAccounts[];
+  linkedIn: string;
+  gitHub: string;
   paid: boolean;
   sessionExpirationDate: Date;
   // availableSessions: number;
@@ -29,5 +30,5 @@ export interface User {
 
   timeZone: string;
 
-  isExist?:boolean;
+  isExist?: boolean;
 }

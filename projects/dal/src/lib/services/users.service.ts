@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { BookedSession } from '../models/session/bookedSession';
 import { UserProject } from '../models/user/userProject';
+import { ConnectedAccounts } from '../models/user/connectedAccounts';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class UsersService {
   constructor(
     private crudService: CrudService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   async createUserDoc(newUser: any, country: string, countryCode: string) {
     return new Promise((resolve, reject) => {
@@ -44,7 +45,8 @@ export class UsersService {
           deletedAt: null,
           deleted: false,
           courseList: [],
-          connectedAccounts: [],
+          linkedIn: '',
+          gitHub: '',
           bio: '',
           countryCode,
           country,
@@ -165,9 +167,7 @@ export class UsersService {
     });
   }
 
-  async updateUserDoc(
-    user: User
-  ) {
+  async updateUserDoc(user: User) {
     return new Promise((resolve, reject) => {
       this.crudService
         .updateData('users', user.id, user)
@@ -221,6 +221,15 @@ export class UsersService {
         )
         .then(resolve)
         .catch(reject);
+    });
+  }
+  //user setttings
+  async addUserSocials(userID: string, socials: any) {
+    return new Promise((resolve, reject) => {
+      this.crudService
+        .updateData(this._usersCollection, userID, socials)
+        .then((res) => resolve(res))
+        .catch((error) => reject(error));
     });
   }
 }

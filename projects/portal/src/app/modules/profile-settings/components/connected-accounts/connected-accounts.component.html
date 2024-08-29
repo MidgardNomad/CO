@@ -1,4 +1,19 @@
-<section class="container connected-accounts">
+<section
+  #connectedAccounts
+  class="container connected-accounts"
+  style="position: relative"
+>
+  <div
+    style="
+      position: absolute;
+      top: calc(50% - 40px);
+      left: calc(50% - 40px);
+      display: none;
+    "
+    #loadingSpinner
+  >
+    <app-loading-spinner></app-loading-spinner>
+  </div>
   <form
     #connectedAccountsForm="ngForm"
     (ngSubmit)="onConnect(connectedAccountsForm)"
@@ -16,9 +31,10 @@
         class="form-control"
         type="text"
         placeholder="https://www.linkedin.com/in/username"
-        ngModel
-        name="linkedin"
+        [(ngModel)]="user.linkedIn"
+        name="linkedIn"
         id="linkedin"
+        required
       />
     </div>
     <div class="form-group">
@@ -34,17 +50,12 @@
         class="form-control"
         type="text"
         placeholder="https://github.com/username"
-        ngModel
-        name="github"
+        [(ngModel)]="user.gitHub"
+        name="gitHub"
         id="github"
+        required
       />
     </div>
-    <button
-      class="btn-primary app-custom-button"
-      type="submit"
-      style="border: none; color: white; margin-left: 15px; margin-top: 20px"
-    >
-      Save
-    </button>
+    <button class="btn-primary app-custom-button" type="submit">Save</button>
   </form>
 </section>

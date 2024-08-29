@@ -22,9 +22,7 @@ export class MainComponent implements OnInit, OnDestroy {
     if (this.userService.userDoc !== null) {
       this.userServiceSub = this.userService.userDoc?.subscribe(
         async (userDate) => {
-          console.log('userDate',userDate);
-          
-          const lastStreakDay=0;
+          const lastStreakDay = 0;
           if (userDate.streakDays.length) {
             const lastStreakDay = (
               (
@@ -32,8 +30,6 @@ export class MainComponent implements OnInit, OnDestroy {
               ).toDate() as Date
             ).getDate();
           }
-
-          
 
           const today = new Date().getDate();
 
