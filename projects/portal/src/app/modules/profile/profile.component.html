@@ -28,8 +28,15 @@
             [title]="userDoc.country"
           />
         </div>
-        <div class="user-info-social"></div>
-        <p>{{ userDoc.bio }}</p>
+        <p class="user-info-bio">{{ userDoc.bio }}</p>
+        <div class="d-flex user-info-social">
+          <a *ngIf="userDoc.linkedIn" href="" class="linkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a *ngIf="userDoc.gitHub" href="" class="gitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>

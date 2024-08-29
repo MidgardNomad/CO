@@ -26,9 +26,24 @@
         width: 20px;
         object-fit: contain;
       }
-      p {
+      &-bio {
         font-size: 14px;
         color: rgb(173, 182, 231);
+        margin: 0px;
+      }
+      &-social {
+        gap: 10px;
+        a {
+          text-decoration: none;
+          font-size: 14px;
+          color: rgb(173, 182, 231);
+        }
+        .linkedIn:hover {
+          color: #0077b5;
+        }
+        .gitHub:hover {
+          color: #24292e;
+        }
       }
     }
   }
