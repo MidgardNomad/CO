@@ -18,13 +18,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'edit-profile',
         pathMatch: 'full',
       },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
+      // {
+      //   path: 'dashboard',
+      //   component: DashboardComponent,
+      // },
       {
         path: 'edit-profile',
         resolve: { user: UserResovler },
@@ -39,10 +39,10 @@ const routes: Routes = [
         resolve: { user: UserResovler },
         component: ConnectedAccountsComponent,
       },
-      {
-        path: 'pro',
-        component: ProComponent,
-      },
+      // {
+      //   path: 'pro',
+      //   component: ProComponent,
+      // },
       {
         path: 'logout',
         component: LogoutComponent,
