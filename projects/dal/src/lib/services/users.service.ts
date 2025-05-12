@@ -50,7 +50,7 @@ export class UsersService {
           bio: '',
           countryCode,
           country,
-          paid: false,
+          paid: true,
           sessionExpirationDate: null,
           // availableSessions: null,
         } as User)

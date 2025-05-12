@@ -2,7 +2,7 @@
   <button
     class="container-fluid d-flex align-items-center course-card"
     (click)="navigateToLearn()"
-    [disabled]="!isCourseActive || isLoading"
+    [disabled]="isCourseActive || isLoading"
   >
     <img src="../../../../../assets/images/courseIcon.svg" alt="" />
     <div class="d-flex flex-column justify-content-around course">

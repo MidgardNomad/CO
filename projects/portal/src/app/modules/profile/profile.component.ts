@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 export class ProfileComponent implements OnInit, OnDestroy {
   userDoc = <User>{};
   flag: string;
-  userPaid:boolean=false;
+  userPaid: boolean = true;
   isActiveUserProfile = false;
   userProjects: UserProject[];
 
@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.route.data.subscribe((data: Data) => {
       this.userDoc = data['userData'];
       console.log(this.userDoc);
-      this.userPaid=this.userDoc.paid;
+      this.userPaid = this.userDoc.paid;
       this.titleService.setTitle(this.userDoc.displayName);
     });
   }

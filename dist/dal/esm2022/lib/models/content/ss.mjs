@@ -1,0 +1,9 @@
+// create type enum
+export var SsType;
+(function (SsType) {
+    SsType["Text"] = "text";
+    SsType["TextImage"] = "text-image";
+    SsType["MCQ"] = "mcq";
+    SsType["QFill"] = "q-fill";
+})(SsType || (SsType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3MuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9kYWwvc3JjL2xpYi9tb2RlbHMvY29udGVudC9zcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFZQSxtQkFBbUI7QUFDbkIsTUFBTSxDQUFOLElBQVksTUFLWDtBQUxELFdBQVksTUFBTTtJQUNoQix1QkFBYSxDQUFBO0lBQ2Isa0NBQXdCLENBQUE7SUFDeEIscUJBQVcsQ0FBQTtJQUNYLDBCQUFnQixDQUFBO0FBQ2xCLENBQUMsRUFMVyxNQUFNLEtBQU4sTUFBTSxRQUtqQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgU3Mge1xuICBpZD86IHN0cmluZztcbiAgc2VxTm86IG51bWJlcjtcbiAgdHlwZTogU3NUeXBlO1xuICB0ZXh0Pzogc3RyaW5nO1xuICBpbWFnZT86IHN0cmluZztcbiAgcXVlc3Rpb24/OiBzdHJpbmc7XG4gIG1jcUFuc3dlcj86IG51bWJlcjtcbiAgcUFuc3dlcj86IHN0cmluZztcbiAgb3B0aW9ucz86IHN0cmluZ1tdO1xufVxuXG4vLyBjcmVhdGUgdHlwZSBlbnVtXG5leHBvcnQgZW51bSBTc1R5cGUge1xuICBUZXh0ID0gJ3RleHQnLFxuICBUZXh0SW1hZ2UgPSAndGV4dC1pbWFnZScsXG4gIE1DUSA9ICdtY3EnLFxuICBRRmlsbCA9ICdxLWZpbGwnLFxufVxuIl19

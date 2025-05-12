@@ -73,7 +73,7 @@ export class CourseCardComponent implements OnInit {
 
   async navigateToLearn() {
     try {
-      if (!this.isCourseEnrolled) {
+      if (this.isCourseEnrolled) {
         this.isLoading = true;
         this.enrolling.emit(true);
         this.userCourseList

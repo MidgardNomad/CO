@@ -1,0 +1,36 @@
+import { Observable } from 'rxjs';
+import { CrudService } from './crud.service';
+import { User } from '../models/user/user';
+import { CourseLevel } from '../models/user/courseLevel';
+import { Course } from '../models/content/course';
+import { AuthService } from './auth.service';
+import { BookedSession } from '../models/session/bookedSession';
+import { UserProject } from '../models/user/userProject';
+import * as i0 from "@angular/core";
+export declare class UsersService {
+    private crudService;
+    private authService;
+    private _usersCollection;
+    private _coursesCollection;
+    private _bookedSessionsCollection;
+    private _projectsCollection;
+    userDoc: Observable<User> | null;
+    constructor(crudService: CrudService, authService: AuthService);
+    createUserDoc(newUser: any, country: string, countryCode: string): Promise<unknown>;
+    getUser(): void;
+    getAllUsers(): Observable<User[]>;
+    getActiveUser(userID: string): Observable<User>;
+    getSingleUser(userID: string): Observable<User>;
+    getUserCourses(userID: string): Observable<Course[]>;
+    enrollInCourse(userID: string, courseID: string, data: Course): Promise<unknown>;
+    addCourseLevelToUserDoc(userID: string, courseLevel: CourseLevel[]): Promise<unknown>;
+    updateUserStearkDays(userID: string, streakDays: Date[], maxStreak: number, currentStreak: number): Promise<unknown>;
+    updateUserDoc(user: User): Promise<unknown>;
+    TareCurrentStreak(userID: string): Promise<unknown>;
+    bookSession(session: BookedSession): Promise<unknown>;
+    getUserProjects(userID: string): Observable<UserProject[]>;
+    submitProject(userID: string, project: UserProject): Promise<unknown>;
+    addUserSocials(userID: string, socials: any): Promise<unknown>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UsersService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UsersService>;
+}

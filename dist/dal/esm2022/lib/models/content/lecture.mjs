@@ -1,0 +1,8 @@
+export var LectureType;
+(function (LectureType) {
+    LectureType["Learn"] = "learn";
+    LectureType["Admin"] = "admin";
+    LectureType["Mentor"] = "mentor";
+    LectureType["Interview"] = "interview";
+})(LectureType || (LectureType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGVjdHVyZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2RhbC9zcmMvbGliL21vZGVscy9jb250ZW50L2xlY3R1cmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBUUEsTUFBTSxDQUFOLElBQVksV0FLWDtBQUxELFdBQVksV0FBVztJQUNyQiw4QkFBZSxDQUFBO0lBQ2YsOEJBQWUsQ0FBQTtJQUNmLGdDQUFpQixDQUFBO0lBQ2pCLHNDQUF1QixDQUFBO0FBQ3pCLENBQUMsRUFMVyxXQUFXLEtBQVgsV0FBVyxRQUt0QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgTGVjdHVyZSB7XG4gIGlkOiBzdHJpbmc7XG4gIHRpdGxlOiBzdHJpbmc7XG4gIGRlc2NyaXB0aW9uOiBzdHJpbmc7XG4gIHNlcU5vOiBudW1iZXI7XG4gIHR5cGU/OiBMZWN0dXJlVHlwZTtcbn1cblxuZXhwb3J0IGVudW0gTGVjdHVyZVR5cGUge1xuICBMZWFybiA9ICdsZWFybicsXG4gIEFkbWluID0gJ2FkbWluJyxcbiAgTWVudG9yID0gJ21lbnRvcicsXG4gIEludGVydmlldyA9ICdpbnRlcnZpZXcnLFxufVxuIl19

@@ -14,8 +14,13 @@
     <app-loading-spinner></app-loading-spinner>
   </div>
   <div class="user-courses-card" style="opacity: inherit">
-    <div class="d-flex align-items-baseline user-courses-card-header">
+    <div
+      class="d-flex justify-content-between align-items-baseline user-courses-card-header"
+    >
       <h4>Courses in Progress</h4>
+      <button class="btn primary-btn" type="button" (click)="navToLearn()">
+        Browse Courses
+      </button>
     </div>
     <p *ngIf="!userDoc.paid" class="unpaid-user-message">
       You don't have any ongoing courses, yet. Start your learning jouney,

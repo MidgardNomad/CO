@@ -21,6 +21,10 @@ export class UserCoursesComponent implements OnInit {
     this.courses = this.route.snapshot.data['courses'];
   }
 
+  navToLearn() {
+    this.router.navigate(['/courses']);
+  }
+
   enrollingUser(event) {
     if (event) {
       this.loadingAnimation('block', 0.8, this.loadingSpinner, this.container);
